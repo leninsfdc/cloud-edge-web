@@ -141,7 +141,7 @@ const ContactUsSection = () => {
                     type='submit'
                     className='px-6 py-3 bg-primary rounded-xl text-white w-full sm:w-auto'
                   >
-                    View All Articles
+                    Submit
                   </button>
                 </div>
               </AForm>
