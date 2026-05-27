@@ -1,0 +1,494 @@
+"use client";
+
+import BadgeLabel from '@/components/shared/BadgeLabel'
+import React, { useState } from 'react'
+import checkIcon from "@/public/icons/check.svg"
+import Image from 'next/image'
+import SecondaryButton from '@/components/ui/SecondaryButton'
+import CourseCard from '@/components/ui/CourseCard'
+
+import codeIcon from "@/public/icons/code.svg"
+import salesforceIcon from "@/public/icons/salesforce.svg"
+import marketingIcon from "@/public/icons/marketing.svg"
+import awsIcon from "@/public/icons/aws.svg"
+import sapIcon from "@/public/icons/sap.svg"
+import javaIcon from "@/public/icons/java.svg"
+
+const courses = [
+  {
+    id: 1,
+    icon: salesforceIcon,
+    category: "Salesforce",
+    categoryColor: "#0165E0",
+    title: "Salesforce Administrator",
+    description:
+      "Master customisation, data management, automation, and expert platform navigation. The most in-demand Salesforce role.",
+    oldPrice: "$120.00",
+    price: "$99.00",
+
+    features: [
+      "Beginner to Advanced",
+      "Real Projects Included",
+      "Certification Provided",
+      "Job Assistance",
+    ],
+
+    badges: [
+      "⏳ Limited Seats Available",
+      "🏅 Salesforce Certified Program",
+    ],
+  },
+
+  {
+    id: 2,
+    icon: codeIcon,
+    category: "Development",
+    categoryColor: "#7535D4",
+    title: "Full Stack Web Development",
+    description:
+      "Advanced front-end and back-end development, modern frameworks, and real-world applications.",
+    oldPrice: "$120.00",
+    price: "$99.00",
+
+    features: [
+      "React + Next.js",
+      "Backend APIs",
+      "Database Projects",
+      "Deployment Training",
+    ],
+
+    badges: [
+      "🔥 Most Popular Course",
+      "🚀 Real World Projects Included",
+    ],
+  },
+
+  {
+    id: 3,
+    icon: salesforceIcon,
+    category: "Salesforce",
+    categoryColor: "#0165E0",
+    title: "Salesforce Development",
+    description:
+      "Advanced Salesforce development with Apex, LWC, integrations, and enterprise-level implementations.",
+    oldPrice: "$120.00",
+    price: "$99.00",
+
+    features: [
+      "Apex + LWC",
+      "Real CRM Projects",
+      "Integration Training",
+      "Career Guidance",
+    ],
+
+    badges: [
+      "🏅 Salesforce Expert Track",
+      "📈 High Salary Domain",
+    ],
+  },
+
+  {
+    id: 4,
+    icon: marketingIcon,
+    category: "Marketing",
+    categoryColor: "#F3663B",
+    title: "Digital Marketing Mastery",
+    description:
+      "Advanced marketing strategies, performance campaigns, and data-driven techniques for business growth.",
+    oldPrice: "$120.00",
+    price: "$99.00",
+
+    features: [
+      "SEO + Meta Ads",
+      "Google Ads",
+      "Analytics Training",
+      "Live Campaigns",
+    ],
+
+    badges: [
+      "📊 Performance Marketing",
+      "💼 Freelancing Ready",
+    ],
+  },
+
+  {
+    id: 5,
+    icon: awsIcon,
+    category: "DEVELOPMENT",
+    categoryColor: "#FB9701",
+    title: "AWS Solutions Architect",
+    description:
+      "Comprehensive cloud training. Get certified and unlock high-paying cloud roles globally.",
+    oldPrice: "$120.00",
+    price: "$99.00",
+
+    features: [
+      "AWS Cloud Practitioner",
+      "Hands-on Labs",
+      "DevOps Basics",
+      "Interview Preparation",
+    ],
+
+    badges: [
+      "☁️ Cloud Career Ready",
+      "🚀 High Demand Skills",
+    ],
+  },
+
+  {
+    id: 6,
+    icon: sapIcon,
+    category: "SAP",
+    categoryColor: "#00B1EB",
+    title: "SAP Training",
+    description:
+      "FICO, SD, MM modules. Industry-recognised certification with full placement support.",
+    oldPrice: "$120.00",
+    price: "$99.00",
+
+    features: [
+      "SAP FICO",
+      "SAP MM",
+      "SAP SD",
+      "Placement Assistance",
+    ],
+
+    badges: [
+      "🏢 Enterprise Training",
+      "📈 Corporate Ready",
+    ],
+  },
+
+  {
+    id: 7,
+    icon: javaIcon,
+    category: "DEVELOPMENT",
+    categoryColor: "#EA2D2E",
+    title: "Java Full Stack",
+    description:
+      "Frontend, backend, and database. Build robust full-stack apps with modern Java frameworks.",
+    oldPrice: "$120.00",
+    price: "$99.00",
+
+    features: [
+      "Spring Boot",
+      "React Integration",
+      "MySQL Database",
+      "Industry Projects",
+    ],
+
+    badges: [
+      "☕ Backend Mastery",
+      "💼 Job Focused Program",
+    ],
+  },
+]
+const ExploreCoursesSection = () => {
+
+  const [selectedCourse, setSelectedCourse] = useState(courses[0])
+
+  return (
+    <div className='bg-white py-10 relative overflow-hidden'>
+
+      <div className='absolute w-[411px] h-[390px] top-[50px] right-0 bg-[#6557E3] blur-[300px]' />
+
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[311px] h-[290px] bg-[#F232B2] blur-[300px]" />
+
+      <div className='container mx-auto px-4 sm:px-6'>
+
+        {/* HEADING */}
+        <div className='flex items-center justify-center flex-col'>
+          <BadgeLabel label='Top Class Courses' theme='light' />
+
+          <div className='text-[#1D1F20] text-center font-medium leading-tight my-8 text-3xl sm:text-4xl md:text-5xl'>
+            Explore Our World's Best Courses
+          </div>
+        </div>
+
+        {/* GRID */}
+        <div className='grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-7 mt-12'>
+
+          {/* LEFT BIG CARD */}
+          <div
+            className='
+            bg-[#272040]
+            lg:col-span-5 lg:row-span-3
+            p-5 sm:p-7 lg:p-10
+            border border-[#4C4760]
+            rounded-3xl lg:rounded-4xl
+            flex flex-col justify-between
+            transition-all duration-300 ease-out
+            hover:-translate-y-1
+            hover:shadow-[0_20px_50px_rgba(0,0,0,0.25)]
+          '
+          >
+
+            <div className='space-y-6'>
+
+              {/* TOP */}
+              <div className='flex items-start justify-between gap-4'>
+                <Image
+                  src={selectedCourse.icon}
+                  alt={selectedCourse.title}
+                  className='w-[60px] h-[60px] sm:w-[76px] sm:h-[76px]'
+                />
+
+                <span className='bg-[#FFFFFF33] py-1 px-3 backdrop-blur-sm text-white uppercase rounded-[100px] text-[10px] sm:text-xs font-bold whitespace-nowrap'>
+                  {selectedCourse.category}
+                </span>
+              </div>
+
+              {/* TITLE */}
+              <div className='font-semibold text-2xl sm:text-3xl text-white leading-tight'>
+                {selectedCourse.title}
+              </div>
+
+              {/* DESC */}
+              <div className='text-white text-base sm:text-lg leading-6 tracking-wide'>
+                {selectedCourse.description}
+              </div>
+
+              {/* FEATURES */}
+              <div className='space-y-2'>
+                {selectedCourse.features.map((item) => (
+                  <div key={item} className='flex items-center gap-3'>
+
+                    <Image
+                      src={checkIcon}
+                      alt='check'
+                      className='w-10 h-10 sm:w-12 sm:h-12'
+                    />
+
+                    <span className='text-white text-base sm:text-lg tracking-tight'>
+                      {item}
+                    </span>
+
+                  </div>
+                ))}
+              </div>
+
+              {/* BADGES */}
+              <div className='flex flex-wrap items-center gap-3 sm:gap-4'>
+
+                {selectedCourse.badges.map((badge) => (
+
+                  <div
+                    key={badge}
+                    className="text-white w-fit backdrop-blur-sm rounded-3xl px-4 py-2 border border-transparent bg-[#FFFFFF0D] text-xs sm:text-sm"
+                    style={{
+                      backgroundClip: "padding-box",
+                      position: "relative",
+                    }}
+                  >
+
+                    <div
+                      className="absolute inset-0 rounded-3xl pointer-events-none"
+                      style={{
+                        padding: "0.61px",
+                        background:
+                          "linear-gradient(109.31deg, #FFFFFF 2.19%, rgba(255,255,255,0) 96.74%)",
+                        WebkitMask:
+                          "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+                        WebkitMaskComposite: "xor",
+                        maskComposite: "exclude",
+                      }}
+                    />
+
+                    {badge}
+
+                  </div>
+
+                ))}
+
+              </div>
+
+              {/* TIMER BOX */}
+              <div>
+
+                <div
+                  className="text-white w-full backdrop-blur-sm rounded-3xl p-5 sm:p-7 border border-transparent bg-[#FFFFFF0D] text-sm"
+                  style={{
+                    backgroundClip: "padding-box",
+                    position: "relative",
+                  }}
+                >
+
+                  <div
+                    className="absolute inset-0 rounded-3xl pointer-events-none"
+                    style={{
+                      padding: "0.61px",
+                      background:
+                        "linear-gradient(109.31deg, #FFFFFF 2.19%, rgba(255,255,255,0) 96.74%)",
+                      WebkitMask:
+                        "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+                      WebkitMaskComposite: "xor",
+                      maskComposite: "exclude",
+                    }}
+                  />
+
+                  <div className='mb-4 text-sm sm:text-base'>
+                    📅 Next Batch: 25th April
+                  </div>
+
+                  <div className='grid grid-cols-4 gap-2 sm:gap-4'>
+
+                    {[
+                      { value: "08", label: "Days" },
+                      { value: "13", label: "Hours" },
+                      { value: "16", label: "Mins" },
+                      { value: "00", label: "Secs" },
+                    ].map((item) => (
+
+                      <div
+                        key={item.label}
+                        className="text-white w-full backdrop-blur-sm rounded px-2 sm:px-5 py-2 border border-transparent bg-[#FFFFFF0D] text-[10px] sm:text-sm"
+                        style={{
+                          backgroundClip: "padding-box",
+                          position: "relative",
+                        }}
+                      >
+
+                        <div
+                          className="absolute inset-0 rounded pointer-events-none"
+                          style={{
+                            padding: "0.61px",
+                            background:
+                              "linear-gradient(109.31deg, #FFFFFF 2.19%, rgba(255,255,255,0) 96.74%)",
+                            WebkitMask:
+                              "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+                            WebkitMaskComposite: "xor",
+                            maskComposite: "exclude",
+                          }}
+                        />
+
+                        <div className='space-y-1'>
+
+                          <div className='font-bold text-sm sm:text-lg text-center'>
+                            {item.value}
+                          </div>
+
+                          <div className='uppercase text-center text-[9px] sm:text-sm leading-none'>
+                            {item.label}
+                          </div>
+
+                        </div>
+
+                      </div>
+
+                    ))}
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+            {/* FOOTER */}
+            <div className='w-full'>
+
+              <hr className='w-full border-t border-[#4C4760] mt-10 lg:mt-20 mb-7' />
+
+              <div className='flex flex-col sm:flex-row gap-5 sm:gap-0 sm:items-center sm:justify-between'>
+
+                <div>
+
+                  <div className='text-sm text-[#938F9F] line-through'>
+                    {selectedCourse.oldPrice}
+                  </div>
+
+                  <div className='text-white font-bold text-3xl'>
+                    {selectedCourse.price}
+                  </div>
+
+                </div>
+
+                <SecondaryButton text='Enroll Now' />
+
+              </div>
+
+            </div>
+
+          </div>
+
+          {/* RIGHT SIDE */}
+          <div className='lg:col-span-7 lg:col-start-6 flex flex-col gap-6 lg:gap-7'>
+
+            {courses
+              .filter((course) => course.id !== selectedCourse.id)
+              .slice(0, 3)
+              .map((course) => (
+
+                <div
+                  key={course.id}
+                  onClick={() => setSelectedCourse(course)}
+                  className='cursor-pointer transition-all duration-300 hover:-translate-y-1'
+                >
+
+                  <CourseCard
+                    icon={course.icon}
+                    category={course.category}
+                    categoryColor={course.categoryColor}
+                    title={course.title}
+                    description={course.description}
+                    oldPrice={course.oldPrice}
+                    price={course.price}
+                  />
+
+                </div>
+
+              ))}
+
+          </div>
+
+          {/* BOTTOM CARDS */}
+          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:col-span-12'>
+
+            {courses
+              .filter((course) => course.id !== selectedCourse.id)
+              .slice(3)
+              .map((course) => (
+
+                <div
+                  key={course.id}
+                  onClick={() => setSelectedCourse(course)}
+                  className='cursor-pointer transition-all duration-300 hover:-translate-y-1'
+                >
+
+                  <CourseCard
+                    icon={course.icon}
+                    category={course.category}
+                    categoryColor={course.categoryColor}
+                    title={course.title}
+                    description={course.description}
+                    oldPrice={course.oldPrice}
+                    price={course.price}
+                  />
+
+                </div>
+
+              ))}
+
+          </div>
+
+        </div>
+
+        <div className='flex items-center justify-center mt-14 sm:mt-20'>
+
+          <SecondaryButton
+            text='View All Courses'
+            bgColor='#6557E3'
+            shadowColor='#3A1078'
+            borderColor='#6557E3'
+          />
+
+        </div>
+
+      </div>
+
+    </div>
+  )
+}
+
+export default ExploreCoursesSection
