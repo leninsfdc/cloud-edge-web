@@ -28,10 +28,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistSans.className} h-full antialiased`}
     >
       <body className="min-h-full">
-        <Navbar />
         {children}
-        <Footer />
-        <AOSProvider />
       </body>
     </html>
   );
