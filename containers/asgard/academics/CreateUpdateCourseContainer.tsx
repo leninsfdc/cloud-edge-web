@@ -29,6 +29,7 @@ const CreateUpdateCourseContainer: React.FC<ICreateUpdateCourseContainerProps> =
     description: data?.description ?? "",
     overview: data?.overview ?? "",
     media_url: data?.media_url ?? "",
+    icon_media_url: data?.icon_media_url ?? "",
     duration: data?.duration ?? 0,
     outcomes: data?.outcomes ?? [],
     features: data?.features ?? [],
@@ -54,6 +55,10 @@ const CreateUpdateCourseContainer: React.FC<ICreateUpdateCourseContainerProps> =
   const validate = () => {
     if (!form.name.trim()) {
       toast.error("Course name is required");
+      return false;
+    }
+    if (!form.icon_media_url?.trim()) {
+      toast.error("Course icon media is required");
       return false;
     }
     return true;
@@ -185,6 +190,8 @@ const CreateUpdateCourseContainer: React.FC<ICreateUpdateCourseContainerProps> =
             <div className="space-y-2">
               <Label>Media / Thumbnail</Label>
               <ImageUpload value={form.media_url || ""} onChange={(url) => setForm({ ...form, media_url: url })} className="h-[152px]" />
+              <Label>Course Icon Media</Label>
+              <ImageUpload value={form.icon_media_url || ""} onChange={(url) => setForm({ ...form, icon_media_url: url })} className="h-[152px]" />
             </div>
           </div>
           <div className="mt-5 space-y-2">

@@ -1,13 +1,10 @@
 "use server";
 
-import { redirect } from "next/navigation";
-import { cookies } from "next/headers";
 import { createClient } from "@/libs/supabase/server";
 
-export async function login(formData: FormData): Promise<void> {
+export async function login(formData: FormData) {
   const email = formData.get("email") as string;
   const password = formData.get("password") as string;
-
 
   const supabase = await createClient();
 
@@ -17,7 +14,10 @@ export async function login(formData: FormData): Promise<void> {
   });
 
   if (error) {
-    throw new Error(error.message);
+    return {
+      success: false,
+      message: error.message,
+    };
   }
 
   const {
@@ -25,10 +25,11 @@ export async function login(formData: FormData): Promise<void> {
   } = await supabase.auth.getUser();
 
   if (!user) {
-    throw new Error("User not found");
+    return {
+      success: false,
+      message: "User not found",
+    };
   }
-
-  console.log("check user", user);
 
   const { data: admin } = await supabase
     .from("admins")
@@ -36,11 +37,8 @@ export async function login(formData: FormData): Promise<void> {
     .eq("id", user.id)
     .single();
 
-  console.log("admin", admin)
-
-  if (admin) {
-    redirect("/asgard/dashboard");
-  }
-
-  redirect("/");
+  return {
+    success: true,
+    redirectTo: admin ? "/asgard/dashboard" : "/",
+  };
 }

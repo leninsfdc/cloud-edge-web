@@ -1,4 +1,4 @@
-
+"use client"
 
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -8,9 +8,46 @@ import { Label } from "@/components/ui/label";
 import Logo from "@/public/logo.svg";
 
 import Image from "next/image";
-import { Mail, Lock } from "lucide-react";
+import { Mail, Lock, Loader2 } from "lucide-react";
 import { login } from "@/app/(asgard)/asgard/login/actions";
+import { useState } from "react";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 const LoginContainer = () => {
+  const [loading, setLoading] = useState(false);
+
+  const router = useRouter();
+
+  async function handleSubmit(
+    event: React.FormEvent<HTMLFormElement>
+  ) {
+    event.preventDefault();
+
+    try {
+      setLoading(true);
+
+      const formData = new FormData(event.currentTarget);
+
+      const result = await login(formData);
+
+      if (!result.success) {
+        toast.error(result.message ?? "Something went wrong");
+        return;
+      }
+
+      toast.success("Login successful");
+
+      router.push(result.redirectTo ?? "/asgard");
+    } catch (error) {
+      toast.error(
+        error instanceof Error
+          ? error.message
+          : "Something went wrong"
+      );
+    } finally {
+      setLoading(false);
+    }
+  }
   return (
     <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-background px-4 font-sans">
       {/* Background Effects */}
@@ -44,7 +81,7 @@ const LoginContainer = () => {
             </p>
           </div>
 
-          <form action={login} className="space-y-5">
+          <form onSubmit={handleSubmit} className="space-y-5">
             {/* Email */}
             <div className="space-y-2">
               <Label htmlFor="email">Email Address</Label>
@@ -92,9 +129,14 @@ const LoginContainer = () => {
 
             <Button
               type="submit"
+              disabled={loading}
               className="h-11 w-full font-medium transition-all hover:scale-[1.02] cursor-pointer"
             >
-              Sign In
+              {loading ? (
+                <Loader2 className="h-4 w-4 animate-spin" />
+              ) : (
+                "Sign In"
+              )}
             </Button>
           </form>
 

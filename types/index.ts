@@ -20,6 +20,7 @@ export interface ICourse {
   description?: string;
   overview?: string;
   media_url?: string;
+  icon_media_url?: string;
   duration?: number;
   outcomes?: string[];
   features?: string[];

@@ -36,24 +36,6 @@ export const batchColumns = (
     },
 
     {
-      accessorKey: "start_date",
-      header: "Start Date",
-      // cell: ({ row }) =>
-      //   new Date(
-      //     row.original.start_date
-      //   ).toLocaleDateString(),
-    },
-
-    {
-      accessorKey: "end_date",
-      header: "End Date",
-      // cell: ({ row }) =>
-      //   new Date(
-      //     row.original.end_date
-      //   ).toLocaleDateString(),
-    },
-
-    {
       id: "max_students",
       header: "Max Students",
       cell: ({ row }) => (
@@ -74,45 +56,13 @@ export const batchColumns = (
     },
 
     {
-      accessorKey: "status",
-      header: "Status",
-      // cell: ({ row }) => {
-      //   const status =
-      //     row.original.status ?? "upcoming";
-
-      //   const styles = {
-      //     upcoming:
-      //       "bg-blue-100 text-blue-700",
-      //     ongoing:
-      //       "bg-green-100 text-green-700",
-      //     completed:
-      //       "bg-gray-100 text-gray-700",
-      //     cancelled:
-      //       "bg-red-100 text-red-700",
-      //   };
-
-      //   return (
-      //     <span
-      //       className={`rounded-full px-2 py-1 text-xs font-medium ${styles[
-      //         status as keyof typeof styles
-      //         ] ??
-      //         "bg-gray-100 text-gray-700"
-      //         }`}
-      //     >
-      //       {status}
-      //     </span>
-      //   );
-      // },
-    },
-
-    {
       accessorKey: "is_active",
       header: "Active",
       cell: ({ row }) => (
         <span
           className={`rounded-full px-2 py-1 text-xs font-medium ${row.original.is_active
-              ? "bg-green-100 text-green-700"
-              : "bg-red-100 text-red-700"
+            ? "bg-green-100 text-green-700"
+            : "bg-red-100 text-red-700"
             }`}
         >
           {row.original.is_active

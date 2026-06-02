@@ -15,6 +15,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { uploadMedia } from "@/lib/uploadMedia";
 import { Label } from "../ui/label";
+import toast from "react-hot-toast";
 
 export type BannerForm = {
   id?: string;
@@ -86,10 +87,30 @@ export function AddEditBannerModal({
   };
 
   const handleSubmit = async () => {
-    setLoading(true);
+    // Basic client‑side validation
+    if (!form.title.trim()) {
+      toast.error('Title is required');
+      return;
+    }
+    if (!form.description.trim()) {
+      toast.error('Description is required');
+      return;
+    }
+    if (!form.btn_text.trim()) {
+      toast.error('Button text is required');
+      return;
+    }
+    if (!form.btn_link.trim()) {
+      toast.error('Button link is required');
+      return;
+    }
 
+    setLoading(true);
     try {
       await onSubmit(form, file);
+      toast.success(banner ? 'Banner updated' : 'Banner created');
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : 'Failed to submit banner');
     } finally {
       setLoading(false);
     }
