@@ -38,6 +38,7 @@ const CreateUpdateCourseContainer: React.FC<ICreateUpdateCourseContainerProps> =
     us_avg_salary: data?.us_avg_salary ?? "",
     ca_avg_salary: data?.ca_avg_salary ?? "",
     is_active: data?.is_active ?? true,
+    is_featured: data?.is_featured ?? false,
   });
 
   const [modules, setModules] = useState<ICourseModule[]>(data?.modules ?? []);
@@ -425,12 +426,21 @@ const CreateUpdateCourseContainer: React.FC<ICreateUpdateCourseContainerProps> =
 
         {/* Capacity & Settings */}
         <div className="rounded-2xl border bg-card p-6 shadow-sm">
-          <div className="flex items-center justify-between rounded-xl border p-4 max-w-sm">
-            <div>
-              <p className="font-medium">Active Course</p>
-              <p className="text-sm text-muted-foreground">Course will be visible to students.</p>
+          <div className="grid gap-4 sm:grid-cols-2 max-w-2xl">
+            <div className="flex items-center justify-between rounded-xl border p-4">
+              <div>
+                <p className="font-medium">Active Course</p>
+                <p className="text-sm text-muted-foreground">Course will be visible to students.</p>
+              </div>
+              <Switch checked={form.is_active} onCheckedChange={(checked) => setForm({ ...form, is_active: checked })} />
             </div>
-            <Switch checked={form.is_active} onCheckedChange={(checked) => setForm({ ...form, is_active: checked })} />
+            <div className="flex items-center justify-between rounded-xl border p-4">
+              <div>
+                <p className="font-medium">Featured Course</p>
+                <p className="text-sm text-muted-foreground">Course will be highlighted on the platform.</p>
+              </div>
+              <Switch checked={form.is_featured} onCheckedChange={(checked) => setForm({ ...form, is_featured: checked })} />
+            </div>
           </div>
         </div>
 

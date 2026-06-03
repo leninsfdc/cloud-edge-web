@@ -26,6 +26,20 @@ export const courseColumns = (
       ),
     },
     {
+      accessorKey: "is_featured",
+      header: "Featured",
+      cell: ({ row }) => (
+        <span
+          className={`rounded-full px-2 py-1 text-xs font-medium ${row.original.is_featured
+              ? "bg-amber-100 text-amber-700 border border-amber-200"
+              : "bg-gray-100 text-gray-500"
+            }`}
+        >
+          {row.original.is_featured ? "Featured" : "Standard"}
+        </span>
+      ),
+    },
+    {
       accessorKey: "is_active",
       header: "Active",
       cell: ({ row }) => (
