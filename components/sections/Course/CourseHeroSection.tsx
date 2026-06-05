@@ -10,6 +10,8 @@ import verified from "@/public/icons/verified.svg"
 import star from "@/public/icons/star-gold.svg"
 import enrolled from "@/public/icons/enrolled.png"
 import whatsappIcon from "@/public/icons/whatsapp-white.svg"
+import play from "@/public/icons/play.svg"
+import check from "@/public/icons/check-blue.svg"
 
 interface ICourseHeroSectionProps {
   course: ICourse;
@@ -21,131 +23,166 @@ const CourseHeroSection: React.FC<ICourseHeroSectionProps> = ({ course }) => {
       background: "radial-gradient(85.12% 123.04% at 70% 30%, rgba(219, 234, 254, 0.6) 0%, #F8FBFF 70%)"
     }}>
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
-        <div className=' max-w-xl pt-28 md:pt-32 space-y-6'>
-          <div className='bg-[#E3E1FA] rounded-2xl px-4 py-2 w-fit text-[#6557E3] text-xs font-semibold flex items-center justify-center gap-3 '>
-            <Image src={cap} alt='cap' className=' w-5 h-5' />
-            {course.label}
-          </div>
-          <div>
-            <h1 className=' font-bold text-5xl font-bricolage-grotesque tracking-tight leading-14'>{course.name}</h1>
-          </div>
-          <div>
-            <p className=' text-[#31373D] tracking-tight text-lg '>
-              {course.description}
-            </p>
-          </div>
-          <div className=' grid grid-cols-4 gap-6'>
-            <div className="bg-white p-4 rounded-2xl flex flex-col justify-between min-h-[130px]">
-              <div className="bg-[#EFF6FF] p-3 rounded-lg w-fit">
-                <Image
-                  src={calendarBlue}
-                  alt="calendar"
-                  className="w-5 h-5"
-                />
-              </div>
-
-              <div>
-                <p className="text-xs font-semibold tracking-wider text-[#94A3B8] uppercase mb-1">
-                  {course.duration} Weeks
-                </p>
-
-                <p className="text-sm font-semibold text-gray-900">
-                  Live Online
-                </p>
-              </div>
+        <div className="grid lg:grid-cols-2 gap-16 items-center pt-28 md:pt-32">
+          <div className="space-y-6">
+            <div className='bg-[#E3E1FA] rounded-2xl px-4 py-2 w-fit text-[#6557E3] text-xs font-semibold flex items-center justify-center gap-3 '>
+              <Image src={cap} alt='cap' className=' w-5 h-5' />
+              {course.label}
             </div>
-            <div className="bg-white p-4 rounded-2xl flex flex-col justify-between min-h-[130px]">
-              <div className="bg-[#EFF6FF] p-3 rounded-lg w-fit">
-                <Image
-                  src={groupIcon}
-                  alt="group"
-                  className="w-5 h-5"
-                />
-              </div>
-
-              <div>
-                <p className="text-xs font-semibold tracking-wider text-[#94A3B8] uppercase mb-1">
-                  BEGINNER -
-                </p>
-
-                <p className="text-sm font-semibold text-gray-900">
-                  Intermediate
-                </p>
-              </div>
+            <div>
+              <h1 className=' font-bold text-5xl font-bricolage-grotesque tracking-tight leading-14'>{course.name}</h1>
             </div>
-            <div className="bg-white p-4 rounded-2xl flex flex-col justify-between min-h-[130px]">
-              <div className="bg-[#EFF6FF] p-3 rounded-lg w-fit">
-                <Image
-                  src={calendarOrange}
-                  alt="calendar"
-                  className="w-5 h-5"
-                />
-              </div>
-
-              <div>
-                <p className="text-xs font-semibold tracking-wider text-[#94A3B8] uppercase mb-1">
-                  Next batch
-                </p>
-
-                <p className="text-sm font-semibold text-gray-900">
-                  {/* @ts-ignore */}
-                  {moment(course.nextBatch.start_date).format("DD MMM YYYY")}
-                </p>
-              </div>
+            <div>
+              <p className=' text-[#31373D] tracking-tight text-lg '>
+                {course.description}
+              </p>
             </div>
-            <div className="bg-white p-4 rounded-2xl flex flex-col justify-between min-h-[130px]">
-              <div className="bg-[#EFF6FF] p-3 rounded-lg w-fit">
-                <Image
-                  src={verified}
-                  alt="verified"
-                  className="w-5 h-5"
-                />
-              </div>
-              <div>
-                <p className="text-xs font-semibold tracking-wider text-[#94A3B8] uppercase mb-1">
-                  ADM-201
-                </p>
-
-                <p className="text-sm font-semibold text-gray-900">
-                  Aligned
-                </p>
-              </div>
-            </div>
-          </div>
-          <div className=' flex items-center gap-4'>
-            <div className='flex items-center gap-2'>
-              <div className="flex items-center gap-1">
-                {[...Array(5)].map((_, index) => (
+            <div className=' grid grid-cols-4 gap-6'>
+              <div className="bg-white p-4 rounded-2xl flex flex-col justify-between min-h-[130px]">
+                <div className="bg-[#EFF6FF] p-3 rounded-lg w-fit">
                   <Image
-                    key={index}
-                    src={star}
-                    alt="star"
-                    className="w-3 h-3"
+                    src={calendarBlue}
+                    alt="calendar"
+                    className="w-5 h-5"
                   />
-                ))}
+                </div>
+
+                <div>
+                  <p className="text-xs font-semibold tracking-wider text-[#94A3B8] uppercase mb-1">
+                    {course.duration} Weeks
+                  </p>
+
+                  <p className="text-sm font-semibold text-gray-900">
+                    Live Online
+                  </p>
+                </div>
               </div>
-              <div className=' font-bold text-sm'>4.8</div>
-              <div className=' text-[#94A3B8] text-sm'>(312 reviews)</div>
-            </div>
-            <div className='flex items-center gap-1'>
-              <Image src={enrolled} alt='enrolled' className=' w-7 h-4' />
-              <span className=' font-semibold text-sm'>3,400+</span>
-              <span className='text-sm'>enrolled</span>
-            </div>
-            <div className='flex items-center gap-2'>
-              <div>
-                🌍
+              <div className="bg-white p-4 rounded-2xl flex flex-col justify-between min-h-[130px]">
+                <div className="bg-[#EFF6FF] p-3 rounded-lg w-fit">
+                  <Image
+                    src={groupIcon}
+                    alt="group"
+                    className="w-5 h-5"
+                  />
+                </div>
+
+                <div>
+                  <p className="text-xs font-semibold tracking-wider text-[#94A3B8] uppercase mb-1">
+                    BEGINNER -
+                  </p>
+
+                  <p className="text-sm font-semibold text-gray-900">
+                    Intermediate
+                  </p>
+                </div>
               </div>
-              <span className='text-sm text-[#475569]'>India • UK • USA</span>
+              <div className="bg-white p-4 rounded-2xl flex flex-col justify-between min-h-[130px]">
+                <div className="bg-[#EFF6FF] p-3 rounded-lg w-fit">
+                  <Image
+                    src={calendarOrange}
+                    alt="calendar"
+                    className="w-5 h-5"
+                  />
+                </div>
+
+                <div>
+                  <p className="text-xs font-semibold tracking-wider text-[#94A3B8] uppercase mb-1">
+                    Next batch
+                  </p>
+
+                  <p className="text-sm font-semibold text-gray-900">
+                    {/* @ts-ignore */}
+                    {moment(course.nextBatch.start_date).format("DD MMM YYYY")}
+                  </p>
+                </div>
+              </div>
+              <div className="bg-white p-4 rounded-2xl flex flex-col justify-between min-h-[130px]">
+                <div className="bg-[#EFF6FF] p-3 rounded-lg w-fit">
+                  <Image
+                    src={verified}
+                    alt="verified"
+                    className="w-5 h-5"
+                  />
+                </div>
+                <div>
+                  <p className="text-xs font-semibold tracking-wider text-[#94A3B8] uppercase mb-1">
+                    ADM-201
+                  </p>
+
+                  <p className="text-sm font-semibold text-gray-900">
+                    Aligned
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className=' flex items-center gap-4'>
+              <div className='flex items-center gap-2'>
+                <div className="flex items-center gap-1">
+                  {[...Array(5)].map((_, index) => (
+                    <Image
+                      key={index}
+                      src={star}
+                      alt="star"
+                      className="w-3 h-3"
+                    />
+                  ))}
+                </div>
+                <div className=' font-bold text-sm'>4.8</div>
+                <div className=' text-[#94A3B8] text-sm'>(312 reviews)</div>
+              </div>
+              <div className='flex items-center gap-1'>
+                <Image src={enrolled} alt='enrolled' className=' w-7 h-4' />
+                <span className=' font-semibold text-sm'>3,400+</span>
+                <span className='text-sm'>enrolled</span>
+              </div>
+              <div className='flex items-center gap-2'>
+                <div>
+                  🌍
+                </div>
+                <span className='text-sm text-[#475569]'>India • UK • USA</span>
+              </div>
+            </div>
+            <div className=' flex items-center gap-4'>
+              <button className='bg-[#4361EE] px-6 py-4 rounded-full flex items-center gap-2'>
+                <Image src={whatsappIcon} alt='whatsapp' className=' w-5 h-5' />
+                <div className=' text-white font-semibold'>Enroll via WhatsApp</div>
+              </button>
+              <button className='bg-white px-6 py-4 rounded-full flex items-center gap-2 border border-[#F3F4F6]'>
+                <Image src={play} alt='play' className=' w-3 h-3' />
+                <div className=' text-black font-semibold'>Book a Free Demo</div>
+              </button>
+            </div>
+            <div className="flex flex-wrap gap-x-8 gap-y-3 pt-2">
+              {course.features?.slice(0, 3).map((feature, index) => (
+                <div
+                  key={index}
+                  className="flex items-center gap-2"
+                >
+                  <Image
+                    src={check}
+                    alt="check"
+                    className="w-4 h-4"
+                  />
+
+                  <span className="text-sm text-[#475569]">
+                    {feature}
+                  </span>
+                </div>
+              ))}
             </div>
           </div>
-          <div className=' flex items-center gap-4'>
-            <button className='bg-[#4361EE] px-6 py-4 rounded-full flex items-center gap-2'>
-              <Image src={whatsappIcon} alt='whatsapp' className=' w-5 h-5'  />
-              <div className=' text-white font-semibold'>Enrol via WhatsApp</div>
-            </button>
+          <div className="relative flex justify-end">
+            <Image
+              src={course.media_url || "/placeholder-course.png"}
+              alt={course.name}
+              width={900}
+              height={700}
+              className="w-full max-w-[700px] h-auto object-contain"
+              priority
+            />
           </div>
         </div>
+
       </div>
     </div>
   )

@@ -67,7 +67,7 @@ const modeOptions = [
 const CreateUpdateBatchContainer: React.FC<
   ICreateUpdateBatchContainerProps
 > = ({ data, courses }) => {
-  const [form, setForm] = useState<IBatches>({
+  const [form, setForm] = useState<any>({
     name: data?.name ?? "",
     description: data?.description ?? "",
     course_id: data?.course_id ?? "",
@@ -89,11 +89,11 @@ const CreateUpdateBatchContainer: React.FC<
   );
 
   const toggleDay = (day: string) => {
-    setForm((prev) => ({
+    setForm((prev: any) => ({
       ...prev,
       class_days: prev.class_days.includes(day)
         ? prev.class_days.filter(
-          (d) => d !== day
+          (d: any) => d !== day
         )
         : [...prev.class_days, day],
     }));

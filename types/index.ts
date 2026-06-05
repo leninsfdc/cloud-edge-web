@@ -11,6 +11,8 @@ export interface IBatches {
   created_at?: Date;
   timezone?: string;
   courses?: ICourse;
+
+  batch_regions: IBatchRegion[]
 }
 
 export interface ICourse {
@@ -36,6 +38,8 @@ export interface ICourse {
   url_slug?: string;
 
   nextBatch?: IBatches;
+  batches?: IBatches[]; 
+  modules?: ICourseModule[];
 }
 
 export interface ICourseModule {

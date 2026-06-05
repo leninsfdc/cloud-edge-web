@@ -138,6 +138,7 @@ export async function getCourseBySlug(slug: string) {
     highlights: highlightsRes.data || [],
     faqs: faqsRes.data || [],
     nextBatch: nextBatchRegion,
+    batches: batchesRes.data || [],
   };
 }
 
