@@ -186,7 +186,7 @@ const staticCourses = [
 ]
 
 // HELPER FUNCTIONS FOR DYNAMIC DATA MAP
-const getNearestBatch = (course: any) => {
+export const getNearestBatch = (course: any) => {
   if (typeof course.id === 'string' && course.id.startsWith('static-')) {
     // Mock batch 10 days in the future for static demo courses
     const tenDaysFromNow = new Date(Date.now() + 10 * 24 * 60 * 60 * 1000).toISOString();

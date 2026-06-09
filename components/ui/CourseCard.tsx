@@ -8,7 +8,7 @@ interface CourseCardProps {
   categoryColor: string
   title: string
   description: string
-  oldPrice: string
+  oldPrice?: string
   price: string
   buttonText?: string;
   url: string;

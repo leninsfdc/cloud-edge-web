@@ -15,6 +15,13 @@ export interface IBatches {
   batch_regions: IBatchRegion[]
 }
 
+
+export interface IRelatedCourse {
+
+  related_course_id: string;
+  
+}
+
 export interface ICourse {
   id?: string;
   name: string;
@@ -27,6 +34,7 @@ export interface ICourse {
   outcomes?: string[];
   features?: string[];
   tags?: string[];
+  prerequisites?: string[];
   is_featured?: boolean;
   in_avg_salary?: string;
   uk_avg_salary?: string;
@@ -39,10 +47,26 @@ export interface ICourse {
 
   highlights: ICourseHighlight[];
   tools: ICourseTool[];
+  testimonials?: ICourseTestimonial[];
 
   nextBatch?: IBatches;
   batches?: IBatches[]; 
   modules?: ICourseModule[];
+  faqs?: ICourseFAQ[];
+
+  related_courses?: IRelatedCourse[];
+}
+
+export interface ICourseTestimonial {
+  id?: string;
+  course_id: string;
+  review_text?: string;
+  person_name?: string;
+  person_designation?: string;
+  is_active?: boolean;
+  is_deleted?: boolean;
+  created_at?: Date;
+  media_url?: string;
 }
 
 export interface ICourseModule {

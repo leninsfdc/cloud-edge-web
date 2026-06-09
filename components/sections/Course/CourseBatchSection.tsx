@@ -38,17 +38,17 @@ const CourseBatchSection: React.FC<ICourseBatchSectionProps> = ({ batches, durat
   });
 
   return (
-    <section className="bg-[#0D162C] py-24">
+    <section className="bg-[#0D162C] py-16 md:py-20 lg:py-24">
       <div className="container mx-auto px-4">
 
         {/* HEADER */}
-        <div className="flex justify-between items-center mb-12">
+        <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-8 mb-12">
           <div>
             <div className="bg-white rounded-full px-4 py-2 text-xs w-fit mb-4 flex items-center justify-center gap-1 text-[#21A99D] font-medium">
               <div className='bg-[#21A99D] w-2 h-2 rounded-full ' /> Live Online Training
             </div>
 
-            <h2 className="text-5xl font-bold text-white mb-3 font-bricolage-grotesque">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-3 font-bricolage-grotesque leading-tight">
               Batch Schedule
             </h2>
 
@@ -61,8 +61,8 @@ const CourseBatchSection: React.FC<ICourseBatchSectionProps> = ({ batches, durat
             </p>
           </div>
 
-          <div className="flex gap-4">
-            <div className="bg-white/5 border border-white/10 rounded-3xl p-6 min-w-[180px] flex items-center gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full lg:w-auto">
+            <div className="bg-white/5 border border-white/10 rounded-3xl p-5 lg:p-6 flex items-center gap-4 lg:gap-5">
               <div className=' bg-[#21A99D33] w-16 h-16 rounded-xl flex items-center justify-center'>
                 <Image src={groupGreen} alt='group' className=' w-8 h-8' />
               </div>
@@ -77,7 +77,7 @@ const CourseBatchSection: React.FC<ICourseBatchSectionProps> = ({ batches, durat
               </div>
             </div>
 
-            <div className="bg-white/5 border border-white/10 rounded-3xl p-6 min-w-[180px] flex items-center gap-5">
+            <div className="bg-white/5 border border-white/10 rounded-3xl p-5 lg:p-6 flex items-center gap-4 lg:gap-5">
               <div className=' bg-[#2563EB33] w-16 h-16 rounded-xl flex items-center justify-center'>
                 <Image src={calendarBlue} alt='calendar' className=' w-8 h-8' />
               </div>
@@ -95,7 +95,7 @@ const CourseBatchSection: React.FC<ICourseBatchSectionProps> = ({ batches, durat
         </div>
 
         {/* GRID */}
-        <div className="grid lg:grid-cols-2 gap-8">
+<div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
 
           {/* RUNNING */}
           <div>
@@ -136,18 +136,18 @@ const CourseBatchSection: React.FC<ICourseBatchSectionProps> = ({ batches, durat
                     className="bg-white/5 border border-white/10 rounded-3xl p-6"
                   >
 
-                    <div className=' flex items-center justify-start gap-5'>
-                      <div className=' w-16 h-16 bg-[#2563EB52] flex items-center justify-center p-2 rounded-xl'>
+                    <div className="flex flex-col sm:flex-row gap-4 sm:gap-5">
+                      <div className="w-14 h-14 sm:w-16 sm:h-16 bg-[#2563EB52] flex items-center justify-center p-2 rounded-xl shrink-0">
                         <Image src={group} alt='group' className=' w-8 h-8' />
                       </div>
 
                       <div className=' flex-1'>
-                        <div className="flex justify-between items-start mb-4">
+                        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-3 mb-4">
                           <div>
                             <div className=' bg-white text-[#2563EB] px-4 py-1 text-xs w-fit rounded-lg font-bold mb-2'>
                               IN SESSION
                             </div>
-                            <div className="text-white text-xl font-bold">
+                            <div className="text-white text-lg sm:text-xl font-bold">
                               {batch.name}
                             </div>
 
@@ -158,7 +158,7 @@ const CourseBatchSection: React.FC<ICourseBatchSectionProps> = ({ batches, durat
                             </div>
                           </div>
 
-                          <div className="bg-[#2563EB] text-white px-4 py-2 rounded-lg text-xs self-start">
+                          <div className="bg-[#2563EB] text-white px-4 py-2 rounded-lg text-xs self-start whitespace-nowrap">
                             Week {week} of {duration}
                           </div>
                         </div>
@@ -204,9 +204,9 @@ const CourseBatchSection: React.FC<ICourseBatchSectionProps> = ({ batches, durat
                     key={batch.id}
                     className="bg-white rounded-3xl p-5"
                   >
-                    <div className="flex items-center gap-5">
+                    <div className="flex items-center gap-4 sm:gap-5">
 
-                      <div className="bg-slate-100 rounded-xl py-4 px-6 text-center">
+                      <div className="bg-slate-100 rounded-xl py-3 px-4 sm:py-4 sm:px-6 text-center shrink-0">
                         <div className="font-bold text-[#6557E3]">
                           {moment(
                             region.start_date
@@ -227,7 +227,7 @@ const CourseBatchSection: React.FC<ICourseBatchSectionProps> = ({ batches, durat
                           Live Online • Zoom
                         </div>
 
-                        <div className="font-bold text-lg">
+                        <div className="font-bold text-base sm:text-lg">
                           {batch.name}
                         </div>
                         {/* 
@@ -240,7 +240,7 @@ const CourseBatchSection: React.FC<ICourseBatchSectionProps> = ({ batches, durat
                       </div>
                     </div>
 
-                    <button className="w-full mt-5 border border-[#6557E3] bg-[#E9EEFC] text-[#6557E3] rounded-full py-3 font-semibold text-sm">
+                    <button className="w-full mt-5 border border-[#6557E3] bg-[#E9EEFC] text-[#6557E3] rounded-full py-3 font-semibold text-sm transition-all hover:bg-[#6557E3] hover:text-white">
                       Enroll for this batch →
                     </button>
                   </div>

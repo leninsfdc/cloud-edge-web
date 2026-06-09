@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { ICourse, ICourseModule, ICourseTool, ICourseHighlight, ICourseFAQ } from "@/types";
+import { ICourse, ICourseModule, ICourseTool, ICourseHighlight, ICourseFAQ, ICourseTestimonial, IRelatedCourse } from "@/types";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -19,10 +19,17 @@ interface ICreateUpdateCourseContainerProps {
     tools?: ICourseTool[];
     highlights?: ICourseHighlight[];
     faqs?: ICourseFAQ[];
+    testimonials?: ICourseTestimonial[];
+    related_courses?: IRelatedCourse[];
   };
+  courses: ICourse[];
 }
 
-const CreateUpdateCourseContainer: React.FC<ICreateUpdateCourseContainerProps> = ({ data }) => {
+const CreateUpdateCourseContainer: React.FC<ICreateUpdateCourseContainerProps> = ({ data, courses }) => {
+
+  console.log("courses data", data)
+
+
   const [form, setForm] = useState<ICourse>({
     name: data?.name ?? "",
     label: data?.label ?? "",
@@ -43,6 +50,8 @@ const CreateUpdateCourseContainer: React.FC<ICreateUpdateCourseContainerProps> =
 
     highlights: data?.highlights ?? [],
     tools: data?.tools ?? [],
+    testimonials: data?.testimonials ?? [],
+    prerequisites: data?.prerequisites ?? [],
 
     nextBatch: data?.nextBatch,
     batches: data?.batches ?? [],
@@ -53,11 +62,19 @@ const CreateUpdateCourseContainer: React.FC<ICreateUpdateCourseContainerProps> =
   const [tools, setTools] = useState<ICourseTool[]>(data?.tools ?? []);
   const [highlights, setHighlights] = useState<ICourseHighlight[]>(data?.highlights ?? []);
   const [faqs, setFaqs] = useState<ICourseFAQ[]>(data?.faqs ?? []);
+  const [testimonials, setTestimonials] = useState<ICourseTestimonial[]>(data?.testimonials ?? []);
 
   // For dynamic list fields in Course
   const [features, setFeatures] = useState<string[]>(data?.features?.length ? data.features : [""]);
   const [outcomes, setOutcomes] = useState<string[]>(data?.outcomes?.length ? data.outcomes : [""]);
   const [tags, setTags] = useState<string[]>(data?.tags?.length ? data.tags : [""]);
+  const [prerequisites, setPrerequisites] = useState<string[]>(data?.prerequisites?.length ? data.prerequisites : [""]);
+
+  const [relatedCourses, setRelatedCourses] = useState<string[]>(
+    data?.related_courses?.map(
+      (item: any) => item.related_course_id
+    ) || []
+  );
 
   const router = useRouter();
   const [loading, setLoading] = useState(false);
@@ -85,10 +102,15 @@ const CreateUpdateCourseContainer: React.FC<ICreateUpdateCourseContainerProps> =
         features: features.filter(f => f.trim() !== ""),
         outcomes: outcomes.filter(o => o.trim() !== ""),
         tags: tags.filter(t => t.trim() !== ""),
+        prerequisites: prerequisites.filter(p => p.trim() !== ""),
         modules: modules.map(m => ({ ...m, points: m.points.filter(p => p.trim() !== "") })),
         tools,
         highlights,
         faqs,
+        testimonials,
+        related_courses: relatedCourses.map(id => ({
+          related_course_id: id,
+        })),
       };
 
       if (data?.id) {
@@ -166,6 +188,14 @@ const CreateUpdateCourseContainer: React.FC<ICreateUpdateCourseContainerProps> =
   };
   const removeFaq = (index: number) => setFaqs(faqs.filter((_, i) => i !== index));
 
+  const addTestimonial = () => setTestimonials([...testimonials, { course_id: "", person_name: "", person_designation: "", review_text: "", media_url: "" }]);
+  const updateTestimonial = (index: number, field: string, value: any) => {
+    const updated = [...testimonials];
+    updated[index] = { ...updated[index], [field]: value };
+    setTestimonials(updated);
+  };
+  const removeTestimonial = (index: number) => setTestimonials(testimonials.filter((_, i) => i !== index));
+
 
   return (
     <div className="max-w-5xl p-6 pb-20">
@@ -226,8 +256,8 @@ const CreateUpdateCourseContainer: React.FC<ICreateUpdateCourseContainerProps> =
 
         {/* Arrays info */}
         <div className="rounded-2xl border bg-card p-6 shadow-sm">
-          <h2 className="mb-5 text-lg font-semibold">Features, Outcomes & Tags</h2>
-          <div className="grid gap-8 lg:grid-cols-3">
+          <h2 className="mb-5 text-lg font-semibold">Features, Outcomes, Tags & Prerequisites</h2>
+          <div className="grid gap-8 lg:grid-cols-2 xl:grid-cols-4">
             <div className="space-y-4">
               <div className="flex items-center justify-between">
                 <Label>Features</Label>
@@ -279,6 +309,24 @@ const CreateUpdateCourseContainer: React.FC<ICreateUpdateCourseContainerProps> =
                   </div>
                 ))}
                 {tags.length === 0 && <p className="text-sm text-muted-foreground text-center py-4 border rounded-lg border-dashed">No tags added</p>}
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+                <Label>Prerequisites</Label>
+                <Button type="button" variant="outline" size="sm" onClick={() => handleAddStringArrayItem(setPrerequisites, prerequisites)}>
+                  <Plus className="h-4 w-4 mr-2" /> Add
+                </Button>
+              </div>
+              <div className="space-y-2">
+                {prerequisites.map((p, i) => (
+                  <div key={i} className="flex gap-2">
+                    <Input value={p} onChange={(e) => handleStringArrayChange(setPrerequisites, prerequisites, i, e.target.value)} placeholder={`Prerequisite ${i + 1}`} />
+                    <Button type="button" variant="ghost" size="icon" onClick={() => handleRemoveStringArrayItem(setPrerequisites, prerequisites, i)}><Trash2 className="h-4 w-4 text-destructive" /></Button>
+                  </div>
+                ))}
+                {prerequisites.length === 0 && <p className="text-sm text-muted-foreground text-center py-4 border rounded-lg border-dashed">No prerequisites added</p>}
               </div>
             </div>
           </div>
@@ -441,6 +489,40 @@ const CreateUpdateCourseContainer: React.FC<ICreateUpdateCourseContainerProps> =
           </div>
         </div>
 
+        {/* Testimonials */}
+        <div className="rounded-2xl border bg-card p-6 shadow-sm">
+          <div className="flex justify-between items-center mb-5">
+            <h2 className="text-lg font-semibold">Testimonials</h2>
+            <Button type="button" onClick={addTestimonial} size="sm"><Plus className="w-4 h-4 mr-2" /> Add Testimonial</Button>
+          </div>
+          <div className="space-y-4">
+            {testimonials.map((t, i) => (
+              <div key={i} className="flex gap-4 items-start border p-4 rounded-xl bg-muted/10">
+                <div className="w-28 shrink-0">
+                  <Label className="mb-2 block text-xs">Media/Avatar</Label>
+                  <ImageUpload value={t.media_url || ""} onChange={(url) => updateTestimonial(i, "media_url", url)} className="h-24 w-24" />
+                </div>
+                <div className="flex-1 grid gap-4 grid-cols-2">
+                  <div className="space-y-2">
+                    <Label>Person Name</Label>
+                    <Input value={t.person_name || ""} onChange={e => updateTestimonial(i, "person_name", e.target.value)} placeholder="e.g. John Doe" />
+                  </div>
+                  <div className="space-y-2">
+                    <Label>Designation</Label>
+                    <Input value={t.person_designation || ""} onChange={e => updateTestimonial(i, "person_designation", e.target.value)} placeholder="e.g. Software Engineer" />
+                  </div>
+                  <div className="space-y-2 col-span-2">
+                    <Label>Review Text</Label>
+                    <Textarea className="min-h-[80px]" value={t.review_text || ""} onChange={e => updateTestimonial(i, "review_text", e.target.value)} placeholder="e.g. Great course!" />
+                  </div>
+                </div>
+                <Button type="button" variant="destructive" size="icon" className="rounded-full shrink-0 mt-8" onClick={() => removeTestimonial(i)}><Trash2 className="w-4 h-4" /></Button>
+              </div>
+            ))}
+            {testimonials.length === 0 && <p className="text-sm text-muted-foreground text-center py-6 border rounded-xl border-dashed">No testimonials added yet</p>}
+          </div>
+        </div>
+
         {/* Capacity & Settings */}
         <div className="rounded-2xl border bg-card p-6 shadow-sm">
           <div className="grid gap-4 sm:grid-cols-2 max-w-2xl">
@@ -458,6 +540,42 @@ const CreateUpdateCourseContainer: React.FC<ICreateUpdateCourseContainerProps> =
               </div>
               <Switch checked={form.is_featured} onCheckedChange={(checked) => setForm({ ...form, is_featured: checked })} />
             </div>
+          </div>
+        </div>
+
+        <div className="rounded-2xl border bg-card p-6 shadow-sm">
+          <h2 className="mb-5 text-lg font-semibold">
+            Related Courses
+          </h2>
+
+          <div className="space-y-3">
+            {courses
+              ?.filter(course => course.id !== data?.id)
+              ?.map(course => (
+                <label
+                  key={course.id}
+                  className="flex items-center gap-3"
+                >
+                  <input
+                    type="checkbox"
+                    checked={relatedCourses.includes(course.id ?? "")}
+                    onChange={(e) => {
+                      if (e.target.checked) {
+                        setRelatedCourses(prev => [
+                          ...prev,
+                          course.id ?? "",
+                        ]);
+                      } else {
+                        setRelatedCourses(prev =>
+                          prev.filter(id => id !== course.id)
+                        );
+                      }
+                    }}
+                  />
+
+                  <span>{course.name}</span>
+                </label>
+              ))}
           </div>
         </div>
 

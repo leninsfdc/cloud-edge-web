@@ -1,7 +1,7 @@
 "use server"
 
-import { createClient } from "@/libs/supabase/server";
-import { ICourse, ICourseModule, ICourseTool, ICourseHighlight, ICourseFAQ } from "@/types";
+import { createClient } from "@/libs/supabase/server"; // Assuming "@/libs/supabase/server" is the correct path
+import { ICourse, ICourseModule, ICourseTool, ICourseHighlight, ICourseFAQ, ICourseTestimonial } from "@/types";
 import { createSlug } from "@/utils";
 import { revalidatePath } from "next/cache";
 
@@ -31,7 +31,6 @@ export async function getCourses(page = 1, pageSize = 10) {
 export async function getCourseById(id: string) {
   const supabase = await createClient();
 
-  // Fetch the course and its related entities
   const { data: course, error: courseError } = await supabase
     .from("courses")
     .select("*")
@@ -41,17 +40,75 @@ export async function getCourseById(id: string) {
 
   if (courseError) throw new Error(courseError.message);
 
-  const { data: modules } = await supabase.from("course_modules").select("*").eq("course_id", id).order("display_order");
-  const { data: tools } = await supabase.from("course_tools").select("*").eq("course_id", id).order("display_order");
-  const { data: highlights } = await supabase.from("course_highlights").select("*").eq("course_id", id).order("display_order");
-  const { data: faqs } = await supabase.from("course_faqs").select("*").eq("course_id", id).order("display_order");
+  const [
+    modulesRes,
+    toolsRes,
+    highlightsRes,
+    faqsRes,
+    testimonialsRes,
+    relatedCoursesRes,
+  ] = await Promise.all([
+    supabase
+      .from("course_modules")
+      .select("*")
+      .eq("course_id", id)
+      .order("display_order"),
+
+    supabase
+      .from("course_tools")
+      .select("*")
+      .eq("course_id", id)
+      .order("display_order"),
+
+    supabase
+      .from("course_highlights")
+      .select("*")
+      .eq("course_id", id)
+      .order("display_order"),
+
+    supabase
+      .from("course_faqs")
+      .select("*")
+      .eq("course_id", id)
+      .order("display_order"),
+
+    supabase
+      .from("course_testimonials")
+      .select("*")
+      .eq("course_id", id),
+
+    supabase
+      .from("related_courses")
+      .select(`
+    related_course_id,
+    related_course:courses!related_courses_related_course_id_fkey (
+      id,
+      name,
+      label,
+      url_slug,
+      media_url,
+      icon_media_url,
+      description,
+      duration,
+      tags,
+      is_featured,
+      in_avg_salary,
+      uk_avg_salary,
+      us_avg_salary,
+      ca_avg_salary
+    )
+  `)
+      .eq("course_id", id)
+  ]);
 
   return {
     ...course,
-    modules: modules || [],
-    tools: tools || [],
-    highlights: highlights || [],
-    faqs: faqs || [],
+    modules: modulesRes.data || [],
+    tools: toolsRes.data || [],
+    highlights: highlightsRes.data || [],
+    faqs: faqsRes.data || [],
+    testimonials: testimonialsRes.data || [],
+    related_courses: relatedCoursesRes.data || [],
   };
 }
 
@@ -74,6 +131,8 @@ export async function getCourseBySlug(slug: string) {
     toolsRes,
     highlightsRes,
     faqsRes,
+    testimonialsRes,
+    relatedCoursesRes, // Added related courses
     batchesRes,
   ] = await Promise.all([
     supabase
@@ -99,6 +158,32 @@ export async function getCourseBySlug(slug: string) {
       .select("*")
       .eq("course_id", courseId)
       .order("display_order"),
+
+    supabase
+      .from("course_testimonials")
+      .select("*")
+      .eq("course_id", courseId),
+
+    supabase
+      .from("related_courses")
+      .select(`
+        related_course_id,
+        related_course:courses!related_courses_related_course_id_fkey (
+          id,
+          name,
+          label,
+          url_slug,
+          media_url,
+          icon_media_url,
+          description,
+          duration,
+          batches (
+            *,
+            batch_regions (*)
+          )
+        )
+      `)
+      .eq("course_id", courseId),
 
     supabase
       .from("batches")
@@ -132,12 +217,16 @@ export async function getCourseBySlug(slug: string) {
     )[0];
 
 
+
+    
+
   const countryPricing = {
     IN: null,
     UK: null,
     US: null,
     CA: null,
   };
+
 
   (batchesRes.data || []).forEach((batch) => {
     (batch.batch_regions || []).forEach((region: any) => {
@@ -161,12 +250,58 @@ export async function getCourseBySlug(slug: string) {
     });
   });
 
+
+  const relatedCoursesWithPricing =
+  (relatedCoursesRes.data || []).map((item: any) => {
+    const course = item.related_course;
+
+    const countryPricing = {
+      IN: null,
+      UK: null,
+      US: null,
+      CA: null,
+    };
+
+    (course?.batches || []).forEach((batch: any) => {
+      (batch.batch_regions || []).forEach((region: any) => {
+        const code = region.country_code?.toUpperCase();
+
+        if (["IN", "INDIA"].includes(code)) {
+          countryPricing.IN = region;
+        }
+
+        if (["UK", "GB", "GBR"].includes(code)) {
+          countryPricing.UK = region;
+        }
+
+        if (["US", "USA"].includes(code)) {
+          countryPricing.US = region;
+        }
+
+        if (["CA", "CAN"].includes(code)) {
+          countryPricing.CA = region;
+        }
+      });
+    });
+
+    return {
+      ...item,
+      related_course: {
+        ...course,
+        countryPricing,
+      },
+    };
+  });
+  
+
   return {
     ...course,
     modules: modulesRes.data || [],
     tools: toolsRes.data || [],
     highlights: highlightsRes.data || [],
     faqs: faqsRes.data || [],
+    testimonials: testimonialsRes.data || [],
+   related_courses: relatedCoursesWithPricing,
     nextBatch: nextBatchRegion,
     batches: batchesRes.data || [],
     countryPricing,
@@ -179,10 +314,12 @@ export async function createCourse(
     tools: ICourseTool[];
     highlights: ICourseHighlight[];
     faqs: ICourseFAQ[];
+    testimonials?: ICourseTestimonial[];
+    related_courses?: { related_course_id: string }[]; // Added related courses
   }
 ) {
   const supabase = await createClient();
-  const { modules, tools, highlights, faqs, ...courseData } = payload;
+  const { modules, tools, highlights, faqs, testimonials, related_courses, ...courseData } = payload; // Destructure related_courses
 
   const { data: course, error } = await supabase
     .from("courses")
@@ -197,6 +334,7 @@ export async function createCourse(
       outcomes: courseData.outcomes,
       features: courseData.features,
       tags: courseData.tags,
+      prerequisites: courseData.prerequisites,
       is_featured: courseData.is_featured,
       in_avg_salary: courseData.in_avg_salary,
       uk_avg_salary: courseData.uk_avg_salary,
@@ -236,6 +374,19 @@ export async function createCourse(
     );
     if (faqErr) throw new Error(faqErr.message);
   }
+  if (testimonials?.length) {
+    const { error: tErr } = await supabase.from("course_testimonials").insert(
+      testimonials.map(({ id, course_id, ...rest }) => ({ ...rest, course_id: courseId }))
+    );
+    if (tErr) throw new Error(tErr.message);
+  }
+  // Insert related courses
+  if (related_courses?.length) {
+    const { error: rcErr } = await supabase.from("related_courses").insert(
+      related_courses.map((rc) => ({ ...rc, course_id: courseId }))
+    );
+    if (rcErr) throw new Error(rcErr.message);
+  }
 
   revalidatePath("/asgard/academics/courses");
   return { success: true };
@@ -248,10 +399,12 @@ export async function updateCourse(
     tools: ICourseTool[];
     highlights: ICourseHighlight[];
     faqs: ICourseFAQ[];
+    testimonials?: ICourseTestimonial[];
+    related_courses?: { related_course_id: string }[]; // Added related courses
   }
 ) {
   const supabase = await createClient();
-  const { id, modules, tools, highlights, faqs, ...courseData } = payload;
+  const { id, modules, tools, highlights, faqs, testimonials, related_courses, ...courseData } = payload; // Destructure related_courses
 
   const { error } = await supabase
     .from("courses")
@@ -266,6 +419,7 @@ export async function updateCourse(
       outcomes: courseData.outcomes,
       features: courseData.features,
       tags: courseData.tags,
+      prerequisites: courseData.prerequisites,
       is_featured: courseData.is_featured,
       in_avg_salary: courseData.in_avg_salary,
       uk_avg_salary: courseData.uk_avg_salary,
@@ -283,6 +437,8 @@ export async function updateCourse(
   await supabase.from("course_tools").delete().eq("course_id", id);
   await supabase.from("course_highlights").delete().eq("course_id", id);
   await supabase.from("course_faqs").delete().eq("course_id", id);
+  await supabase.from("course_testimonials").delete().eq("course_id", id);
+  await supabase.from("related_courses").delete().eq("course_id", id); // Delete existing related courses
 
   if (modules?.length) {
     const { error: modErr } = await supabase.from("course_modules").insert(
@@ -307,6 +463,19 @@ export async function updateCourse(
       faqs.map(({ id: _id, course_id: _cid, ...rest }) => ({ ...rest, course_id: id }))
     );
     if (faqErr) throw new Error(faqErr.message);
+  }
+  if (testimonials?.length) {
+    const { error: tErr } = await supabase.from("course_testimonials").insert(
+      testimonials.map(({ id: _id, course_id: _cid, ...rest }) => ({ ...rest, course_id: id }))
+    );
+    if (tErr) throw new Error(tErr.message);
+  }
+  // Insert related courses
+  if (related_courses?.length) {
+    const { error: rcErr } = await supabase.from("related_courses").insert(
+      related_courses.map((rc) => ({ ...rc, course_id: id }))
+    );
+    if (rcErr) throw new Error(rcErr.message);
   }
 
   revalidatePath("/asgard/academics/courses");
