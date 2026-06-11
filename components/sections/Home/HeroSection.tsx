@@ -49,18 +49,7 @@ const heroSlides = [
 ];
 
 const HeroSection = () => {
-  const [slides, setSlides] = useState<any[]>(() =>
-    heroSlides.map((s) => ({
-      id: s.id,
-      title: `${s.titleTop}\n${s.titleBottom} {{${s.highlight}}}`,
-      description: s.description,
-      image_url: s.image,
-      btn_text: s.primaryBtn,
-      btn_link: "/",
-      secondaryBtn: s.secondaryBtn,
-    }))
-  );
-
+  const [slides, setSlides] = useState<any[]>([]);
   useEffect(() => {
     const fetchBanners = async () => {
       try {
