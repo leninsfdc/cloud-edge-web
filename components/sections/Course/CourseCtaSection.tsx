@@ -1,5 +1,8 @@
+'use client'
+
 import React from 'react'
 import Image from 'next/image'
+import { motion } from 'framer-motion'
 
 import lightIcon from "@/public/icons/light-icon.svg"
 import cta from "@/public/images/cta.svg"
@@ -7,7 +10,13 @@ import { getWhatsAppLink } from '@/utils'
 
 const CourseCtaSection = () => {
   return (
-    <section className="container mx-auto my-12">
+    <motion.section 
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+      className="container mx-auto my-12"
+    >
       <div
         className="relative overflow-hidden rounded-[31.46px] px-8 py-7 md:px-12 md:py-12"
         style={{
@@ -43,18 +52,20 @@ const CourseCtaSection = () => {
               high-demand career.
             </p>
 
-            <a
+            <motion.a
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
               href={getWhatsAppLink("Hi Cloud Edge Solutions, I am ready to start learning.")}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-7 flex h-14 items-center gap-3 rounded-xl bg-white px-8 text-sm font-semibold text-[#0F172A] transition-all hover:scale-[1.02]"
+              className="mt-7 inline-flex w-fit h-14 items-center justify-center gap-3 rounded-xl bg-white px-8 text-sm font-semibold text-[#0F172A] transition-colors hover:bg-gray-100"
               style={{
                 boxShadow: "0px 4px 4px 0px rgba(0, 0, 0, 0.25)",
               }}
             >
               Start Learning Today
               <span>→</span>
-            </a>
+            </motion.a>
 
             <p className="mt-4 text-sm text-white/60">
               7-Day Free Trial • Cancel Anytime
@@ -72,7 +83,7 @@ const CourseCtaSection = () => {
           </div>
         </div>
       </div>
-    </section>
+    </motion.section>
   )
 }
 

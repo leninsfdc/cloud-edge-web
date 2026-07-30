@@ -3,6 +3,7 @@
 import BadgeLabel from "@/components/shared/BadgeLabel";
 import React, { useState } from "react";
 import Image from "next/image";
+import { MotionSection, MotionDiv } from "@/components/ui/MotionElements";
 
 import plusIcon from "@/public/icons/plus.svg";
 import minusIcon from "@/public/icons/minus.svg";
@@ -48,7 +49,13 @@ const FaqSection = () => {
   };
 
   return (
-    <section className="bg-[#F8F8FA] py-12 sm:py-16 lg:py-20">
+    <MotionSection 
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+      className="bg-[#F8F8FA] py-12 sm:py-16 lg:py-20"
+    >
       {/* SEO Structured Data */}
       <script
         type="application/ld+json"
@@ -84,7 +91,11 @@ const FaqSection = () => {
             const isActive = activeIndex === index;
 
             return (
-              <div
+              <MotionDiv
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
                 key={index}
                 className={`${index !== faqData.length - 1
                     ? "border-b border-[#C7C2F3]/80"
@@ -145,12 +156,12 @@ const FaqSection = () => {
                     )}
                   </div>
                 </button>
-              </div>
+              </MotionDiv>
             );
           })}
         </div>
       </div>
-    </section>
+    </MotionSection>
   );
 };
 

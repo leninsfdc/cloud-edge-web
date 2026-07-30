@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 interface IPrimaryButtonProps {
   label: string;
@@ -18,9 +19,7 @@ const baseStyles = `
   px-6 py-3 rounded-[50px]
   text-white text-sm font-semibold
   transition-all duration-300 ease-out
-  hover:scale-105
   hover:-translate-y-1
-  active:scale-[0.98]
   hover:shadow-[0_10px_30px_rgba(134,94,245,0.45)]
   disabled:opacity-50
   disabled:cursor-not-allowed
@@ -64,30 +63,40 @@ const PrimaryButton: React.FC<IPrimaryButtonProps> = ({
     <span className="relative z-10">{label}</span>
   );
 
+  const wrapperProps = {
+    whileHover: { scale: 1.05 },
+    whileTap: { scale: 0.98 },
+    className: "inline-block"
+  };
+
   // Link Button
   if (href) {
     return (
-      <Link
-        href={href}
-        className={`${baseStyles} ${className}`}
-        style={buttonStyle}
-      >
-        {content}
-      </Link>
+      <motion.div {...wrapperProps}>
+        <Link
+          href={href}
+          className={`${baseStyles} ${className}`}
+          style={buttonStyle}
+        >
+          {content}
+        </Link>
+      </motion.div>
     );
   }
 
   // Normal Button
   return (
-    <button
-      type={type}
-      onClick={onClick}
-      disabled={disabled}
-      className={`${baseStyles} ${className}`}
-      style={buttonStyle}
-    >
-      {content}
-    </button>
+    <motion.div {...wrapperProps}>
+      <button
+        type={type}
+        onClick={onClick}
+        disabled={disabled}
+        className={`${baseStyles} ${className}`}
+        style={buttonStyle}
+      >
+        {content}
+      </button>
+    </motion.div>
   );
 };
 

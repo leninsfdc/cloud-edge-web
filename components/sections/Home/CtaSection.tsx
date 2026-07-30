@@ -2,10 +2,17 @@ import React from "react";
 import CtaImg from "@/public/images/home-cta.png";
 import SecondaryButton from "@/components/ui/SecondaryButton";
 import Image from "next/image";
+import { MotionSection } from "@/components/ui/MotionElements";
 
 const CtaSection = () => {
   return (
-    <section className="bg-[#090430] py-10 sm:py-20 relative">
+    <MotionSection 
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+      className="bg-[#090430] py-10 sm:py-20 relative"
+    >
 
       <div className="absolute left-20  bottom-0 w-[200px] h-[200px] bg-[#6557E3] blur-[300px]" />
       <div className="absolute right-0  top-0 w-[300px] h-[300px] bg-[#FFC224] blur-[300px]" />
@@ -55,7 +62,7 @@ const CtaSection = () => {
           </div>
         </div>
       </div>
-    </section>
+    </MotionSection>
   );
 };
 

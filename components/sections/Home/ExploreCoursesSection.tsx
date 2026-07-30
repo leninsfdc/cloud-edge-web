@@ -13,6 +13,7 @@ import marketingIcon from "@/public/icons/marketing.svg"
 import awsIcon from "@/public/icons/aws.svg"
 import sapIcon from "@/public/icons/sap.svg"
 import javaIcon from "@/public/icons/java.svg"
+import { MotionSection } from '@/components/ui/MotionElements'
 import { getFeaturedCourses } from '@/app/(asgard)/asgard/academics/courses/actions'
 
 const staticCourses = [
@@ -411,7 +412,13 @@ const ExploreCoursesSection = () => {
   };
 
   return (
-    <div className='bg-white py-10 relative overflow-hidden'>
+    <MotionSection 
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+      className='bg-white py-10 relative overflow-hidden'
+    >
 
       <div className='absolute w-102.75 h-97.5 top-12.5 right-0 bg-[#6557E3] blur-[300px]' />
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-77.75 h-72.5 bg-[#F232B2] blur-[300px]" />
@@ -706,7 +713,7 @@ const ExploreCoursesSection = () => {
 
       </div>
 
-    </div>
+    </MotionSection>
   )
 }
 

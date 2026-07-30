@@ -1,6 +1,7 @@
 "use client"
 
 import { ICourse } from '@/types'
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 import React from 'react'
 import cap from "@/public/icons/cap.svg"
@@ -93,9 +94,14 @@ const CourseOverview: React.FC<ICourseOverviewProps> = ({ course }) => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   {course.highlights?.map((highlight, index) => (
-                    <div
+                    <motion.div
                       key={highlight.id}
-                      className="bg-white border border-[#E2E8F0] rounded-2xl p-5"
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: index * 0.1 }}
+                      whileHover={{ y: -5, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)" }}
+                      className="bg-white border border-[#E2E8F0] rounded-2xl p-5 transition-all duration-300"
                     >
                       <div className="flex items-start justify-between">
                         <div>
@@ -118,7 +124,7 @@ const CourseOverview: React.FC<ICourseOverviewProps> = ({ course }) => {
                           />
                         </div>
                       </div>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               </div>
@@ -129,10 +135,15 @@ const CourseOverview: React.FC<ICourseOverviewProps> = ({ course }) => {
                 </h3>
 
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                  {course.tools?.map((tool) => (
-                    <div
+                  {course.tools?.map((tool, index) => (
+                    <motion.div
                       key={tool.id}
-                      className="bg-white border border-[#E2E8F0] rounded-xl px-4 py-3 flex items-center gap-3"
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.3, delay: index * 0.05 }}
+                      whileHover={{ scale: 1.05, borderColor: "#6557E3", backgroundColor: "#f8f7ff" }}
+                      className="bg-white border border-[#E2E8F0] rounded-xl px-4 py-3 flex items-center gap-3 transition-colors duration-300 cursor-default"
                     >
                       <Image
                         src={tool.media}
@@ -145,7 +156,7 @@ const CourseOverview: React.FC<ICourseOverviewProps> = ({ course }) => {
                       <span className="text-sm font-medium text-[#334155]">
                         {tool.name}
                       </span>
-                    </div>
+                    </motion.div>
                   ))}
                 </div>
               </div>
@@ -173,12 +184,14 @@ const CourseOverview: React.FC<ICourseOverviewProps> = ({ course }) => {
                   <div>
                     <div className="grid grid-cols-2 gap-3 md:gap-5">
                       {salaryCards.map((item, index) => (
-                        <div
+                        <motion.div
                           key={index}
-                          className="border border-[#E2E8F0] rounded-2xl p-4 bg-white flex flex-col gap-4"
-                          style={{
-                            boxShadow: "0px 1px 3px rgba(0,0,0,0.05)",
-                          }}
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.4, delay: index * 0.1 }}
+                          whileHover={{ scale: 1.03, y: -5, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1)" }}
+                          className="border border-[#E2E8F0] rounded-2xl p-4 bg-white flex flex-col gap-4 cursor-default transition-all duration-300"
                         >
                           <Image
                             src={item.icon}
@@ -195,14 +208,20 @@ const CourseOverview: React.FC<ICourseOverviewProps> = ({ course }) => {
                               {item.label}
                             </div>
                           </div>
-                        </div>
+                        </motion.div>
                       ))}
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className="mt-16 bg-white p-5 md:p-7 border border-[#E2E8F0] rounded-3xl md:rounded-4xl min-h-64 relative overflow-hidden">
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="mt-16 bg-white p-5 md:p-7 border border-[#E2E8F0] rounded-3xl md:rounded-4xl min-h-64 relative overflow-hidden"
+              >
 
                 <Image
                   src={preReq}
@@ -226,7 +245,7 @@ const CourseOverview: React.FC<ICourseOverviewProps> = ({ course }) => {
                     ))
                   }
                 </div>
-              </div>
+              </motion.div>
 
               <CourseTestimonials
                 testimonials={course.testimonials}

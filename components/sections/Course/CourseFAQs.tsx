@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 import { ChevronDown } from 'lucide-react'
 import { ICourseFAQ } from '@/types'
+import { motion, AnimatePresence } from 'framer-motion'
 
 interface Props {
   faqs?: ICourseFAQ[]
@@ -18,7 +19,13 @@ const CourseFAQs = ({ faqs = [] }: Props) => {
   )
 
   return (
-    <div className="mt-12 md:mt-16">
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+      className="mt-12 md:mt-16"
+    >
       <h3 className="text-3xl font-bold font-bricolage-grotesque mb-8">
         Frequently Asked Questions
       </h3>
@@ -28,15 +35,19 @@ const CourseFAQs = ({ faqs = [] }: Props) => {
           const isOpen = openIndex === index
 
           return (
-            <div
+            <motion.div
               key={faq.id}
-              className="overflow-hidden rounded-2xl border border-[#E2E8F0] bg-white"
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.3, delay: index * 0.1 }}
+              className="overflow-hidden rounded-2xl border border-[#E2E8F0] bg-white transition-colors hover:border-[#cbd5e1]"
             >
               <button
                 onClick={() =>
                   setOpenIndex(isOpen ? null : index)
                 }
-                className="flex w-full items-center justify-between px-6 py-6 text-left"
+                className="flex w-full items-center justify-between px-6 py-6 text-left transition-colors hover:bg-gray-50"
               >
                 <span className="text-[18px] font-semibold text-[#334155]">
                   {faq.question}
@@ -50,24 +61,26 @@ const CourseFAQs = ({ faqs = [] }: Props) => {
                 />
               </button>
 
-              <div
-                className={`grid transition-all duration-300 ease-in-out ${
-                  isOpen
-                    ? 'grid-rows-[1fr]'
-                    : 'grid-rows-[0fr]'
-                }`}
-              >
-                <div className="overflow-hidden">
-                  <div className="px-6 pb-6 text-[#64748B] leading-7">
-                    {faq.answer}
-                  </div>
-                </div>
-              </div>
-            </div>
+              <AnimatePresence initial={false}>
+                {isOpen && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: "auto", opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.3, ease: "easeInOut" }}
+                    className="overflow-hidden"
+                  >
+                    <div className="px-6 pb-6 text-[#64748B] leading-7">
+                      {faq.answer}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
           )
         })}
       </div>
-    </div>
+    </motion.div>
   )
 }
 

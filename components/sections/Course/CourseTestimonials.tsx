@@ -4,6 +4,7 @@ import React, { useRef } from 'react'
 import Slider from 'react-slick'
 import Image from 'next/image'
 import quotes from '@/public/icons/quotes.svg'
+import { motion } from 'framer-motion'
 
 import { ICourseTestimonial } from '@/types'
 
@@ -77,7 +78,13 @@ const CourseTestimonials = ({ testimonials = [] }: Props) => {
   }
 
   return (
-    <div className="mt-12 md:mt-16 rounded-[24px] md:rounded-[28px] border border-[#E2E8F0] bg-white p-5 md:p-8">
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+      className="mt-12 md:mt-16 rounded-[24px] md:rounded-[28px] border border-[#E2E8F0] bg-white p-5 md:p-8"
+    >
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6 md:mb-8">
         <h3 className="font-bricolage-grotesque text-2xl md:text-3xl font-bold text-[#1E293B]">
           What Our Students Say
@@ -178,7 +185,7 @@ const CourseTestimonials = ({ testimonials = [] }: Props) => {
         }
       `}
       </style>
-    </div>
+    </motion.div>
   )
 }
 

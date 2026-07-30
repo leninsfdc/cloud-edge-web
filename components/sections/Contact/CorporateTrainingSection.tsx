@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Users, FileText, DollarSign, BarChart3, ArrowRight } from "lucide-react";
+import { MotionSection, MotionDiv } from "@/components/ui/MotionElements";
 
 const CorporateTrainingSection = () => {
   const corporateFeatures = [
@@ -28,7 +29,13 @@ const CorporateTrainingSection = () => {
   ];
 
   return (
-      <section className="bg-white py-20 sm:py-24 relative overflow-hidden">
+      <MotionSection 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="bg-white py-20 sm:py-24 relative overflow-hidden"
+      >
         {/* Visual background matching details decoration element */}
         <div className="absolute top-1/2 left-0 w-80 h-80 bg-[#7C6DFB]/5 rounded-full blur-3xl pointer-events-none -translate-y-1/2 -translate-x-1/3" />
 
@@ -36,7 +43,13 @@ const CorporateTrainingSection = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
 
             {/* LEFT SUB-COLUMN LAYOUT DESCRIPTIVES */}
-            <div className="lg:col-span-5 space-y-6">
+            <MotionDiv 
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="lg:col-span-5 space-y-6"
+            >
               <div className="bg-[#E3E1FA] rounded-full px-4 py-1.5 w-fit text-[#6557E3] text-xs font-semibold flex items-center justify-center gap-2">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#6557E3] animate-pulse" />
                 For Organisations
@@ -69,14 +82,18 @@ const CorporateTrainingSection = () => {
                   </a>
                 </p>
               </div>
-            </div>
+            </MotionDiv>
 
             {/* RIGHT MATRIX CARDS GRID PANEL (7 Column equivalent) */}
             <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
               {corporateFeatures.map((feat, idx) => (
-                  <div
+                  <MotionDiv
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: idx * 0.1 }}
                       key={idx}
-                      className="group flex gap-4 bg-[#EFEEFC]/30 hover:bg-white border border-[#E6E8FA] hover:border-[#DDDFF5] rounded-[22px] p-5 shadow-3xs hover:shadow-xs transition-all duration-300"
+                      className="group h-full flex gap-4 bg-[#EFEEFC]/30 hover:bg-white border border-[#E6E8FA] hover:border-[#DDDFF5] rounded-[22px] p-5 shadow-3xs hover:shadow-xs transition-all duration-300"
                   >
                     {/* Soft Icon Wrapper Pill block */}
                     <div className="w-11 h-11 rounded-xl bg-white shadow-3xs flex items-center justify-center shrink-0 border border-[#EFEEFC] group-hover:scale-105 transition-transform">
@@ -90,13 +107,13 @@ const CorporateTrainingSection = () => {
                         {feat.desc}
                       </p>
                     </div>
-                  </div>
+                  </MotionDiv>
               ))}
             </div>
 
           </div>
         </div>
-      </section>
+      </MotionSection>
   );
 };
 

@@ -1,5 +1,7 @@
+"use client";
 import { ICourse } from '@/types'
 import React from 'react'
+import { motion } from 'framer-motion';
 import moment from 'moment';
 import cap from "@/public/icons/cap.svg"
 import Image from 'next/image';
@@ -37,7 +39,12 @@ const CourseHeroSection: React.FC<ICourseHeroSectionProps> = ({ course }) => {
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center pt-24 md:pt-32">
 
           {/* Content */}
-          <div className="space-y-5 lg:space-y-6 order-1">
+          <motion.div 
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="space-y-5 lg:space-y-6 order-1"
+          >
 
             <div className="bg-[#E3E1FA] rounded-2xl px-4 py-2 w-fit text-[#6557E3] text-xs font-semibold flex items-center justify-center gap-3">
               <Image src={cap} alt="cap" className="w-5 h-5" />
@@ -59,7 +66,10 @@ const CourseHeroSection: React.FC<ICourseHeroSectionProps> = ({ course }) => {
             {/* Cards */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
 
-              <div className="bg-white p-4 rounded-2xl flex flex-col justify-between min-h-[110px] lg:min-h-[130px]">
+              <motion.div 
+                whileHover={{ y: -5, scale: 1.02, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)" }}
+                className="bg-white p-4 rounded-2xl flex flex-col justify-between min-h-[110px] lg:min-h-[130px] transition-all duration-300 cursor-default"
+              >
                 <div className="bg-[#EFF6FF] p-3 rounded-lg w-fit">
                   <Image
                     src={calendarBlue}
@@ -77,9 +87,12 @@ const CourseHeroSection: React.FC<ICourseHeroSectionProps> = ({ course }) => {
                     Live Online
                   </p>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="bg-white p-4 rounded-2xl flex flex-col justify-between min-h-[110px] lg:min-h-[130px]">
+              <motion.div 
+                whileHover={{ y: -5, scale: 1.02, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)" }}
+                className="bg-white p-4 rounded-2xl flex flex-col justify-between min-h-[110px] lg:min-h-[130px] transition-all duration-300 cursor-default"
+              >
                 <div className="bg-[#EFF6FF] p-3 rounded-lg w-fit">
                   <Image
                     src={groupIcon}
@@ -97,9 +110,12 @@ const CourseHeroSection: React.FC<ICourseHeroSectionProps> = ({ course }) => {
                     Intermediate
                   </p>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="bg-white p-4 rounded-2xl flex flex-col justify-between min-h-[110px] lg:min-h-[130px]">
+              <motion.div 
+                whileHover={{ y: -5, scale: 1.02, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)" }}
+                className="bg-white p-4 rounded-2xl flex flex-col justify-between min-h-[110px] lg:min-h-[130px] transition-all duration-300 cursor-default"
+              >
                 <div className="bg-[#EFF6FF] p-3 rounded-lg w-fit">
                   <Image
                     src={calendarOrange}
@@ -118,9 +134,12 @@ const CourseHeroSection: React.FC<ICourseHeroSectionProps> = ({ course }) => {
                     {moment(course.nextBatch?.start_date).format("DD MMM YYYY")}
                   </p>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="bg-white p-4 rounded-2xl flex flex-col justify-between min-h-[110px] lg:min-h-[130px]">
+              <motion.div 
+                whileHover={{ y: -5, scale: 1.02, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)" }}
+                className="bg-white p-4 rounded-2xl flex flex-col justify-between min-h-[110px] lg:min-h-[130px] transition-all duration-300 cursor-default"
+              >
                 <div className="bg-[#EFF6FF] p-3 rounded-lg w-fit">
                   <Image
                     src={verified}
@@ -138,7 +157,7 @@ const CourseHeroSection: React.FC<ICourseHeroSectionProps> = ({ course }) => {
                     Aligned
                   </p>
                 </div>
-              </div>
+              </motion.div>
             </div>
 
             {/* Stats */}
@@ -184,11 +203,13 @@ const CourseHeroSection: React.FC<ICourseHeroSectionProps> = ({ course }) => {
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
 
-              <a
+              <motion.a
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 href={whatsappLink}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-[#4361EE] px-6 py-4 rounded-full flex items-center justify-center gap-2 w-full sm:w-auto"
+                className="bg-[#4361EE] hover:bg-[#344ED0] transition-colors duration-300 px-6 py-4 rounded-full flex items-center justify-center gap-2 w-full sm:w-auto shadow-md hover:shadow-lg"
               >
                 <Image
                   src={whatsappIcon}
@@ -198,11 +219,13 @@ const CourseHeroSection: React.FC<ICourseHeroSectionProps> = ({ course }) => {
                 <div className="text-white font-semibold">
                   Enroll via WhatsApp
                 </div>
-              </a>
+              </motion.a>
 
-              <a
+              <motion.a
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
                 href={demoLink}
-                className="bg-white px-6 py-4 rounded-full flex items-center justify-center gap-2 border border-[#F3F4F6] w-full sm:w-auto"
+                className="bg-white hover:bg-gray-50 transition-colors duration-300 px-6 py-4 rounded-full flex items-center justify-center gap-2 border border-[#F3F4F6] w-full sm:w-auto shadow-sm hover:shadow-md"
               >
                 <Image
                   src={play}
@@ -212,7 +235,7 @@ const CourseHeroSection: React.FC<ICourseHeroSectionProps> = ({ course }) => {
                 <div className="text-black font-semibold">
                   Book a Free Demo
                 </div>
-              </a>
+              </motion.a>
             </div>
 
             {/* Features */}
@@ -235,10 +258,15 @@ const CourseHeroSection: React.FC<ICourseHeroSectionProps> = ({ course }) => {
               ))}
             </div>
 
-          </div>
+          </motion.div>
 
           {/* Image */}
-          <div className="relative flex justify-center lg:justify-end order-2">
+          <motion.div 
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+            className="relative flex justify-center lg:justify-end order-2"
+          >
             <Image
               src={course.media_url || "/placeholder-course.png"}
               alt={course.name}
@@ -247,7 +275,7 @@ const CourseHeroSection: React.FC<ICourseHeroSectionProps> = ({ course }) => {
               className="w-full max-w-[400px] sm:max-w-[550px] lg:max-w-[700px] h-auto object-contain"
               priority
             />
-          </div>
+          </motion.div>
 
         </div>
       </div>

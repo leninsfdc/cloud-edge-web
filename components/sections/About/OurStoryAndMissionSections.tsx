@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from "next/image";
+import { MotionDiv, MotionSection } from '@/components/ui/MotionElements';
 
 // Reusing matching icons from your existing package structure
 import nextArrow from "@/public/icons/next-aroow.svg";
@@ -73,7 +74,13 @@ const OurStoryAndMissionSections = () => {
   return (
       <div className="bg-white">
         {/* SECTION 1: OUR STORY (TIMELINE) */}
-        <section className="bg-gradient-to-b from-[#EFEEFC] to-white pt-20 pb-16 overflow-hidden relative">
+        <MotionSection 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="bg-gradient-to-b from-[#EFEEFC] to-white pt-20 pb-16 overflow-hidden relative"
+        >
           {/* Decorative Blurred Circle Background */}
           <div className="absolute top-0 left-1/3 w-[400px] h-[300px] rounded-full bg-[#6557E3] opacity-10 blur-[100px] pointer-events-none" />
 
@@ -97,13 +104,17 @@ const OurStoryAndMissionSections = () => {
               {/* Timeline Responsive Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
                 {timelineData.map((item, index) => (
-                    <div key={index} className="flex flex-col gap-5 pb-6 relative group">
+                    <MotionDiv 
+                      key={index} 
+                      whileHover={{ scale: 1.02 }}
+                      className="flex flex-col gap-5 pb-6 relative group transition-transform"
+                    >
                       {/* Year Node */}
                       <div className="flex items-center gap-3 relative z-10">
                         <div className={`w-14 h-14 rounded-full flex items-center justify-center font-bricolage-grotesque text-sm font-extrabold shadow-sm border-4 border-white transition-all duration-300
                       ${item.isPrimary
                             ? "bg-[#6557E3] text-white"
-                            : "bg-[#FAFAFD] text-[#6557E3] border-[#DDDFF5]"
+                            : "bg-[#FAFAFD] text-[#6557E3] border-[#DDDFF5] group-hover:bg-[#6557E3] group-hover:text-white group-hover:border-white"
                         }`}
                         >
                           {item.year}
@@ -125,21 +136,27 @@ const OurStoryAndMissionSections = () => {
                         <div className={`mt-auto inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold w-fit
                       ${item.isPrimary
                             ? "bg-[#EFEEFC] border border-[#DDDFF5] text-[#6557E3]"
-                            : "bg-[#FAFAFD] border border-[#E6E8F5] text-[#64748B]"
+                            : "bg-[#FAFAFD] border border-[#E6E8F5] text-[#64748B] transition-colors duration-300 group-hover:bg-[#EFEEFC] group-hover:text-[#6557E3]"
                         }`}
                         >
                           {item.badge}
                         </div>
                       </div>
-                    </div>
+                    </MotionDiv>
                 ))}
               </div>
             </div>
           </div>
-        </section>
+        </MotionSection>
 
         {/* SECTION 2: OUR MISSION */}
-        <section className="py-16 bg-white border-t border-[#F1F1FD]">
+        <MotionSection 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="py-16 bg-white border-t border-[#F1F1FD]"
+        >
           <div className="container mx-auto px-4 sm:px-6">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
 
@@ -159,20 +176,23 @@ const OurStoryAndMissionSections = () => {
                 </p>
 
                 {/* Pull Quote Card */}
-                <blockquote className="bg-[#FAFAFD] border-l-4 border-[#6557E3] rounded-r-2xl p-5 shadow-sm space-y-2">
+                <MotionDiv 
+                  whileHover={{ x: 5 }} 
+                  className="bg-[#FAFAFD] border-l-4 border-[#6557E3] rounded-r-2xl p-5 shadow-sm space-y-2 transition-transform"
+                >
                   <p className="text-base text-[#1E293B] font-semibold italic leading-relaxed">
                     &ldquo;What does this student need to know to get hired and succeed in the role?&rdquo;
                   </p>
                   <footer className="text-xs text-[#94A3B8] font-medium tracking-wide uppercase">
                     The question every Cloud Edge course is designed to answer
                   </footer>
-                </blockquote>
+                </MotionDiv>
 
                 {/* Accreditations Layout */}
                 <div className="pt-2">
                   <div className="flex flex-wrap gap-2">
                     {accreditations.map((text, idx) => (
-                        <span key={idx} className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#FAFAFD] border border-[#DDE3F5] rounded-full text-xs font-bold text-[#1E293B]">
+                        <span key={idx} className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#FAFAFD] border border-[#DDE3F5] rounded-full text-xs font-bold text-[#1E293B] hover:shadow-sm hover:-translate-y-0.5 transition-transform">
                       <svg className="w-3 h-3 text-[#14B88A]" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
@@ -186,9 +206,10 @@ const OurStoryAndMissionSections = () => {
               {/* Right Pillars/Differentiators Column */}
               <div className="flex flex-col gap-4 w-full">
                 {differentiators.map((item, index) => (
-                    <div
+                    <MotionDiv
                         key={index}
-                        className={`bg-[#FAFAFD] border border-[#E6E8F5] ${item.borderTopColor} border-t-[3px] rounded-2xl p-6 transition-all duration-300 hover:shadow-md hover:-translate-y-0.5`}
+                        whileHover={{ y: -5, scale: 1.02, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1)" }}
+                        className={`bg-[#FAFAFD] border border-[#E6E8F5] ${item.borderTopColor} border-t-[3px] rounded-2xl p-6 transition-all duration-300`}
                     >
                       <div className="flex items-center gap-4 mb-3">
                         <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#ECEAFC] shrink-0">
@@ -205,13 +226,13 @@ const OurStoryAndMissionSections = () => {
                       <p className="text-sm leading-relaxed text-[#64748B] pl-0 sm:pl-16">
                         {item.description}
                       </p>
-                    </div>
+                    </MotionDiv>
                 ))}
               </div>
 
             </div>
           </div>
-        </section>
+        </MotionSection>
       </div>
   );
 };

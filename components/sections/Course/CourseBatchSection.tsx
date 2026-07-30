@@ -1,5 +1,7 @@
+"use client";
 import { IBatches } from '@/types'
 import moment from 'moment';
+import { motion } from 'framer-motion';
 import React from 'react'
 import group from "@/public/icons/group-white.svg"
 import Image from 'next/image';
@@ -43,7 +45,13 @@ const CourseBatchSection: React.FC<ICourseBatchSectionProps> = ({ batches, durat
       <div className="container mx-auto px-4">
 
         {/* HEADER */}
-        <div className="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-8 mb-12">
+        <motion.div 
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="flex flex-col lg:flex-row lg:justify-between lg:items-center gap-8 mb-12"
+        >
           <div>
             <div className="bg-white rounded-full px-4 py-2 text-xs w-fit mb-4 flex items-center justify-center gap-1 text-[#21A99D] font-medium">
               <div className='bg-[#21A99D] w-2 h-2 rounded-full ' /> Live Online Training
@@ -93,7 +101,7 @@ const CourseBatchSection: React.FC<ICourseBatchSectionProps> = ({ batches, durat
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* GRID */}
 <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
@@ -132,9 +140,14 @@ const CourseBatchSection: React.FC<ICourseBatchSectionProps> = ({ batches, durat
                   (week / duration) * 100;
 
                 return (
-                  <div
+                  <motion.div
                     key={batch.id}
-                    className="bg-white/5 border border-white/10 rounded-3xl p-6"
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    whileHover={{ scale: 1.02 }}
+                    transition={{ duration: 0.4 }}
+                    className="bg-white/5 border border-white/10 rounded-3xl p-6 transition-colors duration-300 hover:border-white/20"
                   >
 
                     <div className="flex flex-col sm:flex-row gap-4 sm:gap-5">
@@ -182,7 +195,7 @@ const CourseBatchSection: React.FC<ICourseBatchSectionProps> = ({ batches, durat
 
                     </div>
 
-                  </div>
+                  </motion.div>
                 );
               })}
             </div>
@@ -201,8 +214,13 @@ const CourseBatchSection: React.FC<ICourseBatchSectionProps> = ({ batches, durat
                 const region = batch.batch_regions?.[0];
 
                 return (
-                  <div
+                  <motion.div
                     key={batch.id}
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    whileHover={{ scale: 1.02, y: -5, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)" }}
+                    transition={{ duration: 0.4 }}
                     className="bg-white rounded-3xl p-5"
                   >
                     <div className="flex items-center gap-4 sm:gap-5">
@@ -241,15 +259,17 @@ const CourseBatchSection: React.FC<ICourseBatchSectionProps> = ({ batches, durat
                       </div>
                     </div>
 
-                    <a
+                    <motion.a
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
                       href={getWhatsAppLink(`Hi Cloud Edge Solutions, I want to enroll for the ${batch.name} batch.`)}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="block text-center w-full mt-5 border border-[#6557E3] bg-[#E9EEFC] text-[#6557E3] rounded-full py-3 font-semibold text-sm transition-all hover:bg-[#6557E3] hover:text-white"
                     >
                       Enroll for this batch →
-                    </a>
-                  </div>
+                    </motion.a>
+                  </motion.div>
                 );
               })}
             </div>

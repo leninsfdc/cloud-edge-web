@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { usePathname } from "next/navigation";
 import logo from "@/public/logo.svg";
@@ -11,9 +12,9 @@ import MobileNavbar from "./MobileNavbar";
 const navItems = [
   { label: "Home", href: "/" },
   { label: "Courses", href: "/courses", },
+  { label: "Services", href: "/services", hasDropdown: false },
   {label: "About", href: "/about-us", },
   {label: "Contact", href: "/contact-us", },
-  { label: "Services", href: "/services", hasDropdown: false },
   { label: "Blogs", href: "/blogs", hasDropdown: false },
 ];
 
@@ -38,28 +39,36 @@ const Navbar = () => {
 
       {/* Nav Links */}
       <nav className="flex items-center gap-5">
-        {navItems.map((item) => {
+        {navItems.map((item, index) => {
           const isActive = pathname === item.href;
           return (
-            <Link
+            <motion.div
               key={item.label}
-              href={item.href}
-              className={`group flex items-center gap-2 transition-colors duration-200 ${isActive
-                ? "font-semibold text-primary"
-                : "font-normal text-[#1D1F20] hover:text-primary"
-                }`}
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.1, type: "spring", stiffness: 120 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
-              <span
-                className={`h-2 w-2 rounded-full transition-all duration-200 ${isActive
-                  ? "bg-[#FFC224] opacity-100"
-                  : "bg-[#FFC224] opacity-0"
+              <Link
+                href={item.href}
+                className={`group flex items-center gap-2 transition-colors duration-300 ${isActive
+                  ? "font-semibold text-primary"
+                  : "font-normal text-[#1D1F20] hover:text-primary"
                   }`}
-              />
-              <span>{item.label}</span>
-              {item.hasDropdown && (
-                <ChevronDown size={16} className="text-[#1D1F20]/60" />
-              )}
-            </Link>
+              >
+                <span
+                  className={`h-2 w-2 rounded-full transition-all duration-200 ${isActive
+                    ? "bg-[#FFC224] opacity-100"
+                    : "bg-[#FFC224] opacity-0"
+                    }`}
+                />
+                <span>{item.label}</span>
+                {item.hasDropdown && (
+                  <ChevronDown size={16} className="text-[#1D1F20]/60" />
+                )}
+              </Link>
+            </motion.div>
           );
         })}
       </nav>

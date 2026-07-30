@@ -1,8 +1,9 @@
 import React from 'react';
 import Image from "next/image";
 import Link from "next/link";
-import whoWeAreIcon from "@/public/icons/who-we-are-icon.svg"
+import { MotionDiv, MotionSection } from '@/components/ui/MotionElements';
 
+import whoWeAreIcon from "@/public/icons/who-we-are-icon.svg"
 import liveSession from "@/public/icons/live-session.svg"
 import instruction from "@/public/icons/instruction.svg"
 import cert from "@/public/icons/cert.svg"
@@ -20,7 +21,6 @@ import uae from "@/public/icons/AE.svg"
 import whatsappIcon from "@/public/icons/whatsapp-icon.svg"
 import nextArrow from "@/public/icons/next-aroow.svg"
 import { getWhatsAppLink } from "@/utils";
-
 
 const features = [
   {
@@ -97,7 +97,13 @@ const countries = [
 
 const WhoWeAreSection = () => {
   return (
-      <div className={"bg-white py-12"}>
+      <MotionSection 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className={"bg-white py-12"}
+      >
         <div className={"container mx-auto"}>
           <div className={"flex items-center justify-center flex-col"}>
             <div
@@ -116,7 +122,8 @@ const WhoWeAreSection = () => {
 
             <div className="mt-14 grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
               {features.map((item, index) => (
-                  <div
+                  <MotionDiv
+                      whileHover={{ y: -5, scale: 1.02, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1)" }}
                       key={index}
                       className="rounded-[24px] border border-[#E6E8F5] bg-white p-8 transition-all duration-300"
                   >
@@ -137,12 +144,13 @@ const WhoWeAreSection = () => {
                     <p className="text-[15px] leading-7 text-[#64748B]">
                       {item.description}
                     </p>
-                  </div>
+                  </MotionDiv>
               ))}
             </div>
 
-            <div
-                className="mt-16 w-full rounded-[32px] border border-[#DDE3F5] bg-[#FAFAFD] px-6 py-8 lg:px-12 lg:py-10">
+            <MotionDiv
+                whileHover={{ scale: 1.01, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1)" }}
+                className="mt-16 w-full rounded-[32px] border border-[#DDE3F5] bg-[#FAFAFD] px-6 py-8 lg:px-12 lg:py-10 transition-transform">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
                 {stats.map((item, index) => (
                     <div
@@ -176,9 +184,12 @@ const WhoWeAreSection = () => {
                     </div>
                 ))}
               </div>
-            </div>
+            </MotionDiv>
 
-            <div className="mt-10 w-full rounded-[28px] border border-[#DDE3F5] bg-[#FAFAFD] px-6 py-4 lg:px-8">
+            <MotionDiv 
+              whileHover={{ scale: 1.01, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1)" }}
+              className="mt-10 w-full rounded-[28px] border border-[#DDE3F5] bg-[#FAFAFD] px-6 py-4 lg:px-8 transition-transform"
+            >
               <div className="flex flex-col items-center justify-between gap-6 lg:flex-row">
                 {/* Rating Section */}
                 <div className="flex items-center gap-4">
@@ -229,7 +240,7 @@ const WhoWeAreSection = () => {
                   ))}
                 </div>
               </div>
-            </div>
+            </MotionDiv>
 
 
             <div className="mt-10 w-fit rounded-[30px] bg-[#F3F0FB] p-4">
@@ -249,7 +260,7 @@ const WhoWeAreSection = () => {
         font-semibold
         text-base
         transition-all duration-300
-        hover:scale-[1.02]
+        hover:scale-[1.02] hover:bg-[#20bd5a]
       "
                 >
                   <Image
@@ -272,7 +283,7 @@ const WhoWeAreSection = () => {
         font-semibold
         text-base
         transition-all duration-300
-        hover:scale-[1.02]
+        hover:scale-[1.02] hover:bg-[#344ED0]
       "
                 >
                   Browse All Courses
@@ -288,7 +299,7 @@ const WhoWeAreSection = () => {
 
           </div>
         </div>
-      </div>
+      </MotionSection>
   );
 };
 

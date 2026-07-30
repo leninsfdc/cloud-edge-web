@@ -1,5 +1,6 @@
 import { getFeaturedTestimonials } from '@/app/(asgard)/asgard/academics/courses/actions';
 import React from 'react';
+import { MotionDiv, MotionSection } from '@/components/ui/MotionElements';
 
 // DATA STRUCTURES
 const principles = [
@@ -186,7 +187,13 @@ const CorporateInfoSections: React.FC = async () => {
     <div className="bg-white">
 
       {/* 1. VALUES SECTION */}
-      <section className="py-20 bg-white">
+      <MotionSection 
+        initial={{ opacity: 0, y: 30 }} 
+        whileInView={{ opacity: 1, y: 0 }} 
+        viewport={{ once: true }} 
+        transition={{ duration: 0.6 }} 
+        className="py-20 bg-white"
+      >
         <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center max-w-2xl mx-auto mb-14 space-y-3">
             <div className="inline-flex items-center gap-2 bg-[#F1F1FD] border border-[#E0E7FF] px-4 py-1.5 rounded-full">
@@ -199,7 +206,11 @@ const CorporateInfoSections: React.FC = async () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {principles.map((item, index) => (
-              <div key={index} className="bg-[#FAFAFD] border border-[#E6E8F5] rounded-3xl p-6 transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 flex flex-col justify-between">
+              <MotionDiv 
+                key={index} 
+                whileHover={{ y: -5, scale: 1.02, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)" }}
+                className="bg-[#FAFAFD] border border-[#E6E8F5] rounded-3xl p-6 transition-all duration-300 flex flex-col justify-between"
+              >
                 <div>
                   <div className="w-12 h-12 rounded-2xl bg-[#ECEAFC] flex items-center justify-center mb-5 shrink-0">
                     {item.icon}
@@ -211,14 +222,20 @@ const CorporateInfoSections: React.FC = async () => {
                     {item.description}
                   </p>
                 </div>
-              </div>
+              </MotionDiv>
             ))}
           </div>
         </div>
-      </section>
+      </MotionSection>
 
       {/* 2. INSTRUCTORS SECTION */}
-      <section className="py-20 bg-[#FAFAFD] relative overflow-hidden">
+      <MotionSection 
+        initial={{ opacity: 0, y: 30 }} 
+        whileInView={{ opacity: 1, y: 0 }} 
+        viewport={{ once: true }} 
+        transition={{ duration: 0.6 }} 
+        className="py-20 bg-[#FAFAFD] relative overflow-hidden"
+      >
         <div className="absolute inset-0 bg-linear-to-b from-[#EFEEFC]/60 via-[#FAFAFD] to-white pointer-events-none" />
 
         <div className="container mx-auto px-4 sm:px-6 relative z-10">
@@ -236,7 +253,11 @@ const CorporateInfoSections: React.FC = async () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {instructors.map((instructor, idx) => (
-              <div key={idx} className="bg-white border border-[#E6E8F5] rounded-3xl p-6 shadow-sm transition-all duration-300 hover:shadow-md flex flex-col justify-between">
+              <MotionDiv 
+                key={idx} 
+                whileHover={{ y: -5, scale: 1.02, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)" }}
+                className="bg-white border border-[#E6E8F5] rounded-3xl p-6 shadow-sm transition-all duration-300 flex flex-col justify-between"
+              >
                 <div>
                   <div className="flex items-center gap-4 mb-4">
                     <div className={`w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-sm shrink-0 shadow-sm ${instructor.color}`}>
@@ -261,14 +282,20 @@ const CorporateInfoSections: React.FC = async () => {
                     </span>
                   ))}
                 </div>
-              </div>
+              </MotionDiv>
             ))}
           </div>
         </div>
-      </section>
+      </MotionSection>
 
       {/* 3. TESTIMONIALS SECTION */}
-      <section className="py-20 bg-white">
+      <MotionSection 
+        initial={{ opacity: 0, y: 30 }} 
+        whileInView={{ opacity: 1, y: 0 }} 
+        viewport={{ once: true }} 
+        transition={{ duration: 0.6 }} 
+        className="py-20 bg-white"
+      >
         <div className="container mx-auto px-4 sm:px-6">
           <div className="text-center max-w-2xl mx-auto mb-14 space-y-3">
             <div className="inline-flex items-center gap-2 bg-[#F1F1FD] border border-[#E0E7FF] px-4 py-1.5 rounded-full">
@@ -281,9 +308,10 @@ const CorporateInfoSections: React.FC = async () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {featuredTestimonials?.map((testi, idx) => (
-              <div
+              <MotionDiv
                 key={testi.id}
-                className="bg-[#FAFAFD] border border-[#E6E8F5] border-t-[3px] border-t-[#6557E3] rounded-3xl p-6 transition-all duration-300 hover:shadow-md flex flex-col justify-between"
+                whileHover={{ y: -5, scale: 1.02, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)" }}
+                className="bg-[#FAFAFD] border border-[#E6E8F5] border-t-[3px] border-t-[#6557E3] rounded-3xl p-6 transition-all duration-300 flex flex-col justify-between"
               >
                 <div>
                   <div className="text-[#FF9F0A] text-sm mb-3">
@@ -318,14 +346,20 @@ const CorporateInfoSections: React.FC = async () => {
                     </p>
                   </div>
                 </div>
-              </div>
+              </MotionDiv>
             ))}
           </div>
         </div>
-      </section>
+      </MotionSection>
 
       {/* 4. INDUSTRIES SECTION */}
-      <section className="py-20 bg-[#FAFAFD] relative overflow-hidden">
+      <MotionSection 
+        initial={{ opacity: 0, y: 30 }} 
+        whileInView={{ opacity: 1, y: 0 }} 
+        viewport={{ once: true }} 
+        transition={{ duration: 0.6 }} 
+        className="py-20 bg-[#FAFAFD] relative overflow-hidden"
+      >
         <div className="absolute inset-0 bg-linear-to-b from-white via-[#FAFAFD] to-[#EFEEFC]/40 pointer-events-none" />
 
         <div className="container mx-auto px-4 sm:px-6 relative z-10">
@@ -340,7 +374,11 @@ const CorporateInfoSections: React.FC = async () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {industries.map((ind, idx) => (
-              <div key={idx} className="bg-white border border-[#E6E8F5] rounded-3xl p-6 shadow-sm transition-all duration-300 hover:shadow-md hover:-translate-y-0.5 flex flex-col gap-4">
+              <MotionDiv 
+                key={idx} 
+                whileHover={{ y: -5, scale: 1.02, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)" }}
+                className="bg-white border border-[#E6E8F5] rounded-3xl p-6 shadow-sm transition-all duration-300 flex flex-col gap-4"
+              >
                 <div className="w-11 h-11 rounded-xl bg-[#ECEAFC] flex items-center justify-center shrink-0">
                   {ind.icon}
                 </div>
@@ -352,11 +390,11 @@ const CorporateInfoSections: React.FC = async () => {
                     {ind.desc}
                   </p>
                 </div>
-              </div>
+              </MotionDiv>
             ))}
           </div>
         </div>
-      </section>
+      </MotionSection>
 
     </div>
   );
