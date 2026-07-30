@@ -3,10 +3,17 @@ import light from "@/public/icons/light.svg"
 import Image from 'next/image'
 import WhyChooseUsCard from '@/components/ui/WhyChooseUsCard'
 import BadgeLabel from '@/components/shared/BadgeLabel'
+import { MotionSection, MotionDiv } from '@/components/ui/MotionElements'
 
 const WhyChooseUsSection = () => {
   return (
-    <section className='bg-[#010619] py-10 relative overflow-hidden px-4 sm:px-6'>
+    <MotionSection 
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+      className='bg-[#010619] py-10 relative overflow-hidden px-4 sm:px-6'
+    >
 
       {/* Background Blurs (slightly reduced on mobile) */}
       <div className='absolute top-0 left-1/2 -translate-x-1/2 w-40 sm:w-72 h-40 sm:h-72 rounded-full bg-[#6557E380] blur-[120px] sm:blur-[150px]' />
@@ -67,7 +74,13 @@ const WhyChooseUsSection = () => {
         {/* GRID */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 w-full gap-5 sm:gap-7">
 
-          <div className="sm:col-span-2 lg:col-span-7">
+          <MotionDiv 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0 }}
+            className="sm:col-span-2 lg:col-span-7"
+          >
             <WhyChooseUsCard
               icon="🎓"
               title="Certified Expert Trainers"
@@ -75,9 +88,15 @@ const WhyChooseUsSection = () => {
               statHighlight="8-15"
               statText="yrs avg industry experience per trainer"
             />
-          </div>
+          </MotionDiv>
 
-          <div className='sm:col-span-2 lg:col-span-5'>
+          <MotionDiv 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0.1 }}
+            className='sm:col-span-2 lg:col-span-5'
+          >
             <WhyChooseUsCard
               icon="📹"
               title="Session Recordings"
@@ -85,9 +104,15 @@ const WhyChooseUsSection = () => {
               statHighlight="6"
               statText="months recording access"
             />
-          </div>
+          </MotionDiv>
 
-          <div className='sm:col-span-1 lg:col-span-4'>
+          <MotionDiv 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0.2 }}
+            className='sm:col-span-1 lg:col-span-4'
+          >
             <WhyChooseUsCard
               icon="🤝"
               title="Placement Assistance"
@@ -95,17 +120,29 @@ const WhyChooseUsSection = () => {
               statHighlight="200+"
               statText="hiring partners"
             />
-          </div>
+          </MotionDiv>
 
-          <div className='sm:col-span-1 lg:col-span-4'>
+          <MotionDiv 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0.3 }}
+            className='sm:col-span-1 lg:col-span-4'
+          >
             <WhyChooseUsCard
               icon="⏰"
               title="Flexible Batches"
               description="Weekday evenings and weekend-only batches designed for working professionals. Never miss a class."
             />
-          </div>
+          </MotionDiv>
 
-          <div className='sm:col-span-1 lg:col-span-4'>
+          <MotionDiv 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0.4 }}
+            className='sm:col-span-1 lg:col-span-4'
+          >
             <WhyChooseUsCard
               icon="👥"
               title="Small Batch Sizes"
@@ -113,9 +150,15 @@ const WhyChooseUsSection = () => {
               statHighlight='≤15'
               statText='students per batch'
             />
-          </div>
+          </MotionDiv>
 
-          <div className='sm:col-span-1 lg:col-span-4'>
+          <MotionDiv 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0.5 }}
+            className='sm:col-span-1 lg:col-span-4'
+          >
             <WhyChooseUsCard
               icon="🏆"
               title="Mock Certification Exams"
@@ -123,11 +166,11 @@ const WhyChooseUsSection = () => {
               statHighlight='500+'
               statText='practice questions'
             />
-          </div>
+          </MotionDiv>
 
         </div>
       </div>
-    </section>
+    </MotionSection>
   )
 }
 

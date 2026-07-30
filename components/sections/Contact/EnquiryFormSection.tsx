@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { Send, CheckCircle2, ArrowRight } from "lucide-react";
+import { MotionSection, MotionDiv } from "@/components/ui/MotionElements";
 
 // REGIONAL ICONS FOR QUICK REFERENCE
 import IN from "@/public/icons/IN.svg";
@@ -42,7 +43,13 @@ const EnquiryFormSection = () => {
   };
 
   return (
-      <section className="bg-[#EFEEFC] pb-24 relative overflow-hidden py-20">
+      <MotionSection 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="bg-[#EFEEFC] pb-24 relative overflow-hidden py-20"
+      >
         {/* Decorative background blur blobs synced with hero branding */}
         <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-[#4361EE]/10 rounded-full blur-3xl pointer-events-none -translate-y-1/3" />
         <div className="absolute bottom-0 left-10 w-[400px] h-[400px] bg-[#7C6DFB]/5 rounded-full blur-3xl pointer-events-none" />
@@ -51,7 +58,13 @@ const EnquiryFormSection = () => {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
 
             {/* LEFT PANEL: ENQUIRY FORM BLOCK (60% equivalent) */}
-            <div className="lg:col-span-7 bg-white rounded-[24px] p-8 sm:p-12 border border-[#DDDFF5] shadow-xs flex flex-col justify-between">
+            <MotionDiv 
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="lg:col-span-7 bg-white rounded-[24px] p-8 sm:p-12 border border-[#DDDFF5] shadow-xs flex flex-col justify-between"
+            >
               <div>
                 {/* Status Badge matched to your hero aesthetics */}
                 <div className="bg-[#E3E1FA] rounded-full px-4 py-1.5 w-fit text-[#6557E3] text-xs font-semibold flex items-center justify-center gap-2 mb-6">
@@ -194,11 +207,17 @@ const EnquiryFormSection = () => {
                     Thank you! A course advisor will be in touch within 2 hours.
                   </div>
               )}
-            </div>
+            </MotionDiv>
 
             {/* RIGHT PANEL: CHANNELS & LOCAL OFFICE MAPS (40% equivalent) */}
             {/* Changed background from dark slate to soft white matching the cards layout */}
-            <div className="lg:col-span-5 bg-white rounded-[24px] p-8 sm:p-10 relative overflow-hidden flex flex-col justify-between border border-[#DDDFF5] shadow-xs">
+            <MotionDiv 
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="lg:col-span-5 bg-white rounded-[24px] p-8 sm:p-10 relative overflow-hidden flex flex-col justify-between border border-[#DDDFF5] shadow-xs"
+            >
 
               {/* Soft Ambient Background Glow inside right panel */}
               <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-[#7C6DFB]/10 to-transparent rounded-bl-full pointer-events-none" />
@@ -289,10 +308,10 @@ const EnquiryFormSection = () => {
                 </div>
               </div>
 
-            </div>
+            </MotionDiv>
           </div>
         </div>
-      </section>
+      </MotionSection>
   );
 };
 

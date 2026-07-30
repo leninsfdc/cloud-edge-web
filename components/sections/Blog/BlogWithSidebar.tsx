@@ -8,6 +8,7 @@ import placeholder from "@/public/images/placeholder.jpg"
 import { useRouter } from "next/navigation";
 import {IBlogs, IResponse} from "@/types";
 import SecondaryButton from "@/components/ui/SecondaryButton";
+import { MotionDiv } from "@/components/ui/MotionElements";
 
 interface IProps {
     blogs: IResponse
@@ -142,10 +143,14 @@ const BlogWithSidebar: React.FC<IProps> = ({ blogs: blogData }) => {
                         </div>
                     )}
 
-                    {!loading && blogList.data && blogList.data.map((post) => (
-                        <article
+                    {!loading && blogList.data && blogList.data.map((post, index) => (
+                        <MotionDiv
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.5, delay: index * 0.1 }}
                             key={post.id}
-                            className="bg-[#FFFFFF] border border-gray-200 rounded-4xl"
+                            className="bg-[#FFFFFF] border border-gray-200 rounded-4xl hover:shadow-lg transition-shadow duration-300"
                         >
                             {/* Top banner image */}
                             <div onClick={() => router.push(`/blogs/${post.url_slug}`)} className="cursor-pointer rounded-4xl shadow-[0_18px_40px_rgba(15,23,42,0.08)] overflow-hidden relative w-full h-[220px] md:h-[280px] lg:h-[450px]">
@@ -190,7 +195,7 @@ const BlogWithSidebar: React.FC<IProps> = ({ blogs: blogData }) => {
                                 {/*/>*/}
                                 <SecondaryButton text={"Read More"} href={`/blogs/${post.url_slug}`} />
                             </div>
-                        </article>
+                        </MotionDiv>
                     ))}
                     <div className="mt-4 md:mt-8 lg:mt-16">
                         {!loading && blogList?.data?.length > 0 && totalPages > 1 && (
@@ -306,7 +311,13 @@ const BlogWithSidebar: React.FC<IProps> = ({ blogs: blogData }) => {
                     </div> */}
 
                     {/* CTA card */}
-                    <div className="sticky top-24">
+                    <MotionDiv 
+                        initial={{ opacity: 0, x: 30 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6 }}
+                        className="sticky top-24"
+                    >
                         <div className="bg-[#F7F6F9] rounded-2xl shadow-[0_18px_32px_rgba(15,23,42,0.05)] px-5 py-6 text-center">
                             <p className="text-md font-semibold uppercase tracking-wide text-secondary mb-2">
                                 Contact Eduleem
@@ -329,7 +340,7 @@ const BlogWithSidebar: React.FC<IProps> = ({ blogs: blogData }) => {
                                 <SecondaryButton text={"Get In Touch"} bgColor={"#6557E3"} shadowColor={"#3A1078"}  href={"/contact-us"}/>
                             </div>
                         </div>
-                    </div>
+                    </MotionDiv>
                 </aside>
             </div>
         </section>

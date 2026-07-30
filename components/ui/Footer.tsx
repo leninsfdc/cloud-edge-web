@@ -18,6 +18,7 @@ import { getWhatsAppLink } from "@/utils";
 import {
   ArrowRight,
 } from "lucide-react";
+import { motion } from "framer-motion";
 
 const Footer = () => {
   const pathname = usePathname();
@@ -89,10 +90,14 @@ const Footer = () => {
                   />
 
                   {/* Button */}
-                  <button className="flex items-center gap-2 rounded-full bg-[#6C5CFF] hover:bg-[#5b4df2] transition-all px-5 py-3 text-sm font-medium whitespace-nowrap">
+                  <motion.button 
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="group flex items-center gap-2 rounded-full bg-[#6C5CFF] hover:bg-[#5b4df2] transition-colors duration-300 px-5 py-3 text-sm font-medium whitespace-nowrap"
+                  >
                     Subscribe Now
-                    <ArrowRight className="h-4 w-4" />
-                  </button>
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </motion.button>
                 </div>
               </div>
             </div>
@@ -129,7 +134,7 @@ const Footer = () => {
                         target={item.external ? "_blank" : undefined}
                         rel={item.external ? "noopener noreferrer" : undefined}
                         aria-label={item.label}
-                        className="h-12 w-12 rounded-[14px] border border-white/10 bg-white/5 backdrop-blur-md flex items-center justify-center text-white/90 hover:bg-white/10 transition-all"
+                        className="h-12 w-12 rounded-[14px] border border-white/10 bg-white/5 backdrop-blur-md flex items-center justify-center text-white/90 hover:bg-white/20 hover:scale-110 hover:-translate-y-1 transition-all duration-300 shadow-sm hover:shadow-md"
                       >
                         {item.icon}
                       </Link>
@@ -156,9 +161,9 @@ const Footer = () => {
                       <li key={item.href}>
                         <Link
                           href={item.href}
-                          className={`flex items-center gap-1 transition-all ${isActive
+                          className={`group flex items-center gap-2 transition-all duration-300 hover:translate-x-1 ${isActive
                             ? "text-[#FFC224]"
-                            : "text-white hover:text-white"
+                            : "text-white hover:text-[#FFC224]"
                             }`}
                         >
                           {isActive && (
@@ -179,31 +184,31 @@ const Footer = () => {
 
                 <ul className="space-y-4 text-sm text-white">
                   <li>
-                    <Link href="/about-us" className="hover:text-white">
+                    <Link href="/about-us" className="inline-block transition-all duration-300 hover:text-[#FFC224] hover:translate-x-1">
                       Customers
                     </Link>
                   </li>
 
                   <li>
-                    <Link href="/services" className="hover:text-white">
+                    <Link href="/services" className="inline-block transition-all duration-300 hover:text-[#FFC224] hover:translate-x-1">
                       Pricing
                     </Link>
                   </li>
 
                   <li>
-                    <Link href="/blogs" className="hover:text-white">
+                    <Link href="/blogs" className="inline-block transition-all duration-300 hover:text-[#FFC224] hover:translate-x-1">
                       Learning Center
                     </Link>
                   </li>
 
                   <li>
-                    <Link href="/contact-us" className="hover:text-white">
+                    <Link href="/contact-us" className="inline-block transition-all duration-300 hover:text-[#FFC224] hover:translate-x-1">
                       Help desk
                     </Link>
                   </li>
 
                   <li>
-                    <Link href="/contact-us" className="hover:text-white">
+                    <Link href="/contact-us" className="inline-block transition-all duration-300 hover:text-[#FFC224] hover:translate-x-1">
                       Terms & Conditions
                     </Link>
                   </li>

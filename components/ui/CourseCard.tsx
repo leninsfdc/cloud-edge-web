@@ -1,6 +1,9 @@
+"use client";
+
 import React from 'react'
 import Image, { StaticImageData } from 'next/image'
 import SecondaryButton from './SecondaryButton'
+import { motion } from 'framer-motion';
 
 interface CourseCardProps {
   icon: string | StaticImageData
@@ -26,8 +29,9 @@ const CourseCard = ({
   buttonText = "Enroll Now",
 }: CourseCardProps) => {
   return (
-    <div
-      className='bg-[#FFFFFF73] backdrop-blur-[11.797298431396484px] w-full p-5 rounded-4xl space-y-6 transition-all duration-300 ease-out hover:-translate-y-1'
+    <motion.div
+      whileHover={{ y: -8, scale: 1.02, boxShadow: "0px 15px 30px 0px rgba(0, 0, 0, 0.1)" }}
+      className='bg-[#FFFFFF73] backdrop-blur-[11.797298431396484px] w-full p-5 rounded-4xl space-y-6 transition-colors duration-300'
       style={{
         border: "0.98px solid rgba(255, 255, 255, 1)",
         boxShadow: "0px 4px 10px 0px rgba(0, 0, 0, 0.05)",
@@ -75,7 +79,7 @@ const CourseCard = ({
           <SecondaryButton text={buttonText} href={url} />
         </div>
       </div>
-    </div>
+    </motion.div>
   )
 }
 

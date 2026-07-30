@@ -14,6 +14,7 @@ import rightArrow from "@/public/icons/forward-arrow.svg";
 
 import Image from "next/image";
 import { getRandomTestimonials } from "@/app/(asgard)/asgard/academics/courses/actions";
+import { MotionSection } from "@/components/ui/MotionElements";
 
 const staticTestimonials = [
   {
@@ -85,7 +86,13 @@ const TestimonialSection = () => {
   };
 
   return (
-    <div className="bg-[#06042E] py-14 overflow-hidden relative">
+    <MotionSection 
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+      className="bg-[#06042E] py-14 overflow-hidden relative"
+    >
 
       <div className="absolute top-[130px] left-[40px] bg-[#7635D6] w-[350px] h-[350px] rounded-full blur-[200px]" />
       <div className="absolute top-[130px] right-[40px] bg-[#7635D6] w-[350px] h-[350px] rounded-full blur-[200px]" />
@@ -149,7 +156,7 @@ const TestimonialSection = () => {
           </button>
         </div>
       </div>
-    </div>
+    </MotionSection>
   );
 };
 

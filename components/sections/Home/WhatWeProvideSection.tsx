@@ -1,5 +1,6 @@
 import WhatWeProvideCard from "@/components/ui/WhatWeProvideCard";
 import React from "react";
+import { MotionSection, MotionDiv } from "@/components/ui/MotionElements";
 
 import laptopIcon from "@/public/icons/laptop.svg";
 import trainingPerson from "@/public/icons/training-person.svg";
@@ -35,7 +36,13 @@ const WhatWeProvideData = [
 
 const WhatWeProvideSection = () => {
   return (
-    <section className="bg-[#F5F4F9] py-10 sm:py-14 lg:py-20">
+    <MotionSection 
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+      className="bg-[#F5F4F9] py-10 sm:py-14 lg:py-20"
+    >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div
           className="
@@ -50,17 +57,24 @@ const WhatWeProvideSection = () => {
         >
           {WhatWeProvideData.map((data, index) => {
             return (
-              <WhatWeProvideCard
+              <MotionDiv 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
                 key={index}
-                icon={data.image}
-                title={data.title}
-                description={data.description}
-              />
+              >
+                <WhatWeProvideCard
+                  icon={data.image}
+                  title={data.title}
+                  description={data.description}
+                />
+              </MotionDiv>
             );
           })}
         </div>
       </div>
-    </section>
+    </MotionSection>
   );
 };
 

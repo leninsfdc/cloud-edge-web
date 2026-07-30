@@ -4,6 +4,7 @@ import BadgeLabel from '@/components/shared/BadgeLabel'
 import GetinTouchCard from '@/components/ui/GetinTouchCard'
 import { AForm, AFormInput } from '@ascendtis/react-a-form'
 import React from 'react'
+import { MotionSection, MotionDiv } from '@/components/ui/MotionElements'
 
 const ContactUsSection = () => {
 
@@ -22,7 +23,13 @@ const ContactUsSection = () => {
   }
 
   return (
-    <section className='bg-white py-10 sm:py-20 overflow-hidden'>
+    <MotionSection 
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+      className='bg-white py-10 sm:py-20 overflow-hidden'
+    >
       <div className='container mx-auto px-4'>
 
         {/* Heading */}
@@ -41,13 +48,24 @@ const ContactUsSection = () => {
         {/* Content */}
         <div className='grid grid-cols-1 lg:grid-cols-12 mt-10 sm:mt-14 gap-8 lg:gap-12'>
 
-          {/* Left Card */}
-          <div className='lg:col-span-5 w-full'>
+          <MotionDiv 
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className='lg:col-span-5 w-full'
+          >
             <GetinTouchCard />
-          </div>
+          </MotionDiv>
 
           {/* Form */}
-          <div className='lg:col-span-7 w-full'>
+          <MotionDiv 
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className='lg:col-span-7 w-full'
+          >
             <div className='space-y-1'>
               <div className='font-semibold text-black text-2xl sm:text-3xl'>
                 Start Your Learning Journey
@@ -146,10 +164,10 @@ const ContactUsSection = () => {
                 </div>
               </AForm>
             </div>
-          </div>
+          </MotionDiv>
         </div>
       </div>
-    </section>
+    </MotionSection>
   )
 }
 

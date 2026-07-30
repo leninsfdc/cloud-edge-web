@@ -5,10 +5,17 @@ import email from "@/public/images/email.svg"
 import phone from "@/public/images/phone.svg"
 import ticket from "@/public/images/ticket.svg"
 import Image from "next/image";
+import { MotionSection, MotionDiv } from "@/components/ui/MotionElements";
 
 const ConnectChannelsSection = () => {
   return (
-      <section className="bg-slate-50 py-20 relative overflow-hidden">
+      <MotionSection 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="bg-slate-50 py-20 relative overflow-hidden"
+      >
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#6557E3]/5 rounded-full blur-3xl pointer-events-none" />
 
         <div className="container mx-auto px-4 sm:px-6 relative z-10">
@@ -33,13 +40,19 @@ const ConnectChannelsSection = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-7xl mx-auto">
 
             {/* WHATSAPP */}
-            <a
-                href="https://wa.me/447442586325?text=Hi+Cloud+Edge+Solutions"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex flex-col justify-between bg-white border border-[#DDDFF5] rounded-2xl p-6 transition-all duration-300 shadow-3xs hover:shadow-md hover:border-[#4361EE]/40 transform hover:-translate-y-1"
+            <MotionDiv 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: 0 }}
             >
-              <div>
+              <a
+                  href="https://wa.me/447442586325?text=Hi+Cloud+Edge+Solutions"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group h-full flex flex-col justify-between bg-white border border-[#DDDFF5] rounded-2xl p-6 transition-all duration-300 shadow-3xs hover:shadow-md hover:border-[#4361EE]/40 transform hover:-translate-y-1"
+              >
+                <div>
                 <div className="w-12 h-12 rounded-xl bg-[#25D366] flex items-center justify-center shadow-md shadow-[#25D366]/20 transition-transform group-hover:scale-105">
                  <Image src={whatsapp} alt={"Whatsapp"} className={"w-6 h-6"} />
                 </div>
@@ -57,14 +70,21 @@ const ConnectChannelsSection = () => {
               <p className="text-xs text-emerald-600 font-medium bg-emerald-50 border border-emerald-100 px-3 py-1.5 rounded-xl w-fit mt-5">
                 Fastest &mdash; reply within 60 min
               </p>
-            </a>
+              </a>
+            </MotionDiv>
 
             {/* EMAIL */}
-            <a
-                href="mailto:info@cloudedge.in"
-                className="group flex flex-col justify-between bg-white border border-[#DDDFF5] rounded-2xl p-6 transition-all duration-300 shadow-3xs hover:shadow-md hover:border-[#4361EE]/40 transform hover:-translate-y-1"
+            <MotionDiv 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: 0.1 }}
             >
-              <div>
+              <a
+                  href="mailto:info@cloudedge.in"
+                  className="group h-full flex flex-col justify-between bg-white border border-[#DDDFF5] rounded-2xl p-6 transition-all duration-300 shadow-3xs hover:shadow-md hover:border-[#4361EE]/40 transform hover:-translate-y-1"
+              >
+                <div>
                 <div className="w-12 h-12 rounded-xl bg-[#EFEEFC] flex items-center justify-center text-[#4361EE] shadow-sm transition-transform group-hover:scale-105">
                   <Image src={email} alt={"mail"} className={"w-6 h-6"} />
                 </div>
@@ -82,14 +102,21 @@ const ConnectChannelsSection = () => {
               <p className="text-xs text-slate-500 font-medium bg-slate-50 border border-slate-100 px-3 py-1.5 rounded-xl w-fit mt-5">
                 Response within 2 working hours
               </p>
-            </a>
+              </a>
+            </MotionDiv>
 
             {/* PHONE */}
-            <a
-                href="tel:+447442586325"
-                className="group flex flex-col justify-between bg-white border border-[#DDDFF5] rounded-2xl p-6 transition-all duration-300 shadow-3xs hover:shadow-md hover:border-[#4361EE]/40 transform hover:-translate-y-1"
+            <MotionDiv 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: 0.2 }}
             >
-              <div>
+              <a
+                  href="tel:+447442586325"
+                  className="group h-full flex flex-col justify-between bg-white border border-[#DDDFF5] rounded-2xl p-6 transition-all duration-300 shadow-3xs hover:shadow-md hover:border-[#4361EE]/40 transform hover:-translate-y-1"
+              >
+                <div>
                 <div className="w-12 h-12 rounded-xl bg-[#EFEEFC] flex items-center justify-center text-[#4361EE] shadow-sm transition-transform group-hover:scale-105">
                   <Image src={phone} alt={"phone"} className={"w-6 h-6"} />
                 </div>
@@ -107,16 +134,23 @@ const ConnectChannelsSection = () => {
               <p className="text-xs text-slate-500 font-medium bg-slate-50 border border-slate-100 px-3 py-1.5 rounded-xl w-fit mt-5">
                 Mon&ndash;Sat &bull; 9 AM &ndash; 7 PM BST
               </p>
-            </a>
+              </a>
+            </MotionDiv>
 
             {/* DEMO */}
-            <a
-                href="mailto:info@cloudedge.in?subject=Free Demo Class Request"
-                className="group flex flex-col justify-between bg-white border border-[#DDDFF5] rounded-2xl p-6 transition-all duration-300 shadow-3xs hover:shadow-md hover:border-[#6557E3]/40 transform hover:-translate-y-1 relative overflow-hidden"
+            <MotionDiv 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: 0.3 }}
             >
-              <div className="absolute top-0 right-0 w-24 h-24 bg-linear-to-bl from-orange-400/10 to-transparent rounded-bl-full pointer-events-none" />
+              <a
+                  href="mailto:info@cloudedge.in?subject=Free Demo Class Request"
+                  className="group h-full flex flex-col justify-between bg-white border border-[#DDDFF5] rounded-2xl p-6 transition-all duration-300 shadow-3xs hover:shadow-md hover:border-[#6557E3]/40 transform hover:-translate-y-1 relative overflow-hidden"
+              >
+                <div className="absolute top-0 right-0 w-24 h-24 bg-linear-to-bl from-orange-400/10 to-transparent rounded-bl-full pointer-events-none" />
 
-              <div>
+                <div>
                 <div className="w-12 h-12 rounded-xl bg-linear-to-br from-[#F59E0B] to-[#EF4444] flex items-center justify-center text-white shadow-md shadow-orange-500/10 transition-transform group-hover:scale-105">
                   <Image src={ticket} alt={"ticket"} className={"w-6 h-6"} />
                 </div>
@@ -134,11 +168,12 @@ const ConnectChannelsSection = () => {
               <p className="text-xs text-orange-600 font-medium bg-orange-50 border border-orange-100 px-3 py-1.5 rounded-xl w-fit mt-5">
                 Attend live before you enrol
               </p>
-            </a>
+              </a>
+            </MotionDiv>
 
           </div>
         </div>
-      </section>
+      </MotionSection>
   );
 };
 

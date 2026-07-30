@@ -6,6 +6,7 @@ import uiuxImg from "@/public/images/ui.png"
 import aiImg from "@/public/images/ai.png"
 import BlogCard from '@/components/ui/BlogCard'
 import SecondaryButton from '@/components/ui/SecondaryButton'
+import { MotionSection, MotionDiv } from '@/components/ui/MotionElements'
 
 
 const blogData = [
@@ -47,7 +48,13 @@ const blogData = [
 
 const NewsBlogSection = () => {
   return (
-    <div className=' bg-[#F8F8FA] py-10 relative'>
+    <MotionSection 
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+      className=' bg-[#F8F8FA] py-10 relative'
+    >
       <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[200px] h-[200px] bg-[#F232B2] blur-[300px]" />
       <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[200px] h-[200px] bg-[#6557E3] blur-[300px]" />
       <div className=' container mx-auto'>
@@ -60,15 +67,22 @@ const NewsBlogSection = () => {
 
         <div className="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-6">
           {blogData.map((blog, index) => (
-            <BlogCard
+            <MotionDiv
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
               key={index}
-              image={blog.image}
-              category={blog.category}
-              title={blog.title}
-              date={blog.date}
-              categoryBgColor={blog.categoryBgColor}
-              categoryTextColor={blog.categoryTextColor}
-            />
+            >
+              <BlogCard
+                image={blog.image}
+                category={blog.category}
+                title={blog.title}
+                date={blog.date}
+                categoryBgColor={blog.categoryBgColor}
+                categoryTextColor={blog.categoryTextColor}
+              />
+            </MotionDiv>
           ))}
         </div>
 
@@ -76,7 +90,7 @@ const NewsBlogSection = () => {
           <SecondaryButton text='View All Articles' bgColor='#6557E3' borderColor='#6557E3' shadowColor='#3A1078' href={"/blogs"}/>
         </div>
       </div>
-    </div>
+    </MotionSection>
   )
 }
 

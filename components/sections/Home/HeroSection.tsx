@@ -4,6 +4,7 @@ import React, {useState, useEffect} from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Slider from "react-slick";
+import { motion } from "framer-motion";
 
 import PrimaryButton from "@/components/ui/PrimaryButton";
 import {getBanners} from "@/app/(asgard)/asgard/content/banners/actions";
@@ -108,7 +109,10 @@ const HeroSection = () => {
                           className="bg-primary w-40 h-40 absolute bottom-1/3 right-1/2 -translate-x-1/2 blur-[200px]"/>
 
                       <div className="container mx-auto px-4 sm:px-6 relative z-10">
-                        <div
+                        <motion.div
+                            initial={{ opacity: 0, y: 30 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6 }}
                             className="flex items-center justify-center flex-col gap-8 md:gap-12 pt-28 md:pt-32 pb-72 sm:pb-80 md:pb-[420px]">
                           <h1 className="text-[42px] sm:text-[58px] lg:text-[82px] font-bold leading-[1.05] lg:leading-24 text-black text-center">
                             {before.split('\n').map((line: string, i: number, arr: string[]) => (
@@ -212,7 +216,7 @@ const HeroSection = () => {
                                 label={slide.btn_text || "View Courses"}
                                 // href={slide.btn_link || "/courses"}
                                 href={"/courses"}
-                                className="md:px-8! md:py-4! text-sm! md:text-base! shadow-primary! shadow-lg! w-full sm:w-auto"
+                                className="md:px-8! md:py-4! text-sm! md:text-base! shadow-primary! shadow-lg! w-full sm:w-auto transition-transform hover:scale-[1.02]"
                             />
                             )}
 
@@ -259,12 +263,15 @@ const HeroSection = () => {
                                 </Link>
                             )}
                           </div>
-                        </div>
+                        </motion.div>
                       </div>
 
                       {/* image */}
                       {slide.image_url && (
-                          <div
+                          <motion.div
+                              initial={{ opacity: 0, y: 50 }}
+                              whileInView={{ opacity: 1, y: 0 }}
+                              transition={{ duration: 0.8, delay: 0.2 }}
                               className="pointer-events-none absolute bottom-0 md:-bottom-14 left-1/2 -translate-x-1/2 w-full flex justify-center px-4"
                           >
                             <Image
@@ -276,7 +283,7 @@ const HeroSection = () => {
                                 priority
                                 className="object-contain w-[700px] md:w-[950px] xl:w-3xl h-auto"
                             />
-                          </div>
+                          </motion.div>
                       )}
 
                     </div>

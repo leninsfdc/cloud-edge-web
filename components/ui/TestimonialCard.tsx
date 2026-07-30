@@ -1,5 +1,6 @@
 import React from "react";
 import Image, { StaticImageData } from "next/image";
+import { MotionDiv } from "@/components/ui/MotionElements";
 import star from "@/public/icons/star.svg";
 import emptyStar from "@/public/icons/empty-star.svg";
 
@@ -21,7 +22,8 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
   const safeRating = Math.max(0, Math.min(5, rating));
 
   return (
-    <div
+    <MotionDiv
+      whileHover={{ scale: 1.02, y: -5 }}
       className="
         rounded-[22px] sm:rounded-[30px]
         w-full
@@ -33,6 +35,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
         items-center
         justify-between
         text-center
+        cursor-default
       "
       style={{
         background:
@@ -86,7 +89,7 @@ const TestimonialCard: React.FC<TestimonialCardProps> = ({
         </h4>
         <p  className="text-white text-sm ">{person_designation}</p>
       </div>
-    </div>
+    </MotionDiv>
   );
 };
 

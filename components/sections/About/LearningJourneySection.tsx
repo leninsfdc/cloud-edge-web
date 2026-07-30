@@ -1,5 +1,6 @@
 import React from 'react';
 import Image from "next/image";
+import { MotionDiv, MotionSection } from '@/components/ui/MotionElements';
 
 // Reusing matching icons from your existing package structure
 import whatsappIcon from "@/public/icons/whatsapp-icon.svg";
@@ -35,7 +36,7 @@ const stages = [
     id: "03",
     phase: "Stage 03 — Final Approach",
     title: "Certify",
-    description: "Complete 3 full timed mock exams and a dedicated exam strategy session. Sit the official SAP or Salesforce certification exam with confidence — 88% of students pass on their first attempt.",
+    description: "Complete 3 full mock exams and a dedicated exam strategy session. Sit the official SAP or Salesforce certification exam with confidence — 88% of students pass on their first attempt.",
     tags: ["✍️ 3 full mock exams", "🎯 Exam strategy session", "🎓 88% first-attempt"],
     icon: (
         <svg className="w-5 h-5 text-[#32ADE6]" viewBox="0 0 24 24" fill="currentColor">
@@ -61,7 +62,13 @@ const stages = [
 
 const LearningJourneySection = () => {
   return (
-      <section className="py-20 relative overflow-hidden bg-[#FAFAFD]">
+      <MotionSection 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="py-20 relative overflow-hidden bg-[#FAFAFD]"
+      >
         {/* Dynamic Purplish Brand Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#EFEEFC]/60 via-[#FAFAFD] to-white pointer-events-none" />
 
@@ -97,7 +104,10 @@ const LearningJourneySection = () => {
                     <div className="w-full md:col-span-5 order-2 md:order-1">
                       {stage.isLeft ? (
                           /* Stage 1 & 3: Content Card Elements */
-                          <div className="bg-white border border-[#E6E8F5] rounded-3xl p-6 md:p-8 shadow-sm transition-all duration-300 hover:shadow-md md:text-right">
+                          <MotionDiv
+                              whileHover={{ scale: 1.02, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1)" }}
+                              className="bg-white border border-[#E6E8F5] rounded-3xl p-6 md:p-8 shadow-sm transition-all duration-300 hover:shadow-md md:text-right"
+                          >
                             <div className="text-xs font-bold uppercase tracking-wider text-[#94A3B8] mb-2">
                               {stage.phase}
                             </div>
@@ -114,7 +124,7 @@ const LearningJourneySection = () => {
                           </span>
                               ))}
                             </div>
-                          </div>
+                          </MotionDiv>
                       ) : (
                           /* Stage 2 & 4: Opposite Giant Number Stamp */
                           <div className="hidden md:block font-bricolage-grotesque text-7xl lg:text-8xl font-extrabold text-[#E0E7FF] opacity-60 select-none md:text-right md:pr-12">
@@ -134,7 +144,10 @@ const LearningJourneySection = () => {
                     <div className="w-full md:col-span-5 order-3">
                       {!stage.isLeft ? (
                           /* Stage 2 & 4: Content Card Elements */
-                          <div className="bg-white border border-[#E6E8F5] rounded-3xl p-6 md:p-8 shadow-sm transition-all duration-300 hover:shadow-md text-left">
+                          <MotionDiv
+                              whileHover={{ scale: 1.02, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1)" }}
+                              className="bg-white border border-[#E6E8F5] rounded-3xl p-6 md:p-8 shadow-sm transition-all duration-300 hover:shadow-md text-left"
+                          >
                             <div className="text-xs font-bold uppercase tracking-wider text-[#94A3B8] mb-2">
                               {stage.phase}
                             </div>
@@ -151,7 +164,7 @@ const LearningJourneySection = () => {
                           </span>
                               ))}
                             </div>
-                          </div>
+                          </MotionDiv>
                       ) : (
                           /* Stage 1 & 3: Opposite Giant Number Stamp */
                           <div className="hidden md:block font-bricolage-grotesque text-7xl lg:text-8xl font-extrabold text-[#E0E7FF] opacity-60 select-none text-left md:pl-12">
@@ -179,7 +192,7 @@ const LearningJourneySection = () => {
           </div>
 
         </div>
-      </section>
+      </MotionSection>
   );
 };
 

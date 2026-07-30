@@ -5,6 +5,7 @@ import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 import BadgeLabel from '@/components/shared/BadgeLabel'
+import { MotionSection, MotionDiv } from '@/components/ui/MotionElements'
 import vijaywada from '@/public/images/vijaywada.png'
 import kakinada from '@/public/images/kakinada.png'
 import hyderabad from '@/public/images/hyderabad.png'
@@ -46,7 +47,10 @@ interface BranchCardProps {
 }
 
 const BranchCard: React.FC<BranchCardProps> = ({ branch }) => (
-  <div className="flex items-center gap-5 bg-[#FFFFFF1A] rounded-2xl p-5 border border-[#EFEDED] mx-3 backdrop-blur-md h-full">
+  <MotionDiv 
+    whileHover={{ scale: 1.02, y: -5 }}
+    className="flex items-center gap-5 bg-[#FFFFFF1A] rounded-2xl p-5 border border-[#EFEDED] mx-3 backdrop-blur-md h-full cursor-default shadow-sm hover:shadow-md transition-shadow"
+  >
     <div className="flex-shrink-0">
       <img
         src={branch.image}
@@ -69,7 +73,7 @@ const BranchCard: React.FC<BranchCardProps> = ({ branch }) => (
       </h3>
       <p className="text-gray-500 text-sm leading-relaxed">{branch.address}</p>
     </div>
-  </div>
+  </MotionDiv>
 )
 
 interface CustomDotsProps {
@@ -136,7 +140,13 @@ const TrainingBranchesSection: React.FC = () => {
   }
 
   return (
-    <div className="bg-white py-10 overflow-hidden">
+    <MotionSection 
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+      className="bg-white py-10 overflow-hidden"
+    >
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="flex flex-col items-center justify-center mb-10">
@@ -176,7 +186,7 @@ const TrainingBranchesSection: React.FC = () => {
           onClick={handleDotClick}
         />
       </div>
-    </div>
+    </MotionSection>
   )
 }
 

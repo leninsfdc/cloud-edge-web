@@ -10,10 +10,17 @@ import peoplePurpleIcon from "@/public/icons/people-purple.svg"
 import capBlue from "@/public/icons/cap-blue.svg"
 import videoGreen from "@/public/icons/video-green.svg"
 import globPink from "@/public/icons/glob-pink.svg"
+import { MotionDiv, MotionSection } from '@/components/ui/MotionElements'
 
 const EmpoweringLearnerSection = () => {
   return (
-    <section className='bg-white py-12 lg:py-20 relative overflow-hidden'>
+    <MotionSection 
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+      className='bg-white py-12 lg:py-20 relative overflow-hidden'
+    >
 
       {/* Blur Backgrounds */}
       <div className='absolute bg-[#E9D5FF] w-[300px] md:w-[450px] h-[300px] md:h-[560px] top-[-80px] left-[-100px] opacity-40 rounded-full blur-[100px]' />
@@ -93,7 +100,7 @@ const EmpoweringLearnerSection = () => {
               {/* Feature Cards */}
               <div className='grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 max-w-3xl'>
 
-                <div className='bg-[#FFFFFF1A] border border-[#F8FAFC] rounded-2xl p-4 md:p-5 shadow-inner backdrop-blur-[2px] flex flex-col items-center sm:items-start text-center sm:text-left'>
+                <MotionDiv whileHover={{ scale: 1.05, y: -5 }} className='bg-[#FFFFFF1A] border border-[#F8FAFC] rounded-2xl p-4 md:p-5 shadow-inner backdrop-blur-[2px] flex flex-col items-center sm:items-start text-center sm:text-left cursor-default transition-all duration-300'>
                   <Image
                     src={bookIcon}
                     alt='Expert-Led Courses'
@@ -103,9 +110,9 @@ const EmpoweringLearnerSection = () => {
                   <span className='text-sm font-semibold mt-2'>
                     Expert-Led <br /> Courses
                   </span>
-                </div>
+                </MotionDiv>
 
-                <div className='bg-[#FFFFFF1A] border border-[#F8FAFC] rounded-2xl p-4 md:p-5 shadow-inner backdrop-blur-[2px] flex flex-col items-center sm:items-start text-center sm:text-left'>
+                <MotionDiv whileHover={{ scale: 1.05, y: -5 }} className='bg-[#FFFFFF1A] border border-[#F8FAFC] rounded-2xl p-4 md:p-5 shadow-inner backdrop-blur-[2px] flex flex-col items-center sm:items-start text-center sm:text-left cursor-default transition-all duration-300'>
                   <Image
                     src={learningIcon}
                     alt='Practical Learning'
@@ -115,9 +122,9 @@ const EmpoweringLearnerSection = () => {
                   <span className='text-sm font-semibold mt-2'>
                     Practical <br /> Learning
                   </span>
-                </div>
+                </MotionDiv>
 
-                <div className='bg-[#FFFFFF1A] border border-[#F8FAFC] rounded-2xl p-4 md:p-5 shadow-inner backdrop-blur-[2px] flex flex-col items-center sm:items-start text-center sm:text-left'>
+                <MotionDiv whileHover={{ scale: 1.05, y: -5 }} className='bg-[#FFFFFF1A] border border-[#F8FAFC] rounded-2xl p-4 md:p-5 shadow-inner backdrop-blur-[2px] flex flex-col items-center sm:items-start text-center sm:text-left cursor-default transition-all duration-300'>
                   <Image
                     src={careerIcon}
                     alt='Career Support'
@@ -127,9 +134,9 @@ const EmpoweringLearnerSection = () => {
                   <span className='text-sm font-semibold mt-2'>
                     Career <br /> Support
                   </span>
-                </div>
+                </MotionDiv>
 
-                <div className='bg-[#FFFFFF1A] border border-[#F8FAFC] rounded-2xl p-4 md:p-5 shadow-inner backdrop-blur-[2px] flex flex-col items-center sm:items-start text-center sm:text-left'>
+                <MotionDiv whileHover={{ scale: 1.05, y: -5 }} className='bg-[#FFFFFF1A] border border-[#F8FAFC] rounded-2xl p-4 md:p-5 shadow-inner backdrop-blur-[2px] flex flex-col items-center sm:items-start text-center sm:text-left cursor-default transition-all duration-300'>
                   <Image
                     src={industryIcon}
                     alt='Industry Relevant'
@@ -139,17 +146,17 @@ const EmpoweringLearnerSection = () => {
                   <span className='text-sm font-semibold mt-2'>
                     Industry <br /> Relevant
                   </span>
-                </div>
+                </MotionDiv>
 
               </div>
 
               {/* Stats Section */}
-              <div className='bg-[#FFFFFF1A] border border-[#F8FAFC] rounded-2xl p-2 md:p-5 shadow-inner backdrop-blur-[2px] mt-8 md:mt-14'>
+              <div className='bg-[#FFFFFF1A] border border-[#F8FAFC] rounded-2xl p-2 md:p-5 shadow-inner backdrop-blur-[2px] mt-8 md:mt-14 transition-transform'>
 
                 <div className='grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 divide-y sm:divide-y divide-[#F1F5F9] xl:divide-y-0 xl:divide-x'>
 
                   {/* Card 1 */}
-                  <div className='flex items-center gap-4 p-4'>
+                  <MotionDiv whileHover={{ scale: 1.02 }} className='flex items-center gap-4 p-4 cursor-default'>
                     <div className='w-14 h-14 rounded-full bg-[#E0E7FF] flex items-center justify-center shrink-0'>
                       <Image
                         src={peoplePurpleIcon}
@@ -171,10 +178,10 @@ const EmpoweringLearnerSection = () => {
                         Growing community worldwide
                       </div>
                     </div>
-                  </div>
+                  </MotionDiv>
 
                   {/* Card 2 */}
-                  <div className='flex items-center gap-4 p-4'>
+                  <MotionDiv whileHover={{ scale: 1.02 }} className='flex items-center gap-4 p-4 cursor-default'>
                     <div className='w-14 h-14 rounded-full bg-[#DBEAFE] flex items-center justify-center shrink-0'>
                       <Image
                         src={capBlue}
@@ -196,10 +203,10 @@ const EmpoweringLearnerSection = () => {
                         Industry professionals
                       </div>
                     </div>
-                  </div>
+                  </MotionDiv>
 
                   {/* Card 3 */}
-                  <div className='flex items-center gap-4 p-4'>
+                  <MotionDiv whileHover={{ scale: 1.02 }} className='flex items-center gap-4 p-4 cursor-default'>
                     <div className='w-14 h-14 rounded-full bg-[#D1EBE5] flex items-center justify-center shrink-0'>
                       <Image
                         src={videoGreen}
@@ -221,10 +228,10 @@ const EmpoweringLearnerSection = () => {
                         Every month
                       </div>
                     </div>
-                  </div>
+                  </MotionDiv>
 
                   {/* Card 4 */}
-                  <div className='flex items-center gap-4 p-4'>
+                  <MotionDiv whileHover={{ scale: 1.02 }} className='flex items-center gap-4 p-4 cursor-default'>
                     <div className='w-14 h-14 rounded-full bg-[#F2DCEA] flex items-center justify-center shrink-0'>
                       <Image
                         src={globPink}
@@ -246,7 +253,7 @@ const EmpoweringLearnerSection = () => {
                         Global impact
                       </div>
                     </div>
-                  </div>
+                  </MotionDiv>
 
                 </div>
 
@@ -258,7 +265,7 @@ const EmpoweringLearnerSection = () => {
         </div>
 
       </div>
-    </section>
+    </MotionSection>
   )
 }
 
