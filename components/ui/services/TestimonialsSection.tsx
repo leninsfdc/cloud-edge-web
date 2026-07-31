@@ -1,4 +1,7 @@
+"use client";
+
 import { Star } from "lucide-react";
+import { motion } from "framer-motion";
 
 const testimonials = [
   {
@@ -23,66 +26,75 @@ const testimonials = [
 
 export default function TestimonialsSection() {
   return (
-    <section className="bg-[#f5f5f7] py-24">
-      <div className="mx-auto container mx-auto  px-6">
+    <section className="bg-slate-50/90 py-12 lg:py-16 relative overflow-hidden">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
         {/* Header */}
-        <div className="mx-auto max-w-3xl text-center">
-          <p className="mb-3 text-xs font-bold uppercase tracking-[0.15em] text-primary">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mx-auto max-w-3xl text-center"
+        >
+          <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-indigo-200/80 bg-indigo-50/90 px-4 py-1.5 text-xs font-extrabold uppercase tracking-wider text-indigo-700 shadow-2xs">
             What Our Students Say
-          </p>
+          </div>
 
-          <h2 className="mb-5 text-4xl font-extrabold tracking-tight text-[#1d1d1f] md:text-5xl">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 font-bricolage-grotesque">
             5,800+ students can't be wrong.
           </h2>
-        </div>
+        </motion.div>
 
-        {/* Testimonials */}
-        <div className="mt-16 grid gap-8 lg:grid-cols-3">
-          {testimonials.map((item) => (
-            <div
+        {/* Testimonials Cards Grid */}
+        <div className="mt-12 grid gap-6 lg:grid-cols-3">
+          {testimonials.map((item, index) => (
+            <motion.div
               key={item.name}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: index * 0.08 }}
+              whileHover={{ y: -5, scale: 1.02 }}
               className="
-                rounded-[32px]
-                border border-black/10
-                bg-white
-                p-8
-                shadow-sm
+                rounded-[28px]
+                border border-slate-200/80
+                bg-white/80 backdrop-blur-xl
+                p-7
+                shadow-[0_10px_30px_rgba(0,0,0,0.03)]
                 transition-all duration-300
-                hover:-translate-y-1
-                hover:border-primary/20
-                hover:shadow-[0_20px_50px_rgba(134,94,245,.08)]
+                hover:border-indigo-300
+                hover:shadow-xl
+                flex flex-col justify-between
               "
             >
-              {/* Stars */}
-              <div className="mb-6 flex items-center gap-1">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star
-                    key={i}
-                    size={16}
-                    className="fill-amber-400 text-amber-400"
-                  />
-                ))}
+              <div>
+                {/* Stars */}
+                <div className="mb-4 flex items-center gap-1">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star
+                      key={i}
+                      size={16}
+                      className="fill-amber-400 text-amber-400"
+                    />
+                  ))}
+                </div>
+
+                {/* Quote */}
+                <p className="text-xs sm:text-sm leading-relaxed text-slate-600 font-medium">
+                  "{item.quote}"
+                </p>
               </div>
 
-              {/* Quote */}
-              <p className="text-[15px] leading-8 text-[#6e6e73]">
-                "{item.quote}"
-              </p>
-
-              {/* Divider */}
-              <div className="my-7 border-t border-black/10" />
-
-              {/* User */}
-              <div>
-                <h4 className="text-[17px] font-bold text-[#1d1d1f]">
+              {/* User info */}
+              <div className="mt-6 pt-5 border-t border-slate-100">
+                <h4 className="text-base font-bold text-slate-900 font-bricolage-grotesque">
                   {item.name}
                 </h4>
-
-                <p className="mt-1 text-sm text-[#86868b]">
+                <p className="mt-0.5 text-xs text-slate-500 font-medium">
                   {item.role}
                 </p>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

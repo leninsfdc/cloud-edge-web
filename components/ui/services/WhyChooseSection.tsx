@@ -1,3 +1,7 @@
+"use client";
+
+import { motion } from "framer-motion";
+
 const whyChooseData = [
   {
     icon: "🎓",
@@ -45,61 +49,77 @@ const whyChooseData = [
 
 export default function WhyChooseSection() {
   return (
-    <section className="bg-[#f5f5f7] py-24">
-      <div className="mx-auto container px-6">
-        {/* Header */}
-        <div className="max-w-2xl">
-          <p className="mb-3 text-xs font-bold uppercase tracking-[0.15em] text-primary">
-            Why Choose Us
-          </p>
+    <section className="bg-slate-50/90 py-12 lg:py-16 relative overflow-hidden">
+      {/* Background Orbs */}
+      <div className="absolute top-1/3 left-0 w-96 h-96 bg-indigo-200/20 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-200/20 rounded-full blur-3xl pointer-events-none" />
 
-          <h2 className="mb-4 text-4xl font-extrabold tracking-tight text-[#1d1d1f] md:text-5xl">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="max-w-2xl"
+        >
+          <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-indigo-200/80 bg-indigo-50/90 px-4 py-1.5 text-xs font-extrabold uppercase tracking-wider text-indigo-700 shadow-2xs">
+            Why Choose Us
+          </div>
+
+          <h2 className="mb-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 font-bricolage-grotesque">
             The advantage that gets you hired.
           </h2>
 
-          <p className="text-[15px] leading-8 text-[#6e6e73]">
-            Six reasons 5,800+ professionals chose Cloud Edge over every other
-            provider.
+          <p className="text-base sm:text-lg leading-relaxed text-slate-600 font-medium">
+            Six reasons 5,800+ professionals chose Cloud Edge over every other provider.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Cards */}
+        {/* Glassy Cards Grid */}
         <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {whyChooseData.map((item) => (
-            <div
+          {whyChooseData.map((item, index) => (
+            <motion.div
               key={item.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: index * 0.08 }}
+              whileHover={{ y: -6, scale: 1.02 }}
               className="
                 rounded-[28px]
-                border border-black/10
-                bg-white
+                border border-slate-200/80
+                bg-white/80 backdrop-blur-xl
                 p-7
-                shadow-sm
+                shadow-[0_10px_30px_rgba(0,0,0,0.03)]
                 transition-all duration-300
-                hover:-translate-y-1
-                hover:border-primary/30
-                hover:shadow-[0_15px_40px_rgba(134,94,245,.08)]
+                hover:border-indigo-300
+                hover:shadow-xl
+                flex flex-col justify-between
               "
             >
-              {/* Icon */}
-              <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10 text-3xl">
-                {item.icon}
+              <div>
+                {/* Icon */}
+                <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-indigo-50/80 border border-indigo-100/80 text-3xl shadow-inner">
+                  {item.icon}
+                </div>
+
+                {/* Title */}
+                <h3 className="mb-3 text-xl font-bold tracking-tight text-slate-900 font-bricolage-grotesque">
+                  {item.title}
+                </h3>
+
+                {/* Description */}
+                <p className="text-sm leading-relaxed text-slate-600 font-medium">
+                  {item.description}
+                </p>
               </div>
-
-              {/* Title */}
-              <h3 className="mb-3 text-xl font-bold tracking-tight text-[#1d1d1f]">
-                {item.title}
-              </h3>
-
-              {/* Description */}
-              <p className="text-sm leading-7 text-[#6e6e73]">
-                {item.description}
-              </p>
 
               {/* Badge */}
-              <div className="mt-6 inline-flex rounded-full bg-primary/10 px-4 py-2 text-sm font-semibold text-primary">
+              <div className="mt-6 inline-flex w-fit rounded-full bg-indigo-50/90 border border-indigo-200/60 px-4 py-1.5 text-xs font-bold text-indigo-700 shadow-2xs">
                 {item.badge}
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

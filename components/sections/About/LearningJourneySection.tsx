@@ -1,198 +1,255 @@
-import React from 'react';
-import Image from "next/image";
-import { MotionDiv, MotionSection } from '@/components/ui/MotionElements';
+"use client";
 
-// Reusing matching icons from your existing package structure
-import whatsappIcon from "@/public/icons/whatsapp-icon.svg";
+import { useRef, useState } from "react";
+import { motion, useScroll, useTransform, useSpring, useMotionValueEvent } from "framer-motion";
+import { PlaneTakeoff, PlaneLanding, Plane, Compass, Sparkles, MessageCircle } from "lucide-react";
+import { getWhatsAppLink } from "@/utils";
 
-const stages = [
+const flightStages = [
   {
     id: "01",
-    phase: "Stage 01 — Departure",
+    phase: "FLIGHT STAGE 01 • TAKEOFF",
+    altitude: "Departure Gate",
     title: "Consult & Enroll",
     description: "A course advisor responds within 60 minutes, listens to your background and recommends the right SAP or Salesforce course. Attend a free demo class before paying anything.",
     tags: ["⏰ Reply in 60 min", "📚 Free demo class", "💰 0% EMI plan"],
-    icon: (
-        <svg className="w-5 h-5 text-[#4361EE] rotate-45" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
-        </svg>
-    ),
-    isLeft: true
+    icon: PlaneTakeoff,
+    accentColor: "from-indigo-500 to-blue-600",
+    badgeBg: "bg-indigo-50 text-indigo-700 border-indigo-200",
   },
   {
     id: "02",
-    phase: "Stage 02 — In Flight",
+    phase: "FLIGHT STAGE 02 • IN FLIGHT",
+    altitude: "Cruising Altitude: 35,000 ft",
     title: "Learn Live & Hands-On",
     description: "Attend live Zoom sessions twice a week. Log into a real SAP or Salesforce system every class — not a demo environment. Ask questions, get instructor feedback, build real skills.",
     tags: ["⚡ Live — never recorded", "💻 Real system access", "🎬 6-month recordings"],
-    icon: (
-        <svg className="w-5 h-5 text-[#6557E3]" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/>
-        </svg>
-    ),
-    isLeft: false
+    icon: Plane,
+    accentColor: "from-blue-500 to-cyan-500",
+    badgeBg: "bg-cyan-50 text-cyan-700 border-cyan-200",
   },
   {
     id: "03",
-    phase: "Stage 03 — Final Approach",
-    title: "Certify",
+    phase: "FLIGHT STAGE 03 • FINAL APPROACH",
+    altitude: "Descent & Preparation",
+    title: "Certify & Strategy Session",
     description: "Complete 3 full mock exams and a dedicated exam strategy session. Sit the official SAP or Salesforce certification exam with confidence — 88% of students pass on their first attempt.",
     tags: ["✍️ 3 full mock exams", "🎯 Exam strategy session", "🎓 88% first-attempt"],
-    icon: (
-        <svg className="w-5 h-5 text-[#32ADE6]" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M2.5 19h19v2h-19zm7.18-1.73l4.35 1.16 5.31 1.42c.8.21 1.62-.26 1.84-1.06.21-.8-.26-1.62-1.06-1.84l-5.31-1.42-2.76-4.77-.93.25.87 3.09-3.79-1.01-.99-1.72-.93.25.71 4.36 2.69.29z"/>
-        </svg>
-    ),
-    isLeft: true
+    icon: Compass,
+    accentColor: "from-purple-500 to-indigo-600",
+    badgeBg: "bg-purple-50 text-purple-700 border-purple-200",
   },
   {
     id: "04",
-    phase: "Stage 04 — Destination",
-    title: "Get Hired",
-    description: "Resume review, LinkedIn optimization and mock interview coaching from your placement team. We connect you directly with hiring companies — Deloitte, Accenture, TCS, Infosys and more. 94% of active job seekers placed within 6 months.",
+    phase: "FLIGHT STAGE 04 • TOUCHDOWN",
+    altitude: "Destination Reached",
+    title: "Get Hired & Supported",
+    description: "Resume review, LinkedIn optimization and mock interview coaching from your placement team. We connect you directly with hiring companies — Deloitte, Accenture, TCS, Infosys and more. 94% placed within 6 months.",
     tags: ["📄 Resume & LinkedIn", "🏆 Mock interviews", "✅ 94% placed in 6 months"],
-    icon: (
-        <svg className="w-5 h-5 text-[#14B88A]" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-        </svg>
-    ),
-    isLeft: false
+    icon: PlaneLanding,
+    accentColor: "from-emerald-500 to-teal-600",
+    badgeBg: "bg-emerald-50 text-emerald-700 border-emerald-200",
   }
 ];
 
 const LearningJourneySection = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isScrollingDown, setIsScrollingDown] = useState(true);
+  const prevScrollRef = useRef(0);
+
+  // Track scroll position relative to timeline container
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start 65%", "end 80%"],
+  });
+
+  // Track scroll direction to rotate plane orientation dynamically
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    if (latest > prevScrollRef.current + 0.005) {
+      setIsScrollingDown(true);
+    } else if (latest < prevScrollRef.current - 0.005) {
+      setIsScrollingDown(false);
+    }
+    prevScrollRef.current = latest;
+  });
+
+  // Smooth out scroll progress for buttery-smooth airplane movement
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 90,
+    damping: 25,
+    restDelta: 0.001,
+  });
+
+  // Calculate dynamic line height and airplane position along the track
+  const lineHeight = useTransform(smoothProgress, [0, 1], ["0%", "100%"]);
+  const planeTopPosition = useTransform(smoothProgress, [0, 1], ["0%", "92%"]);
+
   return (
-      <MotionSection 
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="py-20 relative overflow-hidden bg-[#FAFAFD]"
-      >
-        {/* Dynamic Purplish Brand Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#EFEEFC]/60 via-[#FAFAFD] to-white pointer-events-none" />
+    <section className="py-12 lg:py-16 relative overflow-hidden bg-slate-50/90">
+      {/* Dynamic Purplish Ambient Orbs */}
+      <div className="absolute top-10 left-10 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-10 right-10 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="container mx-auto px-4 sm:px-6 relative z-10">
+      {/* Cloud & Dot Background Pattern */}
+      <div
+        className="absolute inset-0 opacity-15 pointer-events-none"
+        style={{
+          backgroundImage: "radial-gradient(rgba(99,102,241,.15) 1px, transparent 1px)",
+          backgroundSize: "32px 32px",
+        }}
+      />
 
-          {/* Header Section */}
-          <div className="text-center max-w-3xl mx-auto mb-20 space-y-4">
-            <div className="inline-flex items-center gap-2 bg-[#E3E1FA] border border-[#DDDFF5] px-4 py-2 rounded-full">
-              <span className="text-xs text-[#6557E3] font-semibold uppercase tracking-wider">The Learning Journey</span>
-            </div>
-            <h2 className="font-bold text-3xl sm:text-4xl lg:text-5xl font-bricolage-grotesque tracking-tight text-[#1E293B]">
-              From Enquiry to Employed in <span className="text-[#6557E3]">4 Steps</span>
-            </h2>
-            <p className="text-base text-[#64748B] max-w-xl mx-auto">
-              Your structured path into international tier-1 tech consulting ecosystems.
-            </p>
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+
+        {/* Header Section */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center max-w-3xl mx-auto mb-14 space-y-3"
+        >
+          <div className="inline-flex items-center gap-2 bg-indigo-50/90 border border-indigo-200/80 px-4 py-1.5 rounded-full">
+            <Plane className="w-3.5 h-3.5 animate-pulse text-indigo-600" />
+            <span className="text-xs text-indigo-700 font-extrabold uppercase tracking-wider">The Learning Journey</span>
           </div>
 
-          {/* Timeline Map Container */}
-          <div className="relative max-w-5xl mx-auto">
+          <h2 className="font-extrabold text-3xl sm:text-4xl lg:text-5xl font-bricolage-grotesque tracking-tight text-slate-900 leading-tight">
+            From Enquiry to Employed in <span className="bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">4 Steps</span>
+          </h2>
 
-            {/* Center Vertical Track Line (Desktop Only) */}
-            <div className="hidden md:block absolute top-8 bottom-8 left-1/2 -translate-x-1/2 w-[2px] bg-[#DDDFF5]" />
+          <p className="text-base sm:text-lg text-slate-600 max-w-xl mx-auto font-medium leading-relaxed">
+            Scroll down or up to pilot your airplane along the structured path into international tier-1 tech consulting.
+          </p>
+        </motion.div>
 
-            {/* Timeline Stack */}
-            <div className="space-y-12 md:space-y-20">
-              {stages.map((stage, idx) => (
-                  <div
-                      key={idx}
-                      className="flex flex-col md:grid md:grid-cols-11 items-center w-full"
+        {/* Scroll-Driven Vertical Airplane Journey Timeline Container */}
+        <div ref={containerRef} className="relative max-w-4xl mx-auto py-4">
+
+          {/* Vertical Flight Track Line */}
+          <div className="absolute left-6 md:left-1/2 top-8 bottom-8 w-1.5 bg-slate-200/80 rounded-full -translate-x-1/2 overflow-hidden">
+            {/* Scroll-animated gradient progress fill */}
+            <motion.div
+              style={{ height: lineHeight }}
+              className="w-full bg-gradient-to-b from-indigo-500 via-cyan-500 via-purple-500 to-emerald-500 rounded-full"
+            />
+          </div>
+
+          {/* Scroll-Driven Moving & Directional Rotating Airplane */}
+          <motion.div
+            style={{ top: planeTopPosition }}
+            className="absolute left-6 md:left-1/2 -translate-x-1/2 z-30 pointer-events-none"
+          >
+            <motion.div
+              animate={{
+                rotate: isScrollingDown ? 135 : -45,
+              }}
+              transition={{ duration: 0.35, ease: "easeOut" }}
+              className="w-12 h-12 rounded-full bg-indigo-600 border-2 border-white text-white flex items-center justify-center shadow-xl shadow-indigo-500/50"
+            >
+              <Plane size={22} />
+            </motion.div>
+          </motion.div>
+
+          {/* Flight Timeline Steps */}
+          <div className="space-y-12 md:space-y-16">
+            {flightStages.map((stage, index) => {
+              const IconComp = stage.icon;
+              const isEven = index % 2 === 0;
+
+              return (
+                <div
+                  key={stage.id}
+                  className={`relative flex flex-col md:flex-row items-center ${
+                    isEven ? "md:flex-row" : "md:flex-row-reverse"
+                  }`}
+                >
+                  {/* Waypoint Circle Node */}
+                  <div className="absolute left-6 md:left-1/2 -translate-x-1/2 z-10 flex items-center justify-center">
+                    <motion.div
+                      initial={{ scale: 0.8, opacity: 0 }}
+                      whileInView={{ scale: 1, opacity: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.4, delay: index * 0.15 }}
+                      className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${stage.accentColor} text-white flex items-center justify-center shadow-md border-2 border-white`}
+                    >
+                      <IconComp size={22} />
+                    </motion.div>
+                  </div>
+
+                  {/* Card Content Side */}
+                  <motion.div
+                    initial={{ opacity: 0, x: isEven ? -30 : 30, y: 15 }}
+                    whileInView={{ opacity: 1, x: 0, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: index * 0.12 }}
+                    whileHover={{ y: -6, scale: 1.02 }}
+                    className={`ml-16 md:ml-0 w-full md:w-[calc(50%-2.5rem)] ${
+                      isEven ? "md:pr-2" : "md:pl-2"
+                    }`}
                   >
-                    {/* LEFT SIDE: Card (on Stage 1 & 3) OR Giant Number (on Stage 2 & 4) */}
-                    <div className="w-full md:col-span-5 order-2 md:order-1">
-                      {stage.isLeft ? (
-                          /* Stage 1 & 3: Content Card Elements */
-                          <MotionDiv
-                              whileHover={{ scale: 1.02, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1)" }}
-                              className="bg-white border border-[#E6E8F5] rounded-3xl p-6 md:p-8 shadow-sm transition-all duration-300 hover:shadow-md md:text-right"
-                          >
-                            <div className="text-xs font-bold uppercase tracking-wider text-[#94A3B8] mb-2">
-                              {stage.phase}
-                            </div>
-                            <h3 className="font-bricolage-grotesque text-xl font-bold text-[#1E293B] mb-3">
-                              {stage.title}
-                            </h3>
-                            <p className="text-sm leading-relaxed text-[#64748B] mb-5">
-                              {stage.description}
-                            </p>
-                            <div className="flex flex-wrap gap-2 md:justify-end justify-start">
-                              {stage.tags.map((tag, tagIdx) => (
-                                  <span key={tagIdx} className="text-xs bg-[#FAFAFD] border border-[#DDE3F5] px-3 py-1.5 rounded-full font-medium text-[#1E293B]">
+                    <div className="rounded-[28px] border border-slate-200/80 bg-white/80 backdrop-blur-xl p-6 sm:p-7 shadow-[0_10px_30px_rgba(15,23,42,0.04)] hover:shadow-xl hover:border-indigo-300 transition-all duration-300">
+                      
+                      {/* Flight Header Tags */}
+                      <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+                        <span className={`text-[10px] sm:text-xs font-extrabold uppercase tracking-wider px-3 py-1 rounded-full border ${stage.badgeBg}`}>
+                          {stage.phase}
+                        </span>
+
+                        <span className="text-[11px] font-bold text-slate-400 flex items-center gap-1">
+                          <Sparkles size={12} className="text-amber-500" />
+                          {stage.altitude}
+                        </span>
+                      </div>
+
+                      {/* Step Title */}
+                      <h3 className="text-xl sm:text-2xl font-extrabold text-slate-900 font-bricolage-grotesque mb-2">
+                        {stage.title}
+                      </h3>
+
+                      {/* Description */}
+                      <p className="text-xs sm:text-sm leading-relaxed text-slate-600 font-medium mb-4">
+                        {stage.description}
+                      </p>
+
+                      {/* Tags */}
+                      <div className="flex flex-wrap gap-2">
+                        {stage.tags.map((tag, tagIdx) => (
+                          <span key={tagIdx} className="text-xs bg-slate-50 border border-slate-200/80 px-3 py-1 rounded-full font-bold text-slate-700">
                             {tag}
                           </span>
-                              ))}
-                            </div>
-                          </MotionDiv>
-                      ) : (
-                          /* Stage 2 & 4: Opposite Giant Number Stamp */
-                          <div className="hidden md:block font-bricolage-grotesque text-7xl lg:text-8xl font-extrabold text-[#E0E7FF] opacity-60 select-none md:text-right md:pr-12">
-                            {stage.id}
-                          </div>
-                      )}
-                    </div>
-
-                    {/* CENTER COLUMN: Central Core Timeline Node Ring */}
-                    <div className="md:col-span-1 order-1 md:order-2 flex justify-center items-center my-4 md:my-0 relative z-20 w-full">
-                      <div className="w-14 h-14 rounded-full bg-white border-4 border-[#EFEEFC] shadow-sm flex items-center justify-center transition-transform duration-300 hover:scale-110">
-                        {stage.icon}
+                        ))}
                       </div>
                     </div>
-
-                    {/* RIGHT SIDE: Giant Number (on Stage 1 & 3) OR Card (on Stage 2 & 4) */}
-                    <div className="w-full md:col-span-5 order-3">
-                      {!stage.isLeft ? (
-                          /* Stage 2 & 4: Content Card Elements */
-                          <MotionDiv
-                              whileHover={{ scale: 1.02, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1)" }}
-                              className="bg-white border border-[#E6E8F5] rounded-3xl p-6 md:p-8 shadow-sm transition-all duration-300 hover:shadow-md text-left"
-                          >
-                            <div className="text-xs font-bold uppercase tracking-wider text-[#94A3B8] mb-2">
-                              {stage.phase}
-                            </div>
-                            <h3 className="font-bricolage-grotesque text-xl font-bold text-[#1E293B] mb-3">
-                              {stage.title}
-                            </h3>
-                            <p className="text-sm leading-relaxed text-[#64748B] mb-5">
-                              {stage.description}
-                            </p>
-                            <div className="flex flex-wrap gap-2 justify-start">
-                              {stage.tags.map((tag, tagIdx) => (
-                                  <span key={tagIdx} className="text-xs bg-[#FAFAFD] border border-[#DDE3F5] px-3 py-1.5 rounded-full font-medium text-[#1E293B]">
-                            {tag}
-                          </span>
-                              ))}
-                            </div>
-                          </MotionDiv>
-                      ) : (
-                          /* Stage 1 & 3: Opposite Giant Number Stamp */
-                          <div className="hidden md:block font-bricolage-grotesque text-7xl lg:text-8xl font-extrabold text-[#E0E7FF] opacity-60 select-none text-left md:pl-12">
-                            {stage.id}
-                          </div>
-                      )}
-                    </div>
-
-                  </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Action Engagement Block */}
-          <div className="text-center mt-20">
-            <a
-                href="https://wa.me/447442586325?text=Hi+Cloud+Edge+Solutions"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-3 rounded-full bg-[#4361EE] px-10 py-4 text-white font-semibold text-base transition-all duration-300 hover:scale-[1.02] hover:bg-[#3651D1] shadow-md"
-            >
-              <Image src={whatsappIcon} alt="whatsapp icon" className="w-5 h-5 filter brightness-0 invert" />
-              Begin Your Journey &rarr;
-            </a>
+                  </motion.div>
+                </div>
+              );
+            })}
           </div>
 
         </div>
-      </MotionSection>
+
+        {/* Action Engagement Block */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center mt-14"
+        >
+          <a
+            href={getWhatsAppLink("Hi Cloud Edge Solutions, I want to begin my learning journey.")}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2.5 rounded-full bg-emerald-600 hover:bg-emerald-700 px-8 py-4 text-white font-bold text-sm shadow-lg hover:shadow-emerald-500/25 transition-all duration-300 transform hover:-translate-y-0.5"
+          >
+            <MessageCircle size={18} />
+            <span>Begin Your Journey</span>
+          </a>
+        </motion.div>
+
+      </div>
+    </section>
   );
 };
 

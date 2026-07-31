@@ -28,8 +28,8 @@ const CourseHeroSection: React.FC<ICourseHeroSectionProps> = ({ course }) => {
   );
 
   return (
-      <div
-  className="min-h-[900px] pb-12 md:pb-0"
+    <div
+      className="min-h-[900px] pb-12 md:pb-0"
       style={{
         background:
           "radial-gradient(85.12% 123.04% at 70% 30%, rgba(219, 234, 254, 0.6) 0%, #F8FBFF 70%)"
@@ -39,38 +39,38 @@ const CourseHeroSection: React.FC<ICourseHeroSectionProps> = ({ course }) => {
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center pt-24 md:pt-32">
 
           {/* Content */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="space-y-5 lg:space-y-6 order-1"
           >
 
-            <div className="bg-[#E3E1FA] rounded-2xl px-4 py-2 w-fit text-[#6557E3] text-xs font-semibold flex items-center justify-center gap-3">
-              <Image src={cap} alt="cap" className="w-5 h-5" />
-              {course.label}
+            <div className="bg-indigo-50/90 mt-5 backdrop-blur-md border border-indigo-200/60 rounded-full px-4 py-1.5 w-fit text-indigo-700 text-xs font-bold flex items-center justify-center gap-2.5 shadow-xs">
+              <Image src={cap} alt="cap" className="w-4 h-4" />
+              <span>{course.label}</span>
             </div>
 
             <div>
-              <h1 className="font-bold text-3xl sm:text-4xl lg:text-5xl font-bricolage-grotesque tracking-tight leading-tight lg:leading-14">
+              <h1 className="font-bold text-3xl sm:text-4xl lg:text-5xl font-bricolage-grotesque tracking-tight leading-tight lg:leading-14 text-slate-900">
                 {course.name}
               </h1>
             </div>
 
             <div>
-              <p className="text-[#31373D] tracking-tight text-base sm:text-lg">
+              <p className="text-slate-600 tracking-normal text-base sm:text-lg leading-relaxed max-w-2xl">
                 {course.description}
               </p>
             </div>
 
-            {/* Cards */}
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+            {/* Glassy Stat Cards */}
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5">
 
-              <motion.div 
-                whileHover={{ y: -5, scale: 1.02, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)" }}
-                className="bg-white p-4 rounded-2xl flex flex-col justify-between min-h-[110px] lg:min-h-[130px] transition-all duration-300 cursor-default"
+              <motion.div
+                whileHover={{ y: -5, scale: 1.02 }}
+                className="bg-white/80 backdrop-blur-xl border border-white/90 p-4 rounded-2xl flex flex-col justify-between min-h-[110px] lg:min-h-[130px] transition-all duration-300 shadow-[0_10px_25px_rgba(15,23,42,0.04)] hover:shadow-md hover:border-indigo-200/80 cursor-default"
               >
-                <div className="bg-[#EFF6FF] p-3 rounded-lg w-fit">
+                <div className="bg-blue-50/80 backdrop-blur-sm p-2.5 rounded-xl w-fit border border-blue-100">
                   <Image
                     src={calendarBlue}
                     alt="calendar"
@@ -79,21 +79,21 @@ const CourseHeroSection: React.FC<ICourseHeroSectionProps> = ({ course }) => {
                 </div>
 
                 <div>
-                  <p className="text-xs font-semibold tracking-wider text-[#94A3B8] uppercase mb-1">
+                  <p className="text-[11px] font-bold tracking-wider text-slate-400 uppercase mb-0.5">
                     {course.duration} Weeks
                   </p>
 
-                  <p className="text-sm font-semibold text-gray-900">
+                  <p className="text-sm font-bold text-slate-900">
                     Live Online
                   </p>
                 </div>
               </motion.div>
 
-              <motion.div 
-                whileHover={{ y: -5, scale: 1.02, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)" }}
-                className="bg-white p-4 rounded-2xl flex flex-col justify-between min-h-[110px] lg:min-h-[130px] transition-all duration-300 cursor-default"
+              <motion.div
+                whileHover={{ y: -5, scale: 1.02 }}
+                className="bg-white/80 backdrop-blur-xl border border-white/90 p-4 rounded-2xl flex flex-col justify-between min-h-[110px] lg:min-h-[130px] transition-all duration-300 shadow-[0_10px_25px_rgba(15,23,42,0.04)] hover:shadow-md hover:border-indigo-200/80 cursor-default"
               >
-                <div className="bg-[#EFF6FF] p-3 rounded-lg w-fit">
+                <div className="bg-indigo-50/80 backdrop-blur-sm p-2.5 rounded-xl w-fit border border-indigo-100">
                   <Image
                     src={groupIcon}
                     alt="group"
@@ -102,21 +102,21 @@ const CourseHeroSection: React.FC<ICourseHeroSectionProps> = ({ course }) => {
                 </div>
 
                 <div>
-                  <p className="text-xs font-semibold tracking-wider text-[#94A3B8] uppercase mb-1">
+                  <p className="text-[11px] font-bold tracking-wider text-slate-400 uppercase mb-0.5">
                     BEGINNER -
                   </p>
 
-                  <p className="text-sm font-semibold text-gray-900">
+                  <p className="text-sm font-bold text-slate-900">
                     Intermediate
                   </p>
                 </div>
               </motion.div>
 
-              <motion.div 
-                whileHover={{ y: -5, scale: 1.02, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)" }}
-                className="bg-white p-4 rounded-2xl flex flex-col justify-between min-h-[110px] lg:min-h-[130px] transition-all duration-300 cursor-default"
+              <motion.div
+                whileHover={{ y: -5, scale: 1.02 }}
+                className="bg-white/80 backdrop-blur-xl border border-white/90 p-4 rounded-2xl flex flex-col justify-between min-h-[110px] lg:min-h-[130px] transition-all duration-300 shadow-[0_10px_25px_rgba(15,23,42,0.04)] hover:shadow-md hover:border-indigo-200/80 cursor-default"
               >
-                <div className="bg-[#EFF6FF] p-3 rounded-lg w-fit">
+                <div className="bg-amber-50/80 backdrop-blur-sm p-2.5 rounded-xl w-fit border border-amber-100">
                   <Image
                     src={calendarOrange}
                     alt="calendar"
@@ -125,22 +125,22 @@ const CourseHeroSection: React.FC<ICourseHeroSectionProps> = ({ course }) => {
                 </div>
 
                 <div>
-                  <p className="text-xs font-semibold tracking-wider text-[#94A3B8] uppercase mb-1">
+                  <p className="text-[11px] font-bold tracking-wider text-slate-400 uppercase mb-0.5">
                     Next batch
                   </p>
 
-                  <p className="text-sm font-semibold text-gray-900">
+                  <p className="text-sm font-bold text-slate-900">
                     {/* @ts-ignore */}
-                    {moment(course.nextBatch?.start_date).format("DD MMM YYYY")}
+                    {course.nextBatch?.start_date ? moment(course.nextBatch.start_date).format("DD MMM YYYY") : "Enrolling Now"}
                   </p>
                 </div>
               </motion.div>
 
-              <motion.div 
-                whileHover={{ y: -5, scale: 1.02, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)" }}
-                className="bg-white p-4 rounded-2xl flex flex-col justify-between min-h-[110px] lg:min-h-[130px] transition-all duration-300 cursor-default"
+              <motion.div
+                whileHover={{ y: -5, scale: 1.02 }}
+                className="bg-white/80 backdrop-blur-xl border border-white/90 p-4 rounded-2xl flex flex-col justify-between min-h-[110px] lg:min-h-[130px] transition-all duration-300 shadow-[0_10px_25px_rgba(15,23,42,0.04)] hover:shadow-md hover:border-indigo-200/80 cursor-default"
               >
-                <div className="bg-[#EFF6FF] p-3 rounded-lg w-fit">
+                <div className="bg-emerald-50/80 backdrop-blur-sm p-2.5 rounded-xl w-fit border border-emerald-100">
                   <Image
                     src={verified}
                     alt="verified"
@@ -261,20 +261,13 @@ const CourseHeroSection: React.FC<ICourseHeroSectionProps> = ({ course }) => {
           </motion.div>
 
           {/* Image */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
             className="relative flex justify-center lg:justify-end order-2"
           >
-            <Image
-              src={course.media_url || "/placeholder-course.png"}
-              alt={course.name}
-              width={900}
-              height={700}
-              className="w-full max-w-[400px] sm:max-w-[550px] lg:max-w-[700px] h-auto object-contain"
-              priority
-            />
+            <CourseHeroImage course={course} />
           </motion.div>
 
         </div>
@@ -283,4 +276,24 @@ const CourseHeroSection: React.FC<ICourseHeroSectionProps> = ({ course }) => {
   )
 }
 
-export default CourseHeroSection
+const CourseHeroImage = ({ course }: { course: ICourse }) => {
+  const [hasError, setHasError] = React.useState(false);
+  const placeholder = "https://placehold.co/800x600/7C6EF8/FFFFFF/png?text=Cloud+Edge+Course";
+  const isValidUrl = !hasError && Boolean(course?.media_url) && (course.media_url?.trim() !== "");
+  const imgSrc: string = (isValidUrl && course.media_url) ? course.media_url : placeholder;
+
+  return (
+    <Image
+      src={imgSrc}
+      alt={course.name || "Cloud Edge Course"}
+      width={900}
+      height={700}
+      unoptimized={isValidUrl}
+      onError={() => setHasError(true)}
+      className="w-full max-w-[400px] sm:max-w-[550px] lg:max-w-[700px] h-auto object-contain drop-shadow-xl"
+      priority
+    />
+  );
+};
+
+export default CourseHeroSection;

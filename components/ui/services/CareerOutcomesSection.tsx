@@ -1,3 +1,7 @@
+"use client";
+
+import { motion } from "framer-motion";
+
 const employers = [
   "Deloitte",
   "Accenture",
@@ -41,73 +45,88 @@ const stats = [
 
 export default function CareerOutcomesSection() {
   return (
-    <section className="bg-[#f5f5f7] py-24">
-      <div className="mx-auto container mx-auto  px-6">
+    <section className="bg-slate-50/90 py-12 lg:py-16 relative overflow-hidden">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
         {/* Header */}
-        <div className="mx-auto max-w-3xl text-center">
-          <p className="mb-3 text-xs font-bold uppercase tracking-[0.15em] text-primary">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mx-auto max-w-3xl text-center"
+        >
+          <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-indigo-200/80 bg-indigo-50/90 px-4 py-1.5 text-xs font-extrabold uppercase tracking-wider text-indigo-700 shadow-2xs">
             Career Outcomes
-          </p>
+          </div>
 
-          <h2 className="mb-5 text-4xl font-extrabold tracking-tight text-[#1d1d1f] md:text-5xl">
+          <h2 className="mb-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 font-bricolage-grotesque">
             Where our graduates work.
           </h2>
 
-          <p className="text-[15px] leading-8 text-[#6e6e73]">
+          <p className="text-base sm:text-lg leading-relaxed text-slate-600 font-medium">
             Cloud Edge graduates have gone on to roles at some of the world's
-            leading organisations — hired directly through our 200+ partner
-            network.
+            leading organisations — hired directly through our 200+ partner network.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Employers */}
+        {/* Employers Pills */}
         <div className="mt-14 flex flex-wrap justify-center gap-3">
-          {employers.map((item) => (
-            <div
+          {employers.map((item, index) => (
+            <motion.div
               key={item}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.3, delay: index * 0.03 }}
+              whileHover={{ y: -3, scale: 1.05 }}
               className="
                 rounded-full
-                border border-black/10
-                bg-white
-                px-5 py-3
-                text-sm font-semibold text-[#1d1d1f]
+                border border-slate-200/80
+                bg-white/80 backdrop-blur-xl
+                px-5 py-2.5
+                text-xs sm:text-sm font-bold text-slate-800
+                shadow-2xs
                 transition-all duration-300
-                hover:-translate-y-1
-                hover:border-primary/30
-                hover:shadow-[0_10px_30px_rgba(134,94,245,.08)]
+                hover:border-indigo-300
+                hover:shadow-md
+                cursor-default
               "
             >
               {item}
-            </div>
+            </motion.div>
           ))}
         </div>
 
-        {/* Stats */}
+        {/* Stats Grid */}
         <div className="mt-16 grid gap-6 md:grid-cols-3">
-          {stats.map((item) => (
-            <div
+          {stats.map((item, index) => (
+            <motion.div
               key={item.value}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
+              whileHover={{ y: -5, scale: 1.02 }}
               className="
                 rounded-3xl
-                border border-black/10
-                bg-white
+                border border-slate-200/80
+                bg-white/80 backdrop-blur-xl
                 p-8
                 text-center
-                shadow-sm
+                shadow-[0_10px_30px_rgba(0,0,0,0.03)]
                 transition-all duration-300
-                hover:-translate-y-1
-                hover:border-primary/20
-                hover:shadow-[0_15px_40px_rgba(134,94,245,.08)]
+                hover:border-indigo-300
+                hover:shadow-xl
               "
             >
-              <h3 className="mb-4 text-4xl font-extrabold tracking-tight text-primary">
+              <h3 className="mb-3 text-4xl sm:text-5xl font-extrabold tracking-tight text-indigo-600 font-bricolage-grotesque">
                 {item.value}
               </h3>
 
-              <p className="text-sm leading-7 text-[#6e6e73]">
+              <p className="text-xs sm:text-sm leading-relaxed text-slate-600 font-medium">
                 {item.label}
               </p>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

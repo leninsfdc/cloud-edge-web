@@ -9,12 +9,14 @@ import logo from "@/public/logo.svg";
 import PrimaryButton from "./PrimaryButton";
 import MobileNavbar from "./MobileNavbar";
 
+import TopBar from "./TopBar";
+
 const navItems = [
   { label: "Home", href: "/" },
-  { label: "Courses", href: "/courses", },
+  { label: "Courses", href: "/courses" },
   { label: "Services", href: "/services", hasDropdown: false },
-  {label: "About", href: "/about-us", },
-  {label: "Contact", href: "/contact-us", },
+  { label: "About", href: "/about-us" },
+  { label: "Contact", href: "/contact-us" },
   { label: "Blogs", href: "/blogs", hasDropdown: false },
 ];
 
@@ -83,34 +85,47 @@ const Navbar = () => {
   return (
     <>
       <header className="fixed top-0 left-0 w-full z-50 hidden md:block">
-
+        {/* TopBar container - visible at top, collapses smoothly on scroll */}
         <div
-          className={`absolute inset-x-0 top-0 transition-opacity duration-300 ${isScrolled ? "opacity-0 pointer-events-none" : "opacity-100"
-            }`}
+          className={`transition-all duration-300 overflow-hidden ${
+            isScrolled ? "max-h-0 opacity-0" : "max-h-16 opacity-100"
+          }`}
+        >
+          <TopBar />
+        </div>
+
+        {/* Unscrolled Navbar */}
+        <div
+          className={`transition-opacity duration-300 ${
+            isScrolled ? "opacity-0 pointer-events-none absolute inset-x-0 top-0" : "opacity-100 relative"
+          }`}
         >
           <div className="container mx-auto px-4">
-            <div className="my-3 rounded-full border border-[#8B7DFF2E] bg-white px-8 py-3">
+            <div className="my-3 rounded-full border border-[#8B7DFF2E] bg-white px-8 py-3 shadow-xs">
               <NavContent />
             </div>
           </div>
         </div>
 
+        {/* Scrolled Navbar */}
         <div
-          className={`absolute inset-x-0 top-0 transition-all duration-500 ${isScrolled
-            ? "opacity-100 translate-y-0"
-            : "opacity-0 -translate-y-3 pointer-events-none"
-            }`}
+          className={`absolute inset-x-0 top-0 transition-all duration-500 ${
+            isScrolled
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 -translate-y-3 pointer-events-none"
+          }`}
         >
-          <div className="w-full bg-white/80 backdrop-blur-sm ">
-            <div className=" container mx-auto w-full px-8 py-3 border border-white/20">
+          <div className="w-full bg-white/90 backdrop-blur-md border-b border-black/5 shadow-xs">
+            <div className="container mx-auto w-full px-8 py-3">
               <NavContent />
             </div>
           </div>
         </div>
-
       </header>
-      <header className=" block md:hidden">
-        <MobileNavbar navItems={navItems}/>
+
+      <header className="block md:hidden fixed top-0 left-0 w-full z-50">
+        <TopBar />
+        <MobileNavbar navItems={navItems} />
       </header>
     </>
   );

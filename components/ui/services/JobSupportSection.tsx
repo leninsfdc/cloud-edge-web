@@ -1,10 +1,15 @@
+"use client";
+
+import { motion } from "framer-motion";
 import {
   Briefcase,
   FileText,
   MessageSquare,
   Pencil,
-  Phone,
+  CheckCircle2,
+  ArrowRight,
 } from "lucide-react";
+import { getWhatsAppLink } from "@/utils";
 
 const stats = [
   {
@@ -82,128 +87,136 @@ const covers = [
 
 export default function JobSupportSection() {
   return (
-    <section className="bg-[#f5f5f7] py-20">
-      <div className="mx-auto container mx-auto  px-6">
-        {/* Heading */}
-        <div className="max-w-2xl">
-          <p className="mb-3 text-xs font-bold uppercase tracking-[0.15em] text-primary">
-            Job Support Programme
-          </p>
+    <section id="job-support" className="bg-slate-900 py-12 lg:py-16 relative overflow-hidden text-white">
+      {/* Background Ambient Orbs */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl pointer-events-none" />
 
-          <h2 className="mb-4 text-4xl font-extrabold tracking-tight text-[#1d1d1f] md:text-5xl">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+        {/* Heading */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="max-w-2xl"
+        >
+          <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-teal-500/30 bg-teal-500/15 px-4 py-1.5 text-xs font-extrabold uppercase tracking-wider text-teal-300 shadow-2xs">
+            Job Support Programme
+          </div>
+
+          <h2 className="mb-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white font-bricolage-grotesque">
             We stay with you after you start.
           </h2>
 
-          <p className="text-[15px] leading-8 text-[#6e6e73]">
+          <p className="text-base sm:text-lg leading-relaxed text-slate-400 font-medium">
             Landing the job is only half the challenge. Our Job Support
             Programme gives freshers and career switchers a safety net during
-            the hardest part — the first months of a live SAP or Salesforce
-            role.
+            the first critical months of a live SAP or Salesforce role.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Stats */}
-        <div className="mt-14 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-          {stats.map((item) => (
-            <div
-              key={item.label}
-              className="rounded-2xl border border-black/10 bg-white p-6 text-center transition-all duration-300 hover:border-primary/30 hover:shadow-lg"
+        {/* Stats Grid */}
+        <div className="mt-12 grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          {stats.map((stat, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: index * 0.08 }}
+              className="bg-white/5 backdrop-blur-xl border border-white/10 p-6 rounded-3xl shadow-xl hover:border-teal-500/40 transition-all duration-300"
             >
-              <h3 className="text-5xl font-extrabold tracking-tight text-[#1d1d1f]">
-                {item.value}
-                <span className="text-lg text-[#6e6e73]">{item.suffix}</span>
-              </h3>
-
-              <p className="mt-3 text-sm leading-6 text-[#6e6e73]">
-                {item.label}
+              <div className="text-4xl sm:text-5xl font-extrabold text-white font-bricolage-grotesque">
+                {stat.value}
+                <span className="text-teal-400">{stat.suffix}</span>
+              </div>
+              <p className="mt-2 text-xs sm:text-sm text-slate-400 font-medium leading-relaxed">
+                {stat.label}
               </p>
-            </div>
+            </motion.div>
           ))}
         </div>
 
-        {/* Bottom */}
-        <div className="mt-20 grid gap-16 lg:grid-cols-2">
-          {/* Timeline */}
-          <div>
-            <p className="mb-8 text-xs font-bold uppercase tracking-[0.15em] text-primary">
-              How It Works
-            </p>
-
-            <div className="relative border-l border-primary/20 pl-8">
-              {timeline.map((item, index) => (
-                <div key={item.title} className="relative mb-10">
-                  <div className="absolute -left-[50px] flex h-9 w-9 items-center justify-center rounded-full bg-primary text-sm font-bold text-white">
-                    {index + 1}
+        {/* Covers Cards */}
+        <div className="mt-14">
+          <h3 className="text-2xl font-extrabold text-white font-bricolage-grotesque mb-6">
+            What We Support
+          </h3>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {covers.map((item, index) => {
+              const IconComp = item.icon;
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.3, delay: index * 0.08 }}
+                  whileHover={{ y: -4 }}
+                  className="bg-white/5 backdrop-blur-xl border border-white/10 p-6 rounded-3xl hover:border-indigo-400/40 transition-all duration-300"
+                >
+                  <div className="w-12 h-12 rounded-2xl bg-indigo-500/20 border border-indigo-500/30 flex items-center justify-center text-indigo-400 mb-4">
+                    <IconComp size={24} />
                   </div>
-
-                  <h4 className="mb-2 text-lg font-bold text-[#1d1d1f]">
+                  <h4 className="text-lg font-bold text-white font-bricolage-grotesque mb-2">
                     {item.title}
                   </h4>
-
-                  <p className="text-sm leading-7 text-[#6e6e73]">
-                    {item.description}
+                  <p className="text-xs sm:text-sm text-slate-400 leading-relaxed font-medium">
+                    {item.desc}
                   </p>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Timeline Steps */}
+        <div className="mt-16">
+          <h3 className="text-2xl font-extrabold text-white font-bricolage-grotesque mb-6">
+            How Job Support Works
+          </h3>
+
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+            {timeline.map((step, idx) => (
+              <div
+                key={idx}
+                className="bg-white/5 backdrop-blur-xl border border-white/10 p-5 rounded-2xl space-y-2 hover:border-white/20 transition-all"
+              >
+                <div className="text-xs font-bold uppercase tracking-wider text-teal-400">
+                  Step 0{idx + 1}
                 </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Covers */}
-          <div>
-            <p className="mb-8 text-xs font-bold uppercase tracking-[0.15em] text-primary">
-              What's Covered
-            </p>
-
-            <div className="grid gap-4 sm:grid-cols-2">
-              {covers.map((item) => {
-                const Icon = item.icon;
-
-                return (
-                  <div
-                    key={item.title}
-                    className="rounded-2xl border border-black/10 bg-white p-5 transition-all duration-300 hover:border-primary/30"
-                  >
-                    <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-[#1d1d1f] text-white">
-                      <Icon size={18} />
-                    </div>
-
-                    <h4 className="mb-2 font-bold text-[#1d1d1f]">
-                      {item.title}
-                    </h4>
-
-                    <p className="text-sm leading-6 text-[#6e6e73]">
-                      {item.desc}
-                    </p>
-                  </div>
-                );
-              })}
-            </div>
-
-            {/* CTA */}
-            <div className="mt-6 flex gap-4 rounded-2xl border border-black/10 bg-white p-6">
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#1d1d1f] text-white">
-                <Phone size={18} />
-              </div>
-
-              <div>
-                <h4 className="mb-2 text-lg font-bold text-[#1d1d1f]">
-                  Interested in Job Support?
-                </h4>
-
-                <p className="mb-4 text-sm leading-7 text-[#6e6e73]">
-                  Message us with your module, role and start date.
+                <h5 className="font-bold text-white text-base font-bricolage-grotesque">
+                  {step.title}
+                </h5>
+                <p className="text-xs text-slate-400 leading-relaxed font-medium">
+                  {step.description}
                 </p>
-
-                <a
-                  href="https://wa.me/447442586325"
-                  target="_blank"
-                  className="inline-flex items-center rounded-full bg-[#25D366] px-6 py-3 text-sm font-semibold text-white transition hover:opacity-90"
-                >
-                  Enquire on WhatsApp
-                </a>
               </div>
-            </div>
+            ))}
           </div>
+        </div>
+
+        {/* CTA Banner */}
+        <div className="mt-14 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div>
+            <h4 className="text-xl font-bold text-white font-bricolage-grotesque">
+              Need on-the-job assistance right now?
+            </h4>
+            <p className="text-xs sm:text-sm text-slate-400 mt-1 font-medium">
+              Talk to our job support advisors and get paired with an expert consultant today.
+            </p>
+          </div>
+
+          <a
+            href={getWhatsAppLink("Hi Cloud Edge Solutions, I need details about Job Support.")}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-full bg-teal-500 hover:bg-teal-600 text-slate-950 font-bold px-7 py-3.5 text-sm shadow-lg hover:shadow-teal-500/25 transition-all duration-200 shrink-0 inline-flex items-center gap-2"
+          >
+            <span>Enquire for Job Support</span>
+            <ArrowRight size={16} />
+          </a>
         </div>
       </div>
     </section>

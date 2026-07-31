@@ -1,179 +1,204 @@
+"use client";
+
 import React from "react";
-import { MessageCircle, Mail, Phone, BookOpen } from "lucide-react";
-import whatsapp from "@/public/images/whatsapp.svg"
-import email from "@/public/images/email.svg"
-import phone from "@/public/images/phone.svg"
-import ticket from "@/public/images/ticket.svg"
 import Image from "next/image";
-import { MotionSection, MotionDiv } from "@/components/ui/MotionElements";
+import { MessageCircle, Mail, Phone, Ticket, Sparkles } from "lucide-react";
+import whatsapp from "@/public/images/whatsapp.svg";
+import email from "@/public/images/email.svg";
+import phone from "@/public/images/phone.svg";
+import ticket from "@/public/images/ticket.svg";
+import { getWhatsAppLink } from "@/utils";
+import ResilientImage from "@/components/ui/ResilientImage";
+import { motion } from "framer-motion";
 
 const ConnectChannelsSection = () => {
   return (
-      <MotionSection 
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="bg-slate-50 py-20 relative overflow-hidden"
-      >
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#6557E3]/5 rounded-full blur-3xl pointer-events-none" />
+    <section className="bg-slate-50/90 py-12 lg:py-16 relative overflow-hidden">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
 
-        <div className="container mx-auto px-4 sm:px-6 relative z-10">
-
-          {/* HEADER */}
-          <div className="text-center max-w-2xl mx-auto mb-14">
-            <div className="bg-[#E3E1FA] rounded-full px-4 py-1.5 w-fit text-[#6557E3] text-xs font-semibold flex items-center justify-center gap-2 mx-auto mb-4 shadow-3xs">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#6557E3]" />
-              How to Reach Us
-            </div>
-
-            <h2 className="text-3xl sm:text-4xl font-bold font-bricolage-grotesque tracking-tight text-slate-900">
-              Four Ways to Connect
-            </h2>
-
-            <p className="text-slate-500 text-sm sm:text-base mt-3 leading-relaxed">
-              Have questions about modules or timelines? Get in touch with our live advisors right now through any channel below.
-            </p>
+        {/* HEADER */}
+        <motion.div 
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="text-center max-w-2xl mx-auto mb-12 space-y-3"
+        >
+          <div className="inline-flex items-center gap-2 bg-indigo-50/90 border border-indigo-200/80 px-4 py-1.5 rounded-full shadow-2xs">
+            <Sparkles className="w-3.5 h-3.5 text-indigo-600" />
+            <span className="text-xs text-indigo-700 font-extrabold uppercase tracking-wider">How to Reach Us</span>
           </div>
 
-          {/* GRID */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 max-w-7xl mx-auto">
+          <h2 className="text-3xl sm:text-4xl font-extrabold font-bricolage-grotesque tracking-tight text-slate-900 leading-tight">
+            Four Ways to Connect
+          </h2>
 
-            {/* WHATSAPP */}
-            <MotionDiv 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: 0 }}
+          <p className="text-slate-600 text-sm sm:text-base font-medium leading-relaxed max-w-lg mx-auto">
+            Have questions about modules or timelines? Get in touch with our live advisors right now through any channel below.
+          </p>
+        </motion.div>
+
+        {/* GRID */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+
+          {/* CARD 1: WHATSAPP */}
+          <motion.div 
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0 }}
+            whileHover={{ y: -5, scale: 1.02 }}
+          >
+            <a
+              href={getWhatsAppLink("Hi Cloud Edge Solutions, I would like to make an enquiry.")}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative overflow-hidden h-full flex flex-col justify-between bg-white/90 backdrop-blur-xl border border-slate-200/80 rounded-[28px] p-6 transition-all duration-300 shadow-[0_10px_30px_rgba(15,23,42,0.03)] hover:shadow-xl hover:border-emerald-400/60"
             >
-              <a
-                  href="https://wa.me/447442586325?text=Hi+Cloud+Edge+Solutions"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group h-full flex flex-col justify-between bg-white border border-[#DDDFF5] rounded-2xl p-6 transition-all duration-300 shadow-3xs hover:shadow-md hover:border-[#4361EE]/40 transform hover:-translate-y-1"
-              >
-                <div>
-                <div className="w-12 h-12 rounded-xl bg-[#25D366] flex items-center justify-center shadow-md shadow-[#25D366]/20 transition-transform group-hover:scale-105">
-                 <Image src={whatsapp} alt={"Whatsapp"} className={"w-6 h-6"} />
+              {/* Top-Right Decorative Half Circle */}
+              <div className="absolute -top-8 -right-8 w-28 h-28 rounded-full bg-emerald-100/70 pointer-events-none transition-transform duration-300 group-hover:scale-110" />
+
+              <div className="relative z-10">
+                {/* Vibrant Green WhatsApp Icon Wrapper */}
+                <div className="w-12 h-12 rounded-2xl bg-[#25D366] text-white flex items-center justify-center shadow-md shadow-[#25D366]/20 transition-transform group-hover:scale-105">
+                  <ResilientImage src={whatsapp} fallbackSrc={whatsapp} alt="WhatsApp" className="w-6 h-6 object-contain filter brightness-0 invert" />
                 </div>
 
                 <div className="mt-5">
-                <span className="text-[10px] tracking-wider uppercase font-bold text-slate-400">
-                  WhatsApp
-                </span>
-                  <h4 className="text-base font-bold text-slate-800 tracking-tight mt-0.5 group-hover:text-[#4361EE] transition-colors">
+                  <span className="text-[10px] tracking-wider uppercase font-extrabold text-slate-400">
+                    WhatsApp Chat
+                  </span>
+                  <h4 className="text-base font-extrabold text-slate-900 font-bricolage-grotesque tracking-tight mt-0.5 group-hover:text-emerald-600 transition-colors">
                     +44 744 258 6325
                   </h4>
                 </div>
               </div>
 
-              <p className="text-xs text-emerald-600 font-medium bg-emerald-50 border border-emerald-100 px-3 py-1.5 rounded-xl w-fit mt-5">
-                Fastest &mdash; reply within 60 min
-              </p>
-              </a>
-            </MotionDiv>
+              <div className="relative z-10">
+                <p className="text-xs text-emerald-700 font-bold bg-emerald-50 border border-emerald-200/80 px-3.5 py-1.5 rounded-full w-fit mt-6">
+                  Fastest — reply within 60 min
+                </p>
+              </div>
+            </a>
+          </motion.div>
 
-            {/* EMAIL */}
-            <MotionDiv 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: 0.1 }}
+          {/* CARD 2: EMAIL */}
+          <motion.div 
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0.1 }}
+            whileHover={{ y: -5, scale: 1.02 }}
+          >
+            <a
+              href="mailto:info@cloudedge.in"
+              className="group relative overflow-hidden h-full flex flex-col justify-between bg-white/90 backdrop-blur-xl border border-slate-200/80 rounded-[28px] p-6 transition-all duration-300 shadow-[0_10px_30px_rgba(15,23,42,0.03)] hover:shadow-xl hover:border-indigo-400/60"
             >
-              <a
-                  href="mailto:info@cloudedge.in"
-                  className="group h-full flex flex-col justify-between bg-white border border-[#DDDFF5] rounded-2xl p-6 transition-all duration-300 shadow-3xs hover:shadow-md hover:border-[#4361EE]/40 transform hover:-translate-y-1"
-              >
-                <div>
-                <div className="w-12 h-12 rounded-xl bg-[#EFEEFC] flex items-center justify-center text-[#4361EE] shadow-sm transition-transform group-hover:scale-105">
-                  <Image src={email} alt={"mail"} className={"w-6 h-6"} />
+              {/* Top-Right Decorative Half Circle */}
+              <div className="absolute -top-8 -right-8 w-28 h-28 rounded-full bg-indigo-100/70 pointer-events-none transition-transform duration-300 group-hover:scale-110" />
+
+              <div className="relative z-10">
+                <div className="w-12 h-12 rounded-2xl bg-indigo-50 border border-indigo-100 flex items-center justify-center shadow-inner">
+                  <ResilientImage src={email} fallbackSrc={email} alt="Email" className="w-6 h-6 object-contain" />
                 </div>
 
                 <div className="mt-5">
-                <span className="text-[10px] tracking-wider uppercase font-bold text-slate-400">
-                  Email Address
-                </span>
-                  <h4 className="text-base font-bold text-slate-800 tracking-tight mt-0.5 group-hover:text-[#4361EE] transition-colors">
+                  <span className="text-[10px] tracking-wider uppercase font-extrabold text-slate-400">
+                    Email Support
+                  </span>
+                  <h4 className="text-base font-extrabold text-slate-900 font-bricolage-grotesque tracking-tight mt-0.5 group-hover:text-indigo-600 transition-colors">
                     info@cloudedge.in
                   </h4>
                 </div>
               </div>
 
-              <p className="text-xs text-slate-500 font-medium bg-slate-50 border border-slate-100 px-3 py-1.5 rounded-xl w-fit mt-5">
-                Response within 2 working hours
-              </p>
-              </a>
-            </MotionDiv>
+              <div className="relative z-10">
+                <p className="text-xs text-indigo-700 font-bold bg-indigo-50 border border-indigo-200/80 px-3.5 py-1.5 rounded-full w-fit mt-6">
+                  Detailed queries — 2 hrs
+                </p>
+              </div>
+            </a>
+          </motion.div>
 
-            {/* PHONE */}
-            <MotionDiv 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: 0.2 }}
+          {/* CARD 3: PHONE */}
+          <motion.div 
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0.2 }}
+            whileHover={{ y: -5, scale: 1.02 }}
+          >
+            <a
+              href="tel:+447442586325"
+              className="group relative overflow-hidden h-full flex flex-col justify-between bg-white/90 backdrop-blur-xl border border-slate-200/80 rounded-[28px] p-6 transition-all duration-300 shadow-[0_10px_30px_rgba(15,23,42,0.03)] hover:shadow-xl hover:border-purple-400/60"
             >
-              <a
-                  href="tel:+447442586325"
-                  className="group h-full flex flex-col justify-between bg-white border border-[#DDDFF5] rounded-2xl p-6 transition-all duration-300 shadow-3xs hover:shadow-md hover:border-[#4361EE]/40 transform hover:-translate-y-1"
-              >
-                <div>
-                <div className="w-12 h-12 rounded-xl bg-[#EFEEFC] flex items-center justify-center text-[#4361EE] shadow-sm transition-transform group-hover:scale-105">
-                  <Image src={phone} alt={"phone"} className={"w-6 h-6"} />
+              {/* Top-Right Decorative Half Circle */}
+              <div className="absolute -top-8 -right-8 w-28 h-28 rounded-full bg-purple-100/70 pointer-events-none transition-transform duration-300 group-hover:scale-110" />
+
+              <div className="relative z-10">
+                <div className="w-12 h-12 rounded-2xl bg-purple-50 border border-purple-100 flex items-center justify-center shadow-inner">
+                  <ResilientImage src={phone} fallbackSrc={phone} alt="Phone" className="w-6 h-6 object-contain" />
                 </div>
 
                 <div className="mt-5">
-                <span className="text-[10px] tracking-wider uppercase font-bold text-slate-400">
-                  Phone &mdash; UK
-                </span>
-                  <h4 className="text-base font-bold text-slate-800 tracking-tight mt-0.5 group-hover:text-[#4361EE] transition-colors">
+                  <span className="text-[10px] tracking-wider uppercase font-extrabold text-slate-400">
+                    Direct Phone Line
+                  </span>
+                  <h4 className="text-base font-extrabold text-slate-900 font-bricolage-grotesque tracking-tight mt-0.5 group-hover:text-purple-600 transition-colors">
                     +44 744 258 6325
                   </h4>
                 </div>
               </div>
 
-              <p className="text-xs text-slate-500 font-medium bg-slate-50 border border-slate-100 px-3 py-1.5 rounded-xl w-fit mt-5">
-                Mon&ndash;Sat &bull; 9 AM &ndash; 7 PM BST
-              </p>
-              </a>
-            </MotionDiv>
+              <div className="relative z-10">
+                <p className="text-xs text-purple-700 font-bold bg-purple-50 border border-purple-200/80 px-3.5 py-1.5 rounded-full w-fit mt-6">
+                  Mon–Sat 9 AM–7 PM BST
+                </p>
+              </div>
+            </a>
+          </motion.div>
 
-            {/* DEMO */}
-            <MotionDiv 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: 0.3 }}
+          {/* CARD 4: FREE DEMO CLASS (ORANGE) */}
+          <motion.div 
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.4, delay: 0.3 }}
+            whileHover={{ y: -5, scale: 1.02 }}
+          >
+            <a
+              href="mailto:info@cloudedge.in?subject=Free Demo Class Request"
+              className="group relative overflow-hidden h-full flex flex-col justify-between bg-white/90 backdrop-blur-xl border border-slate-200/80 rounded-[28px] p-6 transition-all duration-300 shadow-[0_10px_30px_rgba(15,23,42,0.03)] hover:shadow-xl hover:border-orange-400/60"
             >
-              <a
-                  href="mailto:info@cloudedge.in?subject=Free Demo Class Request"
-                  className="group h-full flex flex-col justify-between bg-white border border-[#DDDFF5] rounded-2xl p-6 transition-all duration-300 shadow-3xs hover:shadow-md hover:border-[#6557E3]/40 transform hover:-translate-y-1 relative overflow-hidden"
-              >
-                <div className="absolute top-0 right-0 w-24 h-24 bg-linear-to-bl from-orange-400/10 to-transparent rounded-bl-full pointer-events-none" />
+              {/* Top-Right Decorative Half Circle */}
+              <div className="absolute -top-8 -right-8 w-28 h-28 rounded-full bg-orange-100/80 pointer-events-none transition-transform duration-300 group-hover:scale-110" />
 
-                <div>
-                <div className="w-12 h-12 rounded-xl bg-linear-to-br from-[#F59E0B] to-[#EF4444] flex items-center justify-center text-white shadow-md shadow-orange-500/10 transition-transform group-hover:scale-105">
-                  <Image src={ticket} alt={"ticket"} className={"w-6 h-6"} />
+              <div className="relative z-10">
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-orange-400 to-amber-500 text-white flex items-center justify-center shadow-md shadow-orange-500/20">
+                  <ResilientImage src={ticket} fallbackSrc={ticket} alt="Demo Class" className="w-6 h-6 object-contain filter brightness-0 invert" />
                 </div>
 
                 <div className="mt-5">
-                <span className="text-[10px] tracking-wider uppercase font-bold text-orange-500">
-                  Free Demo Class
-                </span>
-                  <h4 className="text-base font-bold text-slate-800 tracking-tight mt-0.5 group-hover:text-red-500 transition-colors">
-                    Book a Session
+                  <span className="text-[10px] tracking-wider uppercase font-extrabold text-amber-600">
+                    Free Demo Class
+                  </span>
+                  <h4 className="text-base font-extrabold text-slate-900 font-bricolage-grotesque tracking-tight mt-0.5 group-hover:text-amber-600 transition-colors">
+                    Book a Free Demo
                   </h4>
                 </div>
               </div>
 
-              <p className="text-xs text-orange-600 font-medium bg-orange-50 border border-orange-100 px-3 py-1.5 rounded-xl w-fit mt-5">
-                Attend live before you enrol
-              </p>
-              </a>
-            </MotionDiv>
+              <div className="relative z-10">
+                <p className="text-xs text-amber-700 font-bold bg-amber-50 border border-amber-200/80 px-3.5 py-1.5 rounded-full w-fit mt-6">
+                  Attend live before you enrol
+                </p>
+              </div>
+            </a>
+          </motion.div>
 
-          </div>
         </div>
-      </MotionSection>
+      </div>
+    </section>
   );
 };
 

@@ -1,20 +1,20 @@
 "use client";
 
-import BadgeLabel from '@/components/shared/BadgeLabel'
-import React, { useState, useEffect, useRef, useCallback } from 'react'
-import checkIcon from "@/public/icons/check.svg"
-import Image from 'next/image'
-import SecondaryButton from '@/components/ui/SecondaryButton'
-import CourseCard from '@/components/ui/CourseCard'
+import BadgeLabel from '@/components/shared/BadgeLabel';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import checkIcon from "@/public/icons/check.svg";
+import Image from 'next/image';
+import SecondaryButton from '@/components/ui/SecondaryButton';
+import CourseCard from '@/components/ui/CourseCard';
 
-import codeIcon from "@/public/icons/code.svg"
-import salesforceIcon from "@/public/icons/salesforce.svg"
-import marketingIcon from "@/public/icons/marketing.svg"
-import awsIcon from "@/public/icons/aws.svg"
-import sapIcon from "@/public/icons/sap.svg"
-import javaIcon from "@/public/icons/java.svg"
-import { MotionSection } from '@/components/ui/MotionElements'
-import { getFeaturedCourses } from '@/app/(asgard)/asgard/academics/courses/actions'
+import codeIcon from "@/public/icons/code.svg";
+import salesforceIcon from "@/public/icons/salesforce.svg";
+import marketingIcon from "@/public/icons/marketing.svg";
+import awsIcon from "@/public/icons/aws.svg";
+import sapIcon from "@/public/icons/sap.svg";
+import javaIcon from "@/public/icons/java.svg";
+import { MotionSection } from '@/components/ui/MotionElements';
+import { getFeaturedCourses } from '@/app/(asgard)/asgard/academics/courses/actions';
 
 const staticCourses = [
   {
@@ -164,7 +164,7 @@ const staticCourses = [
       "💼 Job Focused Program",
     ],
   },
-]
+];
 
 export const getNearestBatch = (course: any) => {
   if (!course?.batches?.length) return null;
@@ -273,7 +273,7 @@ export const getCoursePrice = (course: any) => {
   };
 };
 
-const AUTO_ADVANCE_DURATION = 5000 // ms per course
+const AUTO_ADVANCE_DURATION = 5000; // ms per course
 
 const ExploreCoursesSection = () => {
   const [coursesList, setCoursesList] = useState<any[]>(staticCourses);
@@ -379,7 +379,7 @@ const ExploreCoursesSection = () => {
         // fade out → advance → fade in
         setContentVisible(false);
         setTimeout(() => {
-          setSelectedIndex((prev) => (prev + 1) % coursesList.length);
+          setSelectedIndex((prev) => (prev + 1) % Math.min(coursesList.length, 3));
           setProgress(0);
           setContentVisible(true);
         }, 280);
@@ -391,6 +391,7 @@ const ExploreCoursesSection = () => {
 
   // restart progress bar whenever selected index changes
   useEffect(() => {
+    if (coursesList.length < 2) return;
     setProgress(0);
     startProgress(0);
     return stopRaf;
@@ -411,8 +412,12 @@ const ExploreCoursesSection = () => {
     }, 280);
   };
 
+  // Main 3 side cards slice (keeps all 3 in right column, active one is highlighted)
+  const sideCourses = coursesList.slice(0, 3);
+  const bottomCourses = coursesList.slice(3);
+
   return (
-    <MotionSection 
+    <MotionSection
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -433,10 +438,10 @@ const ExploreCoursesSection = () => {
           </div>
         </div>
 
-        {/* GRID */}
+        {/* 2-COLUMN FEATURED VERTICAL CARD LAYOUT */}
         <div className='grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-7 mt-12'>
 
-          {/* LEFT BIG CARD */}
+          {/* LEFT BIG CARD (Original Black Card UI) */}
           <div
             className='
               bg-[#272040]
@@ -479,7 +484,7 @@ const ExploreCoursesSection = () => {
 
             {/* ── CARD CONTENT with fade/slide animation ── */}
             <div
-              className='p-5 sm:p-7 lg:p-10 flex flex-col justify-between flex-1'
+              className='p-3 sm:p-7 lg:p-10 flex flex-col justify-between flex-1'
               style={{
                 opacity: contentVisible ? 1 : 0,
                 transform: contentVisible ? 'translateY(0px)' : 'translateY(12px)',
@@ -490,7 +495,7 @@ const ExploreCoursesSection = () => {
               <div className='space-y-6'>
 
                 {/* TOP */}
-                <div className='flex items-start justify-between gap-4'>
+                <div className='flex items-start justify-between'>
                   <div className='transition-transform duration-300 group-hover:scale-105' style={{ display: 'inline-flex' }}>
                     <img
                       src={
@@ -510,12 +515,12 @@ const ExploreCoursesSection = () => {
                 </div>
 
                 {/* TITLE */}
-                <div className='font-semibold text-2xl sm:text-3xl text-white leading-tight'>
+                <div className='font-semibold text-2xl text-white leading-tight'>
                   {getCourseTitle(selectedCourse)}
                 </div>
 
                 {/* DESC */}
-                <div className='text-white text-base sm:text-lg leading-6 tracking-wide line-clamp-3'>
+                <div className='text-white text-base'>
                   {selectedCourse.description}
                 </div>
 
@@ -524,10 +529,10 @@ const ExploreCoursesSection = () => {
                   {getCourseFeatures(selectedCourse).map((item: string) => (
                     <div
                       key={item}
-                      className='flex items-center gap-3 transition-all duration-200 hover:translate-x-1'
+                      className='flex items-center gap-1 transition-all duration-200 hover:translate-x-1'
                     >
-                      <Image src={checkIcon} alt='check' className='w-10 h-10 sm:w-12 sm:h-12' />
-                      <span className='text-white text-base sm:text-lg tracking-tight'>{item}</span>
+                      <Image src={checkIcon} alt='check' className='w-8 h-8' />
+                      <span className='text-white text-base tracking-tight'>{item}</span>
                     </div>
                   ))}
                 </div>
@@ -559,7 +564,7 @@ const ExploreCoursesSection = () => {
                 {getNearestBatch(selectedCourse) && (
                   <div>
                     <div
-                      className="text-white w-full backdrop-blur-sm rounded-3xl p-5 sm:p-7 border border-transparent bg-[#FFFFFF0D] text-sm"
+                      className="text-white w-full backdrop-blur-sm rounded-3xl p-5 border border-transparent bg-[#FFFFFF0D] text-sm"
                       style={{ backgroundClip: "padding-box", position: "relative" }}
                     >
                       <div
@@ -612,12 +617,9 @@ const ExploreCoursesSection = () => {
 
               {/* FOOTER */}
               <div className='w-full'>
-                <hr className='w-full border-t border-[#4C4760] mt-10 lg:mt-20 mb-7' />
+                <hr className='w-full border-t border-[#4C4760] mt-7 mb-5' />
                 <div className='flex flex-col sm:flex-row gap-5 sm:gap-0 sm:items-center sm:justify-between'>
                   <div>
-                    {/* <div className='text-sm text-[#938F9F] line-through'>
-                      {getCoursePrice(selectedCourse).oldPrice}
-                    </div> */}
                     <div className='text-white font-bold text-3xl'>
                       {getCoursePrice(selectedCourse).price}
                     </div>
@@ -629,60 +631,42 @@ const ExploreCoursesSection = () => {
             </div>
           </div>
 
-          {/* RIGHT SIDE */}
+          {/* RIGHT SIDE COLUMN */}
           <div className='lg:col-span-7 lg:col-start-6 flex flex-col gap-6 lg:gap-7'>
-            {coursesList
-              .filter((course) => course.id !== selectedCourse.id)
-              .slice(0, 3)
-              .map((course) => {
-                const isActive = coursesList.findIndex((c) => c.id === course.id) === selectedIndex;
-                return (
-                  <div
-                    key={course.id}
-                    onClick={() => handleCardClick(course)}
-                    className={`
-                      cursor-pointer
-                      transition-all duration-300
-                      hover:-translate-y-1
-                      hover:shadow-[0_12px_36px_rgba(101,87,227,0.22)]
-                      rounded-2xl
-                      ${isActive ? 'ring-2 ring-[#6557E3] shadow-[0_0_20px_rgba(101,87,227,0.3)]' : ''}
-                    `}
-                  >
-                    <CourseCard
-                      icon={getCourseIcon(course)}
-                      category={getCourseCategory(course)}
-                      categoryColor={getCourseCategoryColor(course)}
-                      title={getCourseTitle(course)}
-                      description={course.description || ""}
-                      oldPrice={getCoursePrice(course).oldPrice}
-                      price={getCoursePrice(course).price}
-                      url={`/courses/${course.url_slug}`}
-                    />
-                  </div>
-                );
-              })}
+            {sideCourses.map((course) => {
+              const isActive = course.id === selectedCourse.id;
+              return (
+                <div
+                  key={course.id}
+                  onClick={() => handleCardClick(course)}
+                  className="cursor-pointer"
+                >
+                  <CourseCard
+                    icon={getCourseIcon(course)}
+                    category={getCourseCategory(course)}
+                    categoryColor={getCourseCategoryColor(course)}
+                    title={getCourseTitle(course)}
+                    description={course.description || ""}
+                    oldPrice={getCoursePrice(course).oldPrice}
+                    price={getCoursePrice(course).price}
+                    url={`/courses/${course.url_slug}`}
+                    isActive={isActive}
+                  />
+                </div>
+              );
+            })}
           </div>
 
-          {/* BOTTOM CARDS */}
-          <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:col-span-12'>
-            {coursesList
-              .filter((course) => course.id !== selectedCourse.id)
-              .slice(3)
-              .map((course) => {
-                const isActive = coursesList.findIndex((c) => c.id === course.id) === selectedIndex;
+          {/* BOTTOM CARDS (If more than 3 total courses) */}
+          {bottomCourses.length > 0 && (
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:col-span-12 mt-4'>
+              {bottomCourses.map((course) => {
+                const isActive = course.id === selectedCourse.id;
                 return (
                   <div
                     key={course.id}
                     onClick={() => handleCardClick(course)}
-                    className={`
-                      cursor-pointer
-                      transition-all duration-300
-                      hover:-translate-y-1
-                      hover:shadow-[0_12px_36px_rgba(101,87,227,0.22)]
-                      rounded-2xl
-                      ${isActive ? 'ring-2 ring-[#6557E3] shadow-[0_0_20px_rgba(101,87,227,0.3)]' : ''}
-                    `}
+                    className="cursor-pointer"
                   >
                     <CourseCard
                       icon={getCourseIcon(course)}
@@ -693,15 +677,17 @@ const ExploreCoursesSection = () => {
                       oldPrice={getCoursePrice(course).oldPrice}
                       price={getCoursePrice(course).price}
                       url={`/courses/${course.url_slug}`}
+                      isActive={isActive}
                     />
                   </div>
                 );
               })}
-          </div>
+            </div>
+          )}
 
         </div>
 
-        <div className='flex items-center justify-center mt-14 sm:mt-20'>
+        <div className='flex items-center justify-center mt-5'>
           <SecondaryButton
             text='View All Courses'
             bgColor='#6557E3'
@@ -714,7 +700,7 @@ const ExploreCoursesSection = () => {
       </div>
 
     </MotionSection>
-  )
-}
+  );
+};
 
-export default ExploreCoursesSection
+export default ExploreCoursesSection;

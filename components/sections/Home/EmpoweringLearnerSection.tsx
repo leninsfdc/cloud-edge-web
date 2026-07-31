@@ -1,16 +1,18 @@
-import React from 'react'
-import peopleIcon from "@/public/icons/people.svg"
-import Image from 'next/image'
-import empoweringLearnerImage from "@/public/images/empowering-learner.png"
-import bookIcon from "@/public/icons/book.svg"
-import learningIcon from "@/public/icons/learning.svg"
-import careerIcon from "@/public/icons/career.svg"
-import industryIcon from "@/public/icons/industry.svg"
-import peoplePurpleIcon from "@/public/icons/people-purple.svg"
-import capBlue from "@/public/icons/cap-blue.svg"
-import videoGreen from "@/public/icons/video-green.svg"
-import globPink from "@/public/icons/glob-pink.svg"
-import { MotionDiv, MotionSection } from '@/components/ui/MotionElements'
+"use client";
+
+import React from 'react';
+import peopleIcon from "@/public/icons/people.svg";
+import Image from 'next/image';
+import empoweringLearnerImage from "@/public/images/empowering-learner.png";
+import bookIcon from "@/public/icons/book.svg";
+import learningIcon from "@/public/icons/learning.svg";
+import careerIcon from "@/public/icons/career.svg";
+import industryIcon from "@/public/icons/industry.svg";
+import peoplePurpleIcon from "@/public/icons/people-purple.svg";
+import capBlue from "@/public/icons/cap-blue.svg";
+import videoGreen from "@/public/icons/video-green.svg";
+import globPink from "@/public/icons/glob-pink.svg";
+import { MotionDiv, MotionSection } from '@/components/ui/MotionElements';
 
 const EmpoweringLearnerSection = () => {
   return (
@@ -23,21 +25,20 @@ const EmpoweringLearnerSection = () => {
     >
 
       {/* Blur Backgrounds */}
-      <div className='absolute bg-[#E9D5FF] w-[300px] md:w-[450px] h-[300px] md:h-[560px] top-[-80px] left-[-100px] opacity-40 rounded-full blur-[100px]' />
-
-      <div className='absolute bg-[#F368B380] w-[300px] md:w-[450px] h-[300px] md:h-[560px] top-[180px] right-[-100px] opacity-40 rounded-full blur-[100px]' />
+      <div className='absolute bg-[#E9D5FF] w-[300px] md:w-[450px] h-[300px] md:h-[560px] top-[-80px] left-[-100px] opacity-40 rounded-full blur-[100px] pointer-events-none' />
+      <div className='absolute bg-[#F368B380] w-[300px] md:w-[450px] h-[300px] md:h-[560px] top-[180px] right-[-100px] opacity-40 rounded-full blur-[100px] pointer-events-none' />
 
       <div className='container mx-auto px-4'>
 
         <div
-          className='rounded-[24px] md:rounded-[30px] p-5 sm:p-7 md:p-10 bg-gradient-to-b from-[#FFFFFF] to-[#FBFBFD] relative overflow-hidden'
+          className='rounded-[24px] md:rounded-[30px] p-5 sm:p-7 md:p-10 bg-gradient-to-b from-[#FFFFFF] to-[#FBFBFD] border border-slate-100 relative overflow-hidden'
           style={{
-            boxShadow: "0px 0px 10px rgba(133, 120, 252, 0.07)"
+            boxShadow: "0px 10px 40px rgba(133, 120, 252, 0.08)"
           }}
         >
 
           {/* Right Image */}
-          <div className='absolute right-0 top-0 z-0 hidden lg:block'>
+          <div className='absolute right-0 top-0 z-0 hidden lg:block pointer-events-none'>
             <Image
               src={empoweringLearnerImage}
               alt='Empowering Learners'
@@ -50,25 +51,22 @@ const EmpoweringLearnerSection = () => {
             <div className='space-y-6 md:space-y-7'>
 
               {/* Badge */}
-              <div className=' flex items-center justify-center md:justify-start'>
-                <div className='flex items-center justify-center  gap-2 bg-[#F1F1FD] border border-[#E0E7FF] w-fit rounded-full py-[6px] px-[16px]'>
+              <div className='flex items-center justify-center md:justify-start'>
+                <div className='flex items-center justify-center gap-2 bg-[#F1F1FD] border border-[#E0E7FF] w-fit rounded-full py-[6px] px-[16px] shadow-2xs'>
                   <Image
                     src={peopleIcon}
                     alt='people'
                     className='w-4 h-4'
                   />
-
-                  <span className='text-[#8B79FD] text-sm font-medium'>
+                  <span className='text-[#8B79FD] text-sm font-semibold'>
                     Empowering Learners
                   </span>
                 </div>
-
               </div>
 
               {/* Heading */}
-              <h3 className='font-semibold text-[34px] sm:text-[40px] lg:text-[48px] max-w-xl tracking-[-1px] lg:tracking-[-1.5px] leading-tight text-center sm:text-left'>
+              <h3 className='font-extrabold text-[32px] sm:text-[40px] lg:text-[48px] max-w-xl font-bricolage-grotesque tracking-tight leading-tight text-center sm:text-left text-slate-900'>
                 Empowering Learners With Expert Led{" "}
-
                 <span
                   className='bg-clip-text text-transparent'
                   style={{
@@ -76,22 +74,12 @@ const EmpoweringLearnerSection = () => {
                       "linear-gradient(180deg, #6366F1 0%, #8B5CF6 100%)",
                   }}
                 >
-                  Training
-                </span>{" "}
-
-                <span
-                  className='bg-clip-text text-transparent'
-                  style={{
-                    backgroundImage:
-                      "linear-gradient(180deg, #6366F1 0%, #8B5CF6 100%)",
-                  }}
-                >
-                  Programs
+                  Training Programs
                 </span>
               </h3>
 
               {/* Description */}
-              <p className='text-[#64748B] text-base md:text-lg max-w-xl text-center sm:text-left'>
+              <p className='text-slate-600 text-base md:text-lg max-w-xl text-center sm:text-left font-medium leading-relaxed'>
                 We combine industry expertise, practical learning and
                 personalized guidance to help you build future-ready skills
                 and achieve your goals.
@@ -100,50 +88,46 @@ const EmpoweringLearnerSection = () => {
               {/* Feature Cards */}
               <div className='grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 max-w-3xl'>
 
-                <MotionDiv whileHover={{ scale: 1.05, y: -5 }} className='bg-[#FFFFFF1A] border border-[#F8FAFC] rounded-2xl p-4 md:p-5 shadow-inner backdrop-blur-[2px] flex flex-col items-center sm:items-start text-center sm:text-left cursor-default transition-all duration-300'>
+                <MotionDiv whileHover={{ scale: 1.04, y: -4 }} className='bg-white/80 border border-slate-100 rounded-2xl p-4 md:p-5 shadow-xs backdrop-blur-sm flex flex-col items-center sm:items-start text-center sm:text-left cursor-default transition-all duration-300 hover:border-indigo-200 hover:shadow-md'>
                   <Image
                     src={bookIcon}
                     alt='Expert-Led Courses'
                     className='w-14 h-14 md:w-16 md:h-16'
                   />
-
-                  <span className='text-sm font-semibold mt-2'>
+                  <span className='text-sm font-extrabold text-slate-900 font-bricolage-grotesque mt-2 leading-snug'>
                     Expert-Led <br /> Courses
                   </span>
                 </MotionDiv>
 
-                <MotionDiv whileHover={{ scale: 1.05, y: -5 }} className='bg-[#FFFFFF1A] border border-[#F8FAFC] rounded-2xl p-4 md:p-5 shadow-inner backdrop-blur-[2px] flex flex-col items-center sm:items-start text-center sm:text-left cursor-default transition-all duration-300'>
+                <MotionDiv whileHover={{ scale: 1.04, y: -4 }} className='bg-white/80 border border-slate-100 rounded-2xl p-4 md:p-5 shadow-xs backdrop-blur-sm flex flex-col items-center sm:items-start text-center sm:text-left cursor-default transition-all duration-300 hover:border-indigo-200 hover:shadow-md'>
                   <Image
                     src={learningIcon}
                     alt='Practical Learning'
                     className='w-14 h-14 md:w-16 md:h-16'
                   />
-
-                  <span className='text-sm font-semibold mt-2'>
+                  <span className='text-sm font-extrabold text-slate-900 font-bricolage-grotesque mt-2 leading-snug'>
                     Practical <br /> Learning
                   </span>
                 </MotionDiv>
 
-                <MotionDiv whileHover={{ scale: 1.05, y: -5 }} className='bg-[#FFFFFF1A] border border-[#F8FAFC] rounded-2xl p-4 md:p-5 shadow-inner backdrop-blur-[2px] flex flex-col items-center sm:items-start text-center sm:text-left cursor-default transition-all duration-300'>
+                <MotionDiv whileHover={{ scale: 1.04, y: -4 }} className='bg-white/80 border border-slate-100 rounded-2xl p-4 md:p-5 shadow-xs backdrop-blur-sm flex flex-col items-center sm:items-start text-center sm:text-left cursor-default transition-all duration-300 hover:border-indigo-200 hover:shadow-md'>
                   <Image
                     src={careerIcon}
                     alt='Career Support'
                     className='w-14 h-14 md:w-16 md:h-16'
                   />
-
-                  <span className='text-sm font-semibold mt-2'>
+                  <span className='text-sm font-extrabold text-slate-900 font-bricolage-grotesque mt-2 leading-snug'>
                     Career <br /> Support
                   </span>
                 </MotionDiv>
 
-                <MotionDiv whileHover={{ scale: 1.05, y: -5 }} className='bg-[#FFFFFF1A] border border-[#F8FAFC] rounded-2xl p-4 md:p-5 shadow-inner backdrop-blur-[2px] flex flex-col items-center sm:items-start text-center sm:text-left cursor-default transition-all duration-300'>
+                <MotionDiv whileHover={{ scale: 1.04, y: -4 }} className='bg-white/80 border border-slate-100 rounded-2xl p-4 md:p-5 shadow-xs backdrop-blur-sm flex flex-col items-center sm:items-start text-center sm:text-left cursor-default transition-all duration-300 hover:border-indigo-200 hover:shadow-md'>
                   <Image
                     src={industryIcon}
                     alt='Industry Relevant'
                     className='w-14 h-14 md:w-16 md:h-16'
                   />
-
-                  <span className='text-sm font-semibold mt-2'>
+                  <span className='text-sm font-extrabold text-slate-900 font-bricolage-grotesque mt-2 leading-snug'>
                     Industry <br /> Relevant
                   </span>
                 </MotionDiv>
@@ -151,30 +135,26 @@ const EmpoweringLearnerSection = () => {
               </div>
 
               {/* Stats Section */}
-              <div className='bg-[#FFFFFF1A] border border-[#F8FAFC] rounded-2xl p-2 md:p-5 shadow-inner backdrop-blur-[2px] mt-8 md:mt-14 transition-transform'>
-
-                <div className='grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 divide-y sm:divide-y divide-[#F1F5F9] xl:divide-y-0 xl:divide-x'>
+              <div className='bg-white/90 border border-slate-100 rounded-2xl p-3 sm:p-5 shadow-xs backdrop-blur-sm mt-8 md:mt-14'>
+                <div className='grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 divide-y sm:divide-y-0 lg:divide-x divide-slate-100'>
 
                   {/* Card 1 */}
                   <MotionDiv whileHover={{ scale: 1.02 }} className='flex items-center gap-4 p-4 cursor-default'>
-                    <div className='w-14 h-14 rounded-full bg-[#E0E7FF] flex items-center justify-center shrink-0'>
+                    <div className='w-14 h-14 rounded-full bg-[#E0E7FF] flex items-center justify-center shrink-0 shadow-inner'>
                       <Image
                         src={peoplePurpleIcon}
                         alt='Active Learners'
                         className='w-6 h-6'
                       />
                     </div>
-
-                    <div className='space-y-1'>
-                      <div className='text-[#4F46E5] text-[22px] font-extrabold leading-none'>
+                    <div className='space-y-0.5'>
+                      <div className='text-[#4F46E5] text-[22px] font-extrabold leading-none font-bricolage-grotesque'>
                         15K+
                       </div>
-
-                      <div className='text-sm font-semibold text-[#1E293B] uppercase'>
+                      <div className='text-xs font-extrabold text-slate-900 uppercase tracking-wider font-bricolage-grotesque'>
                         Active Learners
                       </div>
-
-                      <div className='text-xs text-[#94A3B8]'>
+                      <div className='text-xs text-slate-400 font-medium'>
                         Growing community worldwide
                       </div>
                     </div>
@@ -182,24 +162,21 @@ const EmpoweringLearnerSection = () => {
 
                   {/* Card 2 */}
                   <MotionDiv whileHover={{ scale: 1.02 }} className='flex items-center gap-4 p-4 cursor-default'>
-                    <div className='w-14 h-14 rounded-full bg-[#DBEAFE] flex items-center justify-center shrink-0'>
+                    <div className='w-14 h-14 rounded-full bg-[#DBEAFE] flex items-center justify-center shrink-0 shadow-inner'>
                       <Image
                         src={capBlue}
                         alt='Expert Instructors'
                         className='w-6 h-6'
                       />
                     </div>
-
-                    <div className='space-y-1'>
-                      <div className='text-[#2563EB] text-[22px] font-extrabold leading-none'>
+                    <div className='space-y-0.5'>
+                      <div className='text-[#2563EB] text-[22px] font-extrabold leading-none font-bricolage-grotesque'>
                         1.8K+
                       </div>
-
-                      <div className='text-sm font-semibold text-[#1E293B] uppercase'>
+                      <div className='text-xs font-extrabold text-slate-900 uppercase tracking-wider font-bricolage-grotesque'>
                         Expert Instructors
                       </div>
-
-                      <div className='text-xs text-[#94A3B8]'>
+                      <div className='text-xs text-slate-400 font-medium'>
                         Industry professionals
                       </div>
                     </div>
@@ -207,24 +184,21 @@ const EmpoweringLearnerSection = () => {
 
                   {/* Card 3 */}
                   <MotionDiv whileHover={{ scale: 1.02 }} className='flex items-center gap-4 p-4 cursor-default'>
-                    <div className='w-14 h-14 rounded-full bg-[#D1EBE5] flex items-center justify-center shrink-0'>
+                    <div className='w-14 h-14 rounded-full bg-[#D1EBE5] flex items-center justify-center shrink-0 shadow-inner'>
                       <Image
                         src={videoGreen}
                         alt='Live Sessions'
                         className='w-6 h-6'
                       />
                     </div>
-
-                    <div className='space-y-1'>
-                      <div className='text-[#059669] text-[22px] font-extrabold leading-none'>
+                    <div className='space-y-0.5'>
+                      <div className='text-[#059669] text-[22px] font-extrabold leading-none font-bricolage-grotesque'>
                         120+
                       </div>
-
-                      <div className='text-sm font-semibold text-[#1E293B] uppercase'>
+                      <div className='text-xs font-extrabold text-slate-900 uppercase tracking-wider font-bricolage-grotesque'>
                         Live Sessions
                       </div>
-
-                      <div className='text-xs text-[#94A3B8]'>
+                      <div className='text-xs text-slate-400 font-medium'>
                         Every month
                       </div>
                     </div>
@@ -232,31 +206,27 @@ const EmpoweringLearnerSection = () => {
 
                   {/* Card 4 */}
                   <MotionDiv whileHover={{ scale: 1.02 }} className='flex items-center gap-4 p-4 cursor-default'>
-                    <div className='w-14 h-14 rounded-full bg-[#F2DCEA] flex items-center justify-center shrink-0'>
+                    <div className='w-14 h-14 rounded-full bg-[#F2DCEA] flex items-center justify-center shrink-0 shadow-inner'>
                       <Image
                         src={globPink}
                         alt='Countries Reached'
                         className='w-6 h-6'
                       />
                     </div>
-
-                    <div className='space-y-1'>
-                      <div className='text-[#DB2777] text-[22px] font-extrabold leading-none'>
+                    <div className='space-y-0.5'>
+                      <div className='text-[#DB2777] text-[22px] font-extrabold leading-none font-bricolage-grotesque'>
                         150+
                       </div>
-
-                      <div className='text-sm font-semibold text-[#1E293B] uppercase'>
+                      <div className='text-xs font-extrabold text-slate-900 uppercase tracking-wider font-bricolage-grotesque'>
                         Countries Reached
                       </div>
-
-                      <div className='text-xs text-[#94A3B8]'>
+                      <div className='text-xs text-slate-400 font-medium'>
                         Global impact
                       </div>
                     </div>
                   </MotionDiv>
 
                 </div>
-
               </div>
 
             </div>
@@ -266,7 +236,7 @@ const EmpoweringLearnerSection = () => {
 
       </div>
     </MotionSection>
-  )
-}
+  );
+};
 
-export default EmpoweringLearnerSection
+export default EmpoweringLearnerSection;

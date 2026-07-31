@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { ChevronDown, MessageCircle } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { getWhatsAppLink } from "@/utils";
 
 const faqs = [
   {
@@ -50,84 +52,123 @@ export default function FAQSection() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section className="bg-[#f5f5f7] py-24">
-      <div className="mx-auto container mx-auto  px-6">
-        {/* Heading */}
-        <div className="mx-auto mb-14 max-w-3xl text-center">
-          <p className="mb-3 text-xs font-bold uppercase tracking-[0.15em] text-primary">
-            FAQ
-          </p>
+    <section className="bg-slate-50/90 pt-12 lg:pt-16 pb-6 relative overflow-hidden">
+      {/* Background Ambient Orbs */}
+      <div className="absolute top-1/3 right-0 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
 
-          <h2 className="text-4xl font-extrabold tracking-tight text-[#1d1d1f] md:text-5xl">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+        {/* Heading */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mx-auto mb-8 max-w-3xl text-center"
+        >
+          <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-indigo-200/80 bg-indigo-50/90 px-4 py-1.5 text-xs font-extrabold uppercase tracking-wider text-indigo-700 shadow-2xs">
+            Frequently Asked Questions
+          </div>
+
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 font-bricolage-grotesque">
             Everything You Need to Know
           </h2>
-        </div>
+        </motion.div>
 
-        {/* FAQ */}
-        <div className="space-y-4">
+        {/* FAQ Accordions */}
+        <div className="max-w-4xl mx-auto space-y-3">
           {faqs.map((faq, index) => {
             const isOpen = open === index;
 
             return (
-              <div
+              <motion.div
                 key={faq.question}
-                className="overflow-hidden rounded-[28px] border border-black/10 bg-white shadow-sm transition-all duration-300 hover:border-primary/20 hover:shadow-[0_10px_40px_rgba(134,94,245,.08)]"
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.3, delay: index * 0.04 }}
+                className={`overflow-hidden rounded-2xl border transition-all duration-300 ${
+                  isOpen
+                    ? "bg-white/95 border-indigo-300 shadow-md backdrop-blur-xl"
+                    : "bg-white/80 border-slate-200/80 hover:border-slate-300 backdrop-blur-md shadow-2xs"
+                }`}
               >
                 <button
                   onClick={() => setOpen(isOpen ? null : index)}
-                  className="flex w-full items-center justify-between gap-5 p-7 text-left"
+                  className="flex w-full items-center justify-between gap-4 px-6 py-4.5 text-left cursor-pointer"
                 >
-                  <span className="text-lg font-semibold text-[#1d1d1f]">
+                  <span className="text-base sm:text-lg font-bold text-slate-900 font-bricolage-grotesque">
                     {faq.question}
                   </span>
 
-                  <ChevronDown
-                    size={20}
-                    className={`shrink-0 text-primary transition duration-300 ${
-                      isOpen ? "rotate-180" : ""
+                  <div
+                    className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-all duration-300 ${
+                      isOpen
+                        ? "bg-indigo-600 text-white shadow-xs"
+                        : "bg-slate-100 text-slate-400"
                     }`}
-                  />
+                  >
+                    <ChevronDown
+                      size={18}
+                      className={`transition-transform duration-300 ${
+                        isOpen ? "rotate-180" : ""
+                      }`}
+                    />
+                  </div>
                 </button>
 
-                <div
-                  className={`grid transition-all duration-300 ${
-                    isOpen
-                      ? "grid-rows-[1fr]"
-                      : "grid-rows-[0fr]"
-                  }`}
-                >
-                  <div className="overflow-hidden">
-                    <div className="border-t border-black/10 px-7 py-6 text-[15px] leading-8 text-[#6e6e73]">
-                      {faq.answer}
-                    </div>
-                  </div>
-                </div>
-              </div>
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      className="overflow-hidden"
+                    >
+                      <div className="border-t border-slate-100/80 px-6 pb-5 pt-3 text-slate-600 text-sm sm:text-base leading-relaxed font-medium">
+                        {faq.answer}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
             );
           })}
         </div>
 
-        {/* Bottom CTA */}
-        <div className="mt-16 flex flex-col items-center text-center">
-          <div className="mb-3 text-lg font-semibold text-[#1d1d1f]">
-            💬 Still have questions?
+        {/* Still Have Questions Glass Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mt-8 max-w-4xl mx-auto rounded-3xl border border-slate-200/80 bg-white/80 backdrop-blur-xl p-6 sm:p-8 shadow-[0_10px_30px_rgba(15,23,42,0.04)] hover:shadow-lg hover:border-indigo-300 transition-all duration-300 flex flex-col md:flex-row items-center justify-between gap-5"
+        >
+          <div className="flex items-center gap-4 text-left">
+            <div className="w-12 h-12 rounded-2xl bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600 shrink-0 shadow-inner">
+              <MessageCircle size={24} />
+            </div>
+
+            <div>
+              <h3 className="text-lg sm:text-xl font-extrabold text-slate-900 font-bricolage-grotesque">
+                Still have questions?
+              </h3>
+              <p className="text-xs sm:text-sm text-slate-600 font-medium mt-0.5">
+                Our advisors are on WhatsApp Monday to Saturday — typically responding within 60 minutes.
+              </p>
+            </div>
           </div>
 
-          <p className="mb-6 max-w-xl text-sm leading-7 text-[#6e6e73]">
-            Our advisors are on WhatsApp Monday to Saturday — we typically
-            respond within 60 minutes.
-          </p>
-
           <a
-            href="https://wa.me/447442586325?text=Hi+Cloud+Edge+Solutions"
+            href={getWhatsAppLink("Hi Cloud Edge Solutions, I have a question about your services.")}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full bg-[#25D366] px-7 py-4 text-sm font-bold text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-lg"
+            className="inline-flex items-center gap-2 rounded-full bg-emerald-600 hover:bg-emerald-700 px-6 py-3 text-xs sm:text-sm font-bold text-white shadow-md hover:shadow-emerald-500/25 transition-all duration-300 transform hover:-translate-y-0.5 shrink-0"
           >
-            <MessageCircle size={18} />
-            Ask on WhatsApp
+            <MessageCircle size={16} />
+            <span>Ask on WhatsApp</span>
           </a>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
