@@ -1,119 +1,110 @@
 "use client";
 
 import React from "react";
-import { Users, FileText, DollarSign, BarChart3, ArrowRight } from "lucide-react";
-import { MotionSection, MotionDiv } from "@/components/ui/MotionElements";
+import { Users, FileText, DollarSign, BarChart3, ArrowRight, Sparkles } from "lucide-react";
+import { motion } from "framer-motion";
 
 const CorporateTrainingSection = () => {
   const corporateFeatures = [
     {
-      icon: <Users className="w-5 h-5 text-[#4361EE]" />,
+      icon: <Users className="w-5 h-5 text-indigo-600" />,
       title: "Dedicated Team Batches",
       desc: "Private cohorts scheduled around your team's working hours and timezone.",
     },
     {
-      icon: <FileText className="w-5 h-5 text-[#4361EE]" />,
+      icon: <FileText className="w-5 h-5 text-indigo-600" />,
       title: "Custom Curriculum",
       desc: "Curriculum tailored to your specific SAP or Salesforce configuration and industry context.",
     },
     {
-      icon: <DollarSign className="w-5 h-5 text-[#4361EE]" />,
+      icon: <DollarSign className="w-5 h-5 text-indigo-600" />,
       title: "Volume Pricing & Invoicing",
       desc: "Group rates from 3 seats. Invoice billing for corporates and public sector organisations.",
     },
     {
-      icon: <BarChart3 className="w-5 h-5 text-[#4361EE]" />,
+      icon: <BarChart3 className="w-5 h-5 text-indigo-600" />,
       title: "L&D Progress Reports",
       desc: "Attendance tracking, assessment results and monthly performance summaries for your L&D team.",
     },
   ];
 
   return (
-      <MotionSection 
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="bg-white py-20 sm:py-24 relative overflow-hidden"
-      >
-        {/* Visual background matching details decoration element */}
-        <div className="absolute top-1/2 left-0 w-80 h-80 bg-[#7C6DFB]/5 rounded-full blur-3xl pointer-events-none -translate-y-1/2 -translate-x-1/3" />
+    <section className="bg-slate-50/90 py-12 lg:py-16 relative overflow-hidden">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10 max-w-7xl">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
 
-        <div className="container mx-auto px-4 sm:px-6 relative z-10 max-w-7xl">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-
-            {/* LEFT SUB-COLUMN LAYOUT DESCRIPTIVES */}
-            <MotionDiv 
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-              className="lg:col-span-5 space-y-6"
-            >
-              <div className="bg-[#E3E1FA] rounded-full px-4 py-1.5 w-fit text-[#6557E3] text-xs font-semibold flex items-center justify-center gap-2">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#6557E3] animate-pulse" />
-                For Organisations
-              </div>
-
-              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-slate-900 leading-tight">
-                Corporate &amp;{" "}
-                <span className="bg-gradient-to-r from-[#3275FC] to-[#7C6DFB] bg-clip-text text-transparent">
-                Group Training
-              </span>
-              </h2>
-
-              <p className="text-[#4A5568] tracking-tight text-sm sm:text-base leading-relaxed">
-                Upskill your team in SAP or Salesforce with a programme designed around your business systems, timelines and sector. We deliver group training for teams of 3 to 300+ across the UK, India, UAE and USA.
-              </p>
-
-              <div className="pt-2 space-y-3">
-                <a
-                    href="mailto:corporate@cloudedge.in?subject=Corporate Training Enquiry"
-                    className="inline-flex items-center justify-center gap-2.5 bg-[#4361EE] hover:bg-[#3652D1] text-white font-semibold text-sm rounded-full py-3.5 px-7 shadow-md shadow-[#4361ee]/20 hover:shadow-lg transform hover:-translate-y-0.5 transition-all w-full sm:w-auto group"
-                >
-                  <span>Request a Proposal</span>
-                  <ArrowRight className="w-4 h-4 text-white transform group-hover:translate-x-1 transition-transform" />
-                </a>
-
-                <p className="text-xs text-slate-400 font-medium pl-1">
-                  Or direct corporate contact:{" "}
-                  <a href="mailto:corporate@cloudedge.in" className="text-[#4361EE] font-bold hover:underline">
-                    corporate@cloudedge.in
-                  </a>
-                </p>
-              </div>
-            </MotionDiv>
-
-            {/* RIGHT MATRIX CARDS GRID PANEL (7 Column equivalent) */}
-            <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
-              {corporateFeatures.map((feat, idx) => (
-                  <MotionDiv
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.4, delay: idx * 0.1 }}
-                      key={idx}
-                      className="group h-full flex gap-4 bg-[#EFEEFC]/30 hover:bg-white border border-[#E6E8FA] hover:border-[#DDDFF5] rounded-[22px] p-5 shadow-3xs hover:shadow-xs transition-all duration-300"
-                  >
-                    {/* Soft Icon Wrapper Pill block */}
-                    <div className="w-11 h-11 rounded-xl bg-white shadow-3xs flex items-center justify-center shrink-0 border border-[#EFEEFC] group-hover:scale-105 transition-transform">
-                      {feat.icon}
-                    </div>
-                    <div>
-                      <h3 className="text-sm font-bold text-slate-900 tracking-tight mb-1">
-                        {feat.title}
-                      </h3>
-                      <p className="text-slate-500 text-xs leading-relaxed font-medium">
-                        {feat.desc}
-                      </p>
-                    </div>
-                  </MotionDiv>
-              ))}
+          {/* LEFT COLUMN */}
+          <motion.div 
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="lg:col-span-5 space-y-5"
+          >
+            <div className="inline-flex items-center gap-2 bg-indigo-50/90 border border-indigo-200/80 px-4 py-1.5 rounded-full shadow-2xs">
+              <Sparkles className="w-3.5 h-3.5 text-indigo-600" />
+              <span className="text-xs text-indigo-700 font-extrabold uppercase tracking-wider">For Organisations</span>
             </div>
 
+            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 leading-tight font-bricolage-grotesque">
+              Corporate &amp;{" "}
+              <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-teal-500 bg-clip-text text-transparent">
+                Group Training
+              </span>
+            </h2>
+
+            <p className="text-slate-600 text-sm sm:text-base leading-relaxed font-medium">
+              Upskill your team in SAP or Salesforce with a programme designed around your business systems, timelines and sector. We deliver group training for teams of 3 to 300+ across the UK, India, UAE and USA.
+            </p>
+
+            <div className="pt-2 space-y-3">
+              <a
+                href="mailto:corporate@cloudedge.in?subject=Corporate Training Enquiry"
+                className="inline-flex items-center justify-center gap-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm rounded-full py-4 px-8 shadow-lg hover:shadow-indigo-500/25 transition-all duration-300 w-full sm:w-auto transform hover:-translate-y-0.5"
+              >
+                <span>Request a Proposal</span>
+                <ArrowRight size={16} />
+              </a>
+
+              <p className="text-xs text-slate-500 font-medium pl-1">
+                Direct corporate contact:{" "}
+                <a href="mailto:corporate@cloudedge.in" className="text-indigo-600 font-bold hover:underline">
+                  corporate@cloudedge.in
+                </a>
+              </p>
+            </div>
+          </motion.div>
+
+          {/* RIGHT 2x2 GRID PANEL */}
+          <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-5">
+            {corporateFeatures.map((feat, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 15 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: idx * 0.1 }}
+                whileHover={{ y: -4, scale: 1.02 }}
+                className="rounded-[28px] border border-slate-200/80 bg-white/80 backdrop-blur-xl p-6 shadow-[0_10px_30px_rgba(15,23,42,0.03)] hover:shadow-xl hover:border-indigo-300 transition-all duration-300 flex items-start gap-4"
+              >
+                <div className="w-12 h-12 rounded-2xl bg-indigo-50 border border-indigo-100 flex items-center justify-center shrink-0 shadow-inner">
+                  {feat.icon}
+                </div>
+                <div>
+                  <h3 className="text-base font-bold text-slate-900 font-bricolage-grotesque mb-1">
+                    {feat.title}
+                  </h3>
+                  <p className="text-slate-600 text-xs leading-relaxed font-medium">
+                    {feat.desc}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
           </div>
+
         </div>
-      </MotionSection>
+      </div>
+    </section>
   );
 };
 

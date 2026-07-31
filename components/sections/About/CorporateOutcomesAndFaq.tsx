@@ -1,16 +1,18 @@
 "use client"
 
-import React, {useState} from 'react';
-import IN from "@/public/icons/IN.svg"
-import GB from "@/public/icons/GB.svg"
-import CA from "@/public/icons/CA.svg"
-import AE from "@/public/icons/AE.svg"
-import US from "@/public/icons/US.svg"
-import whatsapp from "@/public/icons/whatsapp.svg"
-import Image from "next/image";
+import React, { useState } from 'react';
+import IN from "@/public/icons/IN.svg";
+import GB from "@/public/icons/GB.svg";
+import CA from "@/public/icons/CA.svg";
+import AE from "@/public/icons/AE.svg";
+import US from "@/public/icons/US.svg";
+import whatsapp from "@/public/icons/whatsapp.svg";
 import { motion, AnimatePresence } from 'framer-motion';
+import ResilientImage from '@/components/ui/ResilientImage';
+import { Sparkles, MessageCircle, ChevronDown, HelpCircle, ArrowRight } from 'lucide-react';
+import { getWhatsAppLink } from '@/utils';
+import Link from 'next/link';
 
-// DATA STRUCTURES
 const companies = [
   "Deloitte", "Accenture", "Infosys", "TCS", "Wipro", "Capgemini",
   "IBM", "Cognizant", "HCL Technologies", "Salesforce", "SAP",
@@ -19,11 +21,11 @@ const companies = [
 ];
 
 const regions = [
-  {flag: IN, country: "India", stats: "3,200+ students", meta: "INR pricing · IST batches"},
-  {flag: GB, country: "United Kingdom", stats: "1,100+ students", meta: "GBP pricing · BST batches"},
-  {flag: US, country: "United States", stats: "620+ students", meta: "USD pricing · EST/PST"},
-  {flag: CA, country: "Canada", stats: "380+ students", meta: "CAD pricing · Weekend batches"},
-  {flag: AE, country: "UAE & Gulf", stats: "500+ students", meta: "USD/AED · Evening batches"}
+  { flag: IN, country: "India", stats: "3,200+ students", meta: "INR pricing · IST batches" },
+  { flag: GB, country: "United Kingdom", stats: "1,100+ students", meta: "GBP pricing · BST batches" },
+  { flag: US, country: "United States", stats: "620+ students", meta: "USD pricing · EST/PST" },
+  { flag: CA, country: "Canada", stats: "380+ students", meta: "CAD pricing · Weekend batches" },
+  { flag: AE, country: "UAE & Gulf", stats: "500+ students", meta: "USD/AED · Evening batches" }
 ];
 
 const faqsData = [
@@ -65,312 +67,290 @@ const CorporateOutcomesAndFaq = () => {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
-      <div className="bg-white">
+    <div className="bg-slate-50/90">
 
-        {/* 1. EMPLOYERS & OUTCOMES SECTION (DARK THEME) */}
-        <motion.section 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="py-20 bg-[#0F172A] relative overflow-hidden text-white"
-        >
-          {/* Decorative Glow Ring */}
-          <div
-              className="absolute top-[-100px] right-[-100px] w-[500px] h-[500px] rounded-full bg-[#6557E3] opacity-20 filter blur-[100px] pointer-events-none"/>
+      {/* 1. EMPLOYERS & OUTCOMES SECTION (DARK GLASS) */}
+      <motion.section 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="py-12 lg:py-16 bg-slate-950 relative overflow-hidden text-white"
+      >
+        {/* Glow */}
+        <div className="absolute top-[-100px] right-[-100px] w-[500px] h-[500px] rounded-full bg-indigo-600/20 filter blur-[120px] pointer-events-none" />
 
-          <div className="container mx-auto px-4 sm:px-6 relative z-10">
-            <div className="text-center max-w-2xl mx-auto mb-14 space-y-3">
-              <div
-                  className="inline-flex items-center gap-2 bg-white/10 border border-white/10 px-4 py-1.5 rounded-full">
-                <span className="text-xs text-[#DDDFF5] font-semibold uppercase tracking-wider">Career Outcomes</span>
-              </div>
-              <h2 className="font-bold text-3xl sm:text-4xl font-bricolage-grotesque tracking-tight text-white">
-                Where Our Graduates Work
-              </h2>
-              <p className="text-sm text-slate-400 max-w-md mx-auto leading-relaxed">
-                Cloud Edge graduates have gone on to roles at some of the world’s leading organisations.
-              </p>
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
+          <div className="text-center max-w-2xl mx-auto mb-10 space-y-3">
+            <div className="inline-flex items-center gap-2 bg-white/10 border border-white/10 px-4 py-1.5 rounded-full backdrop-blur-md">
+              <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
+              <span className="text-xs text-indigo-200 font-extrabold uppercase tracking-wider">Career Outcomes</span>
             </div>
+            <h2 className="font-extrabold text-3xl sm:text-4xl lg:text-5xl font-bricolage-grotesque tracking-tight text-white leading-tight">
+              Where Our Graduates Work
+            </h2>
+            <p className="text-sm sm:text-base text-slate-400 max-w-md mx-auto font-medium leading-relaxed">
+              Cloud Edge graduates have gone on to roles at some of the world’s leading organisations.
+            </p>
+          </div>
 
-            {/* Scrolling Ticker Layout / Cloud Badge Grid */}
-            <div className="flex flex-wrap justify-center gap-2.5 max-w-5xl mx-auto mb-16">
-              {companies.map((company, i) => (
-                  <motion.span 
-                        key={i}
-                        whileHover={{ scale: 1.05 }}
-                        className="text-xs sm:text-sm font-medium bg-slate-800/60 border border-slate-700/50 text-slate-300 px-4 py-2 rounded-xl transition-colors duration-200 hover:bg-slate-800 hover:text-white cursor-default">
+          {/* Badges Grid */}
+          <div className="flex flex-wrap justify-center gap-2.5 max-w-5xl mx-auto mb-12">
+            {companies.map((company, i) => (
+              <motion.span 
+                key={i}
+                whileHover={{ scale: 1.05 }}
+                className="text-xs sm:text-sm font-semibold bg-white/5 border border-white/10 text-slate-200 px-4 py-2 rounded-xl backdrop-blur-md transition-all duration-200 hover:bg-white/10 hover:border-white/20 cursor-default"
+              >
                 {company}
               </motion.span>
-              ))}
-            </div>
-
-            {/* Outcome Metric Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto border-t border-slate-800 pt-12">
-              <motion.div whileHover={{ scale: 1.05 }} className="text-center space-y-2 p-4 transition-transform">
-                <div
-                    className="text-4xl sm:text-5xl font-extrabold text-[#6557E3] font-bricolage-grotesque tracking-tight">94%
-                </div>
-                <p className="text-xs sm:text-sm text-slate-400 max-w-xs mx-auto leading-relaxed">
-                  of active job seekers placed within 6 months of completing their course
-                </p>
-              </motion.div>
-              <motion.div whileHover={{ scale: 1.05 }} className="text-center space-y-2 p-4 border-y md:border-y-0 md:border-x border-slate-800/80 transition-transform">
-                <div
-                    className="text-4xl sm:text-5xl font-extrabold text-white font-bricolage-grotesque tracking-tight">₹8.5
-                  LPA
-                </div>
-                <p className="text-xs sm:text-sm text-slate-400 max-w-xs mx-auto leading-relaxed">
-                  average first SAP / Salesforce salary for India-based graduates
-                </p>
-              </motion.div>
-              <motion.div whileHover={{ scale: 1.05 }} className="text-center space-y-2 p-4 transition-transform">
-                <div
-                    className="text-4xl sm:text-5xl font-extrabold text-[#32ADE6] font-bricolage-grotesque tracking-tight">£52k
-                </div>
-                <p className="text-xs sm:text-sm text-slate-400 max-w-xs mx-auto leading-relaxed">
-                  average first SAP / Salesforce salary for UK-based graduates
-                </p>
-              </motion.div>
-            </div>
+            ))}
           </div>
-        </motion.section>
 
-        {/* 2. GLOBAL REACH SECTION */}
-        <motion.section 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="py-20 bg-white"
-        >
-          <div className="container mx-auto px-4 sm:px-6">
-            <div className="text-center max-w-2xl mx-auto mb-14 space-y-3">
-              <div
-                  className="inline-flex items-center gap-2 bg-[#F1F1FD] border border-[#E0E7FF] px-4 py-1.5 rounded-full">
-                <span className="text-xs text-[#8B79FD] font-semibold uppercase tracking-wider">Our Reach</span>
+          {/* Outcome Metric Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto border-t border-slate-800/80 pt-10">
+            <motion.div whileHover={{ y: -3 }} className="text-center space-y-2 p-5 bg-white/5 border border-white/10 rounded-2xl backdrop-blur-md">
+              <div className="text-4xl sm:text-5xl font-extrabold text-indigo-400 font-bricolage-grotesque tracking-tight">
+                94%
               </div>
-              <h2 className="font-bold text-3xl sm:text-4xl font-bricolage-grotesque tracking-tight text-[#1E293B]">
-                One Classroom, Five Countries
-              </h2>
-              <p className="text-sm text-[#64748B] max-w-md mx-auto leading-relaxed">
-                The same expert instructor teaches students from five countries in the same live session simultaneously.
+              <p className="text-xs sm:text-sm text-slate-300 font-medium leading-relaxed">
+                of active job seekers placed within 6 months of completing their course
               </p>
-            </div>
+            </motion.div>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-              {regions.map((reach, idx) => (
-                  <motion.div 
-                       key={idx}
-                       whileHover={{ y: -5, scale: 1.02, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1)" }}
-                       className="bg-[#FAFAFD] border border-[#E6E8F5] rounded-2xl p-5 text-center flex flex-col items-center justify-center transition-all duration-300 hover:shadow-sm">
-                    {/*<div className="text-3xl mb-2 select-none">{reach.flag}</div>*/}
-                    <Image
-                        src={reach.flag}
-                        alt={reach.country}
-                        className="w-7 h-7 mb-2"
-                    />
-                    <h3 className="font-bricolage-grotesque text-sm font-bold text-[#1E293B] mb-1">
-                      {reach.country}
-                    </h3>
-                    <div className="text-[11px] text-[#64748B] leading-relaxed font-medium">
-                      <span className="text-[#6557E3] font-semibold block mb-0.5">{reach.stats}</span>
-                      {reach.meta}
-                    </div>
-                  </motion.div>
-              ))}
-            </div>
+            <motion.div whileHover={{ y: -3 }} className="text-center space-y-2 p-5 bg-white/5 border border-white/10 rounded-2xl backdrop-blur-md">
+              <div className="text-4xl sm:text-5xl font-extrabold text-teal-400 font-bricolage-grotesque tracking-tight">
+                ₹8.5 LPA
+              </div>
+              <p className="text-xs sm:text-sm text-slate-300 font-medium leading-relaxed">
+                average first SAP / Salesforce salary for India-based graduates
+              </p>
+            </motion.div>
+
+            <motion.div whileHover={{ y: -3 }} className="text-center space-y-2 p-5 bg-white/5 border border-white/10 rounded-2xl backdrop-blur-md">
+              <div className="text-4xl sm:text-5xl font-extrabold text-cyan-400 font-bricolage-grotesque tracking-tight">
+                £52k
+              </div>
+              <p className="text-xs sm:text-sm text-slate-300 font-medium leading-relaxed">
+                average first SAP / Salesforce salary for UK-based graduates
+              </p>
+            </motion.div>
           </div>
-        </motion.section>
+        </div>
+      </motion.section>
 
-        {/* 3. FAQ SECTION */}
-        <motion.section 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="py-20 bg-[#FAFAFD] border-t border-[#E6E8F5]"
-        >
-          <div className="container mx-auto px-4 sm:px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+      {/* 2. GLOBAL REACH SECTION */}
+      <motion.section 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="py-12 lg:py-16 relative overflow-hidden"
+      >
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
+          <div className="text-center max-w-2xl mx-auto mb-10 space-y-3">
+            <div className="inline-flex items-center gap-2 bg-indigo-50/90 border border-indigo-200/80 px-4 py-1.5 rounded-full shadow-2xs">
+              <span className="text-xs text-indigo-700 font-extrabold uppercase tracking-wider">Our Reach</span>
+            </div>
+            <h2 className="font-extrabold text-3xl sm:text-4xl lg:text-5xl font-bricolage-grotesque tracking-tight text-slate-900 leading-tight">
+              One Classroom, Five Countries
+            </h2>
+            <p className="text-base text-slate-600 max-w-md mx-auto font-medium leading-relaxed">
+              The same expert instructor teaches students from five countries in the same live session simultaneously.
+            </p>
+          </div>
 
-              {/* Left Column: List Layout Questions */}
-              <div className="lg:col-span-8 space-y-6">
-                <div>
-                  <div
-                      className="inline-flex items-center gap-2 bg-[#E3E1FA] border border-[#DDDFF5] px-4 py-1.5 rounded-full mb-3">
-                    <span
-                        className="text-xs text-[#6557E3] font-semibold uppercase tracking-wider">Questions &amp; Answers</span>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            {regions.map((reach, idx) => (
+              <motion.div 
+                key={idx}
+                whileHover={{ y: -4, scale: 1.02 }}
+                className="bg-white/80 backdrop-blur-xl border border-slate-200/80 rounded-2xl p-5 text-center flex flex-col items-center justify-center transition-all duration-300 shadow-[0_10px_30px_rgba(15,23,42,0.03)] hover:shadow-xl hover:border-indigo-300"
+              >
+                <ResilientImage
+                  src={reach.flag}
+                  fallbackSrc={reach.flag}
+                  alt={reach.country}
+                  className="w-7 h-7 mb-2 object-contain rounded-xs"
+                />
+                <h3 className="font-bricolage-grotesque text-sm font-extrabold text-slate-900 mb-1">
+                  {reach.country}
+                </h3>
+                <div className="text-[11px] text-slate-500 font-medium leading-relaxed">
+                  <span className="text-indigo-600 font-bold block mb-0.5">{reach.stats}</span>
+                  {reach.meta}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </motion.section>
+
+      {/* 3. FAQ SECTION */}
+      <motion.section 
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="py-12 lg:py-16 relative overflow-hidden"
+      >
+        <div className="container mx-auto px-4 sm:px-6 relative z-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
+
+            {/* Left Accordions */}
+            <div className="lg:col-span-8 space-y-6">
+              <div>
+                <div className="inline-flex items-center gap-2 bg-indigo-50/90 border border-indigo-200/80 px-4 py-1.5 rounded-full mb-3 shadow-2xs">
+                  <HelpCircle className="w-3.5 h-3.5 text-indigo-600" />
+                  <span className="text-xs text-indigo-700 font-extrabold uppercase tracking-wider">Questions &amp; Answers</span>
+                </div>
+                <h2 className="font-extrabold text-3xl sm:text-4xl font-bricolage-grotesque tracking-tight text-slate-900 mb-2">
+                  Everything You Need to Know
+                </h2>
+                <p className="text-sm text-slate-600 font-medium">
+                  Still have questions? <Link href="/contact-us" className="text-indigo-600 font-bold hover:underline">Contact us</Link> directly.
+                </p>
+              </div>
+
+              <div className="space-y-3">
+                {faqsData.map((faq, idx) => {
+                  const isOpen = openFaq === idx;
+                  return (
+                    <div key={idx} className="bg-white/80 backdrop-blur-xl border border-slate-200/80 rounded-2xl overflow-hidden shadow-2xs hover:border-indigo-300 transition-colors">
+                      <button
+                        onClick={() => setOpenFaq(isOpen ? null : idx)}
+                        className="w-full flex items-center justify-between p-5 text-left font-bricolage-grotesque font-bold text-sm sm:text-base text-slate-900 hover:text-indigo-600 transition-colors focus:outline-none"
+                      >
+                        <span>{faq.q}</span>
+                        <ChevronDown className={`w-4 h-4 text-slate-400 transform transition-transform duration-200 shrink-0 ml-4 ${isOpen ? 'rotate-180 text-indigo-600' : ''}`} />
+                      </button>
+
+                      <AnimatePresence initial={false}>
+                        {isOpen && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.25, ease: "easeInOut" }}
+                            className="overflow-hidden border-t border-slate-100"
+                          >
+                            <div className="p-5 text-xs sm:text-sm text-slate-600 leading-relaxed font-medium bg-slate-50/50">
+                              {faq.a}
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Right Sticky Card Widgets */}
+            <div className="lg:col-span-4 lg:sticky lg:top-24 space-y-4">
+              
+              {/* WhatsApp Card */}
+              <div className="rounded-[28px] border border-slate-800 bg-slate-950 p-6 text-white relative overflow-hidden shadow-xl">
+                <div className="absolute -top-10 -right-10 w-32 h-32 rounded-full bg-indigo-600/30 filter blur-xl pointer-events-none"/>
+                
+                <div className="relative z-10 space-y-4">
+                  <div className="w-12 h-12 rounded-2xl bg-indigo-500/20 border border-indigo-400/30 flex items-center justify-center text-emerald-400 font-bold text-xl">
+                    💬
                   </div>
-                  <h2 className="font-bold text-3xl sm:text-4xl font-bricolage-grotesque tracking-tight text-[#1E293B] mb-2">
-                    Everything You Need to Know
-                  </h2>
-                  <p className="text-sm text-[#64748B]">
-                    Still have questions? <a href="/contact-us" className="text-[#6557E3] font-semibold hover:underline">Contact
-                    us</a> directly.
+
+                  <div>
+                    <h3 className="font-bricolage-grotesque text-lg font-bold text-white mb-1">
+                      Still Have Questions?
+                    </h3>
+                    <p className="text-xs text-slate-400 leading-relaxed font-medium">
+                      Our advisors are available on WhatsApp Monday to Saturday. We typically respond within 60 minutes.
+                    </p>
+                  </div>
+
+                  <a
+                    href={getWhatsAppLink("Hi Cloud Edge Solutions, I have a question.")}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex items-center justify-center gap-2 w-full py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-full text-xs font-bold transition-all duration-200 shadow-md hover:shadow-emerald-500/25"
+                  >
+                    <MessageCircle size={16} />
+                    <span>Ask on WhatsApp</span>
+                  </a>
+                </div>
+              </div>
+
+              {/* Demo Voucher Card */}
+              <div className="rounded-[28px] border border-slate-200/80 bg-white/80 backdrop-blur-xl p-6 text-center space-y-3 shadow-2xs">
+                <div className="w-12 h-12 rounded-2xl bg-indigo-50 border border-indigo-100 flex items-center justify-center mx-auto text-xl">
+                  🎓
+                </div>
+
+                <div>
+                  <h4 className="font-bricolage-grotesque text-base font-bold text-slate-900 mb-1">
+                    Free Demo Class
+                  </h4>
+                  <p className="text-xs text-slate-600 leading-relaxed font-medium max-w-xs mx-auto">
+                    Attend a live session for free before you commit. No payment, no obligation.
                   </p>
                 </div>
 
-                <div className="space-y-3">
-                  {faqsData.map((faq, idx) => {
-                    const isOpen = openFaq === idx;
-                    return (
-                        <motion.div key={idx}
-                             className="bg-white border border-[#E6E8F5] rounded-2xl overflow-hidden transition-all duration-200">
-                          <button
-                              onClick={() => setOpenFaq(isOpen ? null : idx)}
-                              className="w-full flex items-center justify-between p-5 text-left font-bricolage-grotesque font-bold text-sm sm:text-base text-[#1E293B] hover:text-[#6557E3] transition-colors hover:bg-gray-50 focus:outline-none"
-                          >
-                            <span>{faq.q}</span>
-                            <svg
-                                className={`w-4 h-4 text-[#94A3B8] transform transition-transform duration-200 shrink-0 ml-4 ${isOpen ? 'rotate-180 text-[#6557E3]' : ''}`}
-                                fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24"
-                            >
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7"/>
-                            </svg>
-                          </button>
-
-                          <AnimatePresence initial={false}>
-                            {isOpen && (
-                              <motion.div
-                                initial={{ height: 0, opacity: 0 }}
-                                animate={{ height: "auto", opacity: 1 }}
-                                exit={{ height: 0, opacity: 0 }}
-                                transition={{ duration: 0.3, ease: "easeInOut" }}
-                                className="overflow-hidden border-t border-[#F1F1FD]"
-                              >
-                                <div className="p-5 text-xs sm:text-sm text-[#64748B] leading-relaxed bg-[#FAFAFD]/40">
-                                  {faq.a}
-                                </div>
-                              </motion.div>
-                            )}
-                          </AnimatePresence>
-                        </motion.div>
-                    );
-                  })}
-                </div>
-              </div>
-
-              {/* Right Column: Dynamic Cards Widget Column */}
-              <div className="lg:col-span-4 lg:sticky lg:top-6 space-y-4 lg:mt-16">
-
-                {/* Box 1: Support Channel */}
-                <motion.div whileHover={{ scale: 1.02 }} className="bg-[#0F172A] rounded-3xl p-6 text-white relative overflow-hidden shadow-sm">
-                  <div
-                      className="absolute -top-6 -right-6 w-28 h-28 rounded-full bg-[#6557E3] opacity-20 filter blur-xl"/>
-                  <div className="relative z-10 space-y-4">
-                    <div className="text-3xl">💬</div>
-                    <div>
-                      <h3 className="font-bricolage-grotesque text-base font-bold tracking-tight mb-1">
-                        Still Have Questions?
-                      </h3>
-                      <p className="text-xs text-slate-400 leading-relaxed">
-                        Our advisors are on WhatsApp Monday to Saturday. We typically respond within 60 minutes.
-                      </p>
-                    </div>
-                    <motion.a
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                        href="https://wa.me/447442586325?text=Hi+Cloud+Edge+Solutions"
-                        target="_blank"
-                        rel="noreferrer"
-                        className="flex items-center justify-center gap-2 w-full py-2.5 bg-[#25D366] text-white rounded-full text-xs font-bold transition-colors duration-150 hover:bg-[#20bd5a] shadow-sm"
-                    >
-                      {/* Embedded Whatsapp Vector */}
-                      <Image src={whatsapp} alt={"whatsapp-logo"} className={"w-5 h-5"}/>
-                      <span>Ask on WhatsApp</span>
-                    </motion.a>
-                  </div>
-                </motion.div>
-
-                {/* Box 2: Callout Voucher */}
-                <motion.div whileHover={{ scale: 1.02 }} className="bg-white border border-[#E6E8F5] rounded-3xl p-6 text-center space-y-3 shadow-sm">
-                  <div className="text-3xl">🎓</div>
-                  <div>
-                    <h4 className="font-bricolage-grotesque text-sm font-bold text-[#1E293B] mb-1">
-                      Free Demo Class
-                    </h4>
-                    <p className="text-xs text-[#64748B] leading-relaxed max-w-xs mx-auto">
-                      Attend a live session for free before you commit. No payment, no obligation.
-                    </p>
-                  </div>
-                  <motion.a
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      href="mailto:info@cloudedge.in?subject=Free Demo Class Request"
-                      className="inline-flex items-center justify-center gap-1.5 px-5 py-2 bg-[#0F172A] text-white rounded-full text-xs font-semibold transition-colors duration-150 hover:bg-slate-800"
-                  >
-                    <span>Book a Demo</span>
-                    <span>&rarr;</span>
-                  </motion.a>
-                </motion.div>
-
+                <a
+                  href="mailto:info@cloudedge.in?subject=Free Demo Class Request"
+                  className="inline-flex items-center justify-center gap-1.5 px-6 py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full text-xs font-bold transition-all duration-200 shadow-md hover:shadow-indigo-500/25"
+                >
+                  <span>Book a Demo</span>
+                  <ArrowRight size={14} />
+                </a>
               </div>
 
             </div>
+
           </div>
-        </motion.section>
+        </div>
+      </motion.section>
 
-        {/* 4. CTA BANNER BAND */}
-        <motion.section 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="py-20 bg-[#0F172A] relative overflow-hidden text-white border-t border-slate-800/60"
-        >
-          {/* Dynamic Ambient Glow Backdrops */}
-          <div
-              className="absolute top-[-20%] left-[-10%] w-[600px] h-[600px] rounded-full bg-[#6557E3] opacity-[0.15] filter blur-[120px] pointer-events-none"/>
-          <div
-              className="absolute bottom-[-20%] right-[-10%] w-[500px] h-[500px] rounded-full bg-[#32ADE6] opacity-[0.12] filter blur-[100px] pointer-events-none"/>
+      {/* 4. COMPACT CTA BANNER CARD */}
+      <section className="py-6 lg:py-8 container mx-auto px-4 sm:px-6">
+        <div className="rounded-[32px] bg-slate-950 border border-slate-800 p-8 sm:p-12 text-center text-white relative overflow-hidden shadow-2xl">
+          <div className="absolute -top-20 -left-20 w-80 h-80 rounded-full bg-indigo-600/20 blur-3xl pointer-events-none" />
+          <div className="absolute -bottom-20 -right-20 w-80 h-80 rounded-full bg-purple-600/20 blur-3xl pointer-events-none" />
 
-          <div className="container mx-auto px-4 sm:px-6 text-center relative z-10 max-w-3xl space-y-6">
-            {/* Optional Micro-Tag */}
-            <div
-                className="inline-flex items-center gap-2 bg-white/5 border border-white/10 px-4 py-1.5 rounded-full backdrop-blur-sm">
-              <span
-                  className="text-xs text-[#DDDFF5] font-semibold uppercase tracking-wider">Next Cohort Enrolling Now</span>
+          <div className="relative z-10 max-w-2xl mx-auto space-y-4">
+            <div className="inline-flex items-center gap-2 bg-white/10 border border-white/10 px-4 py-1 rounded-full backdrop-blur-md">
+              <span className="text-xs text-indigo-200 font-extrabold uppercase tracking-wider">Next Cohort Enrolling Now</span>
             </div>
 
-            <h2 className="font-bold text-3xl sm:text-4xl lg:text-5xl font-bricolage-grotesque tracking-tight text-white">
+            <h2 className="font-extrabold text-3xl sm:text-4xl font-bricolage-grotesque tracking-tight text-white leading-tight">
               Ready to Transform Your Career?
             </h2>
 
-            <p className="text-sm sm:text-base text-slate-400 leading-relaxed max-w-xl mx-auto">
-              Browse all 10 SAP and Salesforce courses, book a free demo session, or message us on WhatsApp for
-              personalised guidance.
+            <p className="text-xs sm:text-sm text-slate-400 leading-relaxed font-medium">
+              Browse all 10 SAP and Salesforce courses, book a free demo session, or message us on WhatsApp for personalised guidance.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-              <motion.a
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  href="/courses"
-                  className="w-full sm:w-auto px-8 py-3.5 bg-white text-[#0F172A] font-bold text-sm rounded-full shadow-lg hover:bg-slate-100 transition-colors duration-150 text-center"
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+              <Link
+                href="/courses"
+                className="w-full sm:w-auto px-8 py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs sm:text-sm rounded-full shadow-lg transition-all duration-200 text-center"
               >
-                Browse All Courses &rarr;
-              </motion.a>
+                Browse All Courses →
+              </Link>
 
-              <motion.a
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  href="https://wa.me/447442586325?text=Hi+Cloud+Edge+Solutions"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full sm:w-auto flex items-center justify-center gap-2.5 px-8 py-3.5 bg-slate-800/80 border border-slate-700/60 text-white font-bold text-sm rounded-full backdrop-blur-sm hover:bg-slate-800 hover:border-slate-600 transition-colors duration-150"
+              <a
+                href={getWhatsAppLink("Hi Cloud Edge Solutions, I would like to learn more.")}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm rounded-full shadow-lg transition-all duration-200 text-center"
               >
-                <svg className="w-4 h-4 fill-[#25D366]" viewBox="0 0 24 24">
-                  <path
-                      d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                </svg>
+                <MessageCircle size={16} />
                 <span>Chat on WhatsApp</span>
-              </motion.a>
+              </a>
             </div>
           </div>
-        </motion.section>
+        </div>
+      </section>
 
-      </div>
+    </div>
   );
 };
 

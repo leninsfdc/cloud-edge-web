@@ -1,5 +1,8 @@
+"use client";
+
 import { Check } from "lucide-react";
 import Link from "next/link";
+import { motion } from "framer-motion";
 
 const pricingPlans = [
   {
@@ -63,114 +66,135 @@ const pricingPlans = [
 
 export default function PricingSection() {
   return (
-    <section className="bg-[#f5f5f7] py-24">
-      <div className="mx-auto container mx-auto  px-6">
-        {/* Heading */}
-        <div className="mx-auto max-w-3xl text-center">
-          <p className="mb-3 text-xs font-bold uppercase tracking-[0.15em] text-primary">
-            Pricing
-          </p>
+    <section className="bg-slate-50/90 py-12 lg:py-16 relative overflow-hidden">
+      {/* Background Glows */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-indigo-200/20 rounded-full blur-3xl pointer-events-none" />
 
-          <h2 className="mb-5 text-4xl font-extrabold tracking-tight text-[#1d1d1f] md:text-5xl">
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+        {/* Heading */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mx-auto max-w-3xl text-center"
+        >
+          <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-indigo-200/80 bg-indigo-50/90 px-4 py-1.5 text-xs font-extrabold uppercase tracking-wider text-indigo-700 shadow-2xs">
+            Transparent Pricing
+          </div>
+
+          <h2 className="mb-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-slate-900 font-bricolage-grotesque">
             Transparent pricing. Flexible payment.
           </h2>
 
-          <p className="text-[15px] leading-8 text-[#6e6e73]">
-            All courses available in INR, GBP, USD and CAD. 0% EMI available on
-            every plan.
+          <p className="text-base sm:text-lg leading-relaxed text-slate-600 font-medium">
+            All courses available in INR, GBP, USD and CAD. 0% EMI available on every plan.
           </p>
-        </div>
+        </motion.div>
 
-        {/* Cards */}
-        <div className="mt-16 grid gap-8 lg:grid-cols-3">
-          {pricingPlans.map((plan) => (
-            <div
+        {/* Pricing Cards Grid */}
+        <div className="mt-16 grid gap-8 lg:grid-cols-3 items-stretch">
+          {pricingPlans.map((plan, index) => (
+            <motion.div
               key={plan.title}
-              className={`relative flex flex-col rounded-[32px] border p-8 transition-all duration-300 hover:-translate-y-1 ${
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
+              whileHover={{ y: -6, scale: 1.02 }}
+              className={`relative flex flex-col justify-between rounded-[32px] p-8 transition-all duration-300 ${
                 plan.featured
-                  ? "border-primary bg-primary text-white shadow-[0_20px_50px_rgba(134,94,245,.18)]"
-                  : "border-black/10 bg-white hover:border-primary/20 hover:shadow-[0_15px_40px_rgba(134,94,245,.08)]"
+                  ? "bg-gradient-to-br from-indigo-600 via-indigo-700 to-purple-700 text-white shadow-[0_25px_60px_rgba(99,102,241,0.25)] border border-indigo-400/40"
+                  : "bg-white/80 backdrop-blur-xl border border-slate-200/80 text-slate-900 shadow-[0_10px_30px_rgba(0,0,0,0.03)] hover:border-indigo-300 hover:shadow-xl"
               }`}
             >
-              {/* Badge */}
+              {/* Featured Badge */}
               {plan.featured && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-white px-4 py-2 text-xs font-bold uppercase tracking-wider text-primary shadow-md">
+                <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 rounded-full bg-white px-4 py-1 text-xs font-extrabold uppercase tracking-wider text-indigo-600 shadow-md border border-indigo-100">
                   Most Popular
                 </div>
               )}
 
-              <p
-                className={`text-xs font-bold uppercase tracking-[0.15em] ${
-                  plan.featured ? "text-white/80" : "text-primary"
-                }`}
-              >
-                {plan.tier}
-              </p>
+              <div>
+                <p
+                  className={`text-xs font-extrabold uppercase tracking-wider ${
+                    plan.featured ? "text-indigo-200" : "text-indigo-600"
+                  }`}
+                >
+                  {plan.tier}
+                </p>
 
-              <h3
-                className={`mt-3 text-2xl font-bold tracking-tight ${
-                  plan.featured ? "text-white" : "text-[#1d1d1f]"
-                }`}
-              >
-                {plan.title}
-              </h3>
+                <h3
+                  className={`mt-2 text-2xl font-extrabold tracking-tight font-bricolage-grotesque ${
+                    plan.featured ? "text-white" : "text-slate-900"
+                  }`}
+                >
+                  {plan.title}
+                </h3>
 
-              <div
-                className={`mt-5 text-4xl font-extrabold ${
-                  plan.featured ? "text-white" : "text-[#1d1d1f]"
-                }`}
-              >
-                {plan.price}
+                <div
+                  className={`mt-4 text-4xl font-extrabold font-bricolage-grotesque ${
+                    plan.featured ? "text-white" : "text-slate-900"
+                  }`}
+                >
+                  {plan.price}
+                </div>
+
+                <p
+                  className={`mt-1 text-xs font-medium ${
+                    plan.featured ? "text-white/70" : "text-slate-500"
+                  }`}
+                >
+                  {plan.note}
+                </p>
+
+                <p
+                  className={`mt-5 text-sm leading-relaxed font-medium ${
+                    plan.featured ? "text-white/85" : "text-slate-600"
+                  }`}
+                >
+                  {plan.description}
+                </p>
+
+                <div
+                  className={`my-6 border-t ${
+                    plan.featured ? "border-white/20" : "border-slate-100"
+                  }`}
+                />
+
+                {/* Features list */}
+                <ul className="space-y-3.5">
+                  {plan.features.map((feature) => (
+                    <li
+                      key={feature}
+                      className={`flex items-start gap-3 text-xs sm:text-sm font-medium ${
+                        plan.featured ? "text-white/90" : "text-slate-600"
+                      }`}
+                    >
+                      <div
+                        className={`w-5 h-5 rounded-full flex items-center justify-center shrink-0 mt-0.5 ${
+                          plan.featured
+                            ? "bg-white/20 text-white"
+                            : "bg-indigo-50 text-indigo-600 border border-indigo-100"
+                        }`}
+                      >
+                        <Check size={12} strokeWidth={3} />
+                      </div>
+                      <span>{feature}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
 
-              <p
-                className={`mt-2 text-sm ${
-                  plan.featured ? "text-white/70" : "text-[#86868b]"
-                }`}
-              >
-                {plan.note}
-              </p>
-
-              <p
-                className={`mt-6 text-sm leading-7 ${
-                  plan.featured ? "text-white/80" : "text-[#6e6e73]"
-                }`}
-              >
-                {plan.description}
-              </p>
-
-              <div
-                className={`my-8 border-t ${
-                  plan.featured ? "border-white/20" : "border-black/10"
-                }`}
-              />
-
-              {/* Features */}
-              <ul className="space-y-4">
-                {plan.features.map((feature) => (
-                  <li
-                    key={feature}
-                    className={`flex items-start gap-3 text-sm ${
-                      plan.featured ? "text-white/90" : "text-[#6e6e73]"
-                    }`}
-                  >
-                    <Check
-                      size={18}
-                      className={plan.featured ? "text-white" : "text-primary"}
-                    />
-                    {feature}
-                  </li>
-                ))}
-              </ul>
-
-              <div className="mt-10">
+              {/* Action Button */}
+              <div className="mt-8 pt-4">
                 {plan.buttonLink.startsWith("/") ? (
                   <Link
                     href={plan.buttonLink}
-                    className={`inline-flex w-full items-center justify-center rounded-full px-6 py-4 text-sm font-bold transition-all duration-300 hover:-translate-y-1 ${
+                    className={`inline-flex w-full items-center justify-center rounded-full px-6 py-4 text-sm font-bold shadow-md transition-all duration-300 transform hover:-translate-y-0.5 ${
                       plan.featured
-                        ? "bg-white text-primary"
-                        : "bg-primary text-white"
+                        ? "bg-white text-indigo-900 hover:bg-slate-100"
+                        : "bg-indigo-600 text-white hover:bg-indigo-700 shadow-indigo-500/20"
                     }`}
                   >
                     {plan.buttonText}
@@ -180,17 +204,17 @@ export default function PricingSection() {
                     href={plan.buttonLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`inline-flex w-full items-center justify-center rounded-full px-6 py-4 text-sm font-bold transition-all duration-300 hover:-translate-y-1 ${
+                    className={`inline-flex w-full items-center justify-center rounded-full px-6 py-4 text-sm font-bold shadow-md transition-all duration-300 transform hover:-translate-y-0.5 ${
                       plan.featured
-                        ? "bg-white text-primary"
-                        : "bg-primary text-white"
+                        ? "bg-white text-indigo-900 hover:bg-slate-100"
+                        : "bg-indigo-600 text-white hover:bg-indigo-700 shadow-indigo-500/20"
                     }`}
                   >
                     {plan.buttonText}
                   </a>
                 )}
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>

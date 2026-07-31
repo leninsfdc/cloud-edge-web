@@ -1,57 +1,67 @@
-import React from 'react';
-import Image from "next/image";
-import { Phone, Mail, Clock, ArrowRight } from "lucide-react";
+"use client";
 
-// ASSET IMPORTS
+import React from 'react';
+import { motion } from "framer-motion";
+import { Phone, Mail, Clock, ArrowRight, MessageCircle, Sparkles, ShieldCheck } from "lucide-react";
+
 import foundedIcon from "@/public/icons/foundedIcon.svg";
 import locationIcon from "@/public/icons/locationIcon.svg";
 import countriesIcon from "@/public/icons/countriesIcon.svg";
 import cpdIcon from "@/public/icons/cpdIcon.svg";
 import ContactHero from "@/public/images/contact-hero.png";
 
-import IN from "@/public/icons/IN.svg"
-import GB from "@/public/icons/GB.svg"
-import CA from "@/public/icons/CA.svg"
-import AE from "@/public/icons/AE.svg"
-import US from "@/public/icons/US.svg"
-import { MotionDiv } from "@/components/ui/MotionElements"
+import IN from "@/public/icons/IN.svg";
+import GB from "@/public/icons/GB.svg";
+import CA from "@/public/icons/CA.svg";
+import AE from "@/public/icons/AE.svg";
+import US from "@/public/icons/US.svg";
+import ResilientImage from "@/components/ui/ResilientImage";
+import { getWhatsAppLink } from "@/utils";
 
 const ContactHeroSection = () => {
-
-  const regions = [
-    { name: "India", flag: IN },
-    { name: "UK", flag: GB },
-    { name: "USA", flag: US },
-    { name: "Canada", flag: CA },
-    { name: "UAE", flag: AE },
+  const badges = [
+    'Reply in 60 minutes',
+    'Free demo class',
+    'No obligation',
+    '0% EMI available'
   ];
 
   return (
-    <div className="bg-[#EFEEFC] pb-16 overflow-hidden">
-      <div className="container mx-auto px-4 sm:px-6 pt-24 md:pt-32 pb-16">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-8">
+    <div className="relative bg-slate-50/90 pb-16 overflow-hidden">
+      {/* Ambient Glows */}
+      <div className="absolute -left-20 -top-40 h-[600px] w-[600px] rounded-full bg-indigo-500/15 blur-[140px] pointer-events-none" />
+      <div className="absolute -bottom-20 -right-20 h-[500px] w-[500px] rounded-full bg-purple-500/15 blur-[130px] pointer-events-none" />
+
+      {/* Mesh Pattern */}
+      <div
+        className="absolute inset-0 opacity-15 pointer-events-none"
+        style={{
+          backgroundImage: "radial-gradient(rgba(99,102,241,.15) 1px, transparent 1px)",
+          backgroundSize: "28px 28px",
+        }}
+      />
+
+      <div className="container mx-auto px-4 sm:px-6 pt-24 md:pt-32 pb-12 relative z-10">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-12 lg:gap-16">
 
           {/* LEFT CONTENT BLOCK */}
-          <MotionDiv
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
             className="space-y-6 order-1 lg:w-1/2 w-full"
           >
-
             {/* Status Badge */}
-            <div
-              className="bg-[#E3E1FA] rounded-full px-4 py-1.5 w-fit text-[#6557E3] text-xs font-semibold flex items-center justify-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#6557E3] animate-pulse" />
-              Get In Touch
+            <div className=" mt-5 bg-indigo-50/90 backdrop-blur-md border border-indigo-200/60 rounded-full px-4 py-1.5 w-fit text-indigo-700 text-xs font-extrabold flex items-center justify-center gap-2 shadow-2xs">
+              <Sparkles className="w-3.5 h-3.5 text-indigo-600" />
+              <span>Get In Touch • Fast Response</span>
             </div>
 
             {/* Typography Heading */}
             <div>
-              <h1 className="font-bold text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.1] max-w-xl text-slate-900">
+              <h1 className="font-extrabold text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[1.08] font-bricolage-grotesque text-slate-900">
                 We'd Love to{" "}
-                <span className="bg-gradient-to-r from-[#3275FC] to-[#7C6DFB] bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-teal-500 bg-clip-text text-transparent">
                   Hear From You
                 </span>
               </h1>
@@ -59,7 +69,7 @@ const ContactHeroSection = () => {
 
             {/* Body Copy Description */}
             <div>
-              <p className="text-[#4A5568] tracking-tight text-base sm:text-lg max-w-xl leading-relaxed">
+              <p className="text-slate-600 tracking-tight text-base sm:text-lg leading-relaxed max-w-xl font-medium">
                 Questions about a course, group corporate training, or unsure which SAP or Salesforce path suits you?
                 Our expert career advisors typically respond within 60 minutes on weekdays.
               </p>
@@ -67,10 +77,12 @@ const ContactHeroSection = () => {
 
             {/* Live Badging Matrix */}
             <div className="flex flex-wrap gap-2 pt-1 max-w-md">
-              {['Reply in 60 minutes', 'Free demo class', 'No obligation', '0% EMI available'].map((badge, idx) => (
-                <span key={idx}
-                  className="inline-flex items-center gap-2 text-xs font-medium text-slate-600 bg-white/80 border border-[#DDDFF5] px-3.5 py-1.5 rounded-full backdrop-blur-xs shadow-xs">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#4361EE]" />
+              {badges.map((badge, idx) => (
+                <span
+                  key={idx}
+                  className="inline-flex items-center gap-2 text-xs font-extrabold text-slate-700 bg-white/80 border border-slate-200/80 px-3.5 py-1.5 rounded-full backdrop-blur-md shadow-2xs"
+                >
+                  <ShieldCheck className="w-3.5 h-3.5 text-indigo-600" />
                   {badge}
                 </span>
               ))}
@@ -79,176 +91,86 @@ const ContactHeroSection = () => {
             {/* Immediate Action Buttons */}
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2">
               <a
-                href="https://wa.me/447442586325?text=Hi+Cloud+Edge+Solutions"
+                href={getWhatsAppLink("Hi Cloud Edge Solutions, I would like to talk to an advisor.")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-[#4361EE] px-7 py-4 rounded-full flex items-center justify-center gap-3 w-full sm:w-auto hover:bg-[#3652D1] transition-all shadow-md shadow-[#4361ee]/20 hover:shadow-lg transform hover:-translate-y-0.5 group"
+                className="bg-emerald-600 hover:bg-emerald-700 transition-colors duration-300 px-7 py-4 rounded-full flex items-center justify-center gap-2.5 w-full sm:w-auto shadow-lg hover:shadow-emerald-500/25 text-white font-bold text-sm transform hover:-translate-y-0.5"
               >
-                <span className="text-white font-semibold text-sm tracking-wide">
-                  Chat on WhatsApp
-                </span>
-                <ArrowRight className="w-4 h-4 text-white transform group-hover:translate-x-1 transition-transform" />
+                <MessageCircle size={18} />
+                <span>Chat on WhatsApp</span>
               </a>
 
               <a
                 href="mailto:info@cloudedge.in"
-                className="bg-white px-7 py-4 rounded-full flex items-center justify-center gap-2 border border-[#DDDFF5] w-full sm:w-auto hover:bg-slate-50 transition-all shadow-xs transform hover:-translate-y-0.5"
+                className="bg-indigo-600 hover:bg-indigo-700 transition-colors duration-300 px-7 py-4 rounded-full flex items-center justify-center gap-2.5 w-full sm:w-auto shadow-lg hover:shadow-indigo-500/25 text-white font-bold text-sm transform hover:-translate-y-0.5"
               >
-                <span className="text-[#1E293B] font-semibold text-sm tracking-wide">
-                  Email Advisors
-                </span>
+                <Mail size={18} />
+                <span>Email Advisors</span>
               </a>
             </div>
 
-            {/* Cleaned & Structured Metadata Channels */}
-            <div className="pt-6 border-t border-[#DDDFF5] max-w-xl space-y-4">
+            {/* Direct Line & Support Cards */}
+            <div className="pt-6 border-t border-slate-200/80 max-w-xl space-y-4">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-
                 {/* Voice Line Link card */}
-                <a href="tel:+447442586325"
-                  className="group flex items-center gap-3 bg-white/50 hover:bg-white border border-[#E6E8FA] rounded-2xl p-3 transition-all shadow-2xs">
-                  <div
-                    className="w-9 h-9 rounded-xl bg-white shadow-xs flex items-center justify-center text-slate-600 shrink-0 group-hover:scale-105 transition-transform border border-[#EFEEFC]">
-                    <Phone className="w-4 h-4 text-[#4361EE]" />
+                <a
+                  href="tel:+447442586325"
+                  className="group flex items-center gap-3 bg-white/80 hover:bg-white border border-slate-200/80 rounded-2xl p-3.5 transition-all shadow-2xs hover:border-indigo-300"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600 shrink-0 shadow-inner">
+                    <Phone className="w-4 h-4" />
                   </div>
                   <div>
-                    <p className="text-[10px] uppercase font-bold tracking-wider text-slate-400">Direct Line</p>
-                    <p className="text-sm font-semibold text-slate-800 tracking-tight">+44 744 258 6325</p>
+                    <p className="text-[10px] uppercase font-extrabold tracking-wider text-slate-400">Direct Line</p>
+                    <p className="text-sm font-extrabold text-slate-900 font-bricolage-grotesque">+44 744 258 6325</p>
                   </div>
                 </a>
 
                 {/* Mail inbox card */}
-                <a href="mailto:info@cloudedge.in"
-                  className="group flex items-center gap-3 bg-white/50 hover:bg-white border border-[#E6E8FA] rounded-2xl p-3 transition-all shadow-2xs">
-                  <div
-                    className="w-9 h-9 rounded-xl bg-white shadow-xs flex items-center justify-center text-slate-600 shrink-0 group-hover:scale-105 transition-transform border border-[#EFEEFC]">
-                    <Mail className="w-4 h-4 text-[#4361EE]" />
+                <a
+                  href="mailto:info@cloudedge.in"
+                  className="group flex items-center gap-3 bg-white/80 hover:bg-white border border-slate-200/80 rounded-2xl p-3.5 transition-all shadow-2xs hover:border-indigo-300"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600 shrink-0 shadow-inner">
+                    <Mail className="w-4 h-4" />
                   </div>
                   <div>
-                    <p className="text-[10px] uppercase font-bold tracking-wider text-slate-400">Support Mail</p>
-                    <p className="text-sm font-semibold text-slate-800 tracking-tight">info@cloudedge.in</p>
+                    <p className="text-[10px] uppercase font-extrabold tracking-wider text-slate-400">Support Mail</p>
+                    <p className="text-sm font-extrabold text-slate-900 font-bricolage-grotesque">info@cloudedge.in</p>
                   </div>
                 </a>
-
               </div>
 
               {/* Operating Timeline details */}
-              <div className="flex items-start gap-3 px-1">
-                <Clock className="w-4 h-4 text-slate-400 shrink-0 mt-0.5" />
-                <p className="text-xs font-medium text-slate-500 leading-normal">
-                  <span className="text-slate-700 font-semibold">Advisory Hours:</span> Mon–Sat 9 AM–7 PM
-                  BST &middot; Global student routing active.
-                </p>
-              </div>
-
-              {/* Regional Flag Pill Index */}
-              <div className="flex items-center gap-2 pt-1 flex-wrap pl-1">
-                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mr-1">Regions:</span>
-                {regions.map((country, idx) => (
-                  <span
-                    key={idx}
-                    className="flex items-center gap-2 text-xs font-semibold text-slate-600 bg-white/80 border border-[#E6E8FA] px-2.5 py-1 rounded-lg shadow-2xs"
-                  >
-                    <Image
-                      src={country.flag}
-                      alt={country.name}
-                      className="w-4 h-4"
-                    />
-                    {country.name}
-                  </span>
-                ))}
+              <div className="flex items-center gap-2.5 px-1 text-slate-500 text-xs font-medium">
+                <Clock className="w-4 h-4 text-indigo-600 shrink-0" />
+                <span>
+                  <strong className="text-slate-900 font-bold">Advisory Hours:</strong> Mon–Sat 9 AM–7 PM BST • Global student routing active.
+                </span>
               </div>
             </div>
+          </motion.div>
 
-        </MotionDiv>
+          {/* RIGHT HERO IMAGE */}
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="relative flex justify-center lg:justify-end order-2 lg:w-1/2 w-full"
+          >
+            <div className="relative w-full rounded-[32px] overflow-hidden border border-white/80 bg-white/60 backdrop-blur-xl p-3 shadow-[0_20px_50px_rgba(15,23,42,0.08)]">
+              <ResilientImage
+                src={ContactHero}
+                alt="Contact Cloud Edge Solutions"
+                className="w-full h-auto rounded-[24px] object-cover"
+                priority
+              />
+            </div>
+          </motion.div>
 
-        {/* RIGHT: HERO IMAGE FRAME */}
-        <MotionDiv
-          initial={{ opacity: 0, x: 30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="relative flex justify-center lg:justify-end order-2 lg:w-1/2 w-full pt-4 lg:pt-0"
-        >
-          {/* Ambient Background Glow Effect */}
-          <div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-[#4361EE] opacity-15 blur-3xl rounded-full pointer-events-none" />
-
-          {/* Image Container with Custom Float Animation */}
-          <div
-            className="relative w-full max-w-[480px] lg:max-w-[520px] xl:max-w-[560px] animate-[bounce_5s_infinite_ease-in-out]" style={{ animationDuration: '6s' }}>
-            <Image
-              src={ContactHero}
-              alt="Cloud Edge Contact Advisor Hero Representation"
-              priority
-              className="w-full h-auto object-contain drop-shadow-2xl selection:bg-transparent"
-            />
-          </div>
-        </MotionDiv>
-
+        </div>
       </div>
     </div>
-
-        {/* FOOTER CORE METRICS DISPLAY BLOCK */ }
-  <MotionDiv
-    initial={{ opacity: 0, y: 30 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.6 }}
-    className="mt-2 container mx-auto px-4 sm:px-6"
-  >
-    <div className="bg-white rounded-[20px] border border-[#DDDFF5] px-6 md:px-10 py-2 shadow-xs">
-      <div
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 divide-y sm:divide-y-0 lg:divide-x divide-[#E5E7EB]">
-
-        {/* Metric Unit 1: Avg Response */}
-        <div className="flex items-center gap-4 py-5 lg:px-6">
-          <div className="w-14 h-14 rounded-xl bg-[#EFEEFC] flex items-center justify-center shrink-0">
-            <Image src={foundedIcon} alt="Response Speed" className="w-7 h-7" />
-          </div>
-          <div>
-            <p className="text-xs text-[#94A3B8] font-medium mb-0.5">Response Rate</p>
-            <p className="text-[#6557E3] font-bold text-xl sm:text-2xl">&lt; 60 Min</p>
-          </div>
-        </div>
-
-        {/* Metric Unit 2: Location Support */}
-        <div className="flex items-center gap-4 py-5 lg:px-6">
-          <div className="w-14 h-14 rounded-xl bg-[#EFEEFC] flex items-center justify-center shrink-0">
-            <Image src={locationIcon} alt="Support Availability" className="w-7 h-7" />
-          </div>
-          <div>
-            <p className="text-xs text-[#94A3B8] font-medium mb-0.5">Availability</p>
-            <p className="text-[#6557E3] font-bold text-xl sm:text-2xl">Mon &ndash; Sat</p>
-          </div>
-        </div>
-
-        {/* Metric Unit 3: Global Students */}
-        <div className="flex items-center gap-4 py-5 lg:px-6">
-          <div className="w-14 h-14 rounded-xl bg-[#EFEEFC] flex items-center justify-center shrink-0">
-            <Image src={countriesIcon} alt="Enrolled Learners" className="w-7 h-7" />
-          </div>
-          <div>
-            <p className="text-xs text-[#94A3B8] font-medium mb-0.5">Global Alumni</p>
-            <p className="text-[#6557E3] font-bold text-xl sm:text-2xl">5,800+</p>
-          </div>
-        </div>
-
-        {/* Metric Unit 4: Certified Track */}
-        <div className="flex items-center gap-4 py-5 lg:px-6">
-          <div className="w-14 h-14 rounded-xl bg-[#EFEEFC] flex items-center justify-center shrink-0">
-            <Image src={cpdIcon} alt="Placement Track" className="w-7 h-7" />
-          </div>
-          <div>
-            <p className="text-xs text-[#94A3B8] font-medium mb-0.5">Placement</p>
-            <p className="text-[#6557E3] font-bold text-xl sm:text-2xl">94% Rate</p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </MotionDiv>
-      </div >
   );
 };
 

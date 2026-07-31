@@ -1,43 +1,61 @@
-import React from 'react';
-import Image from "next/image";
-import { MotionDiv, MotionSection } from '@/components/ui/MotionElements';
+"use client";
 
-// Reusing matching icons from your existing package structure
-import nextArrow from "@/public/icons/next-aroow.svg";
-import whatsappIcon from "@/public/icons/whatsapp-icon.svg";
-import whoWeAreIcon from "@/public/icons/who-we-are-icon.svg";
+import React from 'react';
+import { motion } from "framer-motion";
+import ResilientImage from "@/components/ui/ResilientImage";
+import { Sparkles, Calendar, Rocket, BookOpen, Globe2, Award, Zap, CheckCircle2 } from "lucide-react";
 import liveSession from "@/public/icons/live-session.svg";
 import instruction from "@/public/icons/instruction.svg";
 import cert from "@/public/icons/cert.svg";
 
 const timelineData = [
   {
-    year: "2019",
+    year: "2014",
+    tag: "INCEPTION",
     title: "Founded in London & Ahmedabad",
     description: "Launched with two Salesforce courses by working SAP and Salesforce consultants who saw that professionals in India and the UK had no access to live, affordable ERP training.",
-    badge: "🌟 First batch: 12 students",
-    isPrimary: true,
+    badge: "🌟 12 Initial Students",
+    metric: "2 Courses",
+    icon: Rocket,
+    gradient: "from-blue-500 to-indigo-600",
+    badgeBg: "bg-blue-50 text-blue-700 border-blue-200",
+    isHighlight: false,
   },
   {
     year: "2021",
+    tag: "EXPANSION",
     title: "Full SAP Curriculum Launched",
     description: "Added SAP FICO, MM and Basis aligned to official SAP certification exams — meeting rising demand from finance, supply chain and IT professionals across India and the UK.",
-    badge: "📚 3 SAP courses added",
-    isPrimary: false,
+    badge: "📚 3 SAP Modules Added",
+    metric: "5+ Programs",
+    icon: BookOpen,
+    gradient: "from-indigo-500 to-purple-600",
+    badgeBg: "bg-indigo-50 text-indigo-700 border-indigo-200",
+    isHighlight: false,
   },
   {
     year: "2023",
+    tag: "GLOBAL SCALE",
     title: "2,000 Graduates & Truly Global",
     description: "Crossed 2,000 completions with students from UAE, USA, Canada and Australia joining the same live classrooms. Launched SAP ABAP and SAP SuccessFactors HCM.",
-    badge: "🌏 Students in 12+ countries",
-    isPrimary: false,
+    badge: "🌏 12+ Countries Enrolled",
+    metric: "2,000+ Alumni",
+    icon: Globe2,
+    gradient: "from-purple-500 to-cyan-600",
+    badgeBg: "bg-purple-50 text-purple-700 border-purple-200",
+    isHighlight: false,
   },
   {
-    year: "2025",
+    year: "2025+",
+    tag: "TIER-1 ECOSYSTEM",
     title: "5,800+ Students & Still Growing",
-    description: "10 certification courses, 94% placement rate, and a global community at Deloitte, Accenture, TCS, Infosys, Wipro and Capgemini. ADM-201, PD1, C_TS4FI_2023 and C_THR81_2311 students certifying every week.",
-    badge: "⚡ 94% placement rate",
-    isPrimary: true,
+    description: "10 certification courses, 94% placement rate, and a global community at Deloitte, Accenture, TCS, Infosys, Wipro and Capgemini certifying every single week.",
+    badge: "⚡ 94% Placement Rate",
+    metric: "5,800+ Certified",
+    icon: Award,
+    gradient: "from-indigo-600 via-purple-600 to-teal-500",
+    badgeBg: "bg-emerald-50 text-emerald-700 border-emerald-200",
+    isHighlight: true,
   },
 ];
 
@@ -46,194 +64,208 @@ const differentiators = [
     icon: liveSession,
     title: "Live Online — Every Single Session",
     description: "No pre-recorded videos. Every class is live on Zoom with your instructor, your cohort and real SAP or Salesforce system access from day one.",
-    borderTopColor: "border-t-[#4361EE]"
+    tag: "100% LIVE INTERACTIVE",
+    accentGlow: "group-hover:border-indigo-400/80",
+    badgeBg: "bg-indigo-50 text-indigo-700 border-indigo-100",
+    iconBg: "bg-indigo-500/10 text-indigo-600 border-indigo-200/60"
   },
   {
     icon: instruction,
     title: "Instructors Who Work in the Field",
     description: "Every instructor is an active SAP or Salesforce consultant with 8–14 years of real project experience at Deloitte, Accenture, IBM, TCS and Capgemini.",
-    borderTopColor: "border-t-[#6557E3]"
+    tag: "ACTIVE PRACTITIONERS",
+    accentGlow: "group-hover:border-purple-400/80",
+    badgeBg: "bg-purple-50 text-purple-700 border-purple-100",
+    iconBg: "bg-purple-500/10 text-purple-600 border-purple-200/60"
   },
   {
     icon: cert,
     title: "Certification & Placement Built In",
     description: "3 full mock exams, exam strategy coaching and 12-month placement support are included in every course. 94% of active job seekers placed within 6 months.",
-    borderTopColor: "border-t-[#14B88A]"
+    tag: "GUARANTEED ROADMAP",
+    accentGlow: "group-hover:border-emerald-400/80",
+    badgeBg: "bg-emerald-50 text-emerald-700 border-emerald-100",
+    iconBg: "bg-emerald-500/10 text-emerald-600 border-emerald-200/60"
   }
-];
-
-// Array renamed correctly to clear the TypeScript error
-const accreditations = [
-  "CPD Accredited",
-  "ISO 9001",
-  "SAP Curriculum Aligned",
-  "Salesforce Aligned"
 ];
 
 const OurStoryAndMissionSections = () => {
   return (
-      <div className="bg-white">
-        {/* SECTION 1: OUR STORY (TIMELINE) */}
-        <MotionSection 
-          initial={{ opacity: 0, y: 30 }}
+    <section className="bg-slate-50/90 py-16 lg:py-20 relative overflow-hidden">
+      {/* Background Glow Orbs */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[500px] bg-indigo-500/10 rounded-full blur-[140px] pointer-events-none" />
+      <div className="absolute bottom-10 right-10 w-[450px] h-[450px] bg-purple-500/10 rounded-full blur-[120px] pointer-events-none" />
+
+      {/* Grid pattern overlay */}
+      <div
+        className="absolute inset-0 opacity-15 pointer-events-none"
+        style={{
+          backgroundImage: "radial-gradient(rgba(99,102,241,.15) 1px, transparent 1px)",
+          backgroundSize: "32px 32px",
+        }}
+      />
+
+      <div className="container mx-auto px-4 sm:px-6 relative z-10">
+
+        {/* SECTION HEADER */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="bg-gradient-to-b from-[#EFEEFC] to-white pt-20 pb-16 overflow-hidden relative"
+          transition={{ duration: 0.5 }}
+          className="text-center max-w-3xl mx-auto mb-16 space-y-4"
         >
-          {/* Decorative Blurred Circle Background */}
-          <div className="absolute top-0 left-1/3 w-[400px] h-[300px] rounded-full bg-[#6557E3] opacity-10 blur-[100px] pointer-events-none" />
-
-          <div className="container mx-auto px-4 sm:px-6">
-            {/* Section Header */}
-            <div className="mb-14 text-center lg:text-left">
-              <div className="inline-flex items-center gap-2 bg-[#E3E1FA] border border-[#E0E7FF] px-4 py-2 rounded-full mb-4">
-                <span className="text-xs text-[#6557E3] font-semibold tracking-wider uppercase">Our Story</span>
-              </div>
-              <h2 className="font-bold text-3xl sm:text-4xl lg:text-5xl font-bricolage-grotesque tracking-tight leading-tight text-[#1E293B]">
-                From 2 courses to 5,800+ professionals <br />
-                <span className="text-[#64748B]">trained across 15 countries</span>
-              </h2>
-            </div>
-
-            {/* Horizontal Timeline Container */}
-            <div className="relative">
-              {/* Connecting Timeline Line */}
-              <div className="hidden lg:block absolute top-[28px] left-0 right-0 h-[2px] bg-[#DDDFF5]" />
-
-              {/* Timeline Responsive Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                {timelineData.map((item, index) => (
-                    <MotionDiv 
-                      key={index} 
-                      whileHover={{ scale: 1.02 }}
-                      className="flex flex-col gap-5 pb-6 relative group transition-transform"
-                    >
-                      {/* Year Node */}
-                      <div className="flex items-center gap-3 relative z-10">
-                        <div className={`w-14 h-14 rounded-full flex items-center justify-center font-bricolage-grotesque text-sm font-extrabold shadow-sm border-4 border-white transition-all duration-300
-                      ${item.isPrimary
-                            ? "bg-[#6557E3] text-white"
-                            : "bg-[#FAFAFD] text-[#6557E3] border-[#DDDFF5] group-hover:bg-[#6557E3] group-hover:text-white group-hover:border-white"
-                        }`}
-                        >
-                          {item.year}
-                        </div>
-                        {/* Tiny connecting bridge for mobile layouts */}
-                        <div className="lg:hidden flex-1 h-[1px] bg-[#DDDFF5]" />
-                      </div>
-
-                      {/* Content */}
-                      <div className="flex flex-col flex-1">
-                        <h3 className="font-bricolage-grotesque text-lg font-bold text-[#1E293B] mb-2 leading-snug">
-                          {item.title}
-                        </h3>
-                        <p className="text-sm text-[#64748B] leading-relaxed mb-4">
-                          {item.description}
-                        </p>
-
-                        {/* Metric Badge */}
-                        <div className={`mt-auto inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold w-fit
-                      ${item.isPrimary
-                            ? "bg-[#EFEEFC] border border-[#DDDFF5] text-[#6557E3]"
-                            : "bg-[#FAFAFD] border border-[#E6E8F5] text-[#64748B] transition-colors duration-300 group-hover:bg-[#EFEEFC] group-hover:text-[#6557E3]"
-                        }`}
-                        >
-                          {item.badge}
-                        </div>
-                      </div>
-                    </MotionDiv>
-                ))}
-              </div>
-            </div>
+          <div className="inline-flex items-center gap-2 bg-indigo-50/90 border border-indigo-200/80 px-4 py-1.5 rounded-full shadow-2xs">
+            <Sparkles className="w-3.5 h-3.5 text-indigo-600" />
+            <span className="text-xs text-indigo-700 font-extrabold tracking-wider uppercase">Our Evolution Story</span>
           </div>
-        </MotionSection>
 
-        {/* SECTION 2: OUR MISSION */}
-        <MotionSection 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="py-16 bg-white border-t border-[#F1F1FD]"
-        >
-          <div className="container mx-auto px-4 sm:px-6">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+          <h2 className="font-extrabold text-3xl sm:text-4xl lg:text-5xl font-bricolage-grotesque tracking-tight leading-tight text-slate-900">
+            From 2 courses in 2014 to <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-teal-500 bg-clip-text text-transparent">5,800+ professionals</span> worldwide
+          </h2>
 
-              {/* Left Content Column */}
-              <div className="space-y-6">
-                <div className="inline-flex items-center gap-2 bg-[#F1F1FD] border border-[#E0E7FF] px-4 py-2 rounded-full">
-                  <Image src={whoWeAreIcon} alt="Who We Are" className="w-4 h-4"/>
-                  <span className="text-xs text-[#8B79FD] font-semibold uppercase tracking-wider">Our Mission</span>
-                </div>
+          <p className="text-base sm:text-lg text-slate-600 font-medium max-w-2xl mx-auto leading-relaxed">
+            Follow our decade-long journey of democratizing practical, high-impact SAP & Salesforce education across 15+ countries.
+          </p>
+        </motion.div>
 
-                <h2 className="font-bold text-3xl sm:text-4xl lg:text-5xl font-bricolage-grotesque tracking-tight text-[#1E293B] leading-tight">
-                  Closing the Gap Between Learning and Employment
-                </h2>
+        {/* INTERACTIVE TIMELINE ROADMAP */}
+        <div className="relative mb-20">
+          
+          {/* Connecting Track Line for Desktop */}
+          <div className="hidden lg:block absolute top-[44px] left-[10%] right-[10%] h-1 bg-gradient-to-r from-blue-400 via-indigo-500 via-purple-500 to-emerald-500 rounded-full z-0 opacity-40" />
 
-                <p className="text-base sm:text-lg text-[#64748B] leading-relaxed">
-                  Cloud Edge exists to make career transformation in SAP and Salesforce genuinely accessible — live, practical and taught by people who use these platforms in client engagements every single day.
-                </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-6 relative z-10">
+            {timelineData.map((item, idx) => {
+              const IconComp = item.icon;
 
-                {/* Pull Quote Card */}
-                <MotionDiv 
-                  whileHover={{ x: 5 }} 
-                  className="bg-[#FAFAFD] border-l-4 border-[#6557E3] rounded-r-2xl p-5 shadow-sm space-y-2 transition-transform"
+              return (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 25 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: idx * 0.12 }}
+                  whileHover={{ y: -8, scale: 1.02 }}
+                  className={`group relative rounded-[30px] p-6 sm:p-7 transition-all duration-300 flex flex-col justify-between ${
+                    item.isHighlight
+                      ? "bg-slate-950 text-white border border-slate-800 shadow-2xl shadow-indigo-950/40"
+                      : "bg-white/80 backdrop-blur-xl border border-slate-200/80 hover:border-indigo-300 shadow-[0_10px_30px_rgba(15,23,42,0.04)] hover:shadow-xl"
+                  }`}
                 >
-                  <p className="text-base text-[#1E293B] font-semibold italic leading-relaxed">
-                    &ldquo;What does this student need to know to get hired and succeed in the role?&rdquo;
-                  </p>
-                  <footer className="text-xs text-[#94A3B8] font-medium tracking-wide uppercase">
-                    The question every Cloud Edge course is designed to answer
-                  </footer>
-                </MotionDiv>
-
-                {/* Accreditations Layout */}
-                <div className="pt-2">
-                  <div className="flex flex-wrap gap-2">
-                    {accreditations.map((text, idx) => (
-                        <span key={idx} className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-[#FAFAFD] border border-[#DDE3F5] rounded-full text-xs font-bold text-[#1E293B] hover:shadow-sm hover:-translate-y-0.5 transition-transform">
-                      <svg className="w-3 h-3 text-[#14B88A]" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
-                      </svg>
-                          {text}
-                    </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Right Pillars/Differentiators Column */}
-              <div className="flex flex-col gap-4 w-full">
-                {differentiators.map((item, index) => (
-                    <MotionDiv
-                        key={index}
-                        whileHover={{ y: -5, scale: 1.02, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1)" }}
-                        className={`bg-[#FAFAFD] border border-[#E6E8F5] ${item.borderTopColor} border-t-[3px] rounded-2xl p-6 transition-all duration-300`}
-                    >
-                      <div className="flex items-center gap-4 mb-3">
-                        <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#ECEAFC] shrink-0">
-                          <Image
-                              src={item.icon}
-                              alt={item.title}
-                              className="h-6 w-6"
-                          />
-                        </div>
-                        <h3 className="text-lg font-bricolage-grotesque font-bold text-[#1E293B] tracking-tight">
-                          {item.title}
-                        </h3>
+                  {/* Top Badge & Year Circle Node */}
+                  <div>
+                    <div className="flex items-center justify-between mb-5">
+                      <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${item.gradient} text-white flex items-center justify-center font-extrabold text-lg shadow-md group-hover:scale-110 transition-transform duration-300`}>
+                        <IconComp size={22} />
                       </div>
-                      <p className="text-sm leading-relaxed text-[#64748B] pl-0 sm:pl-16">
-                        {item.description}
-                      </p>
-                    </MotionDiv>
-                ))}
-              </div>
 
-            </div>
+                      <span className={`text-[10px] font-extrabold uppercase tracking-wider px-3 py-1 rounded-full border ${item.badgeBg}`}>
+                        {item.tag}
+                      </span>
+                    </div>
+
+                    {/* Year Headline */}
+                    <div className="flex items-baseline gap-2 mb-2">
+                      <span className={`font-bricolage-grotesque text-3xl font-extrabold ${item.isHighlight ? "text-white" : "text-indigo-600"}`}>
+                        {item.year}
+                      </span>
+                      <span className={`text-xs font-bold ${item.isHighlight ? "text-indigo-300" : "text-slate-400"}`}>
+                        • {item.metric}
+                      </span>
+                    </div>
+
+                    {/* Milestone Title */}
+                    <h3 className={`font-bricolage-grotesque text-lg font-bold mb-3 leading-snug ${item.isHighlight ? "text-white" : "text-slate-900"}`}>
+                      {item.title}
+                    </h3>
+
+                    {/* Milestone Description */}
+                    <p className={`text-xs sm:text-sm leading-relaxed font-medium mb-6 ${item.isHighlight ? "text-slate-300" : "text-slate-600"}`}>
+                      {item.description}
+                    </p>
+                  </div>
+
+                  {/* Bottom Milestone Badge */}
+                  <div className="pt-3 border-t border-slate-100 dark:border-slate-800/80">
+                    <span className={`inline-flex items-center gap-1.5 text-xs font-extrabold rounded-full px-3 py-1 ${
+                      item.isHighlight
+                        ? "bg-white/10 text-emerald-300 border border-white/10"
+                        : "bg-slate-50 text-slate-700 border border-slate-200/80"
+                    }`}>
+                      <CheckCircle2 size={13} className={item.isHighlight ? "text-emerald-400" : "text-indigo-600"} />
+                      <span>{item.badge}</span>
+                    </span>
+                  </div>
+
+                </motion.div>
+              );
+            })}
           </div>
-        </MotionSection>
+
+        </div>
+
+        {/* THREE CORE PRINCIPLES SECTION */}
+        <div className="pt-6">
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center max-w-2xl mx-auto mb-12 space-y-3"
+          >
+            <div className="inline-flex items-center gap-2 bg-indigo-50/90 border border-indigo-200/80 px-4 py-1.5 rounded-full shadow-2xs">
+              <span className="text-xs text-indigo-700 font-extrabold tracking-wider uppercase">What Sets Us Apart</span>
+            </div>
+            <h3 className="font-extrabold text-2xl sm:text-3xl lg:text-4xl font-bricolage-grotesque text-slate-900 leading-tight">
+              Built on Three Uncompromising Core Principles
+            </h3>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {differentiators.map((diff, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: idx * 0.1 }}
+                whileHover={{ y: -6, scale: 1.02 }}
+                className={`group rounded-[30px] border border-slate-200/80 bg-white/80 backdrop-blur-xl p-7 sm:p-8 shadow-[0_10px_30px_rgba(15,23,42,0.03)] hover:shadow-2xl ${diff.accentGlow} transition-all duration-300 flex flex-col justify-between`}
+              >
+                <div>
+                  <div className="flex items-center justify-between gap-2 mb-5">
+                    <div className={`w-14 h-14 rounded-2xl border flex items-center justify-center shadow-inner ${diff.iconBg}`}>
+                      <ResilientImage
+                        src={diff.icon}
+                        fallbackSrc={diff.icon}
+                        alt={diff.title}
+                        className="h-7 w-7"
+                      />
+                    </div>
+
+                    <span className={`text-[10px] font-extrabold uppercase tracking-wider px-3 py-1 rounded-full border ${diff.badgeBg}`}>
+                      {diff.tag}
+                    </span>
+                  </div>
+
+                  <h4 className="font-bricolage-grotesque text-xl font-extrabold text-slate-900 mb-3 leading-snug">
+                    {diff.title}
+                  </h4>
+
+                  <p className="text-xs sm:text-sm leading-relaxed text-slate-600 font-medium">
+                    {diff.description}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+        </div>
+
       </div>
+    </section>
   );
 };
 

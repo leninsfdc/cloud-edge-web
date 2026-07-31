@@ -7,6 +7,7 @@ import Slider from "react-slick";
 import { motion } from "framer-motion";
 
 import PrimaryButton from "@/components/ui/PrimaryButton";
+import TrustBadges from "@/components/ui/TrustBadges";
 import {getBanners} from "@/app/(asgard)/asgard/content/banners/actions";
 
 import heroImage from "@/public/images/hero-image.png";
@@ -113,7 +114,10 @@ const HeroSection = () => {
                             initial={{ opacity: 0, y: 30 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.6 }}
-                            className="flex items-center justify-center flex-col gap-8 md:gap-12 pt-28 md:pt-32 pb-72 sm:pb-80 md:pb-[420px]">
+                            className="flex items-center justify-center flex-col gap-4 sm:gap-5 md:gap-6 pt-36 sm:pt-40 md:pt-44 pb-64 sm:pb-72 md:pb-[400px]">
+                          <div className="mb-2 sm:mb-3">
+                            <TrustBadges unified={true} />
+                          </div>
                           <h1 className="text-[42px] sm:text-[58px] lg:text-[82px] font-bold leading-[1.05] lg:leading-24 text-black text-center">
                             {before.split('\n').map((line: string, i: number, arr: string[]) => (
                                 <React.Fragment key={`before-${i}`}>

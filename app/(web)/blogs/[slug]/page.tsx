@@ -51,6 +51,7 @@ const Page = async ({ params }: Props) => {
     const { slug } = await params;
 
     const blogData = await getBlogBySlug(slug);
+    console.log("Blog API Data (Server):", blogData);
 
     return <BlogDetailsContainer blogData={blogData} />;
 };

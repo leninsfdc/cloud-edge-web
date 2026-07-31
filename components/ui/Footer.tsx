@@ -19,6 +19,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { motion } from "framer-motion";
+import TrustBadges from "@/components/ui/TrustBadges";
 
 const Footer = () => {
   const pathname = usePathname();
@@ -245,8 +246,16 @@ const Footer = () => {
               </div>
             </div>
 
+            {/* Trust Ratings Bar */}
+            <div className="mt-10 pt-6 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
+              <span className="text-xs text-white/70 font-medium">
+                Top Rated IT Training Center — Trusted by 5,000+ Alumni Worldwide
+              </span>
+              <TrustBadges theme="dark" />
+            </div>
+
             {/* Divider */}
-            <div className="my-8 h-px w-full bg-white/10" />
+            <div className="my-6 h-px w-full bg-white/10" />
 
             {/* BOTTOM */}
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4">

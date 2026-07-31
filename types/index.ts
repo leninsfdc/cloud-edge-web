@@ -116,7 +116,7 @@ export interface IBatchRegion {
   batches?: IBatches;
 }
 
-export  interface  IBlogs {
+export interface IBlogs {
   id?: string
   title?: string
   description?: string
@@ -124,6 +124,11 @@ export  interface  IBlogs {
   media_url?: string
   tags?: string[]
   created_at?: Date
+  author_name?: string
+  author_role?: string
+  author_image?: string
+  author_bio?: string
+  read_time?: string
 }
 
 export  interface  IResponse {
