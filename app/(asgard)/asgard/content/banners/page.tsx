@@ -1,3 +1,7 @@
+import { Metadata } from 'next';
+export const metadata: Metadata = {
+  robots: { index: false, follow: false }
+};
 import { getBanners } from "./actions";
 import BannerContainer from "@/containers/asgard/content/banners/BannerContainer";
 

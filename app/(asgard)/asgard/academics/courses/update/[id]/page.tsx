@@ -1,3 +1,7 @@
+import { Metadata } from 'next';
+export const metadata: Metadata = {
+  robots: { index: false, follow: false }
+};
 import { getCourseById, getCourses } from '../../actions';
 import CreateUpdateCourseContainer from '@/containers/asgard/academics/CreateUpdateCourseContainer';
 import React from 'react';

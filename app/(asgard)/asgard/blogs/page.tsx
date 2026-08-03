@@ -1,3 +1,7 @@
+import { Metadata } from 'next';
+export const metadata: Metadata = {
+  robots: { index: false, follow: false }
+};
 import React from 'react'
 import BlogContainer from "@/containers/asgard/blogs/BlogContainer";
 import {getBlogs} from "@/app/(asgard)/asgard/blogs/actions";
