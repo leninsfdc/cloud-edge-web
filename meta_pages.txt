@@ -1,0 +1,8 @@
+app/(web)/about-us/page.tsx
+app/(web)/blogs/[slug]/page.tsx
+app/(web)/blogs/page.tsx
+app/(web)/contact-us/page.tsx
+app/(web)/courses/[slug]/page.tsx
+app/(web)/courses/page.tsx
+app/(web)/page.tsx
+app/layout.tsx
