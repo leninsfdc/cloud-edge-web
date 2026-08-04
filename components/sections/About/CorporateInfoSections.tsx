@@ -3,6 +3,7 @@ import React from 'react';
 import { MotionDiv, MotionSection } from '@/components/ui/MotionElements';
 import ResilientImage from '@/components/ui/ResilientImage';
 import { Sparkles, Star } from 'lucide-react';
+import { getInstructures } from "@/app/(asgard)/asgard/content/instructures/actions";
 
 // DATA STRUCTURES
 const principles = [
@@ -62,32 +63,6 @@ const principles = [
   }
 ];
 
-const instructors = [
-  {
-    name: "Arun Reddy",
-    role: "Lead SAP FICO Instructor",
-    meta: "12 years · Deloitte · Infosys",
-    bio: "12 years of SAP FICO consulting across BFSI, manufacturing and retail. Delivered S/4HANA Finance implementations at Deloitte. Certified in SAP S/4HANA Finance and Controlling.",
-    tags: ["SAP FICO", "S/4HANA", "Controlling"],
-    color: "bg-indigo-600"
-  },
-  {
-    name: "Sunita Kapoor",
-    role: "SAP MM & Basis Instructor",
-    meta: "10 years · IBM · Accenture",
-    bio: "10 years in SAP Supply Chain and Basis administration across FMCG, oil & gas and pharmaceuticals in the UK and India. Former SAP consultant at IBM and Accenture.",
-    tags: ["SAP MM", "SAP Basis", "S/4HANA"],
-    color: "bg-cyan-600"
-  },
-  {
-    name: "Vikram Malhotra",
-    role: "Lead Salesforce Instructor",
-    meta: "9 years · Salesforce · Wipro",
-    bio: "9 years in Salesforce ecosystem. Architected multi-cloud implementations for financial services and healthcare clients. Certified Administrator (ADM-201) and Platform Developer I (PD1).",
-    tags: ["Salesforce Admin", "PD1", "LWC"],
-    color: "bg-purple-600"
-  }
-];
 
 const industries = [
   {
@@ -147,7 +122,10 @@ const industries = [
 ];
 
 const CorporateInfoSections: React.FC = async () => {
+  // const featuredTestimonials = await getFeaturedTestimonials();
   const featuredTestimonials = await getFeaturedTestimonials();
+
+  const { data: instructors } = await getInstructures(1, 20);
 
   const getInitials = (name: string) =>
     name
@@ -160,11 +138,11 @@ const CorporateInfoSections: React.FC = async () => {
     <div className="bg-slate-50/90">
 
       {/* 1. VALUES SECTION */}
-      <MotionSection 
-        initial={{ opacity: 0, y: 30 }} 
-        whileInView={{ opacity: 1, y: 0 }} 
-        viewport={{ once: true }} 
-        transition={{ duration: 0.6 }} 
+      <MotionSection
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
         className="py-12 lg:py-16 relative overflow-hidden"
       >
         <div className="container mx-auto px-4 sm:px-6 relative z-10">
@@ -180,8 +158,8 @@ const CorporateInfoSections: React.FC = async () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {principles.map((item, index) => (
-              <MotionDiv 
-                key={index} 
+              <MotionDiv
+                key={index}
                 whileHover={{ y: -5, scale: 1.02 }}
                 className="bg-white/80 backdrop-blur-xl border border-slate-200/80 rounded-[28px] p-7 shadow-[0_10px_30px_rgba(15,23,42,0.03)] hover:shadow-xl hover:border-indigo-300 transition-all duration-300 flex flex-col justify-between"
               >
@@ -203,11 +181,11 @@ const CorporateInfoSections: React.FC = async () => {
       </MotionSection>
 
       {/* 2. INSTRUCTORS SECTION */}
-      <MotionSection 
-        initial={{ opacity: 0, y: 30 }} 
-        whileInView={{ opacity: 1, y: 0 }} 
-        viewport={{ once: true }} 
-        transition={{ duration: 0.6 }} 
+      <MotionSection
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
         className="py-12 lg:py-16 relative overflow-hidden"
       >
         <div className="container mx-auto px-4 sm:px-6 relative z-10">
@@ -224,7 +202,7 @@ const CorporateInfoSections: React.FC = async () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {instructors.map((instructor, idx) => (
+            {/* {instructors.map((instructor, idx) => (
               <MotionDiv 
                 key={idx} 
                 whileHover={{ y: -5, scale: 1.02 }}
@@ -255,17 +233,78 @@ const CorporateInfoSections: React.FC = async () => {
                   ))}
                 </div>
               </MotionDiv>
+            ))} */}
+            {instructors.map((instructor) => (
+              <MotionDiv
+                key={instructor.id}
+                whileHover={{ y: -5, scale: 1.02 }}
+                className="bg-white/80 backdrop-blur-xl border border-slate-200/80 rounded-[28px] p-7 shadow-[0_10px_30px_rgba(15,23,42,0.03)] hover:shadow-xl hover:border-indigo-300 transition-all duration-300 flex flex-col justify-between"
+              >
+                <div>
+                  <div className="flex items-center gap-4 mb-4">
+                    {instructor.profile_pic ? (
+                      <ResilientImage
+                        src={instructor.profile_pic}
+                        alt={instructor.name}
+                        className="w-14 h-14 rounded-2xl object-cover shrink-0"
+                      />
+                    ) : (
+                      <div className="w-14 h-14 rounded-2xl bg-indigo-600 flex items-center justify-center text-white font-bold shrink-0">
+                        {getInitials(instructor.name)}
+                      </div>
+                    )}
+
+                    <div>
+                      <h3 className="font-bricolage-grotesque text-base font-bold text-slate-900">
+                        {instructor.name}
+                      </h3>
+
+                      <div className="text-xs text-indigo-600 font-bold">
+                        {instructor.designation}
+                      </div>
+
+                      <div className="text-[11px] text-slate-400 font-semibold mt-0.5">
+                        {instructor.years_of_experience} Years
+                      </div>
+                    </div>
+                  </div>
+
+                  <p className="text-xs sm:text-sm leading-relaxed text-slate-600 font-medium mb-5">
+                    {instructor.description}
+                  </p>
+                </div>
+
+                <div className="border-t border-slate-100 pt-4">
+                  {instructor.past_companies?.length > 0 && (
+                    <p className="text-xs text-slate-500 mb-3">
+                      <span className="font-semibold">Past Companies:</span>{" "}
+                      {instructor.past_companies.join(", ")}
+                    </p>
+                  )}
+
+                  <div className="flex flex-wrap gap-1.5">
+                    {instructor.tags?.map((tag: string) => (
+                      <span
+                        key={tag}
+                        className="text-[10px] font-extrabold uppercase tracking-wider bg-slate-50 border border-slate-200/80 text-slate-700 px-2.5 py-1 rounded-md"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </MotionDiv>
             ))}
           </div>
         </div>
       </MotionSection>
 
       {/* 3. TESTIMONIALS SECTION */}
-      <MotionSection 
-        initial={{ opacity: 0, y: 30 }} 
-        whileInView={{ opacity: 1, y: 0 }} 
-        viewport={{ once: true }} 
-        transition={{ duration: 0.6 }} 
+      <MotionSection
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
         className="py-12 lg:py-16 relative overflow-hidden"
       >
         <div className="container mx-auto px-4 sm:px-6 relative z-10">
@@ -326,11 +365,11 @@ const CorporateInfoSections: React.FC = async () => {
       </MotionSection>
 
       {/* 4. INDUSTRIES SECTION */}
-      <MotionSection 
-        initial={{ opacity: 0, y: 30 }} 
-        whileInView={{ opacity: 1, y: 0 }} 
-        viewport={{ once: true }} 
-        transition={{ duration: 0.6 }} 
+      <MotionSection
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
         className="py-12 lg:py-16 relative overflow-hidden"
       >
         <div className="container mx-auto px-4 sm:px-6 relative z-10">
@@ -345,8 +384,8 @@ const CorporateInfoSections: React.FC = async () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {industries.map((ind, idx) => (
-              <MotionDiv 
-                key={idx} 
+              <MotionDiv
+                key={idx}
                 whileHover={{ y: -5, scale: 1.02 }}
                 className="bg-white/80 backdrop-blur-xl border border-slate-200/80 rounded-[28px] p-7 shadow-[0_10px_30px_rgba(15,23,42,0.03)] hover:shadow-xl hover:border-indigo-300 transition-all duration-300 flex flex-col gap-3.5"
               >
