@@ -118,7 +118,7 @@ export default function Hero() {
                 <ArrowRight size={16} />
               </Link>
 
-              <a
+              {/* <a
                 href="https://wa.me/447442586325?text=Hi+Cloud+Edge+Solutions"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -126,6 +126,15 @@ export default function Hero() {
               >
                 <MessageCircle size={18} />
                 <span>Talk to an Advisor</span>
+              </a> */}
+              <a
+                href="https://wa.me/447442586325?text=Hi+Cloud+Edge+Solutions"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2.5 rounded-full bg-gradient-to-r from-emerald-600/90 via-emerald-800/50 to-emerald-600/90 backdrop-blur-md border border-white/15 hover:from-emerald-700/90 hover:to-emerald-700/80 px-8 py-4 text-sm font-bold text-white/90 hover:text-white tracking-wide shadow-lg shadow-black/25 transition-all duration-300 transform hover:-translate-y-0.5"
+              >
+                <MessageCircle size={18} className="drop-shadow-sm" />
+                <span className="drop-shadow-sm">Talk to an Advisor</span>
               </a>
             </div>
           </motion.div>
@@ -152,7 +161,8 @@ export default function Hero() {
               href="https://wa.me/447442586325?text=Hi+Cloud+Edge+Solutions"
               target="_blank"
               rel="noopener noreferrer"
-              className="mb-5 flex items-center justify-center gap-2 rounded-2xl bg-emerald-600 hover:bg-emerald-700 px-5 py-3.5 text-sm font-bold text-white transition-all duration-200 shadow-md hover:shadow-lg"
+              // className="mb-5 flex items-center justify-center gap-2 rounded-2xl bg-emerald-600 hover:bg-emerald-700 px-5 py-3.5 text-sm font-bold text-white transition-all duration-200 shadow-md hover:shadow-lg"
+              className="mb-5 flex items-center justify-center gap-2.5 rounded-full bg-gradient-to-r from-emerald-600/90 via-emerald-800/50 to-emerald-600/90 backdrop-blur-md border border-white/15 hover:from-emerald-700/90 hover:to-emerald-700/80 px-8 py-4 text-sm font-bold text-white/90 hover:text-white tracking-wide shadow-lg shadow-black/25 transition-all duration-300 transform hover:-translate-y-0.5"
             >
               <MessageCircle size={16} />
               <span>Chat with an Advisor</span>

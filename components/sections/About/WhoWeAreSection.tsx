@@ -250,7 +250,7 @@ const WhoWeAreSection = () => {
               href={getWhatsAppLink("Hi Cloud Edge Solutions, I would like to enroll.")}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2.5 rounded-full bg-emerald-600 hover:bg-emerald-700 px-8 py-4 text-white font-bold text-sm transition-all duration-300 shadow-lg hover:shadow-emerald-500/25 transform hover:-translate-y-0.5"
+              className="flex items-center justify-center gap-2.5 rounded-full bg-gradient-to-r from-emerald-600/90 via-emerald-800/50 to-emerald-600/90 backdrop-blur-md border border-white/15 hover:from-emerald-700/90 hover:to-emerald-700/80 px-8 py-4 text-white font-bold text-sm transition-all duration-300 shadow-lg hover:shadow-emerald-500/25 transform hover:-translate-y-0.5"
             >
               <MessageCircle size={18} />
               <span>WhatsApp to Enroll</span>

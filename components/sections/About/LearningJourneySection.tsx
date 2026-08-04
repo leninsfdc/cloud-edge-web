@@ -241,7 +241,7 @@ const LearningJourneySection = () => {
             href={getWhatsAppLink("Hi Cloud Edge Solutions, I want to begin my learning journey.")}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2.5 rounded-full bg-emerald-600 hover:bg-emerald-700 px-8 py-4 text-white font-bold text-sm shadow-lg hover:shadow-emerald-500/25 transition-all duration-300 transform hover:-translate-y-0.5"
+            className="inline-flex items-center justify-center gap-2.5 rounded-full bg-gradient-to-r from-emerald-600/90 via-emerald-800/50 to-emerald-600/90 backdrop-blur-md border border-white/15 hover:from-emerald-700/90 hover:to-emerald-700/80 px-8 py-4 text-white font-bold text-sm shadow-lg hover:shadow-emerald-500/25 transition-all duration-300 transform hover:-translate-y-0.5"
           >
             <MessageCircle size={18} />
             <span>Begin Your Journey</span>
