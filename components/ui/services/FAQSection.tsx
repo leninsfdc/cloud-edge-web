@@ -163,7 +163,7 @@ export default function FAQSection() {
             href={getWhatsAppLink("Hi Cloud Edge Solutions, I have a question about your services.")}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full bg-emerald-600 hover:bg-emerald-700 px-6 py-3 text-xs sm:text-sm font-bold text-white shadow-md hover:shadow-emerald-500/25 transition-all duration-300 transform hover:-translate-y-0.5 shrink-0"
+            className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-emerald-600/90 via-emerald-800/50 to-emerald-600/90 backdrop-blur-md border border-white/15 hover:from-emerald-700/90 hover:to-emerald-700/80 px-6 py-3 text-xs sm:text-sm font-bold text-white shadow-md hover:shadow-emerald-500/25 transition-all duration-300 transform hover:-translate-y-0.5 shrink-0"
           >
             <MessageCircle size={16} />
             <span>Ask on WhatsApp</span>

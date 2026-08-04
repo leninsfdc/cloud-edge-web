@@ -34,24 +34,90 @@ const AuthorCard: React.FC<AuthorCardProps> = ({
 
   if (compact) {
     return (
-      <div className="flex items-center gap-3 bg-white p-3 rounded-2xl border border-slate-200/80 shadow-xs">
-        <div className="relative w-11 h-11 rounded-full overflow-hidden flex-shrink-0 border-2 border-[#7C6EF8]">
-            <Image
-              src={authorImage || defaultAvatar}
-              alt={authorName}
-              fill
-              unoptimized
-              className="object-cover"
-            />
-        </div>
-        <div className="min-w-0 flex-1">
-          <div className="flex items-center gap-1">
-            <h4 className="text-sm font-bold text-[#07042F] truncate">
-              {authorName}
-            </h4>
-            <CheckCircle2 className="w-3.5 h-3.5 text-[#7C6EF8] shrink-0" />
+      // <div className="flex items-center gap-3 bg-white p-3 rounded-2xl border border-slate-200/80 shadow-xs">
+      //   <div className="relative w-11 h-11 rounded-full overflow-hidden flex-shrink-0 border-2 border-[#7C6EF8]">
+      //       <Image
+      //         src={authorImage || defaultAvatar}
+      //         alt={authorName}
+      //         fill
+      //         unoptimized
+      //         className="object-cover"
+      //       />
+      //   </div>
+      //   <div className="min-w-0 flex-1">
+      //     <div className="flex items-center gap-1">
+      //       <h4 className="text-sm font-bold text-[#07042F] truncate">
+      //         {authorName}
+      //       </h4>
+      //       <CheckCircle2 className="w-3.5 h-3.5 text-[#7C6EF8] shrink-0" />
+      //     </div>
+      //     <p className="text-xs text-slate-500 truncate">{authorRole}</p>
+      //   </div>
+      // </div>
+       <div className="bg-gradient-to-br from-white via-[#F8F7FF] to-[#F1EFFE] p-4 sm:p-5 rounded-2xl border border-[#7C6EF8]/30 shadow-md shadow-indigo-950/5 relative overflow-hidden">
+        {/* Background Accent */}
+        <div className="absolute -top-10 -right-10 w-24 h-24 bg-[#7C6EF8]/10 rounded-full blur-xl pointer-events-none" />
+
+        <div className="sm:items-center justify-between gap-4 relative z-10">
+          {/* Left: Avatar & Main Info */}
+          <div className="flex items-center gap-3.5 min-w-0">
+            <div className="relative w-14 h-14 sm:w-16 sm:h-16 rounded-xl overflow-hidden flex-shrink-0 border-[#7C6EF8] shadow-sm">
+              <Image
+                src={authorImage || defaultAvatar}
+                alt={authorName}
+                fill
+                unoptimized
+                className="object-cover"
+              />
+            </div>
+            <div className="min-w-0 space-y-0.5">
+              {/* <div className="flex items-center gap-1.5 flex-wrap">
+                <span className="text-[10px] uppercase tracking-wider font-bold text-[#7C6EF8] bg-[#7C6EF8]/10 px-2 py-0.5 rounded-full">
+                  Author
+                </span>
+                <span className="text-xs text-slate-400">• Verified Expert</span>
+              </div> */}
+              <div className="flex items-center gap-1.5">
+                <h4 className="text-base font-bold text-[#07042F] truncate">
+                  {authorName}
+                </h4>
+                <CheckCircle2 className="w-4 h-4 text-[#7C6EF8] shrink-0" />
+              </div>
+              <p className="text-xs font-semibold text-[#6C5CFF] truncate">
+                {authorRole}
+              </p>
+            </div>
           </div>
-          <p className="text-xs text-slate-500 truncate">{authorRole}</p>
+
+          {/* Right: Extra Details & Actions */}
+          <div className="flex items-center justify-between sm:justify-center w-full sm:w-auto gap-3 pt-2 sm:pt-2 border-t sm:border-t-0 border-slate-200/60">
+            <div className="flex items-center gap-2">
+              <button
+                onClick={handleCopyLink}
+                className="p-2 rounded-xl bg-white border border-slate-200 text-slate-600 hover:text-[#7C6EF8] hover:border-[#7C6EF8] transition-all shadow-2xs"
+                title="Share Article"
+                aria-label="Share Article"
+              >
+                <Share2 className="w-4 h-4" />
+              </button>
+              <a
+                href="mailto:info@cloudedge.in"
+                className="p-2 rounded-xl bg-white border border-slate-200 text-slate-600 hover:text-[#7C6EF8] hover:border-[#7C6EF8] transition-all shadow-2xs"
+                title="Email Author"
+                aria-label="Email Author"
+              >
+                <Mail className="w-4 h-4" />
+              </a>
+              <Link
+                href="/contact-us"
+                className="p-2 rounded-xl bg-[#0A66C2] text-white hover:bg-[#084e96] transition-all shadow-2xs flex items-center justify-center"
+                title="LinkedIn Profile"
+                aria-label="LinkedIn Profile"
+              >
+                <Image src={linkedinIcon} alt="LinkedIn" className="w-4 h-4" />
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     );
