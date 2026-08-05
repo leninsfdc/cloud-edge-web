@@ -43,8 +43,8 @@ const items = [
         url: "/asgard/content/banners",
       },
       {
-        title: "Instructures",
-        url: "/asgard/content/instructures",
+        title: "Instructors",
+        url: "/asgard/content/instructors",
       },
     ],
   },

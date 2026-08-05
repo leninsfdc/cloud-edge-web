@@ -1,9 +1,9 @@
 "use client";
 
 import { createBanner, deleteBanner, updateBanner } from '@/app/(asgard)/asgard/content/banners/actions';
-import { createInstructure, updateInstructure } from '@/app/(asgard)/asgard/content/instructures/actions';
-import { deleteInstructure } from '@/app/(asgard)/asgard/content/instructures/actions';
-import { Instructure, instructureColumns } from '@/app/(asgard)/asgard/content/instructures/columns';
+import { createInstructure, updateInstructure } from '@/app/(asgard)/asgard/content/instructors/actions';
+import { deleteInstructure } from '@/app/(asgard)/asgard/content/instructors/actions';
+import { Instructure, instructureColumns } from '@/app/(asgard)/asgard/content/instructors/columns';
 import { DataTable } from '@/app/(asgard)/data-table'
 import { AddEditInstructureModal } from '@/components/modals/AddEditInstructureModal';
 import { Button } from '@/components/ui/button'
@@ -57,15 +57,15 @@ const InstructureContainer: React.FC<IInstructureContainerProps> = ({ result }) 
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-semibold tracking-tight">
-            Instructures
+            Instructors
           </h1>
           <p className="text-sm text-muted-foreground">
-            Manage instructures and their details.
+            Manage instructors and their details.
           </p>
         </div>
 
         <Button onClick={handleAdd}>
-          Add Instructure
+          Add Instructor
         </Button>
       </div>
 

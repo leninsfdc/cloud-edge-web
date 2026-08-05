@@ -3,7 +3,7 @@ import React from 'react';
 import { MotionDiv, MotionSection } from '@/components/ui/MotionElements';
 import ResilientImage from '@/components/ui/ResilientImage';
 import { Sparkles, Star } from 'lucide-react';
-import { getInstructures } from "@/app/(asgard)/asgard/content/instructures/actions";
+import { getInstructures } from "@/app/(asgard)/asgard/content/instructors/actions";
 
 // DATA STRUCTURES
 const principles = [

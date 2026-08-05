@@ -86,11 +86,10 @@ export default function FAQSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.3, delay: index * 0.04 }}
-                className={`overflow-hidden rounded-2xl border transition-all duration-300 ${
-                  isOpen
+                className={`overflow-hidden rounded-2xl border transition-all duration-300 ${isOpen
                     ? "bg-white/95 border-indigo-300 shadow-md backdrop-blur-xl"
                     : "bg-white/80 border-slate-200/80 hover:border-slate-300 backdrop-blur-md shadow-2xs"
-                }`}
+                  }`}
               >
                 <button
                   onClick={() => setOpen(isOpen ? null : index)}
@@ -101,17 +100,15 @@ export default function FAQSection() {
                   </span>
 
                   <div
-                    className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-all duration-300 ${
-                      isOpen
+                    className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-all duration-300 ${isOpen
                         ? "bg-indigo-600 text-white shadow-xs"
                         : "bg-slate-100 text-slate-400"
-                    }`}
+                      }`}
                   >
                     <ChevronDown
                       size={18}
-                      className={`transition-transform duration-300 ${
-                        isOpen ? "rotate-180" : ""
-                      }`}
+                      className={`transition-transform duration-300 ${isOpen ? "rotate-180" : ""
+                        }`}
                     />
                   </div>
                 </button>
@@ -163,8 +160,18 @@ export default function FAQSection() {
             href={getWhatsAppLink("Hi Cloud Edge Solutions, I have a question about your services.")}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-emerald-600/90 via-emerald-800/50 to-emerald-600/90 backdrop-blur-md border border-white/15 hover:from-emerald-700/90 hover:to-emerald-700/80 px-6 py-3 text-xs sm:text-sm font-bold text-white shadow-md hover:shadow-emerald-500/25 transition-all duration-300 transform hover:-translate-y-0.5 shrink-0"
+            className="inline-flex items-center gap-2 rounded-full group relative bg-emerald-600 text-white shadow-[0_12px_25px_rgba(16,185,129,0.35)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_18px_35px_rgba(16,185,129,0.45)] px-6 py-3 text-xs sm:text-sm font-bold hover:shadow-emerald-500/25 transform shrink-0"
           >
+
+            {/* Glass Blob */}
+            <span
+              className="absolute -bottom-8 -left-6 h-24 w-24 rounded-full bg-white/30 blur-xl transition-all duration-700 group-hover:left-1/2 group-hover:top-0 group-hover:-translate-x-1/2"
+            />
+
+            {/* Shine */}
+            <span
+              className="absolute inset-0 rounded-full bg-white/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+            />
             <MessageCircle size={16} />
             <span>Ask on WhatsApp</span>
           </a>

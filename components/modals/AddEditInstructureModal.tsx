@@ -41,7 +41,7 @@ interface Props {
 export function AddEditInstructureModal({
   open,
   onOpenChange,
- instructure,
+  instructure,
   onSubmit,
 }: Props) {
   const [loading, setLoading] = useState(false);
@@ -144,6 +144,18 @@ export function AddEditInstructureModal({
       );
     } finally {
       setLoading(false);
+      setForm({
+        name: "",
+        designation: "",
+        years_of_experience: 0,
+        description: "",
+        past_companies: [],
+        tags: [],
+      })
+      setPreview("");
+      setCompanies("");
+      setTags("");
+      setFile(null);
     }
   };
 

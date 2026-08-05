@@ -94,8 +94,17 @@ const ContactHeroSection = () => {
                 href={getWhatsAppLink("Hi Cloud Edge Solutions, I would like to talk to an advisor.")}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-gradient-to-r from-emerald-600/90 via-emerald-800/50 to-emerald-600/90 backdrop-blur-md border border-white/15 hover:from-emerald-700/90 hover:to-emerald-700/80 transition-colors duration-300 px-7 py-4 rounded-full flex items-center justify-center gap-2.5 w-full sm:w-auto shadow-lg hover:shadow-emerald-500/25 text-white font-bold text-sm transform hover:-translate-y-0.5"
+                className="group relative bg-emerald-600 text-white shadow-[0_12px_25px_rgba(16,185,129,0.35)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_18px_35px_rgba(16,185,129,0.45)] px-7 py-4 rounded-full flex items-center justify-center gap-2.5 w-full sm:w-auto hover:shadow-emerald-500/25  font-bold text-sm transform"
               >
+                {/* Glass Blob */}
+                <span
+                  className="absolute -bottom-8 -left-6 h-24 w-24 rounded-full bg-white/30 blur-xl transition-all duration-700 group-hover:left-1/2 group-hover:top-0 group-hover:-translate-x-1/2"
+                />
+
+                {/* Shine */}
+                <span
+                  className="absolute inset-0 rounded-full bg-white/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                />
                 <MessageCircle size={18} />
                 <span>Chat on WhatsApp</span>
               </a>

@@ -127,7 +127,7 @@ export default function Hero() {
                 <MessageCircle size={18} />
                 <span>Talk to an Advisor</span>
               </a> */}
-              <a
+              {/* <a
                 href="https://wa.me/447442586325?text=Hi+Cloud+Edge+Solutions"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -135,6 +135,25 @@ export default function Hero() {
               >
                 <MessageCircle size={18} className="drop-shadow-sm" />
                 <span className="drop-shadow-sm">Talk to an Advisor</span>
+              </a> */}
+              <a
+                href="https://wa.me/447442586325?text=Hi+Cloud+Edge+Solutions"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-emerald-600 px-8 py-4 text-sm font-bold text-white shadow-[0_12px_25px_rgba(16,185,129,0.35)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_18px_35px_rgba(16,185,129,0.45)]"
+              >
+                {/* Glass Blob */}
+                <span
+                  className="absolute -bottom-8 -left-6 h-24 w-24 rounded-full bg-white/30 blur-xl transition-all duration-700 group-hover:left-1/2 group-hover:top-0 group-hover:-translate-x-1/2"
+                />
+
+                {/* Shine */}
+                <span
+                  className="absolute inset-0 rounded-full bg-white/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                />
+
+                <MessageCircle size={18} className="relative z-10" />
+                <span className="relative z-10">Talk to an Advisor</span>
               </a>
             </div>
           </motion.div>
@@ -157,7 +176,7 @@ export default function Hero() {
               From your first course to your first job — and beyond
             </p>
 
-            <a
+            {/* <a
               href="https://wa.me/447442586325?text=Hi+Cloud+Edge+Solutions"
               target="_blank"
               rel="noopener noreferrer"
@@ -166,7 +185,27 @@ export default function Hero() {
             >
               <MessageCircle size={16} />
               <span>Chat with an Advisor</span>
-            </a>
+            </a> */}
+
+            <a
+                href="https://wa.me/447442586325?text=Hi+Cloud+Edge+Solutions"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mb-5 w-full flex items-center justify-center group relative gap-2 overflow-hidden rounded-full bg-emerald-600 px-8 py-4 text-sm font-bold text-white shadow-[0_12px_25px_rgba(16,185,129,0.35)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_18px_35px_rgba(16,185,129,0.45)]"
+              >
+                {/* Glass Blob */}
+                <span
+                  className="absolute -bottom-8 -left-6 h-24 w-24 rounded-full bg-white/30 blur-xl transition-all duration-700 group-hover:left-1/2 group-hover:top-0 group-hover:-translate-x-1/2"
+                />
+
+                {/* Shine */}
+                <span
+                  className="absolute inset-0 rounded-full bg-white/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                />
+
+                <MessageCircle size={18} className="relative z-10" />
+                <span className="relative z-10">Chat with an Advisor</span>
+              </a>
 
             <div className="mb-4 text-center text-[10px] uppercase font-bold tracking-widest text-slate-400">
               or jump to a service

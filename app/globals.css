@@ -308,3 +308,31 @@
   border-radius: 3px;
   /* font-family: 'Courier New', monospace; */
 }
+
+.glass-btn::before {
+    content: "";
+    position: absolute;
+    width: 110px;
+    height: 110px;
+    left: -30px;
+    bottom: -45px;
+    background: rgba(255,255,255,.14);
+    border-radius: 50%;
+    backdrop-filter: blur(8px);
+    transition: .6s ease;
+}
+
+.glass-btn:hover::before{
+    left: 50%;
+    top: -45px;
+    bottom: auto;
+    transform: translateX(-50%);
+}
+
+.glass-btn::after{
+    content: "";
+    position:absolute;
+    inset:0;
+    border-radius:9999px;
+    box-shadow: inset 0 1px 1px rgba(255,255,255,.2);
+}

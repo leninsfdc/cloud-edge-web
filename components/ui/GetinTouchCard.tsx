@@ -131,6 +131,7 @@ import visitIcon from "@/public/icons/visit.svg"
 import Image from 'next/image'
 import Link from 'next/link'
 import contactImg from "@/public/images/contact.png"
+import { MailOpen, MapPinHouse, PhoneCall, Users } from 'lucide-react'
 
 const GetinTouchCard = () => {
   return (
@@ -150,11 +151,16 @@ const GetinTouchCard = () => {
 
         {/* Contact */}
         <div className='flex items-start gap-3'>
-          <Image
+          {/* <Image
             src={contactIcon}
             alt='contact'
             className='w-[50px] h-[50px] sm:w-[60px] sm:h-[60px] shrink-0'
-          />
+          /> */}
+          <div className="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 backdrop-blur-md bg-teal-500/15 shadow-lg text-teal-500">
+            <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24">
+              <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+            </svg>
+          </div>
 
           <div>
             <h4 className='font-semibold text-black'>
@@ -169,11 +175,16 @@ const GetinTouchCard = () => {
 
         {/* Email */}
         <div className='flex items-start gap-3'>
-          <Image
+          {/* <Image
             src={emailIcon}
             alt='email'
             className='w-[50px] h-[50px] sm:w-[60px] sm:h-[60px] shrink-0'
-          />
+          /> */}
+          <div className="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 backdrop-blur-md bg-purple-500/15 shadow-lg text-purple-600">
+            <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24">
+              <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+            </svg>
+          </div>
 
           <div className='min-w-0'>
             <h4 className='font-semibold text-black'>
@@ -191,11 +202,17 @@ const GetinTouchCard = () => {
 
         {/* Call */}
         <div className='flex items-start gap-3'>
-          <Image
-            src={callIcon}
-            alt='Call'
-            className='w-[50px] h-[50px] sm:w-[60px] sm:h-[60px] shrink-0'
-          />
+          {/* <Image
+              src={callIcon}
+              alt='Call'
+              className='w-[50px] h-[50px] sm:w-[60px] sm:h-[60px] shrink-0'
+            /> */}
+
+          <div className="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 backdrop-blur-md bg-amber-500/15 shadow-lg text-amber-500">
+            <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24">
+              <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+            </svg>
+          </div>
 
           <div>
             <h4 className='font-semibold text-black'>
@@ -213,11 +230,16 @@ const GetinTouchCard = () => {
 
         {/* Address */}
         <div className='flex items-start gap-3'>
-          <Image
+          {/* <Image
             src={visitIcon}
             alt='visit'
             className='w-[50px] h-[50px] sm:w-[60px] sm:h-[60px] shrink-0'
-          />
+          /> */}
+          <div className="w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 backdrop-blur-md bg-pink-500/15 shadow-lg text-pink-500">
+            <svg className="w-6 h-6 fill-current" viewBox="0 0 24 24">
+              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+            </svg>
+          </div>
 
           <div className='min-w-0'>
             <h4 className='font-semibold text-black'>
