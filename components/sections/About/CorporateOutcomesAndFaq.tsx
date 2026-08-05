@@ -70,7 +70,7 @@ const CorporateOutcomesAndFaq = () => {
     <div className="bg-slate-50/90">
 
       {/* 1. EMPLOYERS & OUTCOMES SECTION (DARK GLASS) */}
-      <motion.section 
+      <motion.section
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -97,7 +97,7 @@ const CorporateOutcomesAndFaq = () => {
           {/* Badges Grid */}
           <div className="flex flex-wrap justify-center gap-2.5 max-w-5xl mx-auto mb-12">
             {companies.map((company, i) => (
-              <motion.span 
+              <motion.span
                 key={i}
                 whileHover={{ scale: 1.05 }}
                 className="text-xs sm:text-sm font-semibold bg-white/5 border border-white/10 text-slate-200 px-4 py-2 rounded-xl backdrop-blur-md transition-all duration-200 hover:bg-white/10 hover:border-white/20 cursor-default"
@@ -140,7 +140,7 @@ const CorporateOutcomesAndFaq = () => {
       </motion.section>
 
       {/* 2. GLOBAL REACH SECTION */}
-      <motion.section 
+      <motion.section
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -162,7 +162,7 @@ const CorporateOutcomesAndFaq = () => {
 
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
             {regions.map((reach, idx) => (
-              <motion.div 
+              <motion.div
                 key={idx}
                 whileHover={{ y: -4, scale: 1.02 }}
                 className="bg-white/80 backdrop-blur-xl border border-slate-200/80 rounded-2xl p-5 text-center flex flex-col items-center justify-center transition-all duration-300 shadow-[0_10px_30px_rgba(15,23,42,0.03)] hover:shadow-xl hover:border-indigo-300"
@@ -187,7 +187,7 @@ const CorporateOutcomesAndFaq = () => {
       </motion.section>
 
       {/* 3. FAQ SECTION */}
-      <motion.section 
+      <motion.section
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
@@ -248,11 +248,11 @@ const CorporateOutcomesAndFaq = () => {
 
             {/* Right Sticky Card Widgets */}
             <div className="lg:col-span-4 lg:sticky lg:top-24 space-y-4">
-              
+
               {/* WhatsApp Card */}
               <div className="rounded-[28px] border border-slate-800 bg-slate-950 p-6 text-white relative overflow-hidden shadow-xl">
-                <div className="absolute -top-10 -right-10 w-32 h-32 rounded-full bg-indigo-600/30 filter blur-xl pointer-events-none"/>
-                
+                <div className="absolute -top-10 -right-10 w-32 h-32 rounded-full bg-indigo-600/30 filter blur-xl pointer-events-none" />
+
                 <div className="relative z-10 space-y-4">
                   <div className="w-12 h-12 rounded-2xl bg-indigo-500/20 border border-indigo-400/30 flex items-center justify-center text-emerald-400 font-bold text-xl">
                     💬
@@ -342,6 +342,7 @@ const CorporateOutcomesAndFaq = () => {
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm rounded-full shadow-lg transition-all duration-200 text-center"
               >
+                
                 <MessageCircle size={16} />
                 <span>Chat on WhatsApp</span>
               </a>

@@ -102,7 +102,7 @@ const LearningJourneySection = () => {
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
 
         {/* Header Section */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -160,9 +160,8 @@ const LearningJourneySection = () => {
               return (
                 <div
                   key={stage.id}
-                  className={`relative flex flex-col md:flex-row items-center ${
-                    isEven ? "md:flex-row" : "md:flex-row-reverse"
-                  }`}
+                  className={`relative flex flex-col md:flex-row items-center ${isEven ? "md:flex-row" : "md:flex-row-reverse"
+                    }`}
                 >
                   {/* Waypoint Circle Node */}
                   <div className="absolute left-6 md:left-1/2 -translate-x-1/2 z-10 flex items-center justify-center">
@@ -184,12 +183,11 @@ const LearningJourneySection = () => {
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: index * 0.12 }}
                     whileHover={{ y: -6, scale: 1.02 }}
-                    className={`ml-16 md:ml-0 w-full md:w-[calc(50%-2.5rem)] ${
-                      isEven ? "md:pr-2" : "md:pl-2"
-                    }`}
+                    className={`ml-16 md:ml-0 w-full md:w-[calc(50%-2.5rem)] ${isEven ? "md:pr-2" : "md:pl-2"
+                      }`}
                   >
                     <div className="rounded-[28px] border border-slate-200/80 bg-white/80 backdrop-blur-xl p-6 sm:p-7 shadow-[0_10px_30px_rgba(15,23,42,0.04)] hover:shadow-xl hover:border-indigo-300 transition-all duration-300">
-                      
+
                       {/* Flight Header Tags */}
                       <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
                         <span className={`text-[10px] sm:text-xs font-extrabold uppercase tracking-wider px-3 py-1 rounded-full border ${stage.badgeBg}`}>
@@ -230,7 +228,7 @@ const LearningJourneySection = () => {
         </div>
 
         {/* Action Engagement Block */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -241,8 +239,17 @@ const LearningJourneySection = () => {
             href={getWhatsAppLink("Hi Cloud Edge Solutions, I want to begin my learning journey.")}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2.5 rounded-full bg-gradient-to-r from-emerald-600/90 via-emerald-800/50 to-emerald-600/90 backdrop-blur-md border border-white/15 hover:from-emerald-700/90 hover:to-emerald-700/80 px-8 py-4 text-white font-bold text-sm shadow-lg hover:shadow-emerald-500/25 transition-all duration-300 transform hover:-translate-y-0.5"
+            className="inline-flex items-center justify-center gap-2.5 rounded-full group relative bg-emerald-600 text-white shadow-[0_12px_25px_rgba(16,185,129,0.35)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_18px_35px_rgba(16,185,129,0.45)] px-8 py-4 font-bold text-sm  hover:shadow-emerald-500/25 transform"
           >
+            {/* Glass Blob */}
+            <span
+              className="absolute -bottom-8 -left-6 h-24 w-24 rounded-full bg-white/30 blur-xl transition-all duration-700 group-hover:left-1/2 group-hover:top-0 group-hover:-translate-x-1/2"
+            />
+
+            {/* Shine */}
+            <span
+              className="absolute inset-0 rounded-full bg-white/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+            />
             <MessageCircle size={18} />
             <span>Begin Your Journey</span>
           </a>

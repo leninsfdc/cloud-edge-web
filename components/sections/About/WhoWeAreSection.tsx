@@ -29,19 +29,19 @@ const features = [
     icon: liveSession,
     title: "Live Online - Every Session",
     description:
-        "No pre-recorded videos. Every Cloud Edge class is live on Zoom with your instructor, classmates and real SAP or Salesforce system access.",
+      "No pre-recorded videos. Every Cloud Edge class is live on Zoom with your instructor, classmates and real SAP or Salesforce system access.",
   },
   {
     icon: instruction,
     title: "Instructors Who Work in the Field",
     description:
-        "Every instructor holds active certifications and 8–14 years of SAP or Salesforce consulting experience at firms like Deloitte, Accenture and IBM.",
+      "Every instructor holds active certifications and 8–14 years of SAP or Salesforce consulting experience at firms like Deloitte, Accenture and IBM.",
   },
   {
     icon: cert,
     title: "Certification & Career Built In",
     description:
-        "3 full mock exams, exam strategy sessions and 12-month placement support are included in every course. 94% of active job seekers are placed.",
+      "3 full mock exams, exam strategy sessions and 12-month placement support are included in every course. 94% of active job seekers are placed.",
   },
 ];
 
@@ -89,7 +89,7 @@ const WhoWeAreSection = () => {
     <section className="bg-slate-50/90 py-12 lg:py-16 relative overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
         <div className="flex items-center justify-center flex-col">
-          
+
           {/* Tag */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
@@ -170,9 +170,8 @@ const WhoWeAreSection = () => {
               {stats.map((item, index) => (
                 <div
                   key={index}
-                  className={`flex flex-col items-center text-center px-3 lg:px-4 ${
-                    index !== stats.length - 1 ? "lg:border-r lg:border-slate-100" : ""
-                  }`}
+                  className={`flex flex-col items-center text-center px-3 lg:px-4 ${index !== stats.length - 1 ? "lg:border-r lg:border-slate-100" : ""
+                    }`}
                 >
                   <div className="w-12 h-12 rounded-2xl bg-slate-50 border border-slate-100 flex items-center justify-center mb-3">
                     <ResilientImage
@@ -203,7 +202,7 @@ const WhoWeAreSection = () => {
           </motion.div>
 
           {/* Ratings & Countries Bar */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -225,7 +224,7 @@ const WhoWeAreSection = () => {
               </div>
 
               {/* Divider */}
-              <div className="hidden h-8 w-px bg-slate-200 lg:block"/>
+              <div className="hidden h-8 w-px bg-slate-200 lg:block" />
 
               {/* Countries */}
               <div className="flex flex-wrap items-center justify-center gap-3 lg:gap-5">
@@ -250,8 +249,17 @@ const WhoWeAreSection = () => {
               href={getWhatsAppLink("Hi Cloud Edge Solutions, I would like to enroll.")}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2.5 rounded-full bg-gradient-to-r from-emerald-600/90 via-emerald-800/50 to-emerald-600/90 backdrop-blur-md border border-white/15 hover:from-emerald-700/90 hover:to-emerald-700/80 px-8 py-4 text-white font-bold text-sm transition-all duration-300 shadow-lg hover:shadow-emerald-500/25 transform hover:-translate-y-0.5"
+              className="flex items-center justify-center gap-2.5 rounded-full group relative bg-emerald-600 text-white shadow-[0_12px_25px_rgba(16,185,129,0.35)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_18px_35px_rgba(16,185,129,0.45)] px-8 py-4 font-bold text-sm  hover:shadow-emerald-500/25 transform "
             >
+              {/* Glass Blob */}
+              <span
+                className="absolute -bottom-8 -left-6 h-24 w-24 rounded-full bg-white/30 blur-xl transition-all duration-700 group-hover:left-1/2 group-hover:top-0 group-hover:-translate-x-1/2"
+              />
+
+              {/* Shine */}
+              <span
+                className="absolute inset-0 rounded-full bg-white/5 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+              />
               <MessageCircle size={18} />
               <span>WhatsApp to Enroll</span>
             </a>
