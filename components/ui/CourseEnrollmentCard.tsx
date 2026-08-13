@@ -56,7 +56,7 @@ const getCourseTheme = (identifier: string | number = "") => {
   return GRADIENT_PALETTES[index];
 };
 
-export default function CourseEnrollmentCard({ course }: { course: any }) {
+export default function CourseEnrollmentCard({ course, defaultCountry }: { course: any; defaultCountry?: string }) {
   const [imgError, setImgError] = useState(false);
   const nextBatch = course.nextBatch;
 
@@ -66,7 +66,19 @@ export default function CourseEnrollmentCard({ course }: { course: any }) {
     .map((code) => ({ code, label: flagLabels[code], data: course.countryPricing?.[code] }))
     .filter((x) => x.data);
 
-  const [selectedCode, setSelectedCode] = useState<string>(pricing[0]?.code ?? "IN");
+  // Determine which tab to open first:
+  // 1. If the visitor's detected country has pricing data, use it.
+  // 2. Otherwise fall back to the first available tab.
+  // 3. If nothing exists at all, fall back to "US".
+  const resolveDefaultCode = (): string => {
+    if (defaultCountry) {
+      const match = pricing.find((p) => p.code === defaultCountry);
+      if (match) return match.code;
+    }
+    return pricing[0]?.code ?? "US";
+  };
+
+  const [selectedCode, setSelectedCode] = useState<string>(resolveDefaultCode);
 
   const selectedPrice = pricing.find((p) => p.code === selectedCode)?.data ?? pricing[0]?.data;
 

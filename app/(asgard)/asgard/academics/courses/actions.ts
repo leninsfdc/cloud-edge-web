@@ -541,6 +541,7 @@ export async function getFeaturedTestimonials() {
   return data || [];
 }
 
+
 export async function getRandomTestimonials(limit = 6) {
   const supabase = await createClient();
 
@@ -562,4 +563,17 @@ export async function getRandomTestimonials(limit = 6) {
   const shuffled = [...(data || [])].sort(() => Math.random() - 0.5);
 
   return shuffled.slice(0, limit);
+}
+
+export async function getAllCoursesForSitemap() {
+  const supabase = await createClient();
+
+  const { data, error } = await supabase
+    .from("courses")
+    .select("id, name, url_slug, created_at, is_active")
+    .eq("is_deleted", false)
+    .eq("is_active", true);
+
+  if (error) return [];
+  return data || [];
 }

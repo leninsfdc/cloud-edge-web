@@ -15,6 +15,8 @@ import sapIcon from "@/public/icons/sap.svg";
 import javaIcon from "@/public/icons/java.svg";
 import { MotionSection } from '@/components/ui/MotionElements';
 import { getFeaturedCourses } from '@/app/(asgard)/asgard/academics/courses/actions';
+import { useCountry } from '@/libs/country-context';
+import { getRegionForCountry, formatRegionPrice } from '@/libs/country-data';
 
 const staticCourses = [
   {
@@ -237,34 +239,23 @@ const getCourseTags = (course: any) => {
   ];
 };
 
-export const getCoursePrice = (course: any) => {
-  if (course.price !== undefined) {
+export const getCoursePrice = (course: any, countryCode?: string) => {
+  if (countryCode) {
+    const region = getRegionForCountry(course, countryCode);
+    if (region) {
+      const formatted = formatRegionPrice(region);
+      if (formatted) return formatted;
+    }
+  }
+
+  if (course?.price !== undefined) {
     return { price: course.price, oldPrice: course.oldPrice };
   }
 
   const nearestRegion = getNearestBatch(course);
   if (nearestRegion) {
-    const currencySymbol = nearestRegion.currency === "INR" ? "₹" : nearestRegion.currency === "GBP" ? "£" : "$";
-    return {
-      price: `${currencySymbol}${nearestRegion.price.toLocaleString()}`,
-      oldPrice: `${currencySymbol}${Math.round(nearestRegion.price * 1.2)}`
-    };
-  }
-
-  if (course.batches) {
-    for (const batch of course.batches) {
-      if (batch.batch_regions) {
-        for (const region of batch.batch_regions) {
-          if (region.price) {
-            const currencySymbol = region.currency === "INR" ? "₹" : region.currency === "GBP" ? "£" : "$";
-            return {
-              price: `${currencySymbol}${region.price}`,
-              oldPrice: `${currencySymbol}${Math.round(region.price * 1.2)}`
-            };
-          }
-        }
-      }
-    }
+    const formatted = formatRegionPrice(nearestRegion);
+    if (formatted) return formatted;
   }
 
   return {
@@ -276,6 +267,7 @@ export const getCoursePrice = (course: any) => {
 const AUTO_ADVANCE_DURATION = 5000; // ms per course
 
 const ExploreCoursesSection = () => {
+  const { country } = useCountry();
   const [coursesList, setCoursesList] = useState<any[]>(staticCourses);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [contentVisible, setContentVisible] = useState(true);
@@ -293,20 +285,25 @@ const ExploreCoursesSection = () => {
 
   const selectedCourse = coursesList[selectedIndex] ?? coursesList[0];
 
-  // ── Load dynamic courses ──────────────────────────────────────────────────
+  // ── Load dynamic courses & filter by active country ───────────────────────
   useEffect(() => {
     getFeaturedCourses()
       .then((data) => {
         if (data && data.length > 0) {
-          console.log("data", data);
-          setCoursesList(data);
+          // Filter to only courses that have an active batch region for the current country
+          const filtered = data.filter(
+            (c: any) => getRegionForCountry(c, country?.code) !== null
+          );
+          // If any match the country, set them, otherwise keep data
+          const listToSet = filtered.length > 0 ? filtered : data;
+          setCoursesList(listToSet);
           setSelectedIndex(0);
         }
       })
       .catch((err) => {
         console.error("Failed to load featured courses", err);
       });
-  }, []);
+  }, [country?.code]);
 
   // ── Batch countdown timer ─────────────────────────────────────────────────
   useEffect(() => {
@@ -621,10 +618,10 @@ const ExploreCoursesSection = () => {
                 <div className='flex flex-col sm:flex-row gap-5 sm:gap-0 sm:items-center sm:justify-between'>
                   <div>
                     <div className='text-white font-bold text-3xl'>
-                      {getCoursePrice(selectedCourse).price}
+                      {getCoursePrice(selectedCourse, country?.code).price}
                     </div>
                   </div>
-                  <SecondaryButton text='Enroll Now' href={`/courses/${selectedCourse.url_slug}`} />
+                  <SecondaryButton text='Enroll Now' href={`/${country.slug}/courses/${selectedCourse.url_slug}`} />
                 </div>
               </div>
 
@@ -647,9 +644,9 @@ const ExploreCoursesSection = () => {
                     categoryColor={getCourseCategoryColor(course)}
                     title={getCourseTitle(course)}
                     description={course.description || ""}
-                    oldPrice={getCoursePrice(course).oldPrice}
-                    price={getCoursePrice(course).price}
-                    url={`/courses/${course.url_slug}`}
+                    oldPrice={getCoursePrice(course, country?.code).oldPrice}
+                    price={getCoursePrice(course, country?.code).price}
+                    url={`/${country.slug}/courses/${course.url_slug}`}
                     isActive={isActive}
                   />
                 </div>
@@ -674,9 +671,9 @@ const ExploreCoursesSection = () => {
                       categoryColor={getCourseCategoryColor(course)}
                       title={getCourseTitle(course)}
                       description={course.description || ""}
-                      oldPrice={getCoursePrice(course).oldPrice}
-                      price={getCoursePrice(course).price}
-                      url={`/courses/${course.url_slug}`}
+                      oldPrice={getCoursePrice(course, country?.code).oldPrice}
+                      price={getCoursePrice(course, country?.code).price}
+                      url={`/${country.slug}/courses/${course.url_slug}`}
                       isActive={isActive}
                     />
                   </div>

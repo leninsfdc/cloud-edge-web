@@ -135,3 +135,15 @@ export async function deleteBlog(id: string) {
 
     return true;
 }
+
+export async function getAllBlogsForSitemap() {
+    const supabase = await createClient();
+
+    const { data, error } = await supabase
+        .from("blogs")
+        .select("id, title, url_slug, created_at, is_active")
+        .eq("is_active", true);
+
+    if (error) return [];
+    return data || [];
+}

@@ -11,6 +11,9 @@ import MobileNavbar from "./MobileNavbar";
 
 import TopBar from "./TopBar";
 
+import CountryPicker from "./CountryPicker";
+import { useCountry } from "@/libs/country-context";
+
 const navItems = [
   { label: "Home", href: "/" },
   { label: "Courses", href: "/courses" },
@@ -23,6 +26,7 @@ const navItems = [
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
+  const { country } = useCountry();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,17 +36,22 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const getCountryHref = (href: string) => {
+    return `/${country.slug}${href === "/" ? "" : href}`;
+  };
+
   const NavContent = () => (
-    <div className="flex items-center justify-between">
+    <div className="flex items-center justify-between gap-4">
       {/* Logo */}
-      <Link href="/">
+      <Link href={getCountryHref("/")}>
         <Image src={logo} alt="Cloud Edge" priority className="h-8 w-auto" />
       </Link>
 
       {/* Nav Links */}
       <nav className="flex items-center gap-5">
         {navItems.map((item, index) => {
-          const isActive = pathname === item.href;
+          const targetHref = getCountryHref(item.href);
+          const isActive = pathname === targetHref || (item.href !== "/" && pathname.startsWith(targetHref));
           return (
             <motion.div
               key={item.label}
@@ -53,7 +62,7 @@ const Navbar = () => {
               whileTap={{ scale: 0.95 }}
             >
               <Link
-                href={item.href}
+                href={targetHref}
                 className={`group flex items-center gap-2 transition-colors duration-300 ${isActive
                   ? "font-semibold text-primary"
                   : "font-normal text-[#1D1F20] hover:text-primary"
@@ -75,9 +84,10 @@ const Navbar = () => {
         })}
       </nav>
 
-      {/* Button */}
-      <div>
-        <PrimaryButton href="/contact-us" label="Contact Us" />
+      {/* Country Picker & Button */}
+      <div className="flex items-center gap-3">
+        <CountryPicker variant="light" compact />
+        <PrimaryButton href={getCountryHref("/contact-us")} label="Contact Us" />
       </div>
     </div>
   );

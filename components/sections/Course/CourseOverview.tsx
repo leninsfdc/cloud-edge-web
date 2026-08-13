@@ -22,12 +22,14 @@ import CourseCard from "@/components/ui/CourseCard";
 import { getNearestBatch } from "../Home/ExploreCoursesSection";
 import ResilientImage from "@/components/ui/ResilientImage";
 import codeIcon from "@/public/icons/code.svg";
+import { PricingCountryCode } from "@/libs/geo";
 
 interface ICourseOverviewProps {
   course: ICourse;
+  countryCode?: PricingCountryCode;
 }
 
-const CourseOverview: React.FC<ICourseOverviewProps> = ({ course }) => {
+const CourseOverview: React.FC<ICourseOverviewProps> = ({ course, countryCode }) => {
   const salaryCards = [
     {
       icon: india,
@@ -285,7 +287,7 @@ const CourseOverview: React.FC<ICourseOverviewProps> = ({ course }) => {
           {/* Sticky Sidebar Column */}
           <div className="xl:col-span-5">
             <div className="xl:sticky xl:top-28">
-              <CourseEnrollmentCard course={course} />
+              <CourseEnrollmentCard course={course} defaultCountry={countryCode} />
             </div>
           </div>
         </div>
@@ -329,7 +331,7 @@ const CourseOverview: React.FC<ICourseOverviewProps> = ({ course }) => {
                     title={relatedCourse.name}
                     description={relatedCourse.description}
                     price={price}
-                    url={`/courses/${relatedCourse.url_slug}`}
+                    url={`/${countryCode ? countryCode.toLowerCase() : "us"}/courses/${relatedCourse.url_slug}`}
                   />
                 );
               })}

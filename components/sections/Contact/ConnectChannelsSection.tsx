@@ -11,32 +11,43 @@ import { getWhatsAppLink } from "@/utils";
 import ResilientImage from "@/components/ui/ResilientImage";
 import { motion } from "framer-motion";
 
+import CountryPicker from "@/components/ui/CountryPicker";
+
 const ConnectChannelsSection = () => {
   return (
     <section className="bg-slate-50/90 py-12 lg:py-16 relative overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
 
-        {/* HEADER */}
-        <motion.div 
-          initial={{ opacity: 0, y: 15 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="text-center max-w-2xl mx-auto mb-12 space-y-3"
-        >
-          <div className="inline-flex items-center gap-2 bg-indigo-50/90 border border-indigo-200/80 px-4 py-1.5 rounded-full shadow-2xs">
-            <Sparkles className="w-3.5 h-3.5 text-indigo-600" />
-            <span className="text-xs text-indigo-700 font-extrabold uppercase tracking-wider">How to Reach Us</span>
+        {/* HEADER WITH COUNTRY PICKER */}
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-12 max-w-7xl mx-auto">
+          <div className="hidden md:block w-32" /> {/* Spacer for symmetry on desktop */}
+
+          <motion.div 
+            initial={{ opacity: 0, y: 15 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center max-w-2xl space-y-3"
+          >
+            <div className="inline-flex items-center gap-2 bg-indigo-50/90 border border-indigo-200/80 px-4 py-1.5 rounded-full shadow-2xs">
+              <Sparkles className="w-3.5 h-3.5 text-indigo-600" />
+              <span className="text-xs text-indigo-700 font-extrabold uppercase tracking-wider">How to Reach Us</span>
+            </div>
+
+            <h2 className="text-3xl sm:text-4xl font-extrabold font-bricolage-grotesque tracking-tight text-slate-900 leading-tight">
+              Four Ways to Connect
+            </h2>
+
+            <p className="text-slate-600 text-sm sm:text-base font-medium leading-relaxed max-w-lg mx-auto">
+              Have questions about modules or timelines? Get in touch with our live advisors right now through any channel below.
+            </p>
+          </motion.div>
+
+          <div className="flex items-center gap-2 bg-white/80 backdrop-blur-md p-2 rounded-2xl border border-slate-200/80 shadow-2xs">
+            <span className="text-xs font-bold text-slate-500 pl-1">Region:</span>
+            <CountryPicker variant="light" compact />
           </div>
-
-          <h2 className="text-3xl sm:text-4xl font-extrabold font-bricolage-grotesque tracking-tight text-slate-900 leading-tight">
-            Four Ways to Connect
-          </h2>
-
-          <p className="text-slate-600 text-sm sm:text-base font-medium leading-relaxed max-w-lg mx-auto">
-            Have questions about modules or timelines? Get in touch with our live advisors right now through any channel below.
-          </p>
-        </motion.div>
+        </div>
 
         {/* GRID */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">

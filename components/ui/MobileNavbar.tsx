@@ -10,6 +10,8 @@ import { motion, AnimatePresence } from "framer-motion";
 
 import logo from "@/public/logo.svg";
 import PrimaryButton from "./PrimaryButton";
+import CountryPicker from "./CountryPicker";
+import { useCountry } from "@/libs/country-context";
 
 interface NavItem {
   label: string;
@@ -24,12 +26,17 @@ interface MobileNavbarProps {
 const MobileNavbar: React.FC<MobileNavbarProps> = ({ navItems }) => {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const { country } = useCountry();
+
+  const getCountryHref = (href: string) => {
+    return `/${country.slug}${href === "/" ? "" : href}`;
+  };
 
   return (
     <>
       {/* Top Bar */}
-      <div className="flex items-center justify-between  bg-white px-5 py-3">
-        <Link href="/" onClick={() => setIsOpen(false)}>
+      <div className="flex items-center justify-between bg-white px-5 py-3 border-b border-slate-100">
+        <Link href={getCountryHref("/")} onClick={() => setIsOpen(false)}>
           <Image
             src={logo}
             alt="Cloud Edge"
@@ -38,12 +45,16 @@ const MobileNavbar: React.FC<MobileNavbarProps> = ({ navItems }) => {
           />
         </Link>
 
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="flex h-10 w-10 items-center justify-center bg-white"
-        >
-          {isOpen ? <X size={20} /> : <Menu size={20} />}
-        </button>
+        <div className="flex items-center gap-3">
+          <CountryPicker variant="light" compact />
+
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="flex h-10 w-10 items-center justify-center bg-white"
+          >
+            {isOpen ? <X size={20} /> : <Menu size={20} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
@@ -59,7 +70,8 @@ const MobileNavbar: React.FC<MobileNavbarProps> = ({ navItems }) => {
             <div className="rounded-3xl border border-[#8B7DFF2E] bg-white p-5 shadow-lg">
               <nav className="flex flex-col gap-4">
                 {navItems.map((item, index) => {
-                  const isActive = pathname === item.href;
+                  const targetHref = getCountryHref(item.href);
+                  const isActive = pathname === targetHref || (item.href !== "/" && pathname.startsWith(targetHref));
 
                   return (
                     <motion.div
@@ -69,7 +81,7 @@ const MobileNavbar: React.FC<MobileNavbarProps> = ({ navItems }) => {
                       transition={{ delay: index * 0.1, type: "spring", stiffness: 120 }}
                     >
                       <Link
-                        href={item.href}
+                        href={targetHref}
                         onClick={() => setIsOpen(false)}
                         className={`flex items-center justify-between rounded-xl px-3 py-3 transition-all duration-300 hover:translate-x-1 hover:bg-primary/5 active:scale-95 ${
                           isActive
@@ -99,7 +111,7 @@ const MobileNavbar: React.FC<MobileNavbarProps> = ({ navItems }) => {
               </nav>
 
               <div className="mt-5">
-                <PrimaryButton href="/contact-us" label="Contact Us" className="w-full!" />
+                <PrimaryButton href={getCountryHref("/contact-us")} label="Contact Us" className="w-full!" />
               </div>
             </div>
           </motion.div>
