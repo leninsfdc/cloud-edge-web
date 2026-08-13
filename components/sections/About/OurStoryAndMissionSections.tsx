@@ -149,7 +149,8 @@ const OurStoryAndMissionSections = () => {
                   whileHover={{ y: -8, scale: 1.02 }}
                   className={`group relative rounded-[30px] p-6 sm:p-7 transition-all duration-300 flex flex-col justify-between ${
                     item.isHighlight
-                      ? "bg-slate-950 text-white border border-slate-800 shadow-2xl shadow-indigo-950/40"
+                      // ? "bg-slate-950 text-white border border-slate-800 shadow-2xl shadow-indigo-950/40"
+                      ? "bg-gradient-to-br from-indigo-100 via-white to-indigo-100/50 text-slate-900 border-2 border-indigo-500/40 shadow-2xl shadow-indigo-500/10"
                       : "bg-white/80 backdrop-blur-xl border border-slate-200/80 hover:border-indigo-300 shadow-[0_10px_30px_rgba(15,23,42,0.04)] hover:shadow-xl"
                   }`}
                 >
@@ -167,21 +168,21 @@ const OurStoryAndMissionSections = () => {
 
                     {/* Year Headline */}
                     <div className="flex items-baseline gap-2 mb-2">
-                      <span className={`font-bricolage-grotesque text-3xl font-extrabold ${item.isHighlight ? "text-white" : "text-indigo-600"}`}>
+                      <span className={`font-bricolage-grotesque text-3xl font-extrabold ${item.isHighlight ? "text-indigo-600" : "text-indigo-600"}`}>
                         {item.year}
                       </span>
-                      <span className={`text-xs font-bold ${item.isHighlight ? "text-indigo-300" : "text-slate-400"}`}>
+                      <span className={`text-xs font-bold ${item.isHighlight ? "text-slate-400" : "text-slate-400"}`}>
                         • {item.metric}
                       </span>
                     </div>
 
                     {/* Milestone Title */}
-                    <h3 className={`font-bricolage-grotesque text-lg font-bold mb-3 leading-snug ${item.isHighlight ? "text-white" : "text-slate-900"}`}>
+                    <h3 className={`font-bricolage-grotesque text-lg font-bold mb-3 leading-snug ${item.isHighlight ? "text-black" : "text-slate-900"}`}>
                       {item.title}
                     </h3>
 
                     {/* Milestone Description */}
-                    <p className={`text-xs sm:text-sm leading-relaxed font-medium mb-6 ${item.isHighlight ? "text-slate-300" : "text-slate-600"}`}>
+                    <p className={`text-xs sm:text-sm leading-relaxed font-medium mb-6 ${item.isHighlight ? "text-slate-600" : "text-slate-600"}`}>
                       {item.description}
                     </p>
                   </div>
@@ -190,10 +191,10 @@ const OurStoryAndMissionSections = () => {
                   <div className="pt-3 border-t border-slate-100 dark:border-slate-800/80">
                     <span className={`inline-flex items-center gap-1.5 text-xs font-extrabold rounded-full px-3 py-1 ${
                       item.isHighlight
-                        ? "bg-white/10 text-emerald-300 border border-white/10"
+                        ? "bg-slate-50 text-slate-700 border border-slate-200/80"
                         : "bg-slate-50 text-slate-700 border border-slate-200/80"
                     }`}>
-                      <CheckCircle2 size={13} className={item.isHighlight ? "text-emerald-400" : "text-indigo-600"} />
+                      <CheckCircle2 size={13} className={item.isHighlight ? "text-indigo-600" : "text-indigo-600"} />
                       <span>{item.badge}</span>
                     </span>
                   </div>

@@ -171,14 +171,14 @@ const TopBar = () => {
             href="mailto:info@cloudedge.in"
             className="flex items-center gap-1.5 hover:text-[#FFC224] transition-colors duration-200"
           >
-            <Mail className="w-3.5 h-3.5 text-[#6C5CFF]" />
+            <Mail className="w-3.5 h-3.5 text-[#FFC224]" />
             <span className="font-medium">info@cloudedge.in</span>
           </a>
 
           <span className="hidden md:inline text-white/20">|</span>
 
           <div className="hidden md:flex items-center gap-1.5 text-white/80">
-            <Clock className="w-3.5 h-3.5 text-white/60" />
+            <Clock className="w-3.5 h-3.5 text-[#FFC224]" />
             <span>Mon – Sat: 7:00 AM - 8:00 PM</span>
           </div>
         </div>
