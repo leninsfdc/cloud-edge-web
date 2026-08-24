@@ -14,6 +14,7 @@ import whatsapp from "@/public/icons/whatsapp.svg"
 import { usePathname } from "next/navigation";
 import heartIcon from "@/public/icons/heart.svg"
 import { getWhatsAppLink } from "@/utils";
+import { useCountry } from "@/libs/country-context";
 
 import {
   ArrowRight,
@@ -24,6 +25,8 @@ import TrustBadges from "@/components/ui/TrustBadges";
 const Footer = () => {
   const pathname = usePathname();
   const [enabled, setEnabled] = useState(false);
+  const { country } = useCountry();
+  const getCountryHref = (href: string) => `/${country.slug}${href === "/" ? "" : href}`;
 
   return (
     <footer className="bg-[#07042F] py-10 sm:py-14 text-white overflow-hidden">
@@ -124,9 +127,9 @@ const Footer = () => {
 
                   <div className="flex items-center gap-3">
                     {[
-                      { label: "Instagram", href: "/contact-us", icon: <Image src={insta} alt="Instagram" className=" w-6 h-6" /> },
-                      { label: "Linkedin", href: "/contact-us", icon: <Image src={linkedin} alt="Linkedin" className=" w-6 h-6" /> },
-                      { label: "Facebook", href: "/contact-us", icon: <Image src={facebook} alt="Facebook" className=" w-6 h-6" /> },
+                      { label: "Instagram", href: getCountryHref("/contact-us"), icon: <Image src={insta} alt="Instagram" className=" w-6 h-6" /> },
+                      { label: "Linkedin", href: getCountryHref("/contact-us"), icon: <Image src={linkedin} alt="Linkedin" className=" w-6 h-6" /> },
+                      { label: "Facebook", href: getCountryHref("/contact-us"), icon: <Image src={facebook} alt="Facebook" className=" w-6 h-6" /> },
                       { label: "Whatsapp", href: getWhatsAppLink(), icon: <Image src={whatsapp} alt="Whatsapp" className=" w-6 h-6" />, external: true },
                     ].map((item) => (
                       <Link
@@ -156,12 +159,13 @@ const Footer = () => {
                     { label: "Blog", href: "/blogs" },
                     { label: "Contact", href: "/contact-us" },
                   ].map((item) => {
-                    const isActive = pathname === item.href;
+                    const targetHref = getCountryHref(item.href);
+                    const isActive = pathname === targetHref;
 
                     return (
                       <li key={item.href}>
                         <Link
-                          href={item.href}
+                          href={targetHref}
                           className={`group flex items-center gap-2 transition-all duration-300 hover:translate-x-1 ${isActive
                             ? "text-[#FFC224]"
                             : "text-white hover:text-[#FFC224]"
@@ -185,31 +189,31 @@ const Footer = () => {
 
                 <ul className="space-y-4 text-sm text-white">
                   <li>
-                    <Link href="/about-us" className="inline-block transition-all duration-300 hover:text-[#FFC224] hover:translate-x-1">
+                    <Link href={getCountryHref("/about-us")} className="inline-block transition-all duration-300 hover:text-[#FFC224] hover:translate-x-1">
                       Customers
                     </Link>
                   </li>
 
                   <li>
-                    <Link href="/services" className="inline-block transition-all duration-300 hover:text-[#FFC224] hover:translate-x-1">
+                    <Link href={getCountryHref("/services")} className="inline-block transition-all duration-300 hover:text-[#FFC224] hover:translate-x-1">
                       Pricing
                     </Link>
                   </li>
 
                   <li>
-                    <Link href="/blogs" className="inline-block transition-all duration-300 hover:text-[#FFC224] hover:translate-x-1">
+                    <Link href={getCountryHref("/blogs")} className="inline-block transition-all duration-300 hover:text-[#FFC224] hover:translate-x-1">
                       Learning Center
                     </Link>
                   </li>
 
                   <li>
-                    <Link href="/contact-us" className="inline-block transition-all duration-300 hover:text-[#FFC224] hover:translate-x-1">
+                    <Link href={getCountryHref("/contact-us")} className="inline-block transition-all duration-300 hover:text-[#FFC224] hover:translate-x-1">
                       Help desk
                     </Link>
                   </li>
 
                   <li>
-                    <Link href="/contact-us" className="inline-block transition-all duration-300 hover:text-[#FFC224] hover:translate-x-1">
+                    <Link href={getCountryHref("/contact-us")} className="inline-block transition-all duration-300 hover:text-[#FFC224] hover:translate-x-1">
                       Terms & Conditions
                     </Link>
                   </li>

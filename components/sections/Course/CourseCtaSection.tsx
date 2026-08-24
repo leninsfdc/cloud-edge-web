@@ -8,7 +8,15 @@ import lightIcon from "@/public/icons/light-icon.svg";
 import cta from "@/public/images/cta.svg";
 import { getWhatsAppLink } from "@/utils";
 
-const CourseCtaSection = () => {
+interface CourseCtaSectionProps {
+  courseName?: string;
+}
+
+const CourseCtaSection = ({ courseName }: CourseCtaSectionProps) => {
+  const whatsappMessage = courseName
+    ? `Hi Cloud Edge Solutions, I am ready to start learning ${courseName}.`
+    : "Hi Cloud Edge Solutions, I am ready to start learning.";
+
   return (
     <motion.section 
       initial={{ opacity: 0, y: 30 }}
@@ -44,7 +52,7 @@ const CourseCtaSection = () => {
             </div>
 
             <h2 className="text-3xl font-extrabold leading-tight text-white md:text-[42px] font-bricolage-grotesque">
-              Ready to accelerate your IT career?
+              {courseName ? `Ready to start ${courseName}?` : "Ready to accelerate your IT career?"}
             </h2>
 
             <p className="mt-4 text-base text-white/85 leading-relaxed">
@@ -55,7 +63,7 @@ const CourseCtaSection = () => {
             <motion.a
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.96 }}
-              href={getWhatsAppLink("Hi Cloud Edge Solutions, I am ready to start learning.")}
+              href={getWhatsAppLink(whatsappMessage)}
               target="_blank"
               rel="noopener noreferrer"
               className="mt-8 inline-flex w-fit h-14 items-center justify-center gap-3 rounded-full bg-white hover:bg-slate-100 px-8 text-base font-bold text-slate-900 shadow-xl transition-all duration-300 transform hover:-translate-y-0.5"

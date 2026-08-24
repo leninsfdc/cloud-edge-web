@@ -1,22 +1,33 @@
 import HomeContainer from "@/containers/web/HomeContainer";
 import React from "react";
 import { Metadata } from "next";
+import { CountrySlug } from "@/libs/country-data";
+import { buildAlternates } from "@/libs/seo";
 
-export const metadata: Metadata = {
-  title: "Cloud Edge Solutions - Online Training for Salesforce, SAP, AWS, Data Science, JAVA, Power BI",
-  description:
-    "Enhance your skills with Cloud Edge Solutions' online training. Explore Salesforce, SAP, AWS, Data Science, Java, Power BI, AI, and cloud computing courses for students and professionals across India, USA, and UK.",
-  keywords: [
-    "Cloud Edge Solutions", "online training", "Salesforce training", "SAP training",
-    "AWS training", "Data Science course", "Java training", "Power BI training",
-    "AI courses", "Cloud Computing training", "IT certification", "online certification programs",
-    "technology training institute", "career development courses", "corporate training", "professional certification",
-  ],
-  authors: [{ name: "Cloud Edge Solutions" }],
-  creator: "Cloud Edge Solutions",
-  publisher: "Cloud Edge Solutions",
-  robots: { index: true, follow: true },
+type Props = {
+  params: Promise<{ country: string }>;
 };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { country } = await params;
+
+  return {
+    title: "Cloud Edge Solutions - Online Training for Salesforce, SAP, AWS, Data Science, JAVA, Power BI",
+    description:
+      "Enhance your skills with Cloud Edge Solutions' online training. Explore Salesforce, SAP, AWS, Data Science, Java, Power BI, AI, and cloud computing courses for students and professionals across India, USA, and UK.",
+    keywords: [
+      "Cloud Edge Solutions", "online training", "Salesforce training", "SAP training",
+      "AWS training", "Data Science course", "Java training", "Power BI training",
+      "AI courses", "Cloud Computing training", "IT certification", "online certification programs",
+      "technology training institute", "career development courses", "corporate training", "professional certification",
+    ],
+    authors: [{ name: "Cloud Edge Solutions" }],
+    creator: "Cloud Edge Solutions",
+    publisher: "Cloud Edge Solutions",
+    robots: { index: true, follow: true },
+    alternates: buildAlternates(country as CountrySlug, ""),
+  };
+}
 
 const Page = () => {
   return <HomeContainer />;

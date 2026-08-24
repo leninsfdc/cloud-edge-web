@@ -18,7 +18,7 @@ const CourseDetailsContainer: React.FC<ICourseDetailsContainer> = ({data, countr
       <CourseHeroSection course={data} />
       <CourseBatchSection  batches={data.batches || []} duration={data.duration || 0} />
       <CourseOverview course={data} countryCode={countryCode} />
-      <CourseCtaSection />
+      <CourseCtaSection courseName={data.name} />
     </div>
   )
 }

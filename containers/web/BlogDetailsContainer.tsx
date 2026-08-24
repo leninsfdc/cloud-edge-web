@@ -21,13 +21,17 @@ import { IBlogs } from "@/types";
 import BadgeLabel from "@/components/shared/BadgeLabel";
 import PrimaryButton from "@/components/ui/PrimaryButton";
 import AuthorCard from "@/components/ui/AuthorCard";
+import { useCountry } from "@/libs/country-context";
+import { isOptimizableImageUrl } from "@/lib/utils";
 
 interface IProps {
   blogData: IBlogs;
 }
 
 const BlogDetailsContainer: FC<IProps> = ({ blogData }) => {
-  console.log("Blog API Data:", blogData);
+  const { country } = useCountry();
+  const getCountryHref = (href: string) => `/${country.slug}${href === "/" ? "" : href}`;
+
   const handleCopyLink = () => {
     if (typeof window !== "undefined") {
       navigator.clipboard.writeText(window.location.href);
@@ -62,7 +66,7 @@ const BlogDetailsContainer: FC<IProps> = ({ blogData }) => {
           {/* Top Navigation & Breadcrumbs */}
           <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
             <Link
-              href="/blogs"
+              href={getCountryHref("/blogs")}
               className="inline-flex items-center gap-2 text-xs font-semibold text-[#6C5CFF] hover:text-[#5E4AE3] bg-white px-4 py-2 rounded-full border border-[#DDDFF5] shadow-2xs hover:shadow-xs transition-all transform hover:-translate-x-0.5"
             >
               <ArrowLeft className="w-4 h-4" />
@@ -74,11 +78,11 @@ const BlogDetailsContainer: FC<IProps> = ({ blogData }) => {
               aria-label="Breadcrumb"
               className="flex items-center gap-1.5 text-xs text-slate-500 overflow-x-auto"
             >
-              <Link href="/" className="hover:text-[#7C6EF8]">
+              <Link href={getCountryHref("/")} className="hover:text-[#7C6EF8]">
                 Home
               </Link>
               <ChevronRight className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-              <Link href="/blogs" className="hover:text-[#7C6EF8]">
+              <Link href={getCountryHref("/blogs")} className="hover:text-[#7C6EF8]">
                 Blogs
               </Link>
               <ChevronRight className="w-3.5 h-3.5 text-slate-400 shrink-0" />
@@ -140,7 +144,7 @@ const BlogDetailsContainer: FC<IProps> = ({ blogData }) => {
               src={(blogData?.media_url && blogData.media_url.trim() !== "") ? blogData.media_url : placeholder}
               alt={blogData?.title || "Blog Cover Image"}
               fill
-              unoptimized
+              unoptimized={!!blogData?.media_url && !isOptimizableImageUrl(blogData.media_url)}
               className="object-cover"
               priority
             />
@@ -253,7 +257,7 @@ const BlogDetailsContainer: FC<IProps> = ({ blogData }) => {
 
                   <div className="pt-2">
                     <PrimaryButton
-                      href="/courses"
+                      href={getCountryHref("/courses")}
                       label="Explore Courses"
                       className="w-full flex justify-center py-3 text-sm font-semibold shadow-lg shadow-indigo-900/50"
                     />

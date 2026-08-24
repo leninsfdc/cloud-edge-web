@@ -117,7 +117,9 @@ const BranchCard: React.FC<BranchCardProps> = ({ branch, isActive }) => (
 
       <div className="pt-2 flex items-center justify-between border-t border-slate-100 mt-1">
         <Link
-          href="/contact-us"
+          href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(branch.address)}`}
+          target="_blank"
+          rel="noopener noreferrer"
           className={`inline-flex items-center gap-1.5 text-xs font-semibold transition-all group ${isActive ? 'text-[#7C6EF8] hover:text-[#5E4AE3]' : 'text-slate-600 hover:text-[#7C6EF8]'
             }`}
         >

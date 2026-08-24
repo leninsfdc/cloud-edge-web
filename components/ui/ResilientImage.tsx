@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Image, { ImageProps } from "next/image";
 import capIcon from "@/public/icons/cap.svg";
+import { isOptimizableImageUrl } from "@/lib/utils";
 
 interface ResilientImageProps extends Omit<ImageProps, "src"> {
   src?: any;
@@ -36,6 +37,13 @@ export default function ResilientImage({
     typeof finalSrc === "string" &&
     (finalSrc.startsWith("http://") || finalSrc.startsWith("https://"));
 
+  // Only bypass Next.js image optimization for external hosts that aren't
+  // configured in next.config.ts remotePatterns — otherwise this was
+  // disabling resizing/WebP/AVIF/srcset for every Supabase-hosted course
+  // image (the vast majority of real content images) despite the config
+  // already allowing that host to be optimized.
+  const needsUnoptimized = isExternalUrl && !isOptimizableImageUrl(finalSrc as string);
+
   const isStringSrc = typeof finalSrc === "string";
 
   // If fill mode is active, omit width and height as required by Next.js <Image />
@@ -45,7 +53,7 @@ export default function ResilientImage({
         src={finalSrc}
         alt={alt || "image"}
         fill
-        unoptimized={isExternalUrl}
+        unoptimized={needsUnoptimized}
         onError={() => setHasError(true)}
         className={className}
         {...props}
@@ -64,7 +72,7 @@ export default function ResilientImage({
       alt={alt || "image"}
       width={computedWidth}
       height={computedHeight}
-      unoptimized={isExternalUrl}
+      unoptimized={needsUnoptimized}
       onError={() => setHasError(true)}
       className={className}
       {...props}
