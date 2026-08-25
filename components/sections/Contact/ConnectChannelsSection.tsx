@@ -19,8 +19,7 @@ const ConnectChannelsSection = () => {
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
 
         {/* HEADER WITH COUNTRY PICKER */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-12 max-w-7xl mx-auto">
-          <div className="hidden md:block w-32" /> {/* Spacer for symmetry on desktop */}
+        <div className="flex flex-col md:flex-row items-center gap-4 mb-12 max-w-7xl mx-auto justify-center">
 
           <motion.div 
             initial={{ opacity: 0, y: 15 }}
@@ -43,10 +42,6 @@ const ConnectChannelsSection = () => {
             </p>
           </motion.div>
 
-          <div className="flex items-center gap-2 bg-white/80 backdrop-blur-md p-2 rounded-2xl border border-slate-200/80 shadow-2xs">
-            <span className="text-xs font-bold text-slate-500 pl-1">Region:</span>
-            <CountryPicker variant="light" compact />
-          </div>
         </div>
 
         {/* GRID */}

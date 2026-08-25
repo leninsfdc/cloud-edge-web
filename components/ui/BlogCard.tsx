@@ -1,6 +1,9 @@
 import Image from "next/image";
 import SecondaryButton from "./SecondaryButton";
 import calendarIcon from "@/public/icons/calendar.svg";
+import ResilientImage from "./ResilientImage";
+import placeholder from "@/public/images/placeholder.jpg";
+import Link from "next/link";
 
 interface BlogCardProps {
   image: any;
@@ -37,7 +40,8 @@ const BlogCard = ({
       <div className="flex flex-col sm:flex-row gap-5">
 
         {/* Image */}
-        <div
+        <Link
+          href={href}
           className="
             relative
             w-full sm:w-[180px]
@@ -45,10 +49,13 @@ const BlogCard = ({
             overflow-hidden
             rounded-[24px]
             flex-shrink-0
+            block
+            bg-slate-100
           "
         >
-          <Image
-            src={image}
+          <ResilientImage
+            src={image || placeholder}
+            fallbackSrc={placeholder}
             alt={title}
             fill
             className="
@@ -57,7 +64,7 @@ const BlogCard = ({
               group-hover:scale-105
             "
           />
-        </div>
+        </Link>
 
         {/* Content */}
         <div className="flex flex-1 flex-col justify-between">
@@ -82,23 +89,25 @@ const BlogCard = ({
             </div>
 
             {/* Title */}
-            <h3
-              className="
-                mt-4
-                text-[24px] sm:text-[28px]
-                leading-[120%]
-                font-semibold
-                text-[#111111]
-                max-w-[360px]
-                transition-colors duration-300
-                group-hover:text-[#6557E3]
-              "
-            >
-              {title}
-            </h3>
+            <Link href={href} className="block">
+              <h3
+                className="
+                  mt-4
+                  text-[22px] sm:text-[24px]
+                  leading-[125%]
+                  font-semibold
+                  text-[#111111]
+                  line-clamp-2
+                  transition-colors duration-300
+                  group-hover:text-[#6557E3]
+                "
+              >
+                {title}
+              </h3>
+            </Link>
 
             {/* Date */}
-            <div className="mt-5 border-b border-dashed border-[#EBEBEB] pb-5">
+            <div className="mt-4 border-b border-dashed border-[#EBEBEB] pb-4">
               <div className="flex items-center gap-2">
                 <Image
                   src={calendarIcon}
@@ -116,7 +125,7 @@ const BlogCard = ({
           </div>
 
           {/* Button */}
-          <div className="pt-5">
+          <div className="pt-4">
             <SecondaryButton
               text="Learn More"
               bgColor="#C591FB"

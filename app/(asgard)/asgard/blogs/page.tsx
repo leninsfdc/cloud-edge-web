@@ -8,9 +8,7 @@ import {getBlogs} from "@/app/(asgard)/asgard/blogs/actions";
 import {IBlogs} from "@/types";
 
 const page = async () => {
-
-
-  const blogs = (await  getBlogs()).data as IBlogs[];
+  const blogs = (await getBlogs(1, 100, null)).data as IBlogs[];
 
   return (
       <BlogContainer results={blogs} />

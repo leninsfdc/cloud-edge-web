@@ -4,20 +4,26 @@ import { createClient } from "@/libs/supabase/server";
 import {createSlug} from "@/utils";
 
 
-export async function getBlogs(page = 1, pageSize = 10) {
+export async function getBlogs(page = 1, pageSize = 10, isActive: boolean | null = true) {
 
     const supabase = await createClient();
 
     const from = (page - 1) * pageSize;
     const to = from + pageSize - 1;
 
+    let query = supabase
+        .from("blogs")
+        .select("*", { count: "exact" });
+
+    if (isActive !== null && isActive !== undefined) {
+        query = query.eq("is_active", isActive);
+    }
+
     const {
         data,
         count,
         error,
-    } = await supabase
-        .from("blogs")
-        .select("*", { count: "exact" })
+    } = await query
         .range(from, to)
         .order("created_at", { ascending: false });
 
