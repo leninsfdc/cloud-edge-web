@@ -1,13 +1,19 @@
 import { Metadata } from 'next';
+import React from 'react';
+import DashboardContainer from "@/containers/asgard/dashboard/DashboardContainer";
+import { getDashboardKPIs } from "@/app/(asgard)/asgard/dashboard/actions";
+
 export const metadata: Metadata = {
-  robots: { index: false, follow: false }
+  title: "Dashboard & KPIs | Asgard Admin",
+  robots: { index: false, follow: false },
 };
-import React from 'react'
 
-const page = () => {
-  return (
-    <div>page</div>
-  )
-}
+export const dynamic = "force-dynamic";
 
-export default page
+const DashboardPage = async () => {
+  const kpis = await getDashboardKPIs();
+
+  return <DashboardContainer initialData={kpis} />;
+};
+
+export default DashboardPage;
