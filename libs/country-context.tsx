@@ -47,7 +47,7 @@ export function CountryProvider({
     setCountryCookie(newSlug);
     if (newSlug === slug) return;
     // Replace the leading /{currentSlug} with /{newSlug}
-    const rest = pathname.replace(/^\/(in|uk|us|ca)/, "");
+    const rest = pathname.replace(/^\/(in|uk|usa|ca|au)/, "");
     router.push(`/${newSlug}${rest || "/"}`);
   };
 
@@ -58,7 +58,7 @@ export function CountryProvider({
   );
 }
 
-const DEFAULT_FALLBACK_COUNTRY = getCountryOption("us");
+const DEFAULT_FALLBACK_COUNTRY = getCountryOption("usa");
 
 export function useCountry(): CountryContextValue {
   const ctx = useContext(CountryContext);

@@ -63,6 +63,19 @@ const countries = [
       "America/St_Johns",
     ],
   },
+  {
+    name: "Australia (AU)",
+    code: "AU",
+    currency: "AUD",
+    defaultTimezone: "Australia/Sydney",
+    timezones: [
+      "Australia/Sydney",
+      "Australia/Melbourne",
+      "Australia/Brisbane",
+      "Australia/Perth",
+      "Australia/Adelaide",
+    ],
+  },
 ];
 
 const CreateUpdateBatchRegionContainer: React.FC<

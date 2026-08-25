@@ -9,6 +9,8 @@ import { motion } from "framer-motion";
 import PrimaryButton from "@/components/ui/PrimaryButton";
 import TrustBadges from "@/components/ui/TrustBadges";
 import {getBanners} from "@/app/(asgard)/asgard/content/banners/actions";
+import { useCountry } from "@/libs/country-context";
+import { COUNTRY_HOME_CONTENT } from "@/libs/countryHomeContent";
 
 import heroImage from "@/public/images/hero-image.png";
 import heroImage2 from "@/public/images/hero-image-2.png"
@@ -51,15 +53,33 @@ const heroSlides = [
 ];
 
 const HeroSection = () => {
-  const [slides, setSlides] = useState<any[]>([{
-    id: "placeholder",
-    title: "",
-    description: "",
-    image_url: "",
-    btn_text: "",
-    btn_link: "",
-  }]);
+  const { country } = useCountry();
+  const countryOverride = COUNTRY_HOME_CONTENT[country.slug]?.hero;
+
+  const [slides, setSlides] = useState<any[]>(
+    countryOverride
+      ? [{
+          id: `country-${country.slug}`,
+          title: countryOverride.title,
+          description: countryOverride.description,
+          image_url: heroImage,
+          btn_text: "View Courses",
+          secondaryBtn: "Contact Us",
+        }]
+      : [{
+          id: "placeholder",
+          title: "",
+          description: "",
+          image_url: "",
+          btn_text: "",
+          btn_link: "",
+        }]
+  );
+
   useEffect(() => {
+    // Countries with curated local copy use a static hero — no CMS banners.
+    if (countryOverride) return;
+
     const fetchBanners = async () => {
       try {
         const response = await getBanners(1, 10);
@@ -71,7 +91,7 @@ const HeroSection = () => {
       }
     };
     fetchBanners();
-  }, []);
+  }, [countryOverride]);
 
   const settings = {
     dots: false,

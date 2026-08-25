@@ -1,5 +1,5 @@
-export type CountryCode = "IN" | "UK" | "US" | "CA";
-export type CountrySlug = "in" | "uk" | "us" | "ca";
+export type CountryCode = "IN" | "UK" | "US" | "CA" | "AU";
+export type CountrySlug = "in" | "uk" | "usa" | "ca" | "au";
 
 export interface CountryOption {
   code: CountryCode;
@@ -35,7 +35,7 @@ export const COUNTRIES: CountryOption[] = [
   },
   {
     code: "US",
-    slug: "us",
+    slug: "usa",
     name: "United States",
     shortName: "USA",
     flag: "🇺🇸",
@@ -53,18 +53,28 @@ export const COUNTRIES: CountryOption[] = [
     currency: "CAD",
     currencySymbol: "$",
   },
+  {
+    code: "AU",
+    slug: "au",
+    name: "Australia",
+    shortName: "Australia",
+    flag: "🇦🇺",
+    flagUrl: "https://flagsapi.com/AU/flat/64.png",
+    currency: "AUD",
+    currencySymbol: "A$",
+  },
 ];
 
-export const VALID_SLUGS: CountrySlug[] = ["in", "uk", "us", "ca"];
+export const VALID_SLUGS: CountrySlug[] = ["in", "uk", "usa", "ca", "au"];
 
 export function slugToCode(slug: string): CountryCode {
-  const map: Record<string, CountryCode> = { in: "IN", uk: "UK", us: "US", ca: "CA" };
+  const map: Record<string, CountryCode> = { in: "IN", uk: "UK", usa: "US", ca: "CA", au: "AU" };
   return map[slug.toLowerCase()] ?? "US";
 }
 
 export function codeToSlug(code: CountryCode): CountrySlug {
-  const map: Record<CountryCode, CountrySlug> = { IN: "in", UK: "uk", US: "us", CA: "ca" };
-  return map[code] ?? "us";
+  const map: Record<CountryCode, CountrySlug> = { IN: "in", UK: "uk", US: "usa", CA: "ca", AU: "au" };
+  return map[code] ?? "usa";
 }
 
 export function getCountryOption(slugOrCode: string): CountryOption {
@@ -82,6 +92,7 @@ const COUNTRY_CODE_ALIASES: Record<string, string[]> = {
   UK: ["UK", "GB", "GBR"],
   US: ["US", "USA"],
   CA: ["CA", "CAN"],
+  AU: ["AU", "AUS"],
 };
 
 /**
@@ -109,17 +120,29 @@ export function getRegionForCountry(course: any, countryCode?: string) {
   return null;
 }
 
+// ISO currency code -> display symbol. Single source of truth — reused by
+// formatRegionPrice() below and by CourseEnrollmentCard/CourseOverview so the
+// same region never renders with a different symbol (or the raw ISO code) in
+// different places.
+const CURRENCY_SYMBOLS: Record<string, string> = {
+  INR: "₹",
+  GBP: "£",
+  USD: "$",
+  CAD: "$",
+  AUD: "A$",
+};
+
+export function getCurrencySymbol(currency?: string | null): string {
+  if (!currency) return "$";
+  return CURRENCY_SYMBOLS[currency.toUpperCase()] ?? "$";
+}
+
 /**
  * Formats a region's price with proper currency symbol according to its currency.
  */
 export function formatRegionPrice(region: any) {
   if (!region) return null;
-  const currencySymbol =
-    region.currency === "INR"
-      ? "₹"
-      : region.currency === "GBP"
-      ? "£"
-      : "$";
+  const currencySymbol = getCurrencySymbol(region.currency);
 
   const numPrice = region.discounted_price || region.price;
   if (numPrice === undefined || numPrice === null) return null;

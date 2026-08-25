@@ -7,8 +7,10 @@ import { MotionSection, MotionDiv } from "@/components/ui/MotionElements";
 
 import plusIcon from "@/public/icons/plus.svg";
 import minusIcon from "@/public/icons/minus.svg";
+import { useCountry } from "@/libs/country-context";
+import { COUNTRY_HOME_CONTENT } from "@/libs/countryHomeContent";
 
-const faqData = [
+const genericFaqData = [
   {
     id: "01",
     question: "What Is CloudEdge?",
@@ -42,6 +44,16 @@ const faqData = [
 ];
 
 const FaqSection = () => {
+  const { country } = useCountry();
+  const countryFaqs = COUNTRY_HOME_CONTENT[country.slug]?.faqs;
+  const faqData = countryFaqs && countryFaqs.length > 0
+    ? countryFaqs.map((faq, index) => ({
+        id: String(index + 1).padStart(2, "0"),
+        question: faq.question,
+        answer: faq.answer,
+      }))
+    : genericFaqData;
+
   const [activeIndex, setActiveIndex] = useState<number>(0);
 
   const toggleFaq = (index: number) => {

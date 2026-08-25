@@ -1,6 +1,7 @@
 "use client"
 
 import ContactUsSection from '@/components/sections/Home/ContactUsSection'
+import CountryIntroSection from '@/components/sections/Home/CountryIntroSection'
 import CtaSection from '@/components/sections/Home/CtaSection'
 import EmpoweringLearnerSection from '@/components/sections/Home/EmpoweringLearnerSection'
 import ExploreCoursesSection from '@/components/sections/Home/ExploreCoursesSection'
@@ -18,6 +19,7 @@ const HomeContainer = () => {
   return (
     <div>
       <HeroSection  />
+      <CountryIntroSection />
       <div data-aos="fade-up">
         <PlacedAtSection />
       </div>

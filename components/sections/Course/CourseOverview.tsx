@@ -23,6 +23,7 @@ import { getNearestBatch } from "../Home/ExploreCoursesSection";
 import ResilientImage from "@/components/ui/ResilientImage";
 import codeIcon from "@/public/icons/code.svg";
 import { PricingCountryCode } from "@/libs/geo";
+import { getCurrencySymbol, codeToSlug } from "@/libs/country-data";
 
 interface ICourseOverviewProps {
   course: ICourse;
@@ -307,13 +308,7 @@ const CourseOverview: React.FC<ICourseOverviewProps> = ({ course, countryCode })
                 if (!relatedCourse) return null;
 
                 const nearestRegion = getNearestBatch(relatedCourse);
-
-                const currencySymbol =
-                  nearestRegion?.currency === "INR"
-                    ? "₹"
-                    : nearestRegion?.currency === "GBP"
-                      ? "£"
-                      : "$";
+                const currencySymbol = getCurrencySymbol(nearestRegion?.currency);
 
                 const price = nearestRegion
                   ? `${currencySymbol}${(
@@ -331,7 +326,7 @@ const CourseOverview: React.FC<ICourseOverviewProps> = ({ course, countryCode })
                     title={relatedCourse.name}
                     description={relatedCourse.description}
                     price={price}
-                    url={`/${countryCode ? countryCode.toLowerCase() : "us"}/courses/${relatedCourse.url_slug}`}
+                    url={`/${countryCode ? codeToSlug(countryCode) : "usa"}/courses/${relatedCourse.url_slug}`}
                   />
                 );
               })}

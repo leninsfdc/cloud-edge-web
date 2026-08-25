@@ -14,11 +14,12 @@ export const ORG_CONTACT_PHONE = "+447442586325";
 const HREFLANG_MAP: Record<CountrySlug, string> = {
   in: "en-IN",
   uk: "en-GB",
-  us: "en-US",
+  usa: "en-US",
   ca: "en-CA",
+  au: "en-AU",
 };
 
-const DEFAULT_COUNTRY: CountrySlug = "us";
+const DEFAULT_COUNTRY: CountrySlug = "usa";
 
 /**
  * Builds canonical + hreflang alternates for a country-prefixed route so

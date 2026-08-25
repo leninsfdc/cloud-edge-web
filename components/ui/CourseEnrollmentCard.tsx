@@ -1,10 +1,6 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
-import india from "@/public/icons/india.svg";
-import uk from "@/public/icons/united-kingdom.svg";
-import us from "@/public/icons/united-states.svg";
-import canada from "@/public/icons/canada.svg";
 import checkCircle from "@/public/icons/chck-circle-green.svg";
 import clock from "@/public/icons/clock-icon.svg";
 import calendar from "@/public/icons/calendar-gray.svg";
@@ -15,9 +11,9 @@ import playIcon from "@/public/icons/play-icon.svg";
 import capIcon from "@/public/icons/cap.svg";
 import moment from "moment";
 import { getEmailLink, getWhatsAppLink } from "@/utils";
+import { getCountryOption, getCurrencySymbol } from "@/libs/country-data";
 
-const flags = { IN: india, UK: uk, US: us, CA: canada };
-const flagLabels = { IN: "India", UK: "UK", US: "USA", CA: "Canada" };
+const PRICING_CODES = ["IN", "UK", "US", "CA", "AU"] as const;
 
 const GRADIENT_PALETTES = [
   {
@@ -62,8 +58,8 @@ export default function CourseEnrollmentCard({ course, defaultCountry }: { cours
 
   const theme = getCourseTheme(course?.id || course?.name || "cloudedge");
 
-  const pricing = (["IN", "UK", "US", "CA"] as const)
-    .map((code) => ({ code, label: flagLabels[code], data: course.countryPricing?.[code] }))
+  const pricing = PRICING_CODES
+    .map((code) => ({ code, label: getCountryOption(code).shortName, data: course.countryPricing?.[code] }))
     .filter((x) => x.data);
 
   // Determine which tab to open first:
@@ -81,6 +77,7 @@ export default function CourseEnrollmentCard({ course, defaultCountry }: { cours
   const [selectedCode, setSelectedCode] = useState<string>(resolveDefaultCode);
 
   const selectedPrice = pricing.find((p) => p.code === selectedCode)?.data ?? pricing[0]?.data;
+  const currencySymbol = getCurrencySymbol(selectedPrice?.currency);
 
   const emiMonths = 6;
   const emiAmount = selectedPrice?.price
@@ -154,8 +151,8 @@ export default function CourseEnrollmentCard({ course, defaultCountry }: { cours
                   }
                 `}
               >
-                <Image
-                  src={flags[item.code]}
+                <img
+                  src={getCountryOption(item.code).flagUrl}
                   alt={item.label}
                   className="w-4 h-4 rounded-full shadow-xs shrink-0"
                 />
@@ -174,14 +171,14 @@ export default function CourseEnrollmentCard({ course, defaultCountry }: { cours
         {/* Price */}
         <div className="text-center my-4">
           <div className="text-4xl font-extrabold text-slate-900 tracking-tight font-bricolage-grotesque">
-            {selectedPrice?.currency}
+            {currencySymbol}
             {selectedPrice?.price?.toLocaleString(selectedCode === "IN" ? "en-IN" : "en-US")}
           </div>
           {emiAmount && (
             <p className="mt-2 text-xs sm:text-sm text-slate-500 font-medium">
               or{" "}
               <span className="font-bold text-indigo-600">
-                {selectedPrice?.currency}{emiAmount} / month*
+                {currencySymbol}{emiAmount} / month*
               </span>{" "}
               for {emiMonths} months
             </p>

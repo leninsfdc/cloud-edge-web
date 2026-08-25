@@ -36,6 +36,10 @@ yarn-error.log*
 # vercel
 .vercel
 
+# nested clone of this same repo (accidentally created inside the working
+# directory) — not part of this repo's content, must never be committed
+/cloud-edge-web/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

@@ -1,0 +1,116 @@
+import { CountrySlug } from "./country-data";
+
+export interface CountryFaqItem {
+  question: string;
+  answer: string;
+}
+
+export interface CountryHomeContent {
+  metaTitle: string;
+  metaDescription: string;
+  hero: {
+    /** Uses the same {{highlight}} convention as CMS-driven banner titles. */
+    title: string;
+    description: string;
+  };
+  intro: {
+    heading: string;
+    paragraphs: string[];
+  };
+  faqs: CountryFaqItem[];
+}
+
+// Only countries with genuine, non-fabricated local content go here — no
+// invented stats, testimonials, or claims of physical presence. Countries
+// without an entry fall back to the existing CMS-driven / generic homepage
+// content (see HeroSection.tsx, FaqSection.tsx, CountryIntroSection.tsx).
+export const COUNTRY_HOME_CONTENT: Partial<Record<CountrySlug, CountryHomeContent>> = {
+  uk: {
+    metaTitle: "IT Training Courses UK | Salesforce, AWS, SAP & Power BI | Cloud Edge Solutions",
+    metaDescription:
+      "Explore IT training courses in the UK with Cloud Edge Solutions. Learn Salesforce, AWS, SAP, Power BI, Data Science and Java with expert-led online training and career support.",
+    hero: {
+      title: "IT Training Courses{{ in the UK}}",
+      description:
+        "Practical, instructor-led IT training for professionals, graduates and career changers across the UK.",
+    },
+    intro: {
+      heading: "Online IT Training Built for UK Professionals",
+      paragraphs: [
+        "Cloud Edge Solutions delivers live, instructor-led online IT training for professionals, graduates and career changers across the UK. Our courses cover Salesforce, AWS, SAP, Power BI, Data Science and Java, with hands-on projects and certification preparation built into every programme.",
+        "Training is fully online and scheduled around UK time zones, so you can learn alongside a live instructor without relocating or taking time away from work. Every course includes career support to help you move from certification into a new role.",
+      ],
+    },
+    faqs: [
+      {
+        question: "Do you offer IT training in the UK?",
+        answer:
+          "Yes. Cloud Edge Solutions delivers live, instructor-led online IT training to students across the UK, with course schedules designed to fit UK time zones.",
+      },
+      {
+        question: "Are Salesforce courses available online in the UK?",
+        answer:
+          "Yes, our Salesforce Administrator, Developer, Lightning and Integration courses are all available as live online training with certification preparation included.",
+      },
+      {
+        question: "Do you provide Salesforce certification preparation?",
+        answer:
+          "Yes, certification exam preparation is included as part of our Salesforce training programmes.",
+      },
+      {
+        question: "Are evening classes available for working professionals?",
+        answer:
+          "Yes, batches are scheduled to accommodate working professionals, including evening and weekend options where available.",
+      },
+      {
+        question: "What IT courses are available for beginners?",
+        answer:
+          "We offer beginner-friendly pathways across Salesforce, Data Science, Power BI and Full Stack Development, with prerequisites listed on each course page.",
+      },
+    ],
+  },
+  usa: {
+    metaTitle: "IT Training Courses USA | Salesforce, AWS, SAP & Power BI | Cloud Edge Solutions",
+    metaDescription:
+      "Explore IT training courses in the USA with Cloud Edge Solutions. Learn Salesforce, AWS, SAP, Power BI, Data Science and Java with expert-led online training and career support.",
+    hero: {
+      title: "IT Training Courses{{ in the USA}}",
+      description:
+        "Practical, instructor-led IT training for professionals, graduates and career changers across the USA.",
+    },
+    intro: {
+      heading: "Online IT Training Built for US Professionals",
+      paragraphs: [
+        "Cloud Edge Solutions delivers live, instructor-led online IT training for professionals, graduates and career changers across the USA. Our courses cover Salesforce, AWS, SAP, Power BI, Data Science and Java, with hands-on projects and certification preparation built into every programme.",
+        "Training is fully online and scheduled around US time zones, so you can learn alongside a live instructor without relocating or taking time away from work. Every course includes career support to help you move from certification into a new role.",
+      ],
+    },
+    faqs: [
+      {
+        question: "Do you offer IT training in the USA?",
+        answer:
+          "Yes. Cloud Edge Solutions delivers live, instructor-led online IT training to students across the USA, with course schedules designed to fit US time zones.",
+      },
+      {
+        question: "Are classes available in US time zones?",
+        answer:
+          "Yes, batches are scheduled with US time zones in mind, including evening and weekend options where available.",
+      },
+      {
+        question: "Do you offer AWS certification training?",
+        answer:
+          "Yes, our AWS Solutions Architect, AWS DevOps and AWS Cloud Practitioner courses all include certification exam preparation.",
+      },
+      {
+        question: "Do you provide career support after certification?",
+        answer:
+          "Yes, every course includes career guidance to help you move from certification into a new role.",
+      },
+      {
+        question: "What IT courses are available for beginners?",
+        answer:
+          "We offer beginner-friendly pathways across Salesforce, Data Science, Power BI and Full Stack Development, with prerequisites listed on each course page.",
+      },
+    ],
+  },
+};
