@@ -541,12 +541,12 @@ export default function DashboardContainer({ initialData }: DashboardContainerPr
               {/* Extra Content Stats */}
               <div className="grid grid-cols-2 gap-2 pt-1">
                 <div className="rounded-xl bg-muted/40 p-2.5 text-center">
-                  <span className="text-[11px] text-muted-foreground">Active Instructors</span>
-                  <p className="text-lg font-bold text-foreground">{content.instructors.active}</p>
+                  <span className="text-[11px] text-muted-foreground">Instructors</span>
+                  <p className="text-lg font-bold text-foreground">{content.instructors.total}</p>
                 </div>
                 <div className="rounded-xl bg-muted/40 p-2.5 text-center">
-                  <span className="text-[11px] text-muted-foreground">Active Banners</span>
-                  <p className="text-lg font-bold text-foreground">{content.banners.active}</p>
+                  <span className="text-[11px] text-muted-foreground">Homepage Banners</span>
+                  <p className="text-lg font-bold text-foreground">{content.banners.total}</p>
                 </div>
               </div>
             </div>

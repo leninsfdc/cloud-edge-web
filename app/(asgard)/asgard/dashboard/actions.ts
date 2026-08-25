@@ -74,8 +74,8 @@ export interface DashboardKPIs {
     }[];
   };
   content: {
-    banners: { total: number; active: number };
-    instructors: { total: number; active: number };
+    banners: { total: number };
+    instructors: { total: number };
   };
   actionItems: {
     type: "warning" | "info" | "success";
@@ -191,12 +191,12 @@ export async function getDashboardKPIs(): Promise<DashboardKPIs> {
     // 9. Banners
     supabase
       .from("banners")
-      .select("id, is_active"),
+      .select("id"),
 
     // 10. Instructors
     supabase
       .from("instructures")
-      .select("id, is_active"),
+      .select("id"),
   ]);
 
   // Process Blogs
@@ -305,10 +305,7 @@ export async function getDashboardKPIs(): Promise<DashboardKPIs> {
 
   // Process Content
   const bannersData = bannersRes.status === "fulfilled" && bannersRes.value.data ? bannersRes.value.data : [];
-  const bannersActive = bannersData.filter((b) => b.is_active).length;
-
   const instructorsData = instructorsRes.status === "fulfilled" && instructorsRes.value.data ? instructorsRes.value.data : [];
-  const instructorsActive = instructorsData.filter((i) => i.is_active).length;
 
   // Generate Action Items & System Health Checks
   const actionItems: DashboardKPIs["actionItems"] = [];
@@ -390,8 +387,8 @@ export async function getDashboardKPIs(): Promise<DashboardKPIs> {
       recent: recentRegions,
     },
     content: {
-      banners: { total: bannersData.length, active: bannersActive },
-      instructors: { total: instructorsData.length, active: instructorsActive },
+      banners: { total: bannersData.length },
+      instructors: { total: instructorsData.length },
     },
     actionItems,
   };
