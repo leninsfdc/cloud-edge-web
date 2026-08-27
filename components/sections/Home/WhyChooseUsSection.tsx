@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import BadgeLabel from "@/components/shared/BadgeLabel";
+import { useCountry } from "@/libs/country-context";
 import {
   GraduationCap,
   Video,
@@ -132,6 +133,7 @@ const AUTOPLAY_MS = 5000;
 const STEP_MS = 25;
 
 const WhyChooseUsSection = () => {
+  const { country } = useCountry();
   const [activeIndex, setActiveIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -301,7 +303,7 @@ const WhyChooseUsSection = () => {
 
                   <div className="flex flex-col sm:flex-row items-center gap-3">
                     <Link
-                      href="/courses"
+                      href={`/${country.slug}/courses`}
                       className={`w-full sm:w-auto inline-flex items-center justify-center gap-2.5 rounded-full ${activeFeature.colorTheme.btnPrimary} px-7 py-3.5 font-extrabold text-xs sm:text-sm shadow-md transition-all duration-200 transform hover:-translate-y-0.5`}
                     >
                       <span>Explore Courses</span>

@@ -3,8 +3,10 @@
 import Link from "next/link";
 import { ArrowRight, MessageCircle } from "lucide-react";
 import { motion } from "framer-motion";
+import { useCountry } from "@/libs/country-context";
 
 export default function CTASection() {
+  const { country } = useCountry();
   return (
     <section className="bg-slate-50/90 py-4 lg:py-6 relative overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
@@ -31,7 +33,7 @@ export default function CTASection() {
 
             <div className="mt-7 flex flex-col items-center justify-center gap-3.5 sm:flex-row">
               <Link
-                href="/courses"
+                href={`/${country.slug}/courses`}
                 className="
                   inline-flex items-center gap-2
                   rounded-full

@@ -9,8 +9,10 @@ import {
   ArrowRight,
   CheckCircle2,
 } from "lucide-react";
+import { useCountry } from "@/libs/country-context";
 
 export default function Hero() {
+  const { country } = useCountry();
   const services = [
     {
       title: "Live Online Training",
@@ -111,7 +113,7 @@ export default function Hero() {
             {/* Buttons */}
             <div className="flex flex-wrap items-center gap-4">
               <Link
-                href="/courses"
+                href={`/${country.slug}/courses`}
                 className="rounded-full bg-indigo-600 hover:bg-indigo-700 px-8 py-4 text-sm font-bold text-white shadow-lg hover:shadow-indigo-500/25 transition-all duration-300 transform hover:-translate-y-0.5 inline-flex items-center gap-2"
               >
                 <span>Browse All Courses</span>

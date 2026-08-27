@@ -13,8 +13,10 @@ import cpdIcon from "@/public/icons/cpdIcon.svg";
 import { getWhatsAppLink } from "@/utils";
 import ResilientImage from "@/components/ui/ResilientImage";
 import { MessageCircle, ArrowRight, Sparkles } from "lucide-react";
+import { useCountry } from "@/libs/country-context";
 
 const AboutUsHeroSection = () => {
+  const { country } = useCountry();
   return (
     <div className="relative bg-slate-50/90 pb-16 overflow-hidden">
       {/* Ambient Glassy Light Orbs */}
@@ -62,7 +64,7 @@ const AboutUsHeroSection = () => {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2">
-              <Link href="/courses">
+              <Link href={`/${country.slug}/courses`}>
                 <motion.div
                   whileHover={{ scale: 1.02, y: -2 }}
                   whileTap={{ scale: 0.98 }}

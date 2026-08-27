@@ -12,6 +12,7 @@ import ResilientImage from '@/components/ui/ResilientImage';
 import { Sparkles, MessageCircle, ChevronDown, HelpCircle, ArrowRight } from 'lucide-react';
 import { getWhatsAppLink } from '@/utils';
 import Link from 'next/link';
+import { useCountry } from '@/libs/country-context';
 
 const companies = [
   "Deloitte", "Accenture", "Infosys", "TCS", "Wipro", "Capgemini",
@@ -64,6 +65,7 @@ const faqsData = [
 ];
 
 const CorporateOutcomesAndFaq = () => {
+  const { country } = useCountry();
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
@@ -208,7 +210,7 @@ const CorporateOutcomesAndFaq = () => {
                   Everything You Need to Know
                 </h2>
                 <p className="text-sm text-slate-600 font-medium">
-                  Still have questions? <Link href="/contact-us" className="text-indigo-600 font-bold hover:underline">Contact us</Link> directly.
+                  Still have questions? <Link href={`/${country.slug}/contact-us`} className="text-indigo-600 font-bold hover:underline">Contact us</Link> directly.
                 </p>
               </div>
 
@@ -330,7 +332,7 @@ const CorporateOutcomesAndFaq = () => {
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
               <Link
-                href="/courses"
+                href={`/${country.slug}/courses`}
                 className="w-full sm:w-auto px-8 py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs sm:text-sm rounded-full shadow-lg transition-all duration-200 text-center"
               >
                 Browse All Courses →
