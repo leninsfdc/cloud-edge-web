@@ -39,6 +39,7 @@ export const COUNTRY_HOME_CONTENT: Partial<Record<CountrySlug, CountryHomeConten
       paragraphs: [
         "Cloud Edge Solutions delivers live, instructor-led online IT training for professionals, graduates and career changers across the UK. Our courses cover Salesforce, AWS, SAP, Power BI, Data Science and Java, with hands-on projects and certification preparation built into every programme.",
         "Training is fully online and scheduled around UK time zones, so you can learn alongside a live instructor without relocating or taking time away from work. Every course includes career support to help you move from certification into a new role.",
+        "Cloud Edge Solutions is an India-based IT training provider delivering live online training to professionals across the UK — there's no physical UK office, but every session is live with a real instructor, not pre-recorded.",
       ],
     },
     faqs: [
@@ -46,6 +47,11 @@ export const COUNTRY_HOME_CONTENT: Partial<Record<CountrySlug, CountryHomeConten
         question: "Do you offer IT training in the UK?",
         answer:
           "Yes. Cloud Edge Solutions delivers live, instructor-led online IT training to students across the UK, with course schedules designed to fit UK time zones.",
+      },
+      {
+        question: "Is Cloud Edge Solutions based in the UK?",
+        answer:
+          "Cloud Edge Solutions is headquartered in India and delivers training to UK students entirely online — there is no physical UK office. Every class is live and instructor-led, scheduled to fit UK time zones.",
       },
       {
         question: "Are Salesforce courses available online in the UK?",
@@ -83,6 +89,7 @@ export const COUNTRY_HOME_CONTENT: Partial<Record<CountrySlug, CountryHomeConten
       paragraphs: [
         "Cloud Edge Solutions delivers live, instructor-led online IT training for professionals, graduates and career changers across the USA. Our courses cover Salesforce, AWS, SAP, Power BI, Data Science and Java, with hands-on projects and certification preparation built into every programme.",
         "Training is fully online and scheduled around US time zones, so you can learn alongside a live instructor without relocating or taking time away from work. Every course includes career support to help you move from certification into a new role.",
+        "Cloud Edge Solutions is an India-based IT training provider delivering live online training to professionals across the USA — there's no physical US office, but every session is live with a real instructor, not pre-recorded.",
       ],
     },
     faqs: [
@@ -90,6 +97,11 @@ export const COUNTRY_HOME_CONTENT: Partial<Record<CountrySlug, CountryHomeConten
         question: "Do you offer IT training in the USA?",
         answer:
           "Yes. Cloud Edge Solutions delivers live, instructor-led online IT training to students across the USA, with course schedules designed to fit US time zones.",
+      },
+      {
+        question: "Is Cloud Edge Solutions based in the USA?",
+        answer:
+          "Cloud Edge Solutions is headquartered in India and delivers training to US students entirely online — there is no physical US office. Every class is live and instructor-led, scheduled to fit US time zones.",
       },
       {
         question: "Are classes available in US time zones?",
@@ -127,6 +139,7 @@ export const COUNTRY_HOME_CONTENT: Partial<Record<CountrySlug, CountryHomeConten
       paragraphs: [
         "Cloud Edge Solutions delivers live, instructor-led online IT training for professionals, graduates and career changers across Australia. Our courses cover Salesforce, AWS, SAP, Power BI, Data Science and Java, with hands-on projects and certification preparation built into every programme.",
         "Training is fully online and scheduled with Australian time zones in mind, so you can learn alongside a live instructor without relocating or taking time away from work. Every course includes career support to help you move from certification into a new role.",
+        "Cloud Edge Solutions is an India-based IT training provider delivering live online training to professionals across Australia — there's no physical Australian office, but every session is live with a real instructor, not pre-recorded.",
       ],
     },
     faqs: [
@@ -134,6 +147,11 @@ export const COUNTRY_HOME_CONTENT: Partial<Record<CountrySlug, CountryHomeConten
         question: "Do you offer IT training in Australia?",
         answer:
           "Yes. Cloud Edge Solutions delivers live, instructor-led online IT training to students across Australia, with course schedules designed to fit Australian time zones.",
+      },
+      {
+        question: "Is Cloud Edge Solutions based in Australia?",
+        answer:
+          "Cloud Edge Solutions is headquartered in India and delivers training to Australian students entirely online — there is no physical Australian office. Every class is live and instructor-led, scheduled to fit Australian time zones.",
       },
       {
         question: "Are classes available in AEST/AEDT?",
