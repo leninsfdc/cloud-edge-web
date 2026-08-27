@@ -1,0 +1,70 @@
+name: Production smoke test
+
+# Catches routing regressions that a successful `next build` doesn't —
+# the [subjectSlug]-training bug (2026-08-27) built cleanly locally and on
+# Vercel; it only broke at request time because Next.js compiled its
+# regex to match any two-segment path, silently swallowing /uk/contact-us,
+# /uk/about-us, /uk/services, /uk/courses, /uk/blogs, /uk/trainers, and
+# /uk/reviews. Only hitting the real, deployed URLs over HTTP catches that
+# class of bug — a build check alone would not have.
+on:
+  push:
+    branches: [main]
+  schedule:
+    # Every 6 hours, so a bad routing change, CDN issue, or backend outage
+    # is caught even without a fresh push (e.g. a Supabase outage or a
+    # Vercel env var getting reset).
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
+
+jobs:
+  smoke-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for the Vercel deploy to go live
+        if: github.event_name == 'push'
+        run: sleep 120
+
+      - name: Check core URLs return 200
+        shell: bash
+        run: |
+          set +e
+          BASE="https://www.cloudedge.in"
+          URLS=(
+            "$BASE"
+            "$BASE/robots.txt"
+            "$BASE/sitemap.xml"
+            "$BASE/in"
+            "$BASE/uk"
+            "$BASE/usa"
+            "$BASE/australia"
+            "$BASE/uk/courses"
+            "$BASE/uk/courses/master-salesforce-advance-your-career"
+            "$BASE/uk/about-us"
+            "$BASE/uk/services"
+            "$BASE/uk/contact-us"
+            "$BASE/uk/blogs"
+            "$BASE/uk/trainers"
+            "$BASE/uk/reviews"
+            "$BASE/uk/salesforce-training"
+            "$BASE/in/salesforce-training/hyderabad"
+            "$BASE/in/salesforce-training/vijayawada"
+            "$BASE/usa/salesforce-training"
+            "$BASE/uk/aws-training"
+            "$BASE/uk/sap-training"
+            "$BASE/usa/python-training"
+            "$BASE/in/aws-training/hyderabad"
+          )
+
+          FAILED=0
+          for url in "${URLS[@]}"; do
+            http_status=$(curl -s -o /dev/null -w "%{http_code}" -L --max-time 15 "$url")
+            if [ "$http_status" = "200" ]; then
+              echo "OK   $http_status  $url"
+            else
+              echo "FAIL $http_status  $url"
+              FAILED=1
+            fi
+          done
+
+          exit $FAILED
