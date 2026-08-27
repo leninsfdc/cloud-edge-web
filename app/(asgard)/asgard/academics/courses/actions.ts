@@ -5,6 +5,33 @@ import {ICourse, ICourseModule, ICourseTool, ICourseHighlight, ICourseFAQ, ICour
 import {createSlug} from "@/utils";
 import {revalidatePath} from "next/cache";
 
+/**
+ * Ensures a course url_slug is unique across the courses table (excluding
+ * excludeId, for updates). Two courses silently sharing a slug means Google
+ * (and getCourseBySlug) can only ever resolve one of them — this is the
+ * likely real cause behind course cards appearing to link to "the same
+ * destination" rather than a bug in how links are built.
+ */
+async function ensureUniqueCourseSlug(
+    supabase: Awaited<ReturnType<typeof createClient>>,
+    baseSlug: string,
+    excludeId?: string
+): Promise<string> {
+    let candidate = baseSlug;
+    let suffix = 2;
+
+    while (true) {
+        let query = supabase.from("courses").select("id").eq("url_slug", candidate);
+        if (excludeId) query = query.neq("id", excludeId);
+        const {data} = await query.limit(1);
+
+        if (!data || data.length === 0) return candidate;
+
+        candidate = `${baseSlug}-${suffix}`;
+        suffix += 1;
+    }
+}
+
 export async function getCourses(page = 1, pageSize = 10) {
     const supabase = await createClient();
     const from = (page - 1) * pageSize;
@@ -339,6 +366,9 @@ export async function createCourse(
     const supabase = await createClient();
     const {modules, tools, highlights, faqs, testimonials, related_courses, ...courseData} = payload; // Destructure related_courses
 
+    const requestedSlug = courseData.url_slug?.trim() || createSlug(courseData.name);
+    const uniqueSlug = await ensureUniqueCourseSlug(supabase, requestedSlug);
+
     const {data: course, error} = await supabase
         .from("courses")
         .insert({
@@ -359,7 +389,7 @@ export async function createCourse(
             us_avg_salary: courseData.us_avg_salary,
             ca_avg_salary: courseData.ca_avg_salary,
             is_active: courseData.is_active,
-            url_slug: createSlug(courseData.name)
+            url_slug: uniqueSlug
         })
         .select()
         .single();
@@ -424,6 +454,9 @@ export async function updateCourse(
     const supabase = await createClient();
     const {id, modules, tools, highlights, faqs, testimonials, related_courses, ...courseData} = payload; // Destructure related_courses
 
+    const requestedSlug = courseData.url_slug?.trim() || createSlug(courseData.name);
+    const uniqueSlug = await ensureUniqueCourseSlug(supabase, requestedSlug, id);
+
     const {error} = await supabase
         .from("courses")
         .update({
@@ -444,7 +477,7 @@ export async function updateCourse(
             us_avg_salary: courseData.us_avg_salary,
             ca_avg_salary: courseData.ca_avg_salary,
             is_active: courseData.is_active,
-            url_slug: courseData.url_slug
+            url_slug: uniqueSlug
         })
         .eq("id", id);
 
@@ -573,6 +606,33 @@ export async function getRandomTestimonials(limit = 6) {
   const shuffled = [...(data || [])].sort(() => Math.random() - 0.5);
 
   return shuffled.slice(0, limit);
+}
+
+/** All active testimonials across all active courses, with the course name attached — for a public /reviews page. */
+export async function getAllTestimonials() {
+  const supabase = await createClient();
+
+  const { data, error } = await supabase
+      .from("course_testimonials")
+      .select(`
+            *,
+            courses!inner (
+                id,
+                name,
+                url_slug,
+                is_active,
+                is_deleted
+            )
+        `)
+      .eq("is_active", true)
+      .eq("is_deleted", false)
+      .eq("courses.is_active", true)
+      .eq("courses.is_deleted", false)
+      .order("created_at", { ascending: false });
+
+  if (error) throw new Error(error.message);
+
+  return data || [];
 }
 
 export async function getAllCoursesForSitemap() {

@@ -18,155 +18,6 @@ import { getFeaturedCourses } from '@/app/(asgard)/asgard/academics/courses/acti
 import { useCountry } from '@/libs/country-context';
 import { getRegionForCountry, formatRegionPrice } from '@/libs/country-data';
 
-const staticCourses = [
-  {
-    id: "static-1",
-    icon: salesforceIcon,
-    category: "Salesforce",
-    categoryColor: "#0165E0",
-    title: "Salesforce Administrator",
-    description:
-      "Master customisation, data management, automation, and expert platform navigation. The most in-demand Salesforce role.",
-    oldPrice: "$120.00",
-    price: "$99.00",
-    features: [
-      "Beginner to Advanced",
-      "Real Projects Included",
-      "Certification Provided",
-      "Job Assistance",
-    ],
-    badges: [
-      "⏳ Limited Seats Available",
-      "🏅 Salesforce Certified Program",
-    ],
-  },
-  {
-    id: "static-2",
-    icon: codeIcon,
-    category: "Development",
-    categoryColor: "#7535D4",
-    title: "Full Stack Web Development",
-    description:
-      "Advanced front-end and back-end development, modern frameworks, and real-world applications.",
-    oldPrice: "$120.00",
-    price: "$99.00",
-    features: [
-      "React + Next.js",
-      "Backend APIs",
-      "Database Projects",
-      "Deployment Training",
-    ],
-    badges: [
-      "🔥 Most Popular Course",
-      "🚀 Real World Projects Included",
-    ],
-  },
-  {
-    id: "static-3",
-    icon: salesforceIcon,
-    category: "Salesforce",
-    categoryColor: "#0165E0",
-    title: "Salesforce Development",
-    description:
-      "Advanced Salesforce development with Apex, LWC, integrations, and enterprise-level implementations.",
-    oldPrice: "$120.00",
-    price: "$99.00",
-    features: [
-      "Apex + LWC",
-      "Real CRM Projects",
-      "Integration Training",
-      "Career Guidance",
-    ],
-    badges: [
-      "🏅 Salesforce Expert Track",
-      "📈 High Salary Domain",
-    ],
-  },
-  {
-    id: "static-4",
-    icon: marketingIcon,
-    category: "Marketing",
-    categoryColor: "#F3663B",
-    title: "Digital Marketing Mastery",
-    description:
-      "Advanced marketing strategies, performance campaigns, and data-driven techniques for business growth.",
-    oldPrice: "$120.00",
-    price: "$99.00",
-    features: [
-      "SEO + Meta Ads",
-      "Google Ads",
-      "Analytics Training",
-      "Live Campaigns",
-    ],
-    badges: [
-      "📊 Performance Marketing",
-      "💼 Freelancing Ready",
-    ],
-  },
-  {
-    id: "static-5",
-    icon: awsIcon,
-    category: "DEVELOPMENT",
-    categoryColor: "#FB9701",
-    title: "AWS Solutions Architect",
-    description:
-      "Comprehensive cloud training. Get certified and unlock high-paying cloud roles globally.",
-    oldPrice: "$120.00",
-    price: "$99.00",
-    features: [
-      "AWS Cloud Practitioner",
-      "Hands-on Labs",
-      "DevOps Basics",
-      "Interview Preparation",
-    ],
-    badges: [
-      "☁️ Cloud Career Ready",
-      "🚀 High Demand Skills",
-    ],
-  },
-  {
-    id: "static-6",
-    icon: sapIcon,
-    category: "SAP",
-    categoryColor: "#00B1EB",
-    title: "SAP Training",
-    description:
-      "FICO, SD, MM modules. Industry-recognised certification with full placement support.",
-    oldPrice: "$120.00",
-    price: "$99.00",
-    features: [
-      "SAP FICO",
-      "SAP MM",
-      "SAP SD",
-      "Placement Assistance",
-    ],
-    badges: [
-      "🏢 Enterprise Training",
-      "📈 Corporate Ready",
-    ],
-  },
-  {
-    id: "static-7",
-    icon: javaIcon,
-    category: "DEVELOPMENT",
-    categoryColor: "#EA2D2E",
-    title: "Java Full Stack",
-    description:
-      "Frontend, backend, and database. Build robust full-stack apps with modern Java frameworks.",
-    oldPrice: "$120.00",
-    price: "$99.00",
-    features: [
-      "Spring Boot",
-      "React Integration",
-      "MySQL Database",
-      "Industry Projects",
-    ],
-    badges: [
-      "☕ Backend Mastery",
-      "💼 Job Focused Program",
-    ],
-  },
-];
 
 export const getNearestBatch = (course: any) => {
   if (!course?.batches?.length) return null;
@@ -222,10 +73,13 @@ const getCourseTitle = (course: any) => {
 
 const getCourseFeatures = (course: any) => {
   if (course.features && course.features.length > 0) return course.features;
+  // "Certification Provided" implies CloudEdge itself grants the
+  // certification, which isn't true for most third-party exams (Salesforce,
+  // AWS, SAP, etc.) — this only preps students for the real exam.
   return [
     "Beginner to Advanced",
     "Real Projects Included",
-    "Certification Provided",
+    "Certification Exam Preparation",
     "Job Assistance",
   ];
 };
@@ -235,7 +89,6 @@ const getCourseTags = (course: any) => {
   if (course.badges && course.badges.length > 0) return course.badges;
   return [
     "⏳ Limited Seats Available",
-    "🏅 Industry Certified Program",
   ];
 };
 
@@ -258,9 +111,11 @@ export const getCoursePrice = (course: any, countryCode?: string) => {
     if (formatted) return formatted;
   }
 
+  // No region/batch pricing exists at all for this course/country — don't
+  // invent a number, show a neutral prompt instead.
   return {
-    price: "$99.00",
-    oldPrice: "$120.00"
+    price: "Contact for pricing",
+    oldPrice: undefined
   };
 };
 
@@ -268,7 +123,8 @@ const AUTO_ADVANCE_DURATION = 5000; // ms per course
 
 const ExploreCoursesSection = () => {
   const { country } = useCountry();
-  const [coursesList, setCoursesList] = useState<any[]>(staticCourses);
+  // No hardcoded fallback courses — see the empty-state guard below for why.
+  const [coursesList, setCoursesList] = useState<any[]>([]);
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [contentVisible, setContentVisible] = useState(true);
   const [progress, setProgress] = useState(0);
@@ -408,6 +264,10 @@ const ExploreCoursesSection = () => {
       setContentVisible(true);
     }, 280);
   };
+
+  // Nothing to show yet (still loading, or getFeaturedCourses came back
+  // empty) — render nothing rather than fabricated placeholder courses.
+  if (coursesList.length === 0) return null;
 
   // Main 3 side cards slice (keeps all 3 in right column, active one is highlighted)
   const sideCourses = coursesList.slice(0, 3);
@@ -690,7 +550,7 @@ const ExploreCoursesSection = () => {
             bgColor='#6557E3'
             shadowColor='#3A1078'
             borderColor='#6557E3'
-            href="/courses"
+            href={`/${country.slug}/courses`}
           />
         </div>
 
