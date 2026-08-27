@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: "Student Reviews | Cloud Edge Solutions",
     description:
-      "Read genuine student reviews of Cloud Edge Solutions' Salesforce, AWS, SAP, Data Science and Power BI training courses.",
+      "Read genuine student reviews of Cloud Edge Solutions' IT training courses, each tied to the specific course it's about.",
     alternates: buildAlternates(country as CountrySlug, "/reviews"),
   };
 }

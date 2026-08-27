@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: "Blog | Cloud Edge Solutions - IT Training, Career Tips & Technology Insights",
     description:
-      "Explore the Cloud Edge Solutions blog for expert insights, career guidance, certification tips, and the latest trends in Salesforce, SAP, AWS, Data Science, Java, Power BI, AI, and emerging technologies.",
+      "Explore the Cloud Edge Solutions blog for expert insights, career guidance, and certification tips on Salesforce and Digital Marketing.",
     alternates: buildAlternates(country as CountrySlug, "/blogs"),
   };
 }

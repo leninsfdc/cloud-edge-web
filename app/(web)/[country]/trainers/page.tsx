@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: "Our Trainers | Cloud Edge Solutions",
     description:
-      "Meet the Salesforce, SAP, AWS, Data Science and Power BI trainers behind Cloud Edge Solutions' courses — working practitioners with real industry experience.",
+      "Meet the trainers behind Cloud Edge Solutions' courses — working practitioners with real industry experience, not just certified instructors.",
     alternates: buildAlternates(country as CountrySlug, "/trainers"),
   };
 }

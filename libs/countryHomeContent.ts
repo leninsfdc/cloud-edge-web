@@ -24,11 +24,18 @@ export interface CountryHomeContent {
 // invented stats, testimonials, or claims of physical presence. Countries
 // without an entry fall back to the existing CMS-driven / generic homepage
 // content (see HeroSection.tsx, FaqSection.tsx, CountryIntroSection.tsx).
+//
+// Subject/course claims here must match what's actually live in the course
+// catalog (checked 2026-08-27: Salesforce Administrator and Digital
+// Marketing only — no AWS, SAP, Power BI, Data Science, or Java course
+// exists yet despite those subjects being promoted elsewhere on the site).
+// Update this copy to match the catalog as new courses go live, not the
+// other way around.
 export const COUNTRY_HOME_CONTENT: Partial<Record<CountrySlug, CountryHomeContent>> = {
   uk: {
-    metaTitle: "IT Training Courses UK | Salesforce, AWS, SAP & Power BI | Cloud Edge Solutions",
+    metaTitle: "IT Training Courses UK | Salesforce & Digital Marketing | Cloud Edge Solutions",
     metaDescription:
-      "Explore IT training courses in the UK with Cloud Edge Solutions. Learn Salesforce, AWS, SAP, Power BI, Data Science and Java with expert-led online training and career support.",
+      "Explore IT training courses in the UK with Cloud Edge Solutions. Learn Salesforce Administration and Digital Marketing with expert-led online training and career support.",
     hero: {
       title: "IT Training Courses{{ in the UK}}",
       description:
@@ -37,7 +44,7 @@ export const COUNTRY_HOME_CONTENT: Partial<Record<CountrySlug, CountryHomeConten
     intro: {
       heading: "Online IT Training Built for UK Professionals",
       paragraphs: [
-        "Cloud Edge Solutions delivers live, instructor-led online IT training for professionals, graduates and career changers across the UK. Our courses cover Salesforce, AWS, SAP, Power BI, Data Science and Java, with hands-on projects and certification preparation built into every programme.",
+        "Cloud Edge Solutions delivers live, instructor-led online IT training for professionals, graduates and career changers across the UK. Our current courses cover Salesforce Administration and Digital Marketing, with hands-on projects and certification preparation built into every programme.",
         "Training is fully online and scheduled around UK time zones, so you can learn alongside a live instructor without relocating or taking time away from work. Every course includes career support to help you move from certification into a new role.",
         "Cloud Edge Solutions is an India-based IT training provider delivering live online training to professionals across the UK — there's no physical UK office, but every session is live with a real instructor, not pre-recorded.",
       ],
@@ -54,14 +61,14 @@ export const COUNTRY_HOME_CONTENT: Partial<Record<CountrySlug, CountryHomeConten
           "Cloud Edge Solutions is headquartered in India and delivers training to UK students entirely online — there is no physical UK office. Every class is live and instructor-led, scheduled to fit UK time zones.",
       },
       {
-        question: "Are Salesforce courses available online in the UK?",
+        question: "What courses does Cloud Edge Solutions currently offer?",
         answer:
-          "Yes, our Salesforce Administrator, Developer, Lightning and Integration courses are all available as live online training with certification preparation included.",
+          "Salesforce Administration and Digital Marketing, both as live online training with certification exam preparation included. Full course details are on our Courses page.",
       },
       {
         question: "Do you provide Salesforce certification preparation?",
         answer:
-          "Yes, certification exam preparation is included as part of our Salesforce training programmes.",
+          "Yes, certification exam preparation is included as part of our Salesforce Administration course.",
       },
       {
         question: "Are evening classes available for working professionals?",
@@ -69,16 +76,16 @@ export const COUNTRY_HOME_CONTENT: Partial<Record<CountrySlug, CountryHomeConten
           "Yes, batches are scheduled to accommodate working professionals, including evening and weekend options where available.",
       },
       {
-        question: "What IT courses are available for beginners?",
+        question: "Are these courses suitable for beginners?",
         answer:
-          "We offer beginner-friendly pathways across Salesforce, Data Science, Power BI and Full Stack Development, with prerequisites listed on each course page.",
+          "Yes, both our Salesforce Administration and Digital Marketing courses are designed for beginners as well as career changers, with prerequisites listed on each course page.",
       },
     ],
   },
   usa: {
-    metaTitle: "IT Training Courses USA | Salesforce, AWS, SAP & Power BI | Cloud Edge Solutions",
+    metaTitle: "IT Training Courses USA | Salesforce & Digital Marketing | Cloud Edge Solutions",
     metaDescription:
-      "Explore IT training courses in the USA with Cloud Edge Solutions. Learn Salesforce, AWS, SAP, Power BI, Data Science and Java with expert-led online training and career support.",
+      "Explore IT training courses in the USA with Cloud Edge Solutions. Learn Salesforce Administration and Digital Marketing with expert-led online training and career support.",
     hero: {
       title: "IT Training Courses{{ in the USA}}",
       description:
@@ -87,7 +94,7 @@ export const COUNTRY_HOME_CONTENT: Partial<Record<CountrySlug, CountryHomeConten
     intro: {
       heading: "Online IT Training Built for US Professionals",
       paragraphs: [
-        "Cloud Edge Solutions delivers live, instructor-led online IT training for professionals, graduates and career changers across the USA. Our courses cover Salesforce, AWS, SAP, Power BI, Data Science and Java, with hands-on projects and certification preparation built into every programme.",
+        "Cloud Edge Solutions delivers live, instructor-led online IT training for professionals, graduates and career changers across the USA. Our current courses cover Salesforce Administration and Digital Marketing, with hands-on projects and certification preparation built into every programme.",
         "Training is fully online and scheduled around US time zones, so you can learn alongside a live instructor without relocating or taking time away from work. Every course includes career support to help you move from certification into a new role.",
         "Cloud Edge Solutions is an India-based IT training provider delivering live online training to professionals across the USA — there's no physical US office, but every session is live with a real instructor, not pre-recorded.",
       ],
@@ -109,9 +116,9 @@ export const COUNTRY_HOME_CONTENT: Partial<Record<CountrySlug, CountryHomeConten
           "Yes, batches are scheduled with US time zones in mind, including evening and weekend options where available.",
       },
       {
-        question: "Do you offer AWS certification training?",
+        question: "What courses does Cloud Edge Solutions currently offer?",
         answer:
-          "Yes, our AWS Solutions Architect, AWS DevOps and AWS Cloud Practitioner courses all include certification exam preparation.",
+          "Salesforce Administration and Digital Marketing, both as live online training with certification exam preparation included. Full course details are on our Courses page.",
       },
       {
         question: "Do you provide career support after certification?",
@@ -119,16 +126,16 @@ export const COUNTRY_HOME_CONTENT: Partial<Record<CountrySlug, CountryHomeConten
           "Yes, every course includes career guidance to help you move from certification into a new role.",
       },
       {
-        question: "What IT courses are available for beginners?",
+        question: "Are these courses suitable for beginners?",
         answer:
-          "We offer beginner-friendly pathways across Salesforce, Data Science, Power BI and Full Stack Development, with prerequisites listed on each course page.",
+          "Yes, both our Salesforce Administration and Digital Marketing courses are designed for beginners as well as career changers, with prerequisites listed on each course page.",
       },
     ],
   },
   australia: {
-    metaTitle: "IT Training Courses Australia | Salesforce, AWS, SAP & Power BI | Cloud Edge Solutions",
+    metaTitle: "IT Training Courses Australia | Salesforce & Digital Marketing | Cloud Edge Solutions",
     metaDescription:
-      "Explore IT training courses in Australia with Cloud Edge Solutions. Learn Salesforce, AWS, SAP, Power BI, Data Science and Java with expert-led online training and career support.",
+      "Explore IT training courses in Australia with Cloud Edge Solutions. Learn Salesforce Administration and Digital Marketing with expert-led online training and career support.",
     hero: {
       title: "IT Training Courses{{ in Australia}}",
       description:
@@ -137,7 +144,7 @@ export const COUNTRY_HOME_CONTENT: Partial<Record<CountrySlug, CountryHomeConten
     intro: {
       heading: "Online IT Training Built for Australian Professionals",
       paragraphs: [
-        "Cloud Edge Solutions delivers live, instructor-led online IT training for professionals, graduates and career changers across Australia. Our courses cover Salesforce, AWS, SAP, Power BI, Data Science and Java, with hands-on projects and certification preparation built into every programme.",
+        "Cloud Edge Solutions delivers live, instructor-led online IT training for professionals, graduates and career changers across Australia. Our current courses cover Salesforce Administration and Digital Marketing, with hands-on projects and certification preparation built into every programme.",
         "Training is fully online and scheduled with Australian time zones in mind, so you can learn alongside a live instructor without relocating or taking time away from work. Every course includes career support to help you move from certification into a new role.",
         "Cloud Edge Solutions is an India-based IT training provider delivering live online training to professionals across Australia — there's no physical Australian office, but every session is live with a real instructor, not pre-recorded.",
       ],
@@ -159,9 +166,9 @@ export const COUNTRY_HOME_CONTENT: Partial<Record<CountrySlug, CountryHomeConten
           "Yes, batches are scheduled with Australian time zones in mind, including evening and weekend options where available.",
       },
       {
-        question: "Do you offer Salesforce or AWS certification training?",
+        question: "What courses does Cloud Edge Solutions currently offer?",
         answer:
-          "Yes, our Salesforce Administrator, Salesforce Developer, AWS Solutions Architect and AWS DevOps courses all include certification exam preparation.",
+          "Salesforce Administration and Digital Marketing, both as live online training with certification exam preparation included. Full course details are on our Courses page.",
       },
       {
         question: "Do you provide career support after certification?",
@@ -169,9 +176,9 @@ export const COUNTRY_HOME_CONTENT: Partial<Record<CountrySlug, CountryHomeConten
           "Yes, every course includes career guidance to help you move from certification into a new role.",
       },
       {
-        question: "What IT courses are available for beginners?",
+        question: "Are these courses suitable for beginners?",
         answer:
-          "We offer beginner-friendly pathways across Salesforce, Data Science, Power BI and Full Stack Development, with prerequisites listed on each course page.",
+          "Yes, both our Salesforce Administration and Digital Marketing courses are designed for beginners as well as career changers, with prerequisites listed on each course page.",
       },
     ],
   },
