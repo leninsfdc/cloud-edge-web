@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { MapPin, CheckCircle2 } from "lucide-react";
 import { CountryWidePage, CityPage } from "@/libs/salesforceLocationContent";
+import { LOCATIONS, getSiblingLinks } from "@/libs/localSeoLocations";
 
 interface Props {
   countryPage?: CountryWidePage;
@@ -14,6 +15,12 @@ const SalesforceLocalContainer: React.FC<Props> = ({ countryPage, cityPage, cour
   const h1 = cityPage ? cityPage.h1 : countryPage!.h1;
   const intro = cityPage ? cityPage.intro : countryPage!.intro;
   const faqs = cityPage ? cityPage.faqs : countryPage!.faqs;
+
+  const matchingLocation = cityPage
+    ? LOCATIONS[cityPage.slug]
+    : Object.values(LOCATIONS).find((l) => l.kind === "country" && l.countrySlug === countryPage!.countrySlug);
+  const siblingLinks = matchingLocation ? getSiblingLinks("salesforce", matchingLocation) : [];
+  const locationDisplayName = matchingLocation?.displayName ?? (cityPage ? cityPage.city : "");
 
   return (
     <div className="bg-slate-50/80 min-h-screen pt-28 md:pt-36 pb-20">
@@ -60,6 +67,25 @@ const SalesforceLocalContainer: React.FC<Props> = ({ countryPage, cityPage, cour
             </div>
           ))}
         </div>
+
+        {siblingLinks.length > 0 && (
+          <div className="mt-14">
+            <h2 className="font-bricolage-grotesque font-extrabold text-xl text-slate-900 mb-4">
+              Other Training Programmes in {locationDisplayName}
+            </h2>
+            <div className="flex flex-wrap gap-2.5">
+              {siblingLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className="text-sm font-semibold bg-white border border-slate-200/80 text-slate-700 hover:text-indigo-600 hover:border-indigo-200 px-4 py-2 rounded-full transition-colors"
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
