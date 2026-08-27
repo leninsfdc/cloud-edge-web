@@ -1,11 +1,13 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { Laptop, Clock3, GraduationCap, Headset } from "lucide-react";
 import BadgeLabel from "@/components/shared/BadgeLabel";
 import { MotionDiv, MotionSection } from "@/components/ui/MotionElements";
 import { useCountry } from "@/libs/country-context";
 import { COUNTRY_HOME_CONTENT } from "@/libs/countryHomeContent";
+import { SALESFORCE_COUNTRY_PAGES } from "@/libs/salesforceLocationContent";
 
 const HIGHLIGHTS = [
   { icon: Laptop, label: "Live Online\nSessions" },
@@ -18,6 +20,7 @@ const HIGHLIGHTS = [
 const CountryIntroSection = () => {
   const { country } = useCountry();
   const intro = COUNTRY_HOME_CONTENT[country.slug]?.intro;
+  const salesforceLocalPage = SALESFORCE_COUNTRY_PAGES[country.slug];
 
   if (!intro) return null;
 
@@ -43,6 +46,15 @@ const CountryIntroSection = () => {
             <p className="mt-5 max-w-[700px] text-[#7B7B88] text-sm sm:text-base leading-[170%] text-center">
               {firstParagraph}
             </p>
+          )}
+
+          {salesforceLocalPage && (
+            <Link
+              href={`/${country.slug}/salesforce-training`}
+              className="mt-4 text-sm font-bold text-[#6557E3] hover:text-[#4F3FD1] hover:underline"
+            >
+              See Salesforce training details for {country.name} →
+            </Link>
           )}
         </div>
 

@@ -7,6 +7,7 @@ import 'slick-carousel/slick/slick-theme.css'
 import BadgeLabel from '@/components/shared/BadgeLabel'
 import { MotionSection } from '@/components/ui/MotionElements'
 import { MapPin, Phone, ArrowRight, Navigation } from 'lucide-react'
+import Link from 'next/link'
 import { useCountry } from '@/libs/country-context'
 
 import vijaywada from '@/public/images/vijaywada.png'
@@ -20,6 +21,8 @@ interface Branch {
   address: string
   phone: string
   image: string
+  /** Slug of the dedicated /in/salesforce-training/[location] page for this branch, if one exists. */
+  citySlug?: string
 }
 
 const branches: Branch[] = [
@@ -30,6 +33,7 @@ const branches: Branch[] = [
     address: '3rd Floor, SR Plaza, MG Road, Benz Circle, Vijayawada - 520010',
     phone: '+91 98765 43210',
     image: vijaywada.src,
+    citySlug: 'vijayawada',
   },
   {
     id: 2,
@@ -46,6 +50,7 @@ const branches: Branch[] = [
     address: '5th Floor, TechSquare Tower, Hitech City, Madhapur, Hyderabad – 500081',
     phone: '+91 98765 43212',
     image: hyderabad.src,
+    citySlug: 'hyderabad',
   },
   {
     id: 4,
@@ -106,7 +111,13 @@ const BranchCard: React.FC<BranchCardProps> = ({ branch, isActive }) => (
         className={`font-bold text-base leading-snug transition-colors ${isActive ? 'text-[#07042F]' : 'text-slate-800'
           }`}
       >
-        {branch.name}
+        {branch.citySlug ? (
+          <Link href={`/in/salesforce-training/${branch.citySlug}`} className="hover:text-[#7C6EF8] hover:underline">
+            {branch.name}
+          </Link>
+        ) : (
+          branch.name
+        )}
       </h3>
 
       <div className="flex items-start gap-1.5 text-slate-500 text-xs leading-relaxed">
