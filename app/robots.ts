@@ -1,6 +1,5 @@
 import { MetadataRoute } from "next";
-
-const BASE_URL = (process.env.NEXT_PUBLIC_SITE_URL || "https://cloud-edge-web.vercel.app").replace(/\/$/, "");
+import { SITE_URL } from "@/libs/seo";
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -14,6 +13,6 @@ export default function robots(): MetadataRoute.Robots {
         ],
       },
     ],
-    sitemap: `${BASE_URL}/sitemap.xml`,
+    sitemap: `${SITE_URL}/sitemap.xml`,
   };
 }

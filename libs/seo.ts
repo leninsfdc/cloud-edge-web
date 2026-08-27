@@ -1,7 +1,15 @@
 import { CountrySlug, VALID_SLUGS } from "./country-data";
 
+// Falls back to the real production domain (matching the verified Google
+// Search Console property) rather than the Vercel preview URL — Google
+// rejects sitemap entries that point at a different host than the sitemap
+// itself is served from ("URL not allowed for a Sitemap at this location"),
+// and canonical/hreflang tags pointing at the wrong domain are just as bad.
+// If NEXT_PUBLIC_SITE_URL is set in the Vercel project to anything other
+// than https://www.cloudedge.in, it silently overrides this and reintroduces
+// the same bug — check that env var if this ever regresses.
 export const SITE_URL = (
-  process.env.NEXT_PUBLIC_SITE_URL || "https://cloud-edge-web.vercel.app"
+  process.env.NEXT_PUBLIC_SITE_URL || "https://www.cloudedge.in"
 ).replace(/\/$/, "");
 
 export const ORG_NAME = "Cloud Edge Solutions";
