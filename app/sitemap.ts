@@ -4,6 +4,8 @@ import { getAllBlogsForSitemap } from "@/app/(asgard)/asgard/blogs/actions";
 import { VALID_SLUGS } from "@/libs/country-data";
 import { SITE_URL, buildSitemapLanguages } from "@/libs/seo";
 import { SALESFORCE_COUNTRY_PAGES, SALESFORCE_CITY_PAGES } from "@/libs/salesforceLocationContent";
+import { SUBJECTS } from "@/libs/subjectCatalog";
+import { LOCATIONS } from "@/libs/localSeoLocations";
 
 interface StaticRoute {
   path: string;
@@ -103,6 +105,27 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly",
       priority: 0.6,
     });
+  }
+
+  // 5. Generic subject x location local-SEO pages (SAP, MuleSoft, Java, AWS,
+  // DevOps, Data Science, Python, Web Design, UI/UX) — every subject against
+  // every location, since none of these subjects has location-specific
+  // restrictions. Salesforce is deliberately excluded here (handled by its
+  // own dedicated implementation above, not this generic system).
+  for (const subject of Object.values(SUBJECTS)) {
+    for (const location of Object.values(LOCATIONS)) {
+      const url =
+        location.kind === "country"
+          ? `${SITE_URL}/${location.countrySlug}/${subject.slug}-training`
+          : `${SITE_URL}/${location.countrySlug}/${subject.slug}-training/${location.slug}`;
+
+      sitemapEntries.push({
+        url,
+        lastModified: now,
+        changeFrequency: "monthly",
+        priority: 0.5,
+      });
+    }
   }
 
   return sitemapEntries;
