@@ -113,4 +113,48 @@ export const COUNTRY_HOME_CONTENT: Partial<Record<CountrySlug, CountryHomeConten
       },
     ],
   },
+  australia: {
+    metaTitle: "IT Training Courses Australia | Salesforce, AWS, SAP & Power BI | Cloud Edge Solutions",
+    metaDescription:
+      "Explore IT training courses in Australia with Cloud Edge Solutions. Learn Salesforce, AWS, SAP, Power BI, Data Science and Java with expert-led online training and career support.",
+    hero: {
+      title: "IT Training Courses{{ in Australia}}",
+      description:
+        "Practical, instructor-led IT training for professionals, graduates and career changers across Australia.",
+    },
+    intro: {
+      heading: "Online IT Training Built for Australian Professionals",
+      paragraphs: [
+        "Cloud Edge Solutions delivers live, instructor-led online IT training for professionals, graduates and career changers across Australia. Our courses cover Salesforce, AWS, SAP, Power BI, Data Science and Java, with hands-on projects and certification preparation built into every programme.",
+        "Training is fully online and scheduled with Australian time zones in mind, so you can learn alongside a live instructor without relocating or taking time away from work. Every course includes career support to help you move from certification into a new role.",
+      ],
+    },
+    faqs: [
+      {
+        question: "Do you offer IT training in Australia?",
+        answer:
+          "Yes. Cloud Edge Solutions delivers live, instructor-led online IT training to students across Australia, with course schedules designed to fit Australian time zones.",
+      },
+      {
+        question: "Are classes available in AEST/AEDT?",
+        answer:
+          "Yes, batches are scheduled with Australian time zones in mind, including evening and weekend options where available.",
+      },
+      {
+        question: "Do you offer Salesforce or AWS certification training?",
+        answer:
+          "Yes, our Salesforce Administrator, Salesforce Developer, AWS Solutions Architect and AWS DevOps courses all include certification exam preparation.",
+      },
+      {
+        question: "Do you provide career support after certification?",
+        answer:
+          "Yes, every course includes career guidance to help you move from certification into a new role.",
+      },
+      {
+        question: "What IT courses are available for beginners?",
+        answer:
+          "We offer beginner-friendly pathways across Salesforce, Data Science, Power BI and Full Stack Development, with prerequisites listed on each course page.",
+      },
+    ],
+  },
 };

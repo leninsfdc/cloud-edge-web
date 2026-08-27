@@ -1,5 +1,5 @@
 export type CountryCode = "IN" | "UK" | "US" | "CA" | "AU";
-export type CountrySlug = "in" | "uk" | "usa" | "ca" | "au";
+export type CountrySlug = "in" | "uk" | "usa" | "ca" | "australia";
 
 export interface CountryOption {
   code: CountryCode;
@@ -55,7 +55,7 @@ export const COUNTRIES: CountryOption[] = [
   },
   {
     code: "AU",
-    slug: "au",
+    slug: "australia",
     name: "Australia",
     shortName: "Australia",
     flag: "🇦🇺",
@@ -65,15 +65,15 @@ export const COUNTRIES: CountryOption[] = [
   },
 ];
 
-export const VALID_SLUGS: CountrySlug[] = ["in", "uk", "usa", "ca", "au"];
+export const VALID_SLUGS: CountrySlug[] = ["in", "uk", "usa", "ca", "australia"];
 
 export function slugToCode(slug: string): CountryCode {
-  const map: Record<string, CountryCode> = { in: "IN", uk: "UK", usa: "US", ca: "CA", au: "AU" };
+  const map: Record<string, CountryCode> = { in: "IN", uk: "UK", usa: "US", ca: "CA", australia: "AU" };
   return map[slug.toLowerCase()] ?? "US";
 }
 
 export function codeToSlug(code: CountryCode): CountrySlug {
-  const map: Record<CountryCode, CountrySlug> = { IN: "in", UK: "uk", US: "usa", CA: "ca", AU: "au" };
+  const map: Record<CountryCode, CountrySlug> = { IN: "in", UK: "uk", US: "usa", CA: "ca", AU: "australia" };
   return map[code] ?? "usa";
 }
 

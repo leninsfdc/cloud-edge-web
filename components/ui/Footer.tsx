@@ -156,6 +156,7 @@ const Footer = () => {
                     { label: "Home", href: "/" },
                     { label: "Courses", href: "/courses" },
                     { label: "Services", href: "/services" },
+                    { label: "Trainers", href: "/trainers" },
                     { label: "Blog", href: "/blogs" },
                     { label: "Contact", href: "/contact-us" },
                   ].map((item) => {

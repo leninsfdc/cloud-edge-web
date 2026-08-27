@@ -7,7 +7,7 @@ import 'slick-carousel/slick/slick-theme.css'
 import BadgeLabel from '@/components/shared/BadgeLabel'
 import { MotionSection } from '@/components/ui/MotionElements'
 import { MapPin, Phone, ArrowRight, Navigation } from 'lucide-react'
-import Link from 'next/link'
+import { useCountry } from '@/libs/country-context'
 
 import vijaywada from '@/public/images/vijaywada.png'
 import kakinada from '@/public/images/kakinada.png'
@@ -116,7 +116,7 @@ const BranchCard: React.FC<BranchCardProps> = ({ branch, isActive }) => (
 
 
       <div className="pt-2 flex items-center justify-between border-t border-slate-100 mt-1">
-        <Link
+        <a
           href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(branch.address)}`}
           target="_blank"
           rel="noopener noreferrer"
@@ -125,7 +125,7 @@ const BranchCard: React.FC<BranchCardProps> = ({ branch, isActive }) => (
         >
           <span>Get Directions</span>
           <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
-        </Link>
+        </a>
       </div>
     </div>
   </div>
@@ -163,6 +163,11 @@ const CustomDots: React.FC<CustomDotsProps> = ({ total, current, onClick }) => (
 const TrainingBranchesSection: React.FC = () => {
   const sliderRef = useRef<Slider | null>(null)
   const [currentSlide, setCurrentSlide] = useState<number>(0)
+  const { country } = useCountry()
+
+  // These are physical India branches — showing them on other countries'
+  // homepages misrepresents CloudEdge as having a local presence it doesn't.
+  if (country.slug !== "in") return null
 
   const settings = {
     dots: false,

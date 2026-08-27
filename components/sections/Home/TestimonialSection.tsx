@@ -6,8 +6,6 @@ import React, { useRef, useEffect, useState } from "react";
 import Slider from "react-slick";
 
 import janesmith from "@/public/images/jane-smith.png";
-import tomWilliams from "@/public/images/tom-williams.png";
-import saraJohnson from "@/public/images/sara-johnson.png";
 
 import leftArrow from "@/public/icons/back-arrow.svg";
 import rightArrow from "@/public/icons/forward-arrow.svg";
@@ -16,38 +14,16 @@ import Image from "next/image";
 import { getRandomTestimonials } from "@/app/(asgard)/asgard/academics/courses/actions";
 import { MotionSection } from "@/components/ui/MotionElements";
 
-const staticTestimonials = [
-  {
-    comment:
-      "Salesforce Admin Training: Cloud Edge Excellence - Cloud Edge's Salesforce Admin course exceeded expectations. Great training, expert support, and real skill improvement. Highly recommended!",
-    name: "Jane Smith",
-    rating: 5,
-    image: janesmith,
-  },
-  {
-    comment:
-      "Salesforce Training: Cloud Edge Learning Hub - The training was well-structured and easy to follow. Hands-on sessions helped me gain confidence and grow my career.",
-    name: "Tom Williams",
-    rating: 3,
-    image: tomWilliams,
-  },
-  {
-    comment:
-      "Master Salesforce Lightning: Practical & Powerful - Excellent course with real-world projects. The guidance was top-notch and helped me boost my skills quickly.",
-    name: "Sarah Johnson",
-    rating: 5,
-    image: saraJohnson,
-  },
-];
-
 const TestimonialSection = () => {
   const sliderRef = useRef<Slider | null>(null);
-  const [testimonials, setTestimonials] = useState<any[]>(staticTestimonials);
+  // No hardcoded fallback reviewers — showing invented names/photos when the
+  // real testimonials table is empty is a trust problem, not a placeholder.
+  // The section simply doesn't render until genuine testimonials load.
+  const [testimonials, setTestimonials] = useState<any[]>([]);
 
   useEffect(() => {
     getRandomTestimonials(6)
       .then((data) => {
-        console.log("getRandomTestimonials response:", data);
         if (data && data.length > 0) {
           setTestimonials(data);
         }
@@ -56,6 +32,8 @@ const TestimonialSection = () => {
         console.error("Failed to load testimonials", err);
       });
   }, []);
+
+  if (testimonials.length === 0) return null;
 
   const settings = {
     dots: false,

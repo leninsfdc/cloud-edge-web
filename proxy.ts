@@ -2,7 +2,7 @@ import { type NextRequest, NextResponse } from "next/server";
 import { updateSession } from "@/libs/supabase/middleware";
 
 // The valid country slugs
-const COUNTRY_SLUGS = ["in", "uk", "usa", "ca", "au"] as const;
+const COUNTRY_SLUGS = ["in", "uk", "usa", "ca", "australia"] as const;
 type CountrySlug = (typeof COUNTRY_SLUGS)[number];
 
 /**
@@ -75,7 +75,7 @@ async function getTargetCountrySlug(request: NextRequest): Promise<CountrySlug> 
   if (raw === "in") return "in";
   if (raw === "gb" || raw === "uk") return "uk";
   if (raw === "ca") return "ca";
-  if (raw === "au") return "au";
+  if (raw === "au") return "australia";
   if (raw === "us") return "usa";
 
   // 3. If IP is from an unsupported country (e.g. DE, FR, JP) -> default to "usa" (USD)
