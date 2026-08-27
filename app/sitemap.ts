@@ -3,6 +3,7 @@ import { getAllCoursesForSitemap } from "@/app/(asgard)/asgard/academics/courses
 import { getAllBlogsForSitemap } from "@/app/(asgard)/asgard/blogs/actions";
 import { VALID_SLUGS } from "@/libs/country-data";
 import { SITE_URL, buildSitemapLanguages } from "@/libs/seo";
+import { SALESFORCE_COUNTRY_PAGES, SALESFORCE_CITY_PAGES } from "@/libs/salesforceLocationContent";
 
 interface StaticRoute {
   path: string;
@@ -82,6 +83,26 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         alternates: { languages },
       });
     }
+  }
+
+  // 4. Salesforce local-SEO pages — only the specific country/city
+  // combinations that actually exist (no cartesian product across
+  // VALID_SLUGS; most combinations 404 by design, see resolvePage()).
+  for (const page of Object.values(SALESFORCE_COUNTRY_PAGES)) {
+    sitemapEntries.push({
+      url: `${SITE_URL}/${page.countrySlug}/salesforce-training`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.6,
+    });
+  }
+  for (const page of Object.values(SALESFORCE_CITY_PAGES)) {
+    sitemapEntries.push({
+      url: `${SITE_URL}/${page.countrySlug}/salesforce-training/${page.slug}`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.6,
+    });
   }
 
   return sitemapEntries;

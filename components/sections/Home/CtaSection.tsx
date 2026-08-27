@@ -1,10 +1,14 @@
+"use client";
+
 import React from "react";
 import CtaImg from "@/public/images/home-cta.png";
 import SecondaryButton from "@/components/ui/SecondaryButton";
 import Image from "next/image";
 import { MotionSection } from "@/components/ui/MotionElements";
+import { useCountry } from "@/libs/country-context";
 
 const CtaSection = () => {
+  const { country } = useCountry();
   return (
     <MotionSection 
       initial={{ opacity: 0, y: 30 }}
@@ -45,7 +49,7 @@ const CtaSection = () => {
                   text="Enroll Now"
                   bgColor="#6557E3"
                   shadowColor="#3A2FA0"
-                  href="/courses"
+                  href={`/${country.slug}/courses`}
                 />
               </div>
             </div>

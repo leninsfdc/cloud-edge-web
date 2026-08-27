@@ -5,8 +5,10 @@ import { ChevronDown, HelpCircle, MessageCircle, ArrowRight } from "lucide-react
 import { motion, AnimatePresence } from "framer-motion";
 import { getWhatsAppLink } from "@/utils";
 import Link from "next/link";
+import { useCountry } from "@/libs/country-context";
 
 const FaqSection = () => {
+  const { country } = useCountry();
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const faqs = [
@@ -56,7 +58,7 @@ const FaqSection = () => {
                 Everything You Need to Know
               </h2>
               <p className="text-sm text-slate-600 font-medium">
-                Still have questions? <Link href="/contact-us" className="text-indigo-600 font-bold hover:underline">Contact us</Link> directly.
+                Still have questions? <Link href={`/${country.slug}/contact-us`} className="text-indigo-600 font-bold hover:underline">Contact us</Link> directly.
               </p>
             </div>
 

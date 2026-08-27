@@ -4,6 +4,7 @@ import React from 'react';
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { useCountry } from "@/libs/country-context";
 
 import whoWeAreIcon from "@/public/icons/who-we-are-icon.svg";
 import liveSession from "@/public/icons/live-session.svg";
@@ -85,6 +86,7 @@ const countries = [
 ];
 
 const WhoWeAreSection = () => {
+  const { country } = useCountry();
   return (
     <section className="bg-slate-50/90 py-12 lg:py-16 relative overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 relative z-10">
@@ -265,7 +267,7 @@ const WhoWeAreSection = () => {
             </a>
 
             <Link
-              href="/courses"
+              href={`/${country.slug}/courses`}
               className="flex items-center justify-center gap-2.5 rounded-full bg-indigo-600 hover:bg-indigo-700 px-8 py-4 text-white font-bold text-sm transition-all duration-300 shadow-lg hover:shadow-indigo-500/25 transform hover:-translate-y-0.5"
             >
               <span>Browse All Courses</span>

@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Mail, CheckCircle2, BookOpen, Award, Share2 } from "lucide-react";
 import { toast } from "react-hot-toast";
 import linkedinIcon from "@/public/icons/linkedin.svg";
+import { useCountry } from "@/libs/country-context";
 
 interface AuthorCardProps {
   authorName?: string;
@@ -22,6 +23,7 @@ const AuthorCard: React.FC<AuthorCardProps> = ({
   authorBio = "Empowering tech aspirants with industry-proven insights, career strategies, and practical tutorials across Cloud, SAP, Salesforce, and Full-Stack Engineering.",
   compact = false,
 }) => {
+  const { country } = useCountry();
   const handleCopyLink = () => {
     if (typeof window !== "undefined") {
       navigator.clipboard.writeText(window.location.href);
@@ -109,7 +111,7 @@ const AuthorCard: React.FC<AuthorCardProps> = ({
                 <Mail className="w-4 h-4" />
               </a>
               <Link
-                href="/contact-us"
+                href={`/${country.slug}/contact-us`}
                 className="p-2 rounded-xl bg-[#0A66C2] text-white hover:bg-[#084e96] transition-all shadow-2xs flex items-center justify-center"
                 title="LinkedIn Profile"
                 aria-label="LinkedIn Profile"
@@ -179,7 +181,7 @@ const AuthorCard: React.FC<AuthorCardProps> = ({
                 <Mail className="w-4 h-4" />
               </a>
               <Link
-                href="/contact-us"
+                href={`/${country.slug}/contact-us`}
                 className="p-2 rounded-xl bg-[#0A66C2] text-white hover:bg-[#084e96] transition-all shadow-2xs flex items-center justify-center"
                 title="LinkedIn Profile"
                 aria-label="LinkedIn Profile"

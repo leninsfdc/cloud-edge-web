@@ -4,8 +4,10 @@ import React from "react";
 import Link from "next/link";
 import { MessageCircle, Sparkles } from "lucide-react";
 import { getWhatsAppLink } from "@/utils";
+import { useCountry } from "@/libs/country-context";
 
 const CtaSection = () => {
+  const { country } = useCountry();
   return (
     <section className="py-6 lg:py-8 bg-slate-50/90 container mx-auto px-4 sm:px-6">
       <div className="rounded-[32px] bg-slate-950 border border-slate-800 p-8 sm:p-12 text-center text-white relative overflow-hidden shadow-2xl">
@@ -28,7 +30,7 @@ const CtaSection = () => {
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
             <Link
-              href="/courses"
+              href={`/${country.slug}/courses`}
               className="w-full sm:w-auto px-8 py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs sm:text-sm rounded-full shadow-lg transition-all duration-200 text-center"
             >
               Browse All Courses →

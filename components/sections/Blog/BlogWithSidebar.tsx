@@ -8,6 +8,7 @@ import placeholder from "@/public/images/placeholder.jpg";
 import { useRouter } from "next/navigation";
 import { IBlogs, IResponse } from "@/types";
 import { MotionDiv } from "@/components/ui/MotionElements";
+import { useCountry } from "@/libs/country-context";
 import ResilientImage from "@/components/ui/ResilientImage";
 import { getWhatsAppLink } from "@/utils";
 import Link from "next/link";
@@ -26,6 +27,7 @@ const CATEGORIES = [
 ];
 
 const BlogWithSidebar: React.FC<IProps> = ({ blogs: blogData }) => {
+  const { country } = useCountry();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All Articles");
   const [currentPage, setCurrentPage] = useState(1);
@@ -202,7 +204,7 @@ const BlogWithSidebar: React.FC<IProps> = ({ blogs: blogData }) => {
                 {/* Read Article Button */}
                 <div className="pt-2">
                   <Link
-                    href={`/blogs/${post.url_slug}`}
+                    href={`/${country.slug}/blogs/${post.url_slug}`}
                     className="inline-flex items-center gap-2 text-xs font-extrabold text-indigo-600 hover:text-indigo-700 bg-indigo-50 hover:bg-indigo-100 border border-indigo-200/80 px-4 py-2 rounded-full transition-all duration-200 group-hover:translate-x-1"
                   >
                     <span>Read Full Article</span>
@@ -288,7 +290,7 @@ const BlogWithSidebar: React.FC<IProps> = ({ blogs: blogData }) => {
                   </a>
 
                   <Link
-                    href="/contact-us"
+                    href={`/${country.slug}/contact-us`}
                     className="flex items-center justify-center gap-2 w-full py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-full text-xs font-bold transition-all duration-200 shadow-md hover:shadow-indigo-500/25"
                   >
                     <span>Get In Touch</span>
