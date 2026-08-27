@@ -14,11 +14,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: "Contact Cloud Edge Solutions | Get in Touch for Course Enquiries & Support",
     description:
-      "Contact Cloud Edge Solutions for course information, admissions, corporate training, certification guidance, and support. Reach out to our team for Salesforce, SAP, AWS, Data Science, Java, Power BI, and other IT training programs.",
+      "Contact Cloud Edge Solutions for course information, admissions, corporate training, certification guidance, and support. Reach out to our team for Salesforce Administration and Digital Marketing training.",
     keywords: [
       "Cloud Edge Solutions contact", "IT training institute contact", "Salesforce training enquiry",
-      "SAP training support", "AWS certification training", "Data Science courses",
-      "Java training institute", "Power BI training", "online training support",
+      "Digital Marketing training enquiry", "online training support",
       "corporate training", "technology courses", "contact training institute",
     ],
     authors: [{ name: "Cloud Edge Solutions" }],

@@ -14,7 +14,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: "About Cloud Edge Solutions | Leading Online IT Training & Certification Programs",
     description:
-      "Learn more about Cloud Edge Solutions, a trusted provider of online IT training and certification programs. Empowering learners worldwide with expert-led courses in Salesforce, SAP, AWS, Data Science, Java, Power BI, and emerging technologies.",
+      "Learn more about Cloud Edge Solutions, a trusted provider of online IT training and certification programs. Empowering learners worldwide with expert-led courses in Salesforce Administration and Digital Marketing.",
     alternates: buildAlternates(country as CountrySlug, "/about-us"),
   };
 }

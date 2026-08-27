@@ -7,7 +7,7 @@ const organizationSchema = {
   name: ORG_NAME,
   url: SITE_URL,
   logo: `${SITE_URL}/logo.svg`,
-  description: "Online and classroom IT training and certification programs in Salesforce, SAP, AWS, Data Science, Java, Power BI, and Cloud Computing.",
+  description: "Online IT training and certification programs in Salesforce Administration and Digital Marketing.",
   contactPoint: {
     "@type": "ContactPoint",
     telephone: ORG_CONTACT_PHONE,
