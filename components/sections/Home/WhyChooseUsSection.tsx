@@ -113,7 +113,7 @@ const features = [
     icon: Award,
     tag: "EXAM READY",
     title: "Mock Certification Exams",
-    description: "500+ exam-quality practice questions curated by certified trainers to prepare you for official SAP or Salesforce certification exams with high first-attempt pass rates.",
+    description: "500+ exam-quality practice questions curated by certified trainers to prepare you for the official Salesforce certification exam with high first-attempt pass rates.",
     statHighlight: "500+",
     statText: "Curated Practice Questions",
     colorTheme: {
