@@ -46,6 +46,7 @@ const Footer = () => {
                       type="checkbox"
                       checked={enabled}
                       onChange={() => setEnabled(!enabled)}
+                      aria-label="Stay updated with newsletter subscription"
                       className="peer sr-only"
                     />
 
