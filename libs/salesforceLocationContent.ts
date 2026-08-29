@@ -93,6 +93,35 @@ export const SALESFORCE_COUNTRY_PAGES: Partial<Record<CountrySlug, CountryWidePa
       },
     ],
   },
+  uae: {
+    countrySlug: "uae",
+    metaTitle: "Salesforce Training in the UAE | Live Online Course | Cloud Edge Solutions",
+    metaDescription:
+      "Salesforce Administrator training for professionals across the UAE, including Dubai, Abu Dhabi and Sharjah — live online, certification exam preparation included.",
+    h1: "Salesforce Training in the UAE",
+    intro: [
+      "Cloud Edge Solutions delivers live, instructor-led Salesforce Administrator training to professionals across the UAE — including Dubai, Abu Dhabi, Sharjah, and everywhere in between — entirely online.",
+      "There's no physical UAE office: Cloud Edge Solutions is headquartered in India, and every class is live with a real instructor over Zoom, not pre-recorded, scheduled to fit UAE time zones.",
+    ],
+    citiesmentioned: ["Dubai", "Abu Dhabi", "Sharjah", "Ajman"],
+    faqs: [
+      {
+        question: "Is Salesforce training available near me in Dubai?",
+        answer:
+          "Yes — since training is delivered live online rather than from a physical classroom, it's equally accessible from Dubai, Abu Dhabi, Sharjah, or anywhere else in the UAE, as long as you can join a live Zoom session.",
+      },
+      {
+        question: "Do you have a training centre in Dubai?",
+        answer:
+          "No. Cloud Edge Solutions doesn't have a physical UAE office. Training is delivered live online from India-based instructors, with schedules set to fit UAE time zones.",
+      },
+      {
+        question: "What does the Salesforce training cover?",
+        answer:
+          "The course prepares you for the Salesforce Administrator (ADM-201) certification, with hands-on practice in a real Salesforce org, not just a demo environment.",
+      },
+    ],
+  },
 };
 
 export const SALESFORCE_CITY_PAGES: Record<string, CityPage> = {

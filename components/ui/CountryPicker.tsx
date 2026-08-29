@@ -110,7 +110,8 @@ export default function CountryPicker({ variant = "light", compact = false }: Co
                     <div className="text-left leading-tight">
                       <div className="font-extrabold">{c.shortName}</div>
                       <div className={`text-[10px] ${isActive ? "text-indigo-600 font-semibold" : "text-slate-400"}`}>
-                        {c.currency} ({c.currencySymbol})
+                        {c.currency}
+                        {c.currencySymbol !== c.currency ? ` (${c.currencySymbol})` : ""}
                       </div>
                     </div>
                   </div>

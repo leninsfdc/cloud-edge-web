@@ -94,6 +94,20 @@ export const LOCATIONS: Record<string, Location> = {
     displayName: "the USA",
     region: "United States",
   },
+  dubai: {
+    slug: "dubai",
+    countrySlug: "uae",
+    kind: "city",
+    displayName: "Dubai",
+    region: "United Arab Emirates",
+  },
+  uae: {
+    slug: "uae",
+    countrySlug: "uae",
+    kind: "country",
+    displayName: "the UAE",
+    region: "United Arab Emirates",
+  },
 };
 
 /**
@@ -105,18 +119,22 @@ export const LOCATIONS: Record<string, Location> = {
 export function getSiblingLinks(currentSubjectSlug: string | null, location: Location) {
   const links: { name: string; href: string }[] = [];
 
-  const hasSalesforceHere =
-    location.kind === "country"
-      ? !!SALESFORCE_COUNTRY_PAGES[location.countrySlug]
-      : !!SALESFORCE_CITY_PAGES[location.slug];
+  // A city without its own dedicated Salesforce page (e.g. an online-only
+  // city like London or Dubai) can still link to its country's Salesforce
+  // page if one exists — otherwise cities in a country that only has
+  // Salesforce branch pages (no country-wide page) get no Salesforce link
+  // at all, even though Salesforce training is genuinely available there.
+  const hasCityPage = location.kind !== "country" && !!SALESFORCE_CITY_PAGES[location.slug];
+  const hasCountryPage = !!SALESFORCE_COUNTRY_PAGES[location.countrySlug];
+  const hasSalesforceHere = hasCityPage || hasCountryPage;
 
   if (hasSalesforceHere && currentSubjectSlug !== "salesforce") {
     links.push({
       name: "Salesforce",
       href:
-        location.kind === "country"
-          ? `/${location.countrySlug}/salesforce-training`
-          : `/${location.countrySlug}/salesforce-training/${location.slug}`,
+        hasCityPage
+          ? `/${location.countrySlug}/salesforce-training/${location.slug}`
+          : `/${location.countrySlug}/salesforce-training`,
     });
   }
 

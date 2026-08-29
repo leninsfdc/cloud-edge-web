@@ -47,7 +47,7 @@ export function CountryProvider({
     setCountryCookie(newSlug);
     if (newSlug === slug) return;
     // Replace the leading /{currentSlug} with /{newSlug}
-    const rest = pathname.replace(/^\/(in|uk|usa|ca|australia)/, "");
+    const rest = pathname.replace(/^\/(in|uk|usa|ca|australia|uae)/, "");
     router.push(`/${newSlug}${rest || "/"}`);
   };
 

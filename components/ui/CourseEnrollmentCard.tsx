@@ -13,7 +13,7 @@ import moment from "moment";
 import { getEmailLink, getWhatsAppLink } from "@/utils";
 import { getCountryOption, getCurrencySymbol } from "@/libs/country-data";
 
-const PRICING_CODES = ["IN", "UK", "US", "CA", "AU"] as const;
+const PRICING_CODES = ["IN", "UK", "US", "CA", "AU", "AE"] as const;
 
 const GRADIENT_PALETTES = [
   {

@@ -25,6 +25,7 @@ const HREFLANG_MAP: Record<CountrySlug, string> = {
   usa: "en-US",
   ca: "en-CA",
   australia: "en-AU",
+  uae: "en-AE",
 };
 
 const DEFAULT_COUNTRY: CountrySlug = "usa";

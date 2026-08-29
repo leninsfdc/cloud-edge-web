@@ -1,6 +1,6 @@
 import { headers } from "next/headers";
 
-export type PricingCountryCode = "IN" | "UK" | "US" | "CA" | "AU";
+export type PricingCountryCode = "IN" | "UK" | "US" | "CA" | "AU" | "AE";
 
 function mapToPricingCode(raw: string | null | undefined): PricingCountryCode {
   const code = (raw ?? "").toUpperCase().trim();
@@ -10,6 +10,7 @@ function mapToPricingCode(raw: string | null | undefined): PricingCountryCode {
   if (code === "CA") return "CA";
   if (code === "AU") return "AU";
   if (code === "US") return "US";
+  if (code === "AE") return "AE";
 
   return "US";
 }

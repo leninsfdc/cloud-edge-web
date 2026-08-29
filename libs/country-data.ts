@@ -1,5 +1,5 @@
-export type CountryCode = "IN" | "UK" | "US" | "CA" | "AU";
-export type CountrySlug = "in" | "uk" | "usa" | "ca" | "australia";
+export type CountryCode = "IN" | "UK" | "US" | "CA" | "AU" | "AE";
+export type CountrySlug = "in" | "uk" | "usa" | "ca" | "australia" | "uae";
 
 export interface CountryOption {
   code: CountryCode;
@@ -63,17 +63,27 @@ export const COUNTRIES: CountryOption[] = [
     currency: "AUD",
     currencySymbol: "A$",
   },
+  {
+    code: "AE",
+    slug: "uae",
+    name: "United Arab Emirates",
+    shortName: "UAE",
+    flag: "🇦🇪",
+    flagUrl: "https://flagsapi.com/AE/flat/64.png",
+    currency: "AED",
+    currencySymbol: "AED",
+  },
 ];
 
-export const VALID_SLUGS: CountrySlug[] = ["in", "uk", "usa", "ca", "australia"];
+export const VALID_SLUGS: CountrySlug[] = ["in", "uk", "usa", "ca", "australia", "uae"];
 
 export function slugToCode(slug: string): CountryCode {
-  const map: Record<string, CountryCode> = { in: "IN", uk: "UK", usa: "US", ca: "CA", australia: "AU" };
+  const map: Record<string, CountryCode> = { in: "IN", uk: "UK", usa: "US", ca: "CA", australia: "AU", uae: "AE" };
   return map[slug.toLowerCase()] ?? "US";
 }
 
 export function codeToSlug(code: CountryCode): CountrySlug {
-  const map: Record<CountryCode, CountrySlug> = { IN: "in", UK: "uk", US: "usa", CA: "ca", AU: "australia" };
+  const map: Record<CountryCode, CountrySlug> = { IN: "in", UK: "uk", US: "usa", CA: "ca", AU: "australia", AE: "uae" };
   return map[code] ?? "usa";
 }
 
@@ -93,6 +103,7 @@ const COUNTRY_CODE_ALIASES: Record<string, string[]> = {
   US: ["US", "USA"],
   CA: ["CA", "CAN"],
   AU: ["AU", "AUS"],
+  AE: ["AE", "UAE"],
 };
 
 /**
@@ -130,6 +141,7 @@ const CURRENCY_SYMBOLS: Record<string, string> = {
   USD: "$",
   CAD: "$",
   AUD: "A$",
+  AED: "AED ",
 };
 
 export function getCurrencySymbol(currency?: string | null): string {

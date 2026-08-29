@@ -76,6 +76,13 @@ const countries = [
       "Australia/Adelaide",
     ],
   },
+  {
+    name: "United Arab Emirates (UAE)",
+    code: "AE",
+    currency: "AED",
+    defaultTimezone: "Asia/Dubai",
+    timezones: ["Asia/Dubai"],
+  },
 ];
 
 const CreateUpdateBatchRegionContainer: React.FC<

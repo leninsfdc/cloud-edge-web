@@ -261,6 +261,7 @@ export async function getCourseBySlug(slug: string) {
         US: null,
         CA: null,
         AU: null,
+        AE: null,
     };
 
 
@@ -287,6 +288,10 @@ export async function getCourseBySlug(slug: string) {
             if (["AU", "AUS"].includes(code)) {
                 countryPricing.AU = region;
             }
+
+            if (["AE", "UAE"].includes(code)) {
+                countryPricing.AE = region;
+            }
         });
     });
 
@@ -301,6 +306,7 @@ export async function getCourseBySlug(slug: string) {
                 US: null,
                 CA: null,
                 AU: null,
+                AE: null,
             };
 
             (course?.batches || []).forEach((batch: any) => {
@@ -325,6 +331,10 @@ export async function getCourseBySlug(slug: string) {
 
                     if (["AU", "AUS"].includes(code)) {
                         countryPricing.AU = region;
+                    }
+
+                    if (["AE", "UAE"].includes(code)) {
+                        countryPricing.AE = region;
                     }
                 });
             });

@@ -128,5 +128,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
   }
 
+  // 6. "Best software training institute in {location}" hub pages — one per
+  // location, covering every subject taught there (see instituteTrainingShared.tsx).
+  for (const location of Object.values(LOCATIONS)) {
+    const url =
+      location.kind === "country"
+        ? `${SITE_URL}/${location.countrySlug}/training-institute`
+        : `${SITE_URL}/${location.countrySlug}/training-institute/${location.slug}`;
+
+    sitemapEntries.push({
+      url,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.6,
+    });
+  }
+
   return sitemapEntries;
 }

@@ -21,6 +21,11 @@ const SalesforceLocalContainer: React.FC<Props> = ({ countryPage, cityPage, cour
     : Object.values(LOCATIONS).find((l) => l.kind === "country" && l.countrySlug === countryPage!.countrySlug);
   const siblingLinks = matchingLocation ? getSiblingLinks("salesforce", matchingLocation) : [];
   const locationDisplayName = matchingLocation?.displayName ?? (cityPage ? cityPage.city : "");
+  const instituteHref = matchingLocation
+    ? matchingLocation.kind === "country"
+      ? `/${matchingLocation.countrySlug}/training-institute`
+      : `/${matchingLocation.countrySlug}/training-institute/${matchingLocation.slug}`
+    : null;
 
   return (
     <div className="bg-slate-50/80 min-h-screen pt-28 md:pt-36 pb-20">
@@ -84,6 +89,17 @@ const SalesforceLocalContainer: React.FC<Props> = ({ countryPage, cityPage, cour
                 </Link>
               ))}
             </div>
+          </div>
+        )}
+
+        {instituteHref && (
+          <div className="mt-10 text-center">
+            <Link
+              href={instituteHref}
+              className="text-sm font-semibold text-indigo-600 hover:text-indigo-700 hover:underline"
+            >
+              See our full software training institute in {locationDisplayName} →
+            </Link>
           </div>
         )}
       </div>

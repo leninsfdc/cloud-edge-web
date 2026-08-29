@@ -182,4 +182,54 @@ export const COUNTRY_HOME_CONTENT: Partial<Record<CountrySlug, CountryHomeConten
       },
     ],
   },
+  uae: {
+    metaTitle: "IT Training Courses UAE | Salesforce & Digital Marketing | Cloud Edge Solutions",
+    metaDescription:
+      "Explore IT training courses in the UAE with Cloud Edge Solutions. Learn Salesforce Administration and Digital Marketing with expert-led online training and career support.",
+    hero: {
+      title: "IT Training Courses{{ in the UAE}}",
+      description:
+        "Practical, instructor-led IT training for professionals, graduates and career changers across the UAE.",
+    },
+    intro: {
+      heading: "Online IT Training Built for UAE Professionals",
+      paragraphs: [
+        "Cloud Edge Solutions delivers live, instructor-led online IT training for professionals, graduates and career changers across the UAE, including Dubai, Abu Dhabi and Sharjah. Our current courses cover Salesforce Administration and Digital Marketing, with hands-on projects and certification preparation built into every programme.",
+        "Training is fully online and scheduled around UAE time zones, so you can learn alongside a live instructor without relocating or taking time away from work. Every course includes career support to help you move from certification into a new role.",
+        "Cloud Edge Solutions is an India-based IT training provider delivering live online training to professionals across the UAE — there's no physical UAE office, but every session is live with a real instructor, not pre-recorded.",
+      ],
+    },
+    faqs: [
+      {
+        question: "Do you offer IT training in the UAE?",
+        answer:
+          "Yes. Cloud Edge Solutions delivers live, instructor-led online IT training to students across the UAE, with course schedules designed to fit UAE time zones.",
+      },
+      {
+        question: "Is Cloud Edge Solutions based in Dubai or the UAE?",
+        answer:
+          "Cloud Edge Solutions is headquartered in India and delivers training to UAE students entirely online — there is no physical Dubai or UAE office. Every class is live and instructor-led, scheduled to fit UAE time zones.",
+      },
+      {
+        question: "What courses does Cloud Edge Solutions currently offer?",
+        answer:
+          "Salesforce Administration and Digital Marketing, both as live online training with certification exam preparation included. Full course details are on our Courses page.",
+      },
+      {
+        question: "Do you provide Salesforce certification preparation?",
+        answer:
+          "Yes, certification exam preparation is included as part of our Salesforce Administration course.",
+      },
+      {
+        question: "Are evening classes available for working professionals?",
+        answer:
+          "Yes, batches are scheduled to accommodate working professionals, including evening and weekend options where available.",
+      },
+      {
+        question: "Are these courses suitable for beginners?",
+        answer:
+          "Yes, both our Salesforce Administration and Digital Marketing courses are designed for beginners as well as career changers, with prerequisites listed on each course page.",
+      },
+    ],
+  },
 };

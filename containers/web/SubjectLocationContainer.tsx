@@ -13,6 +13,10 @@ interface Props {
 const SubjectLocationContainer: React.FC<Props> = ({ subject, location }) => {
   const siblingLinks = getSiblingLinks(subject.slug, location);
   const h1 = `${subject.name} Training in ${location.displayName}`;
+  const instituteHref =
+    location.kind === "country"
+      ? `/${location.countrySlug}/training-institute`
+      : `/${location.countrySlug}/training-institute/${location.slug}`;
 
   const intro =
     location.kind === "branch"
@@ -120,6 +124,15 @@ const SubjectLocationContainer: React.FC<Props> = ({ subject, location }) => {
             </div>
           </div>
         )}
+
+        <div className="mt-10 text-center">
+          <Link
+            href={instituteHref}
+            className="text-sm font-semibold text-indigo-600 hover:text-indigo-700 hover:underline"
+          >
+            See our full software training institute in {location.displayName} →
+          </Link>
+        </div>
       </div>
     </div>
   );
