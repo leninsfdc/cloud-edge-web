@@ -124,7 +124,7 @@ const Footer = () => {
                 </p>
 
                 <div className="mt-8">
-                  <h4 className="text-sm font-medium mb-4">Social Media</h4>
+                  <h3 className="text-sm font-medium mb-4">Social Media</h3>
 
                   <div className="flex items-center gap-3">
                     {[
@@ -150,7 +150,7 @@ const Footer = () => {
 
               {/* MAIN PAGES */}
               <div>
-                <h4 className="text-lg font-semibold mb-5">Main Pages</h4>
+                <h3 className="text-lg font-semibold mb-5">Main Pages</h3>
 
                 <ul className="space-y-4 text-sm">
                   {[
@@ -188,7 +188,7 @@ const Footer = () => {
 
               {/* QUICK LINKS */}
               <div>
-                <h4 className="text-lg font-semibold mb-5">Quick Links</h4>
+                <h3 className="text-lg font-semibold mb-5">Quick Links</h3>
 
                 <ul className="space-y-4 text-sm text-white">
                   <li>
@@ -225,9 +225,9 @@ const Footer = () => {
 
               {/* OPENING HOURS */}
               <div>
-                <h4 className="text-lg font-semibold mb-5">
+                <h3 className="text-lg font-semibold mb-5">
                   Opening Hours
-                </h4>
+                </h3>
 
                 <div className="space-y-5">
                   <div className="flex items-center gap-4">

@@ -43,7 +43,7 @@ const CountryIntroSection = () => {
           </h2>
 
           {firstParagraph && (
-            <p className="mt-5 max-w-[700px] text-[#7B7B88] text-sm sm:text-base leading-[170%] text-center">
+            <p className="mt-5 max-w-[700px] text-[#5B5B68] text-sm sm:text-base leading-[170%] text-center">
               {firstParagraph}
             </p>
           )}
@@ -80,7 +80,7 @@ const CountryIntroSection = () => {
             {restParagraphs.map((paragraph, index) => (
               <p
                 key={index}
-                className="text-[#9C9CA8] text-xs sm:text-sm leading-[170%] text-center"
+                className="text-[#5B5B68] text-xs sm:text-sm leading-[170%] text-center"
               >
                 {paragraph}
               </p>

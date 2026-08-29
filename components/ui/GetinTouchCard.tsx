@@ -143,9 +143,9 @@ const GetinTouchCard = () => {
       <div className='absolute top-24 right-0 bg-[#7635D6] w-20 h-20 blur-[150px]' />
       <div className='absolute bottom-24 -left-2 bg-[#F77A40] w-20 h-20 blur-[150px]' />
 
-      <div className='text-black font-semibold text-2xl mb-8 sm:mb-10 relative z-10'>
+      <h2 className='text-black font-semibold text-2xl mb-8 sm:mb-10 relative z-10'>
         Get In Touch
-      </div>
+      </h2>
 
       <div className='space-y-6 sm:space-y-8 relative z-10'>
 
@@ -163,13 +163,13 @@ const GetinTouchCard = () => {
           </div>
 
           <div>
-            <h4 className='font-semibold text-black'>
+            <h3 className='font-semibold text-black'>
               Contact Person
-            </h4>
+            </h3>
 
-            <h5 className='text-[#6E6E6E] text-sm'>
+            <p className='text-[#6E6E6E] text-sm'>
               Teja Gongati
-            </h5>
+            </p>
           </div>
         </div>
 
@@ -187,9 +187,9 @@ const GetinTouchCard = () => {
           </div>
 
           <div className='min-w-0'>
-            <h4 className='font-semibold text-black'>
+            <h3 className='font-semibold text-black'>
               Email Us
-            </h4>
+            </h3>
 
             <Link
               href={"mailto:info@cloudedge.in"}
@@ -215,9 +215,9 @@ const GetinTouchCard = () => {
           </div>
 
           <div>
-            <h4 className='font-semibold text-black'>
+            <h3 className='font-semibold text-black'>
               Call Us
-            </h4>
+            </h3>
 
             <Link
               href={"tel:+447442586325"}
@@ -242,13 +242,13 @@ const GetinTouchCard = () => {
           </div>
 
           <div className='min-w-0'>
-            <h4 className='font-semibold text-black'>
+            <h3 className='font-semibold text-black'>
               Visit Us
-            </h4>
+            </h3>
 
-            <h5 className='text-[#6E6E6E] text-sm leading-6 pr-10'>
+            <p className='text-[#6E6E6E] text-sm leading-6 pr-10'>
               1-8, Tempalli, Gannavaram, Krishna District, Andhra Pradesh, India - 521286
-            </h5>
+            </p>
           </div>
         </div>
 
