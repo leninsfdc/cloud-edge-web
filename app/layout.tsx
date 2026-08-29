@@ -1,11 +1,8 @@
 import type { Metadata } from "next";
 import { Bricolage_Grotesque, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Navbar from "@/components/ui/Navbar";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import Footer from "@/components/ui/Footer";
-import AOSProvider from "@/components/shared/AOSProvider";
 import { Toaster } from "react-hot-toast";
 
 const geistSans = Geist({
@@ -33,6 +30,10 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistSans.className} ${bricolageGrotesque.variable} h-full antialiased`}
     >
+      <head>
+        <link rel="preconnect" href="https://ehrmhvmsbhmwvexxvuqd.supabase.co" />
+        <link rel="dns-prefetch" href="https://ehrmhvmsbhmwvexxvuqd.supabase.co" />
+      </head>
       <body className="min-h-full">
         {children}
 

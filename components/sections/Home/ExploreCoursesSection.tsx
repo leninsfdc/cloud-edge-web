@@ -354,12 +354,8 @@ const ExploreCoursesSection = () => {
                 {/* TOP */}
                 <div className='flex items-start justify-between'>
                   <div className='transition-transform duration-300 group-hover:scale-105' style={{ display: 'inline-flex' }}>
-                    <img
-                      src={
-                        typeof getCourseIcon(selectedCourse) === "string"
-                          ? getCourseIcon(selectedCourse)
-                          : getCourseIcon(selectedCourse).src
-                      }
+                    <Image
+                      src={getCourseIcon(selectedCourse)}
                       alt={getCourseTitle(selectedCourse)}
                       width={76}
                       height={76}
