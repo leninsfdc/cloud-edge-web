@@ -38,6 +38,7 @@ jobs:
             "$BASE/uk"
             "$BASE/usa"
             "$BASE/australia"
+            "$BASE/uae"
             "$BASE/uk/courses"
             "$BASE/uk/courses/master-salesforce-advance-your-career"
             "$BASE/uk/about-us"
@@ -54,6 +55,10 @@ jobs:
             "$BASE/uk/sap-training"
             "$BASE/usa/python-training"
             "$BASE/in/aws-training/hyderabad"
+            "$BASE/uae/salesforce-training"
+            "$BASE/in/training-institute/hyderabad"
+            "$BASE/uae/training-institute/dubai"
+            "$BASE/usa/training-institute"
           )
 
           FAILED=0
