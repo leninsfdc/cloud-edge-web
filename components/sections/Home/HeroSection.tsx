@@ -2,7 +2,7 @@
 
 import React, {useState, useEffect} from "react";
 import Link from "next/link";
-import Slider from "react-slick";
+import Carousel from "@/components/ui/Carousel";
 import { motion } from "framer-motion";
 
 import PrimaryButton from "@/components/ui/PrimaryButton";
@@ -93,20 +93,12 @@ const HeroSection = () => {
     fetchBanners();
   }, [countryOverride]);
 
-  const settings = {
-    dots: false,
-    infinite: slides.length > 1,
-    speed: 700,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    autoplay: slides.length > 1,
-    autoplaySpeed: 5000,
-    arrows: false,
-    pauseOnHover: false,
-  };
   return (
       <section className="relative bg-[#F7F2FF] overflow-x-clip">
-        <Slider {...settings}>
+        <Carousel
+          loop={slides.length > 1}
+          autoplayDelay={slides.length > 1 ? 5000 : undefined}
+        >
           {slides.map((slide) => {
             const titleMatch = (slide.title || "").match(/([\s\S]*?)\{\{([\s\S]*?)\}\}([\s\S]*)/);
             let before = slide.title || "";
@@ -315,7 +307,7 @@ const HeroSection = () => {
                 </div>
             );
           })}
-        </Slider>
+        </Carousel>
       </section>
   );
 };

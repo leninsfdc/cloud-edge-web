@@ -3,7 +3,7 @@
 import BadgeLabel from "@/components/shared/BadgeLabel";
 import TestimonialCard from "@/components/ui/TestimonialCard";
 import React, { useRef, useEffect, useState } from "react";
-import Slider from "react-slick";
+import Carousel, { CarouselHandle } from "@/components/ui/Carousel";
 
 import janesmith from "@/public/images/jane-smith.png";
 
@@ -15,7 +15,7 @@ import { getRandomTestimonials } from "@/app/(asgard)/asgard/academics/courses/a
 import { MotionSection } from "@/components/ui/MotionElements";
 
 const TestimonialSection = () => {
-  const sliderRef = useRef<Slider | null>(null);
+  const sliderRef = useRef<CarouselHandle | null>(null);
   // No hardcoded fallback reviewers — showing invented names/photos when the
   // real testimonials table is empty is a trust problem, not a placeholder.
   // The section simply doesn't render until genuine testimonials load.
@@ -34,34 +34,6 @@ const TestimonialSection = () => {
   }, []);
 
   if (testimonials.length === 0) return null;
-
-  const settings = {
-    dots: false,
-    infinite: true,
-    speed: 600,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    arrows: false,
-    autoplay: true,
-    autoplaySpeed: 3000,
-    adaptiveHeight: false,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
 
   return (
     <MotionSection 
@@ -87,21 +59,25 @@ const TestimonialSection = () => {
         </div>
 
         {/* Slider */}
-        <div className="mt-10 overflow-hidden">
+        <div className="mt-10">
           <div className="mx-[-12px]">
-            <Slider ref={sliderRef} {...settings}>
+            <Carousel
+              ref={sliderRef}
+              loop
+              autoplayDelay={3000}
+              slideClassName="flex-[0_0_100%] md:flex-[0_0_50%] lg:flex-[0_0_33.3333%] px-3"
+            >
               {testimonials.map((testimonial, index) => (
-                <div key={index} className="px-3">
-                  <TestimonialCard
-                    comment={testimonial.review_text || testimonial.comment || ""}
-                    name={testimonial.person_name || testimonial.name || ""}
-                    rating={testimonial.rating || 5}
-                    image={testimonial?.media_url || testimonial.image || janesmith}
-                    person_designation={testimonial.person_designation || ""}
-                  />
-                </div>
+                <TestimonialCard
+                  key={index}
+                  comment={testimonial.review_text || testimonial.comment || ""}
+                  name={testimonial.person_name || testimonial.name || ""}
+                  rating={testimonial.rating || 5}
+                  image={testimonial?.media_url || testimonial.image || janesmith}
+                  person_designation={testimonial.person_designation || ""}
+                />
               ))}
-            </Slider>
+            </Carousel>
           </div>
         </div>
 
@@ -109,7 +85,7 @@ const TestimonialSection = () => {
         <div className="flex items-center justify-center gap-4 mt-10">
           {/* Left Button */}
           <button
-            onClick={() => sliderRef.current?.slickPrev()}
+            onClick={() => sliderRef.current?.scrollPrev()}
             className="w-12 h-12 sm:w-14 sm:h-14 rounded-md border cursor-pointer border-white/15 flex items-center justify-center bg-[#FFFFFF12] backdrop-blur-xl transition-all duration-300 hover:scale-105"
             style={{
               background:
@@ -122,7 +98,7 @@ const TestimonialSection = () => {
 
           {/* Right Button */}
           <button
-            onClick={() => sliderRef.current?.slickNext()}
+            onClick={() => sliderRef.current?.scrollNext()}
             className="w-12 h-12 sm:w-14 sm:h-14 rounded-md border cursor-pointer border-white/15 flex items-center justify-center bg-[#FFFFFF12] backdrop-blur-xl transition-all duration-300 hover:scale-105"
             style={{
               background:

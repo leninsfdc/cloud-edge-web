@@ -1,9 +1,7 @@
 'use client'
 
 import React, { useRef, useState } from 'react'
-import Slider from 'react-slick'
-import 'slick-carousel/slick/slick.css'
-import 'slick-carousel/slick/slick-theme.css'
+import Carousel, { CarouselHandle } from '@/components/ui/Carousel'
 import BadgeLabel from '@/components/shared/BadgeLabel'
 import { MotionSection } from '@/components/ui/MotionElements'
 import { MapPin, Phone, ArrowRight, Navigation } from 'lucide-react'
@@ -172,7 +170,7 @@ const CustomDots: React.FC<CustomDotsProps> = ({ total, current, onClick }) => (
 )
 
 const TrainingBranchesSection: React.FC = () => {
-  const sliderRef = useRef<Slider | null>(null)
+  const sliderRef = useRef<CarouselHandle | null>(null)
   const [currentSlide, setCurrentSlide] = useState<number>(0)
   const { country } = useCountry()
 
@@ -180,45 +178,8 @@ const TrainingBranchesSection: React.FC = () => {
   // homepages misrepresents CloudEdge as having a local presence it doesn't.
   if (country.slug !== "in") return null
 
-  const settings = {
-    dots: false,
-    infinite: true,
-    autoplay: true,
-    autoplaySpeed: 3000,
-    speed: 700,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    centerMode: true,
-    centerPadding: '0px',
-    arrows: false,
-    pauseOnHover: true,
-    beforeChange: (_current: number, next: number) => {
-      setCurrentSlide(next % branches.length)
-    },
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-          centerMode: true,
-          centerPadding: '0px',
-        },
-      },
-      {
-        breakpoint: 640,
-        settings: {
-          slidesToShow: 1,
-          slidesToScroll: 1,
-          centerMode: true,
-          centerPadding: '0px',
-        },
-      },
-    ],
-  }
-
   const handleDotClick = (index: number): void => {
-    sliderRef.current?.slickGoTo(index)
+    sliderRef.current?.scrollTo(index)
   }
 
   return (
@@ -242,58 +203,20 @@ const TrainingBranchesSection: React.FC = () => {
         </div>
 
 
-        <style>{`
-          .branches-slider .slick-track {
-            display: flex !important;
-            align-items: center !important;
-            padding: 24px 0 !important;
-          }
-          .branches-slider .slick-slide {
-            padding: 0 12px;
-            transition: all 0.4s ease;
-          }
-          .branches-slider .slick-slide > div {
-            height: 100%;
-          }
-          /* Desktop Centered Active Slide Styling */
-          @media (min-width: 640px) {
-            .branches-slider .slick-slide.slick-center .branch-card {
-              background-color: #ffffff !important;
-              border-color: #7C6EF8 !important;
-              border-width: 2px !important;
-              transform: scale(1.06) !important;
-              box-shadow: 0 20px 35px -10px rgba(124, 110, 248, 0.25) !important;
-              opacity: 1 !important;
-              z-index: 20 !important;
-            }
-            .branches-slider .slick-slide:not(.slick-center) .branch-card {
-              opacity: 0.75 !important;
-              transform: scale(0.96) !important;
-            }
-          }
-          /* Mobile View Fix: Always 100% Opacity and full crisp clarity */
-          @media (max-width: 639px) {
-            .branches-slider .slick-slide .branch-card {
-              opacity: 1 !important;
-              transform: scale(1) !important;
-              box-shadow: 0 10px 25px -5px rgba(124, 110, 248, 0.15) !important;
-              border-color: #7C6EF8 !important;
-              border-width: 2px !important;
-            }
-          }
-        `}</style>
-
         <div className="branches-slider max-w-full">
-          <Slider ref={sliderRef} {...settings}>
+          <Carousel
+            ref={sliderRef}
+            loop
+            center
+            autoplayDelay={3000}
+            onSlideChange={(index) => setCurrentSlide(index % branches.length)}
+            slideClassName="flex-[0_0_100%] sm:flex-[0_0_50%] lg:flex-[0_0_33.3333%] px-3 py-6"
+          >
             {branches.map((branch: Branch, index: number) => {
               const isActive = index === currentSlide
-              return (
-                <div key={branch.id}>
-                  <BranchCard branch={branch} isActive={isActive} />
-                </div>
-              )
+              return <BranchCard key={branch.id} branch={branch} isActive={isActive} />
             })}
-          </Slider>
+          </Carousel>
         </div>
 
 
