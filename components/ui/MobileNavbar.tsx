@@ -50,6 +50,8 @@ const MobileNavbar: React.FC<MobileNavbarProps> = ({ navItems }) => {
 
           <button
             onClick={() => setIsOpen(!isOpen)}
+            aria-label={isOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isOpen}
             className="flex h-10 w-10 items-center justify-center bg-white"
           >
             {isOpen ? <X size={20} /> : <Menu size={20} />}
