@@ -2,12 +2,12 @@
 
 import React, {useState, useEffect} from "react";
 import Link from "next/link";
-import Image from "next/image";
 import Slider from "react-slick";
 import { motion } from "framer-motion";
 
 import PrimaryButton from "@/components/ui/PrimaryButton";
 import TrustBadges from "@/components/ui/TrustBadges";
+import ResilientImage from "@/components/ui/ResilientImage";
 import {getBanners} from "@/app/(asgard)/asgard/content/banners/actions";
 import { useCountry } from "@/libs/country-context";
 import { COUNTRY_HOME_CONTENT } from "@/libs/countryHomeContent";
@@ -298,12 +298,12 @@ const HeroSection = () => {
                               transition={{ duration: 0.8, delay: 0.2 }}
                               className="pointer-events-none absolute bottom-0 md:-bottom-14 left-1/2 -translate-x-1/2 w-full flex justify-center px-4"
                           >
-                            <Image
+                            <ResilientImage
                                 src={slide.image_url}
                                 alt="hero image"
                                 width={1200}
                                 height={800}
-                                unoptimized={typeof slide.image_url === "string"}
+                                sizes="(min-width: 1280px) 768px, (min-width: 768px) 950px, 700px"
                                 priority
                                 className="object-contain w-[700px] md:w-[950px] xl:w-3xl h-auto"
                             />
