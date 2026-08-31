@@ -15,6 +15,7 @@ import { usePathname } from "next/navigation";
 import heartIcon from "@/public/icons/heart.svg"
 import { getWhatsAppLink } from "@/utils";
 import { useCountry } from "@/libs/country-context";
+import { SOCIAL_LINKS } from "@/libs/seo";
 
 import {
   ArrowRight,
@@ -128,9 +129,9 @@ const Footer = () => {
 
                   <div className="flex items-center gap-3">
                     {[
-                      { label: "Instagram", href: getCountryHref("/contact-us"), icon: <Image src={insta} alt="Instagram" className=" w-6 h-6" /> },
-                      { label: "Linkedin", href: getCountryHref("/contact-us"), icon: <Image src={linkedin} alt="Linkedin" className=" w-6 h-6" /> },
-                      { label: "Facebook", href: getCountryHref("/contact-us"), icon: <Image src={facebook} alt="Facebook" className=" w-6 h-6" /> },
+                      { label: "Instagram", href: SOCIAL_LINKS.instagram ?? getCountryHref("/contact-us"), icon: <Image src={insta} alt="Instagram" className=" w-6 h-6" />, external: !!SOCIAL_LINKS.instagram },
+                      { label: "Linkedin", href: SOCIAL_LINKS.linkedin ?? getCountryHref("/contact-us"), icon: <Image src={linkedin} alt="Linkedin" className=" w-6 h-6" />, external: !!SOCIAL_LINKS.linkedin },
+                      { label: "Facebook", href: SOCIAL_LINKS.facebook ?? getCountryHref("/contact-us"), icon: <Image src={facebook} alt="Facebook" className=" w-6 h-6" />, external: !!SOCIAL_LINKS.facebook },
                       { label: "Whatsapp", href: getWhatsAppLink(), icon: <Image src={whatsapp} alt="Whatsapp" className=" w-6 h-6" />, external: true },
                     ].map((item) => (
                       <Link

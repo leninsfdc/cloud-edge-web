@@ -119,6 +119,7 @@ import linkedin from "@/public/icons/linkedin.svg";
 import facebook from "@/public/icons/facebook.svg";
 import whatsapp from "@/public/icons/whatsapp.svg";
 import { getWhatsAppLink } from "@/utils";
+import { SOCIAL_LINKS } from "@/libs/seo";
 
 const socialLinks = [
   {
@@ -130,23 +131,23 @@ const socialLinks = [
   },
   {
     label: "LinkedIn",
-    href: "/contact-us",
+    href: SOCIAL_LINKS.linkedin ?? "/contact-us",
     icon: linkedin,
-    external: false,
+    external: !!SOCIAL_LINKS.linkedin,
     hoverBg: "hover:bg-[#0A66C2]/20 hover:border-[#0A66C2]/40",
   },
   {
     label: "Instagram",
-    href: "/contact-us",
+    href: SOCIAL_LINKS.instagram ?? "/contact-us",
     icon: insta,
-    external: false,
+    external: !!SOCIAL_LINKS.instagram,
     hoverBg: "hover:bg-[#E4405F]/20 hover:border-[#E4405F]/40",
   },
   {
     label: "Facebook",
-    href: "/contact-us",
+    href: SOCIAL_LINKS.facebook ?? "/contact-us",
     icon: facebook,
-    external: false,
+    external: !!SOCIAL_LINKS.facebook,
     hoverBg: "hover:bg-[#1877F2]/20 hover:border-[#1877F2]/40",
   },
 ];

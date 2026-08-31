@@ -15,6 +15,14 @@ export const SITE_URL = (
 export const ORG_NAME = "Cloud Edge Solutions";
 export const ORG_CONTACT_PHONE = "+447442586325";
 
+// Real, verified social profiles only — an unset entry means no profile
+// exists yet, not a placeholder link (see Footer.tsx / StickySocialBar.tsx).
+export const SOCIAL_LINKS = {
+  linkedin: "https://www.linkedin.com/company/cloud-edge-solutions",
+  instagram: undefined as string | undefined,
+  facebook: undefined as string | undefined,
+};
+
 // Region-only hreflang codes — the site is English-only today, but each
 // country route serves region-specific pricing/currency/salary content,
 // so hreflang signals "same content, different market" rather than

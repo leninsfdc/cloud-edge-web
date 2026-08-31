@@ -98,6 +98,7 @@ import linkedin from "@/public/icons/linkedin.svg";
 import facebook from "@/public/icons/facebook.svg";
 import whatsapp from "@/public/icons/whatsapp.svg";
 import { getWhatsAppLink } from "@/utils";
+import { SOCIAL_LINKS } from "@/libs/seo";
 
 const socialItems = [
   {
@@ -111,25 +112,25 @@ const socialItems = [
   {
     label: "LinkedIn",
     tooltip: "Follow on LinkedIn",
-    href: "/contact-us",
+    href: SOCIAL_LINKS.linkedin ?? "/contact-us",
     icon: linkedin,
-    external: false,
+    external: !!SOCIAL_LINKS.linkedin,
     bgColor: "bg-[#0A66C2] shadow-[#0A66C2]/30",
   },
   {
     label: "Instagram",
     tooltip: "Follow on Instagram",
-    href: "/contact-us",
+    href: SOCIAL_LINKS.instagram ?? "/contact-us",
     icon: insta,
-    external: false,
+    external: !!SOCIAL_LINKS.instagram,
     bgColor: "bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] shadow-[#dc2743]/30",
   },
   {
     label: "Facebook",
     tooltip: "Follow on Facebook",
-    href: "/contact-us",
+    href: SOCIAL_LINKS.facebook ?? "/contact-us",
     icon: facebook,
-    external: false,
+    external: !!SOCIAL_LINKS.facebook,
     bgColor: "bg-[#1877F2] shadow-[#1877F2]/30",
   },
 ];
