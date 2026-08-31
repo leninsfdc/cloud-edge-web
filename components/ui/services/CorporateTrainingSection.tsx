@@ -74,7 +74,7 @@ export default function CorporateTrainingSection() {
 
             <p className="text-base sm:text-lg leading-relaxed text-slate-600 font-medium">
               Whether you're rolling out SAP, moving to Salesforce, or building
-              internal ERP capability — Cloud Edge delivers private cohorts that
+              internal ERP capability — Cloud Edge AI delivers private cohorts that
               fit your team, timeline, and configuration.
             </p>
 

@@ -73,7 +73,7 @@ const getCourseTitle = (course: any) => {
 
 const getCourseFeatures = (course: any) => {
   if (course.features && course.features.length > 0) return course.features;
-  // "Certification Provided" implies CloudEdge itself grants the
+  // "Certification Provided" implies CloudEdge AI itself grants the
   // certification, which isn't true for most third-party exams (Salesforce,
   // AWS, SAP, etc.) — this only preps students for the real exam.
   return [

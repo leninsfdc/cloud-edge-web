@@ -209,7 +209,7 @@ export default function JobSupportSection() {
           </div>
 
           <a
-            href={getWhatsAppLink("Hi Cloud Edge Solutions, I need details about Job Support.")}
+            href={getWhatsAppLink("Hi Cloud Edge AI Solutions, I need details about Job Support.")}
             target="_blank"
             rel="noopener noreferrer"
             className="rounded-full bg-teal-500 hover:bg-teal-600 text-slate-950 font-bold px-7 py-3.5 text-sm shadow-lg hover:shadow-teal-500/25 transition-all duration-200 shrink-0 inline-flex items-center gap-2"

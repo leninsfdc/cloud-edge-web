@@ -31,7 +31,7 @@ const regions = [
 
 const faqsData = [
   {
-    q: "Are Cloud Edge courses officially accredited?",
+    q: "Are Cloud Edge AI courses officially accredited?",
     a: "Our courses are CPD accredited and aligned to official SAP and Salesforce certification syllabuses. We are not an official SAP or Salesforce authorised training partner but our curriculum is built directly from official exam guides, and our pass rates reflect that."
   },
   {
@@ -56,7 +56,7 @@ const faqsData = [
   },
   {
     q: "Do you provide a certificate on completion?",
-    a: "Yes. All students who complete the course receive a Cloud Edge Solutions certificate of completion. This is separate from the official SAP or Salesforce certification, which you sit independently after our exam prep."
+    a: "Yes. All students who complete the course receive a Cloud Edge AI Solutions certificate of completion. This is separate from the official SAP or Salesforce certification, which you sit independently after our exam prep."
   },
   {
     q: "Can I take both SAP and Salesforce courses?",
@@ -92,7 +92,7 @@ const CorporateOutcomesAndFaq = () => {
               Where Our Graduates Work
             </h2>
             <p className="text-sm sm:text-base text-slate-400 max-w-md mx-auto font-medium leading-relaxed">
-              Cloud Edge graduates have gone on to roles at some of the world’s leading organisations.
+              Cloud Edge AI graduates have gone on to roles at some of the world’s leading organisations.
             </p>
           </div>
 
@@ -270,7 +270,7 @@ const CorporateOutcomesAndFaq = () => {
                   </div>
 
                   <a
-                    href={getWhatsAppLink("Hi Cloud Edge Solutions, I have a question.")}
+                    href={getWhatsAppLink("Hi Cloud Edge AI Solutions, I have a question.")}
                     target="_blank"
                     rel="noreferrer"
                     className="flex items-center justify-center gap-2 w-full py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-full text-xs font-bold transition-all duration-200 shadow-md hover:shadow-emerald-500/25"
@@ -339,7 +339,7 @@ const CorporateOutcomesAndFaq = () => {
               </Link>
 
               <a
-                href={getWhatsAppLink("Hi Cloud Edge Solutions, I would like to learn more.")}
+                href={getWhatsAppLink("Hi Cloud Edge AI Solutions, I would like to learn more.")}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm rounded-full shadow-lg transition-all duration-200 text-center"

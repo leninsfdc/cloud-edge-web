@@ -13,9 +13,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { country } = await params;
 
   return {
-    title: "Our Trainers | Cloud Edge Solutions",
+    title: "Our Trainers | Cloud Edge AI Solutions",
     description:
-      "Meet the trainers behind Cloud Edge Solutions' courses — working practitioners with real industry experience, not just certified instructors.",
+      "Meet the trainers behind Cloud Edge AI Solutions' courses — working practitioners with real industry experience, not just certified instructors.",
     alternates: buildAlternates(country as CountrySlug, "/trainers"),
   };
 }

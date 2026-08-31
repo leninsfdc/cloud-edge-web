@@ -44,7 +44,7 @@ const Navbar = () => {
     <div className="flex items-center justify-between gap-4">
       {/* Logo */}
       <Link href={getCountryHref("/")}>
-        <Image src={logo} alt="Cloud Edge" priority className="h-8 w-auto" />
+        <Image src={logo} alt="Cloud Edge AI" priority className="h-8 w-auto" />
       </Link>
 
       {/* Nav Links */}

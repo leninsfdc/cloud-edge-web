@@ -91,7 +91,7 @@ const ContactHeroSection = () => {
             {/* Immediate Action Buttons */}
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2">
               <a
-                href={getWhatsAppLink("Hi Cloud Edge Solutions, I would like to talk to an advisor.")}
+                href={getWhatsAppLink("Hi Cloud Edge AI Solutions, I would like to talk to an advisor.")}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group relative bg-emerald-600 text-white shadow-[0_12px_25px_rgba(16,185,129,0.35)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_18px_35px_rgba(16,185,129,0.45)] px-7 py-4 rounded-full flex items-center justify-center gap-2.5 w-full sm:w-auto hover:shadow-emerald-500/25  font-bold text-sm transform"
@@ -170,7 +170,7 @@ const ContactHeroSection = () => {
             <div className="relative w-full rounded-[32px] overflow-hidden border border-white/80 bg-white/60 backdrop-blur-xl p-3 shadow-[0_20px_50px_rgba(15,23,42,0.08)]">
               <ResilientImage
                 src={ContactHero}
-                alt="Contact Cloud Edge Solutions"
+                alt="Contact Cloud Edge AI Solutions"
                 className="w-full h-auto rounded-[24px] object-cover"
                 priority
               />

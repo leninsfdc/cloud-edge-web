@@ -16,7 +16,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!blog) {
     return {
-      title: "Blog Not Found | Cloud Edge Solutions",
+      title: "Blog Not Found | Cloud Edge AI Solutions",
       description: "The requested blog article could not be found.",
     };
   }
@@ -27,10 +27,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   // markup ends up in the tag.
   const plainDescription = blog.description
     ? stripHtml(blog.description)
-    : `Read ${blog.title} on the Cloud Edge Solutions blog.`;
+    : `Read ${blog.title} on the Cloud Edge AI Solutions blog.`;
 
   return {
-    title: `${blog.title} | Cloud Edge Solutions`,
+    title: `${blog.title} | Cloud Edge AI Solutions`,
     description: plainDescription,
     openGraph: {
       title: blog.title,

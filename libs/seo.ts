@@ -12,7 +12,7 @@ export const SITE_URL = (
   process.env.NEXT_PUBLIC_SITE_URL || "https://www.cloudedge.in"
 ).replace(/\/$/, "");
 
-export const ORG_NAME = "Cloud Edge Solutions";
+export const ORG_NAME = "Cloud Edge AI Solutions";
 export const ORG_CONTACT_PHONE = "+447442586325";
 
 // Real, verified social profiles only — an unset entry means no profile

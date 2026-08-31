@@ -3,7 +3,7 @@ import { SUBJECTS } from "./subjectCatalog";
 import { SALESFORCE_COUNTRY_PAGES, SALESFORCE_CITY_PAGES } from "./salesforceLocationContent";
 
 /**
- * "branch" = genuine physical CloudEdge address, gets real address+schema.
+ * "branch" = genuine physical CloudEdge AI address, gets real address+schema.
  * "city" = no physical office there — honest online-only framing, no
  *   LocalBusiness/address schema (there's no local business to describe).
  * "country" = broader country-wide online-only page.

@@ -72,7 +72,7 @@ export default function WhyChooseSection() {
           </h2>
 
           <p className="text-base sm:text-lg leading-relaxed text-slate-600 font-medium">
-            Six reasons 5,800+ professionals chose Cloud Edge over every other provider.
+            Six reasons 5,800+ professionals chose Cloud Edge AI over every other provider.
           </p>
         </motion.div>
 

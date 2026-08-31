@@ -62,7 +62,7 @@ const CourseTestimonials = ({ testimonials = [] }: Props) => {
           <h3 className="font-bricolage-grotesque text-2xl md:text-3xl font-extrabold text-slate-900">
             What Our Alumni Say
           </h3>
-          <p className="text-xs text-slate-500 font-medium mt-1">Real stories from Cloud Edge graduates</p>
+          <p className="text-xs text-slate-500 font-medium mt-1">Real stories from Cloud Edge AI graduates</p>
         </div>
 
         <div className="flex items-center gap-2.5 self-end sm:self-auto">

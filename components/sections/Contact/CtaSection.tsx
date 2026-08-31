@@ -25,7 +25,7 @@ const CtaSection = () => {
           </h2>
 
           <p className="text-xs sm:text-sm text-slate-400 leading-relaxed font-medium">
-            Browse all 10 SAP and Salesforce courses or reach out directly for personalised guidance from a Cloud Edge training advisor.
+            Browse all 10 SAP and Salesforce courses or reach out directly for personalised guidance from a Cloud Edge AI training advisor.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
@@ -37,7 +37,7 @@ const CtaSection = () => {
             </Link>
 
             <a
-              href={getWhatsAppLink("Hi Cloud Edge Solutions, I would like to learn more.")}
+              href={getWhatsAppLink("Hi Cloud Edge AI Solutions, I would like to learn more.")}
               target="_blank"
               rel="noopener noreferrer"
               className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs sm:text-sm rounded-full shadow-lg transition-all duration-200 text-center"

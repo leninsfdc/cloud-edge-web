@@ -16,7 +16,7 @@ const ProcessSection = () => {
     {
       num: "02",
       title: "Free Consultation",
-      desc: "A Cloud Edge advisor contacts you within 60 minutes. We listen, assess your background and recommend the right course and batch for you.",
+      desc: "A Cloud Edge AI advisor contacts you within 60 minutes. We listen, assess your background and recommend the right course and batch for you.",
       icon: Compass,
       accent: "bg-purple-50 text-purple-600 border-purple-200"
     },

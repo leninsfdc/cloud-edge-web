@@ -10,11 +10,11 @@ export const createSlug = (text: string): string => {
 const WHATSAPP_PHONE = "447442586325";
 const CONTACT_EMAIL = "info@cloudedge.in";
 
-export const getWhatsAppLink = (message = "Hi Cloud Edge Solutions") =>
+export const getWhatsAppLink = (message = "Hi Cloud Edge AI Solutions") =>
   `https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(message)}`;
 
 export const getEmailLink = (
   subject = "Course Enquiry",
-  body = "Hi Cloud Edge Solutions,"
+  body = "Hi Cloud Edge AI Solutions,"
 ) =>
   `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;

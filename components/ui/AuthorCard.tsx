@@ -17,7 +17,7 @@ interface AuthorCardProps {
 }
 
 const AuthorCard: React.FC<AuthorCardProps> = ({
-  authorName = "Cloud Edge Editorial Team",
+  authorName = "Cloud Edge AI Editorial Team",
   authorRole = "Senior Technology Specialist & Career Mentor",
   authorImage,
   authorBio = "Empowering tech aspirants with industry-proven insights, career strategies, and practical tutorials across Cloud, SAP, Salesforce, and Full-Stack Engineering.",
@@ -207,7 +207,7 @@ const AuthorCard: React.FC<AuthorCardProps> = ({
             </span>
             <span className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-700 bg-white/90 border border-slate-200 px-3 py-1 rounded-full shadow-2xs">
               <BookOpen className="w-3.5 h-3.5 text-[#6C5CFF]" />
-              Cloud Edge Lead Instructor
+              Cloud Edge AI Lead Instructor
             </span>
           </div>
         </div>

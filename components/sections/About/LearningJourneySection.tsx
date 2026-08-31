@@ -236,7 +236,7 @@ const LearningJourneySection = () => {
           className="text-center mt-14"
         >
           <a
-            href={getWhatsAppLink("Hi Cloud Edge Solutions, I want to begin my learning journey.")}
+            href={getWhatsAppLink("Hi Cloud Edge AI Solutions, I want to begin my learning journey.")}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2.5 rounded-full group relative bg-emerald-600 text-white shadow-[0_12px_25px_rgba(16,185,129,0.35)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_18px_35px_rgba(16,185,129,0.45)] px-8 py-4 font-bold text-sm  hover:shadow-emerald-500/25 transform"

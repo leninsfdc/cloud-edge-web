@@ -25,8 +25,8 @@ function buildTitle(location: Location) {
 
 function buildDescription(location: Location) {
   return location.kind === "branch"
-    ? `Cloud Edge Solutions runs a real training branch in ${location.displayName}, offering Salesforce, Java, Python, Data Science, MuleSoft and more — live online or in person.`
-    : `Cloud Edge Solutions delivers live online software training to professionals in ${location.displayName}, covering Salesforce, Java, Python, Data Science, MuleSoft and more.`;
+    ? `Cloud Edge AI Solutions runs a real training branch in ${location.displayName}, offering Salesforce, Java, Python, Data Science, MuleSoft and more — live online or in person.`
+    : `Cloud Edge AI Solutions delivers live online software training to professionals in ${location.displayName}, covering Salesforce, Java, Python, Data Science, MuleSoft and more.`;
 }
 
 export async function buildInstituteCountryMetadata(country: string): Promise<Metadata> {

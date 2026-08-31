@@ -13,19 +13,19 @@ import { COUNTRY_HOME_CONTENT } from "@/libs/countryHomeContent";
 const genericFaqData = [
   {
     id: "01",
-    question: "What Is CloudEdge?",
+    question: "What Is CloudEdge AI?",
     answer:
-      "CloudEdge is a modern learning platform that provides practical training programs designed to help students build real-world skills and advance their careers.",
+      "CloudEdge AI is a modern learning platform that provides practical training programs designed to help students build real-world skills and advance their careers.",
   },
   {
     id: "02",
-    question: "Does CloudEdge Offer Placement Support?",
+    question: "Does CloudEdge AI Offer Placement Support?",
     answer:
-      "Yes, CloudEdge provides placement assistance, interview preparation, resume building, and career guidance support.",
+      "Yes, CloudEdge AI provides placement assistance, interview preparation, resume building, and career guidance support.",
   },
   {
     id: "03",
-    question: "Can I Attend CloudEdge Classes Online?",
+    question: "Can I Attend CloudEdge AI Classes Online?",
     answer:
       "Yes, students can attend live online classes from anywhere with flexible learning options.",
   },
@@ -37,7 +37,7 @@ const genericFaqData = [
   },
   {
     id: "05",
-    question: "How Do I Join CloudEdge Courses?",
+    question: "How Do I Join CloudEdge AI Courses?",
     answer:
       "You can enroll directly through the website by selecting your preferred course and completing registration.",
   },

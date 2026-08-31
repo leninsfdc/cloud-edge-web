@@ -112,7 +112,7 @@ const industries = [
   },
   {
     name: "IT Services & Consulting",
-    desc: "Infosys, TCS, Wipro, Accenture, Capgemini and IBM are among the largest hirers of Cloud Edge graduates globally.",
+    desc: "Infosys, TCS, Wipro, Accenture, Capgemini and IBM are among the largest hirers of Cloud Edge AI graduates globally.",
     icon: (
       <svg className="w-6 h-6 text-cyan-600" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" d="M7 12l3-3 3 3 4-4M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />

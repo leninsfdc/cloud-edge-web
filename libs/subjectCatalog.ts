@@ -1,5 +1,5 @@
 /**
- * Subjects genuinely taught by Cloud Edge Solutions as corporate/private
+ * Subjects genuinely taught by Cloud Edge AI Solutions as corporate/private
  * batches that aren't yet represented as public course records in the
  * "courses" table (confirmed with the site owner 2026-08-27). Salesforce
  * and Digital Marketing ARE in that table and have their own dedicated

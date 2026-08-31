@@ -26,7 +26,7 @@ const TrainersContainer: React.FC<ITrainersContainerProps> = ({ instructors }) =
             Meet Our Trainers
           </h1>
           <p className="text-slate-600 text-base sm:text-lg leading-relaxed">
-            Every Cloud Edge Solutions course is led by a working practitioner with real, verifiable industry experience — not just a certified instructor.
+            Every Cloud Edge AI Solutions course is led by a working practitioner with real, verifiable industry experience — not just a certified instructor.
           </p>
         </div>
 

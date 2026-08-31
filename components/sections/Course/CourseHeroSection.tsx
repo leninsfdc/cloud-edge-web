@@ -21,10 +21,10 @@ interface ICourseHeroSectionProps {
 }
 
 const CourseHeroSection: React.FC<ICourseHeroSectionProps> = ({ course }) => {
-  const whatsappLink = getWhatsAppLink(`Hi Cloud Edge Solutions, I want to enroll in ${course.name}.`);
+  const whatsappLink = getWhatsAppLink(`Hi Cloud Edge AI Solutions, I want to enroll in ${course.name}.`);
   const demoLink = getEmailLink(
     `Free Demo Class Request - ${course.name}`,
-    `Hi Cloud Edge Solutions,\n\nI would like to book a free demo class for ${course.name}.`
+    `Hi Cloud Edge AI Solutions,\n\nI would like to book a free demo class for ${course.name}.`
   );
 
   return (
@@ -285,7 +285,7 @@ const CourseHeroImage = ({ course }: { course: ICourse }) => {
   return (
     <Image
       src={imgSrc}
-      alt={course.name || "Cloud Edge Course"}
+      alt={course.name || "Cloud Edge AI Course"}
       width={900}
       height={700}
       unoptimized={isValidUrl}

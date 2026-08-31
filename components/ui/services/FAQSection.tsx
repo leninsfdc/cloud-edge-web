@@ -34,7 +34,7 @@ const faqs = [
   {
     question: "Is 0% EMI available on all courses?",
     answer:
-      "Yes — every Cloud Edge course can be split into monthly instalments at 0% interest. Available via UPI and bank EMI in India, and via our finance plan in the UK.",
+      "Yes — every Cloud Edge AI course can be split into monthly instalments at 0% interest. Available via UPI and bank EMI in India, and via our finance plan in the UK.",
   },
   {
     question: "Which certifications do your courses prepare for?",
@@ -42,7 +42,7 @@ const faqs = [
       "SAP courses align to official SAP S/4HANA certification exams including C_TS4FI_2023 (FICO) and C_THR81_2311 (SuccessFactors). Salesforce courses prepare for ADM-201 and Platform Developer I certifications.",
   },
   {
-    question: "Are Cloud Edge courses officially accredited?",
+    question: "Are Cloud Edge AI courses officially accredited?",
     answer:
       "Our courses are CPD accredited and aligned to official SAP and Salesforce certification syllabuses. Our 88% first-attempt pass rate reflects that.",
   },
@@ -157,7 +157,7 @@ export default function FAQSection() {
           </div>
 
           <a
-            href={getWhatsAppLink("Hi Cloud Edge Solutions, I have a question about your services.")}
+            href={getWhatsAppLink("Hi Cloud Edge AI Solutions, I have a question about your services.")}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-full group relative bg-emerald-600 text-white shadow-[0_12px_25px_rgba(16,185,129,0.35)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_18px_35px_rgba(16,185,129,0.45)] px-6 py-3 text-xs sm:text-sm font-bold hover:shadow-emerald-500/25 transform shrink-0"

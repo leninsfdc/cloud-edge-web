@@ -27,7 +27,7 @@ const branches: Branch[] = [
   {
     id: 1,
     city: 'Vijayawada',
-    name: 'CloudEdge Vijayawada Center',
+    name: 'CloudEdge AI Vijayawada Center',
     address: '3rd Floor, SR Plaza, MG Road, Benz Circle, Vijayawada - 520010',
     phone: '+91 98765 43210',
     image: vijaywada.src,
@@ -36,7 +36,7 @@ const branches: Branch[] = [
   {
     id: 2,
     city: 'Kakinada',
-    name: 'CloudEdge Kakinada Branch',
+    name: 'CloudEdge AI Kakinada Branch',
     address: '2nd Floor, Sai Trade Center, Main Road, Ramanayapeta, Kakinada – 533005',
     phone: '+91 98765 43211',
     image: kakinada.src,
@@ -44,7 +44,7 @@ const branches: Branch[] = [
   {
     id: 3,
     city: 'Hyderabad',
-    name: 'CloudEdge Hyderabad Hub',
+    name: 'CloudEdge AI Hyderabad Hub',
     address: '5th Floor, TechSquare Tower, Hitech City, Madhapur, Hyderabad – 500081',
     phone: '+91 98765 43212',
     image: hyderabad.src,
@@ -53,7 +53,7 @@ const branches: Branch[] = [
   {
     id: 4,
     city: 'Visakhapatnam',
-    name: 'CloudEdge Vizag Center',
+    name: 'CloudEdge AI Vizag Center',
     address: '4th Floor, VIP Towers, VIP Road, Siripuram, Visakhapatnam – 530003',
     phone: '+91 98765 43213',
     image: vijaywada.src,
@@ -61,7 +61,7 @@ const branches: Branch[] = [
   {
     id: 5,
     city: 'Bangalore',
-    name: 'CloudEdge Bangalore Hub',
+    name: 'CloudEdge AI Bangalore Hub',
     address: '1st Floor, Tech Heights, Outer Ring Road, Marathahalli, Bangalore – 560037',
     phone: '+91 98765 43214',
     image: hyderabad.src,
@@ -175,7 +175,7 @@ const TrainingBranchesSection: React.FC = () => {
   const { country } = useCountry()
 
   // These are physical India branches — showing them on other countries'
-  // homepages misrepresents CloudEdge as having a local presence it doesn't.
+  // homepages misrepresents CloudEdge AI as having a local presence it doesn't.
   if (country.slug !== "in") return null
 
   const handleDotClick = (index: number): void => {

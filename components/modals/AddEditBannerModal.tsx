@@ -155,7 +155,7 @@ export function AddEditBannerModal({
               to highlight it in the banner title.
               Example:
               <span className="ml-1 font-mono text-primary">
-                Welcome to {"{{Cloud Edge}}"}
+                Welcome to {"{{Cloud Edge AI}}"}
               </span>
             </p>
           </div>

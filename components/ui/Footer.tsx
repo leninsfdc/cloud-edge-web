@@ -117,7 +117,7 @@ const Footer = () => {
               <div>
                 {/* Replace with your logo */}
                 <div>
-                  <Image src={logo} alt="Cloud Edge" className=" w-56 h-10" />
+                  <Image src={logo} alt="Cloud Edge AI" className=" w-56 h-10" />
                 </div>
 
                 <p className="mt-5 text-sm leading-6 text-white max-w-[260px]">
@@ -268,7 +268,7 @@ const Footer = () => {
             {/* BOTTOM */}
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
               <p className="text-sm text-white text-center sm:text-left">
-                CloudEdge © Copyright 2026 - All Rights Reserved
+                CloudEdge AI © Copyright 2026 - All Rights Reserved
               </p>
 
               <p className="text-sm text-white text-center sm:text-right flex items-center gap-1">

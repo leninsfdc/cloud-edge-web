@@ -39,7 +39,7 @@ const MobileNavbar: React.FC<MobileNavbarProps> = ({ navItems }) => {
         <Link href={getCountryHref("/")} onClick={() => setIsOpen(false)}>
           <Image
             src={logo}
-            alt="Cloud Edge"
+            alt="Cloud Edge AI"
             priority
             className="h-8 w-auto"
           />

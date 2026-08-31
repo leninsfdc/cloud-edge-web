@@ -231,7 +231,7 @@ const CourseBatchSection: React.FC<ICourseBatchSectionProps> = ({ batches, durat
                         </div>
 
                         <a
-                          href={getWhatsAppLink(`Hi Cloud Edge Solutions, I want to reserve a seat for batch ${batch.name}.`)}
+                          href={getWhatsAppLink(`Hi Cloud Edge AI Solutions, I want to reserve a seat for batch ${batch.name}.`)}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs px-5 py-2.5 rounded-full transition-all duration-200 shadow-md hover:shadow-lg shrink-0 text-center"

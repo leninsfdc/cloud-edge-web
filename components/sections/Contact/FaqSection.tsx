@@ -34,7 +34,7 @@ const FaqSection = () => {
     },
     {
       question: "Is 0% EMI available?",
-      answer: "Yes. Every Cloud Edge course is available on a 0% EMI plan, typically over 6 monthly instalments. Available in India (UPI/bank EMI) and the UK (finance plan). Contact us for exact terms.",
+      answer: "Yes. Every Cloud Edge AI course is available on a 0% EMI plan, typically over 6 monthly instalments. Available in India (UPI/bank EMI) and the UK (finance plan). Contact us for exact terms.",
     },
   ];
 
@@ -127,7 +127,7 @@ const FaqSection = () => {
                 </div>
 
                 <a
-                  href={getWhatsAppLink("Hi Cloud Edge Solutions, I have a question.")}
+                  href={getWhatsAppLink("Hi Cloud Edge AI Solutions, I have a question.")}
                   target="_blank"
                   rel="noreferrer"
                   className="flex items-center justify-center gap-2 w-full py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-full text-xs font-bold transition-all duration-200 shadow-md hover:shadow-emerald-500/25"

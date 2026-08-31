@@ -56,7 +56,7 @@ const ConnectChannelsSection = () => {
             whileHover={{ y: -5, scale: 1.02 }}
           >
             <a
-              href={getWhatsAppLink("Hi Cloud Edge Solutions, I would like to make an enquiry.")}
+              href={getWhatsAppLink("Hi Cloud Edge AI Solutions, I would like to make an enquiry.")}
               target="_blank"
               rel="noopener noreferrer"
               className="group relative overflow-hidden h-full flex flex-col justify-between bg-white/90 backdrop-blur-xl border border-slate-200/80 rounded-[28px] p-6 transition-all duration-300 shadow-[0_10px_30px_rgba(15,23,42,0.03)] hover:shadow-xl hover:border-emerald-400/60"

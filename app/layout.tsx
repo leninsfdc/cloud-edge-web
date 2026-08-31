@@ -14,7 +14,7 @@ const bricolageGrotesque = Bricolage_Grotesque({
 })
 
 export const metadata: Metadata = {
-  title: "Cloud Edge",
+  title: "Cloud Edge AI",
   description: "Built For Smart, Future Ready Learning",
 };
 

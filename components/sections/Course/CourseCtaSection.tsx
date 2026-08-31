@@ -14,8 +14,8 @@ interface CourseCtaSectionProps {
 
 const CourseCtaSection = ({ courseName }: CourseCtaSectionProps) => {
   const whatsappMessage = courseName
-    ? `Hi Cloud Edge Solutions, I am ready to start learning ${courseName}.`
-    : "Hi Cloud Edge Solutions, I am ready to start learning.";
+    ? `Hi Cloud Edge AI Solutions, I am ready to start learning ${courseName}.`
+    : "Hi Cloud Edge AI Solutions, I am ready to start learning.";
 
   return (
     <motion.section 

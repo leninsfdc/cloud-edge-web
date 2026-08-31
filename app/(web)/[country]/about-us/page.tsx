@@ -12,9 +12,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { country } = await params;
 
   return {
-    title: "About Cloud Edge Solutions | Leading Online IT Training & Certification Programs",
+    title: "About Cloud Edge AI Solutions | Leading Online IT Training & Certification Programs",
     description:
-      "Learn more about Cloud Edge Solutions, a trusted provider of online IT training and certification programs. Empowering learners worldwide with expert-led courses in Salesforce Administration and Digital Marketing.",
+      "Learn more about Cloud Edge AI Solutions, a trusted provider of online IT training and certification programs. Empowering learners worldwide with expert-led courses in Salesforce Administration and Digital Marketing.",
     alternates: buildAlternates(country as CountrySlug, "/about-us"),
   };
 }

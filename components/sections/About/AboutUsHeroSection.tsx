@@ -59,7 +59,7 @@ const AboutUsHeroSection = () => {
 
             <div>
               <p className="text-slate-600 tracking-tight text-base sm:text-lg leading-relaxed max-w-xl font-medium">
-                Live, practical SAP and Salesforce training taught by people who work in the field every day. That conviction launched Cloud Edge in 2014 — and drives every course we run.
+                Live, practical SAP and Salesforce training taught by people who work in the field every day. That conviction launched Cloud Edge AI in 2014 — and drives every course we run.
               </p>
             </div>
 
@@ -78,7 +78,7 @@ const AboutUsHeroSection = () => {
               <motion.a
                 whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
-                href={getWhatsAppLink("Hi Cloud Edge Solutions, I would like to talk to an advisor.")}
+                href={getWhatsAppLink("Hi Cloud Edge AI Solutions, I would like to talk to an advisor.")}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group relative bg-emerald-600 text-white shadow-[0_12px_25px_rgba(16,185,129,0.35)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_18px_35px_rgba(16,185,129,0.45)] px-7 py-4 rounded-full flex items-center justify-center gap-2.5 w-full sm:w-auto hover:shadow-emerald-500/25 font-bold text-sm"
@@ -108,7 +108,7 @@ const AboutUsHeroSection = () => {
             <div className="relative w-full rounded-[32px] overflow-hidden border border-white/80 bg-white/60 backdrop-blur-xl p-3 shadow-[0_20px_50px_rgba(15,23,42,0.08)]">
               <ResilientImage
                 src={aboutUsImage}
-                alt="About Cloud Edge Solutions"
+                alt="About Cloud Edge AI Solutions"
                 className="w-full h-auto rounded-[24px] object-cover"
                 priority
               />

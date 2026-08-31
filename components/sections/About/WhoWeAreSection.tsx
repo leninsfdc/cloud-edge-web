@@ -30,7 +30,7 @@ const features = [
     icon: liveSession,
     title: "Live Online - Every Session",
     description:
-      "No pre-recorded videos. Every Cloud Edge class is live on Zoom with your instructor, classmates and real SAP or Salesforce system access.",
+      "No pre-recorded videos. Every Cloud Edge AI class is live on Zoom with your instructor, classmates and real SAP or Salesforce system access.",
   },
   {
     icon: instruction,
@@ -123,7 +123,7 @@ const WhoWeAreSection = () => {
             transition={{ duration: 0.5, delay: 0.1 }}
             className="text-slate-600 text-center max-w-3xl mt-4 text-base sm:text-lg font-medium leading-relaxed"
           >
-            Founded in 2014 by working SAP and Salesforce consultants, Cloud Edge delivers live, instructor-led training to professionals across India, the UK, the UAE, the USA and Canada — with real system access, certification exam prep and 12-month placement support built into every course.
+            Founded in 2014 by working SAP and Salesforce consultants, Cloud Edge AI delivers live, instructor-led training to professionals across India, the UK, the UAE, the USA and Canada — with real system access, certification exam prep and 12-month placement support built into every course.
           </motion.p>
 
           {/* Glass Feature Cards */}
@@ -248,7 +248,7 @@ const WhoWeAreSection = () => {
           {/* Action CTAs */}
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
-              href={getWhatsAppLink("Hi Cloud Edge Solutions, I would like to enroll.")}
+              href={getWhatsAppLink("Hi Cloud Edge AI Solutions, I would like to enroll.")}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center justify-center gap-2.5 rounded-full group relative bg-emerald-600 text-white shadow-[0_12px_25px_rgba(16,185,129,0.35)] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_18px_35px_rgba(16,185,129,0.45)] px-8 py-4 font-bold text-sm  hover:shadow-emerald-500/25 transform "

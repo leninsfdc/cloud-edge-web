@@ -15,16 +15,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!course) {
     return {
-      title: "Course Not Found | Cloud Edge Solutions",
+      title: "Course Not Found | Cloud Edge AI Solutions",
       description: "The requested course could not be found.",
     };
   }
 
   return {
-    title: `${course.name} Training & Certification | Cloud Edge Solutions`,
+    title: `${course.name} Training & Certification | Cloud Edge AI Solutions`,
     description:
       course.description ||
-      `Enroll in ${course.name} online training and certification program with expert instructors at Cloud Edge Solutions.`,
+      `Enroll in ${course.name} online training and certification program with expert instructors at Cloud Edge AI Solutions.`,
     keywords: course.tags || "",
     openGraph: {
       title: `${course.name} Training & Certification`,

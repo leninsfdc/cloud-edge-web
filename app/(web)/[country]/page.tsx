@@ -15,17 +15,17 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   return {
     title: override?.metaTitle ??
-      "Cloud Edge Solutions - Online Training for Salesforce & Digital Marketing",
+      "Cloud Edge AI Solutions - Online Training for Salesforce & Digital Marketing",
     description: override?.metaDescription ??
-      "Enhance your skills with Cloud Edge Solutions' online training. Explore Salesforce Administration and Digital Marketing courses for students and professionals across India, USA, and UK.",
+      "Enhance your skills with Cloud Edge AI Solutions' online training. Explore Salesforce Administration and Digital Marketing courses for students and professionals across India, USA, and UK.",
     keywords: [
-      "Cloud Edge Solutions", "online training", "Salesforce training", "Salesforce Administrator course",
+      "Cloud Edge AI Solutions", "online training", "Salesforce training", "Salesforce Administrator course",
       "Digital Marketing training", "Digital Marketing course", "IT certification", "online certification programs",
       "technology training institute", "career development courses", "corporate training", "professional certification",
     ],
-    authors: [{ name: "Cloud Edge Solutions" }],
-    creator: "Cloud Edge Solutions",
-    publisher: "Cloud Edge Solutions",
+    authors: [{ name: "Cloud Edge AI Solutions" }],
+    creator: "Cloud Edge AI Solutions",
+    publisher: "Cloud Edge AI Solutions",
     robots: { index: true, follow: true },
     alternates: buildAlternates(country as CountrySlug, ""),
   };

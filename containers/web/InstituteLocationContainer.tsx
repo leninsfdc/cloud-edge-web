@@ -14,10 +14,10 @@ const InstituteLocationContainer: React.FC<Props> = ({ location }) => {
 
   const intro =
     location.kind === "branch"
-      ? `Cloud Edge Solutions runs a real training branch in ${location.displayName}, offering live, instructor-led courses in Salesforce, Java, Python, Data Science, MuleSoft, SAP, AWS, DevOps, Web Design and UI/UX — in person or online, for students who prefer to learn remotely.`
+      ? `Cloud Edge AI Solutions runs a real training branch in ${location.displayName}, offering live, instructor-led courses in Salesforce, Java, Python, Data Science, MuleSoft, SAP, AWS, DevOps, Web Design and UI/UX — in person or online, for students who prefer to learn remotely.`
       : location.kind === "city"
-      ? `Cloud Edge Solutions delivers live, instructor-led software training to professionals in ${location.displayName} — there's no physical ${location.displayName} office, but every session is live with a real instructor, not pre-recorded. Courses cover Salesforce, Java, Python, Data Science, MuleSoft, SAP, AWS, DevOps, Web Design and UI/UX.`
-      : `Cloud Edge Solutions delivers live, instructor-led software training to professionals across ${location.displayName} — entirely online, with no physical local office. Courses cover Salesforce, Java, Python, Data Science, MuleSoft, SAP, AWS, DevOps, Web Design and UI/UX.`;
+      ? `Cloud Edge AI Solutions delivers live, instructor-led software training to professionals in ${location.displayName} — there's no physical ${location.displayName} office, but every session is live with a real instructor, not pre-recorded. Courses cover Salesforce, Java, Python, Data Science, MuleSoft, SAP, AWS, DevOps, Web Design and UI/UX.`
+      : `Cloud Edge AI Solutions delivers live, instructor-led software training to professionals across ${location.displayName} — entirely online, with no physical local office. Courses cover Salesforce, Java, Python, Data Science, MuleSoft, SAP, AWS, DevOps, Web Design and UI/UX.`;
 
   const faqs = [
     {
@@ -27,26 +27,26 @@ const InstituteLocationContainer: React.FC<Props> = ({ location }) => {
           : `Is there a software training institute serving ${location.displayName}?`,
       answer:
         location.kind === "branch"
-          ? `Yes — Cloud Edge Solutions has a training branch in ${location.displayName}. Online-only students can also join the same live classes remotely.`
-          : `Yes — Cloud Edge Solutions delivers live, instructor-led software training to students in ${location.displayName}, entirely online, as long as you can join a live session.`,
+          ? `Yes — Cloud Edge AI Solutions has a training branch in ${location.displayName}. Online-only students can also join the same live classes remotely.`
+          : `Yes — Cloud Edge AI Solutions delivers live, instructor-led software training to students in ${location.displayName}, entirely online, as long as you can join a live session.`,
     },
     ...(location.kind !== "branch"
       ? [
           {
             question: `Do you have a physical training centre in ${location.displayName}?`,
-            answer: `No. Cloud Edge Solutions doesn't have a physical office in ${location.displayName}. Training is delivered live online from India-based instructors.`,
+            answer: `No. Cloud Edge AI Solutions doesn't have a physical office in ${location.displayName}. Training is delivered live online from India-based instructors.`,
           },
         ]
       : []),
     {
-      question: `Which courses does Cloud Edge Solutions offer in ${location.displayName}?`,
+      question: `Which courses does Cloud Edge AI Solutions offer in ${location.displayName}?`,
       answer:
         "Salesforce Administration, Java Full Stack, Python, Data Science, MuleSoft, SAP, AWS, DevOps, Web Design and UI/UX Design — see the full list below for details on each.",
     },
   ];
 
   const enquiryLink = getWhatsAppLink(
-    `Hi Cloud Edge Solutions, I'd like to know more about software training in ${location.displayName}.`
+    `Hi Cloud Edge AI Solutions, I'd like to know more about software training in ${location.displayName}.`
   );
 
   return (

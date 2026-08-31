@@ -10,16 +10,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { country } = await params;
 
   return {
-    title: "Online IT Courses & Certification Programs | Cloud Edge Solutions",
+    title: "Online IT Courses & Certification Programs | Cloud Edge AI Solutions",
     description:
-      "Browse online training courses from Cloud Edge Solutions. Explore Salesforce Administration and Digital Marketing certification programs designed for career growth.",
+      "Browse online training courses from Cloud Edge AI Solutions. Explore Salesforce Administration and Digital Marketing certification programs designed for career growth.",
     keywords: [
       "online IT courses", "Salesforce training", "Salesforce Administrator course",
-      "Digital Marketing course", "Cloud Edge Solutions",
+      "Digital Marketing course", "Cloud Edge AI Solutions",
       "online certification programs", "technology training",
     ],
     openGraph: {
-      title: "Online IT Courses & Certification Programs | Cloud Edge Solutions",
+      title: "Online IT Courses & Certification Programs | Cloud Edge AI Solutions",
       description: "Explore expert-led online courses and certification programs in Salesforce Administration and Digital Marketing.",
       type: "website",
     },

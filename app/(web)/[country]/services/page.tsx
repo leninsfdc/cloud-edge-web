@@ -12,11 +12,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { country } = await params;
 
   return {
-    title: "Our Services | Cloud Edge Solutions",
+    title: "Our Services | Cloud Edge AI Solutions",
     description:
       "Discover our comprehensive range of services including corporate training, certification programs, and professional technology consulting.",
     keywords: [
-      "Cloud Edge Services", "IT consulting", "Corporate training",
+      "Cloud Edge AI Services", "IT consulting", "Corporate training",
       "Professional certification", "Technology services",
     ],
     alternates: buildAlternates(country as CountrySlug, "/services"),

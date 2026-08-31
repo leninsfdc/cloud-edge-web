@@ -13,9 +13,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { country } = await params;
 
   return {
-    title: "Student Reviews | Cloud Edge Solutions",
+    title: "Student Reviews | Cloud Edge AI Solutions",
     description:
-      "Read genuine student reviews of Cloud Edge Solutions' IT training courses, each tied to the specific course it's about.",
+      "Read genuine student reviews of Cloud Edge AI Solutions' IT training courses, each tied to the specific course it's about.",
     alternates: buildAlternates(country as CountrySlug, "/reviews"),
   };
 }

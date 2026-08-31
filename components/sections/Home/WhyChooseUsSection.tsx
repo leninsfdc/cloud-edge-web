@@ -311,7 +311,7 @@ const WhyChooseUsSection = () => {
                     </Link>
 
                     <a
-                      href={getWhatsAppLink(`Hi Cloud Edge Solutions, I would like to know more about ${activeFeature.title}.`)}
+                      href={getWhatsAppLink(`Hi Cloud Edge AI Solutions, I would like to know more about ${activeFeature.title}.`)}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-slate-800/80 hover:bg-slate-700/80 text-white border border-slate-700/80 px-6 py-3.5 font-extrabold text-xs sm:text-sm transition-all duration-200"

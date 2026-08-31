@@ -29,7 +29,7 @@ export async function buildSubjectCountryMetadata(subjectSlug: string, country: 
 
   const { subject, location } = resolved;
   return {
-    title: `${subject.name} Training in ${location.displayName} | Cloud Edge Solutions`,
+    title: `${subject.name} Training in ${location.displayName} | Cloud Edge AI Solutions`,
     description: `${subject.shortDescription} Live online training, no physical office in ${location.displayName}.`,
     alternates: { canonical: `${SITE_URL}/${country}/${subjectSlug}-training` },
   };
@@ -69,10 +69,10 @@ export async function buildSubjectLocationMetadata(
 
   const { subject, location } = resolved;
   return {
-    title: `${subject.name} Training in ${location.displayName} | Cloud Edge Solutions`,
+    title: `${subject.name} Training in ${location.displayName} | Cloud Edge AI Solutions`,
     description: `${subject.shortDescription} ${
       location.kind === "branch"
-        ? `Live online training plus a real CloudEdge branch in ${location.displayName}.`
+        ? `Live online training plus a real CloudEdge AI branch in ${location.displayName}.`
         : `Live online training, no physical office in ${location.displayName}.`
     }`,
     alternates: { canonical: `${SITE_URL}/${country}/${subjectSlug}-training/${locationSlug}` },

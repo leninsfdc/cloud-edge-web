@@ -152,7 +152,7 @@ const BlogWithSidebar: React.FC<IProps> = ({ blogs: blogData }) => {
                 <ResilientImage
                   src={post?.media_url && post.media_url.trim() !== "" ? post.media_url : placeholder}
                   fallbackSrc={placeholder}
-                  alt={post.title || "Cloud Edge Article"}
+                  alt={post.title || "Cloud Edge AI Article"}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   fill
                 />
@@ -267,7 +267,7 @@ const BlogWithSidebar: React.FC<IProps> = ({ blogs: blogData }) => {
               <div className="relative z-10 space-y-4">
                 <div className="inline-flex items-center gap-2 bg-white/10 border border-white/10 px-3 py-1 rounded-full backdrop-blur-md">
                   <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
-                  <span className="text-[10px] text-indigo-200 font-extrabold uppercase tracking-wider">Cloud Edge Advisory</span>
+                  <span className="text-[10px] text-indigo-200 font-extrabold uppercase tracking-wider">Cloud Edge AI Advisory</span>
                 </div>
 
                 <h3 className="font-bricolage-grotesque text-xl sm:text-2xl font-extrabold text-white leading-tight">
@@ -280,7 +280,7 @@ const BlogWithSidebar: React.FC<IProps> = ({ blogs: blogData }) => {
 
                 <div className="space-y-3 pt-2">
                   <a
-                    href={getWhatsAppLink("Hi Cloud Edge Solutions, I would like course advice.")}
+                    href={getWhatsAppLink("Hi Cloud Edge AI Solutions, I would like course advice.")}
                     target="_blank"
                     rel="noreferrer"
                     className="flex items-center justify-center gap-2 w-full py-3.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-full text-xs font-bold transition-all duration-200 shadow-md hover:shadow-emerald-500/25"

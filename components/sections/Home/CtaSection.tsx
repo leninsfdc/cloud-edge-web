@@ -36,12 +36,12 @@ const CtaSection = () => {
             <div className="flex flex-col items-center lg:items-start justify-center text-center lg:text-left">
               <h2 className="text-white font-semibold text-3xl sm:text-4xl lg:text-5xl leading-[1.2] max-w-[620px]">
                 Get Quality Skills Certificate From the{" "}
-                <span className="text-primary">CloudEdge</span>
+                <span className="text-primary">CloudEdge AI</span>
               </h2>
 
               <p className="mt-5 text-sm sm:text-base text-white/80 leading-7 max-w-[560px]">
                 If you were unable to attend the live session, you can access
-                past session recordings for free on the Cloud Edge platform.
+                past session recordings for free on the Cloud Edge AI platform.
               </p>
 
               <div className="mt-7 flex justify-center lg:justify-start w-full">

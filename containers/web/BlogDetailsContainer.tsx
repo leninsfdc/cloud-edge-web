@@ -42,7 +42,7 @@ const BlogDetailsContainer: FC<IProps> = ({ blogData }) => {
   const handleShareSocial = (platform: "twitter" | "linkedin" | "whatsapp") => {
     if (typeof window === "undefined") return;
     const url = encodeURIComponent(window.location.href);
-    const title = encodeURIComponent(blogData?.title || "Check out this article on Cloud Edge");
+    const title = encodeURIComponent(blogData?.title || "Check out this article on Cloud Edge AI");
 
     let shareUrl = "";
     if (platform === "twitter") {

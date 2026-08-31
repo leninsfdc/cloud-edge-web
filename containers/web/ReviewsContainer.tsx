@@ -31,7 +31,7 @@ const ReviewsContainer: React.FC<IReviewsContainerProps> = ({ reviews }) => {
             Student Reviews
           </h1>
           <p className="text-slate-600 text-base sm:text-lg leading-relaxed">
-            Genuine feedback from Cloud Edge Solutions students, tied to the specific course each review is about.
+            Genuine feedback from Cloud Edge AI Solutions students, tied to the specific course each review is about.
           </p>
         </div>
 

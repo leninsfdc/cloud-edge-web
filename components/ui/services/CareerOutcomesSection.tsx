@@ -64,7 +64,7 @@ export default function CareerOutcomesSection() {
           </h2>
 
           <p className="text-base sm:text-lg leading-relaxed text-slate-600 font-medium">
-            Cloud Edge graduates have gone on to roles at some of the world's
+            Cloud Edge AI graduates have gone on to roles at some of the world's
             leading organisations — hired directly through our 200+ partner network.
           </p>
         </motion.div>

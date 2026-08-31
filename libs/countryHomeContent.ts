@@ -33,9 +33,9 @@ export interface CountryHomeContent {
 // other way around.
 export const COUNTRY_HOME_CONTENT: Partial<Record<CountrySlug, CountryHomeContent>> = {
   uk: {
-    metaTitle: "IT Training Courses UK | Salesforce & Digital Marketing | Cloud Edge Solutions",
+    metaTitle: "IT Training Courses UK | Salesforce & Digital Marketing | Cloud Edge AI Solutions",
     metaDescription:
-      "Explore IT training courses in the UK with Cloud Edge Solutions. Learn Salesforce Administration and Digital Marketing with expert-led online training and career support.",
+      "Explore IT training courses in the UK with Cloud Edge AI Solutions. Learn Salesforce Administration and Digital Marketing with expert-led online training and career support.",
     hero: {
       title: "IT Training Courses{{ in the UK}}",
       description:
@@ -44,24 +44,24 @@ export const COUNTRY_HOME_CONTENT: Partial<Record<CountrySlug, CountryHomeConten
     intro: {
       heading: "Online IT Training Built for UK Professionals",
       paragraphs: [
-        "Cloud Edge Solutions delivers live, instructor-led online IT training for professionals, graduates and career changers across the UK. Our current courses cover Salesforce Administration and Digital Marketing, with hands-on projects and certification preparation built into every programme.",
+        "Cloud Edge AI Solutions delivers live, instructor-led online IT training for professionals, graduates and career changers across the UK. Our current courses cover Salesforce Administration and Digital Marketing, with hands-on projects and certification preparation built into every programme.",
         "Training is fully online and scheduled around UK time zones, so you can learn alongside a live instructor without relocating or taking time away from work. Every course includes career support to help you move from certification into a new role.",
-        "Cloud Edge Solutions is an India-based IT training provider delivering live online training to professionals across the UK — there's no physical UK office, but every session is live with a real instructor, not pre-recorded.",
+        "Cloud Edge AI Solutions is an India-based IT training provider delivering live online training to professionals across the UK — there's no physical UK office, but every session is live with a real instructor, not pre-recorded.",
       ],
     },
     faqs: [
       {
         question: "Do you offer IT training in the UK?",
         answer:
-          "Yes. Cloud Edge Solutions delivers live, instructor-led online IT training to students across the UK, with course schedules designed to fit UK time zones.",
+          "Yes. Cloud Edge AI Solutions delivers live, instructor-led online IT training to students across the UK, with course schedules designed to fit UK time zones.",
       },
       {
-        question: "Is Cloud Edge Solutions based in the UK?",
+        question: "Is Cloud Edge AI Solutions based in the UK?",
         answer:
-          "Cloud Edge Solutions is headquartered in India and delivers training to UK students entirely online — there is no physical UK office. Every class is live and instructor-led, scheduled to fit UK time zones.",
+          "Cloud Edge AI Solutions is headquartered in India and delivers training to UK students entirely online — there is no physical UK office. Every class is live and instructor-led, scheduled to fit UK time zones.",
       },
       {
-        question: "What courses does Cloud Edge Solutions currently offer?",
+        question: "What courses does Cloud Edge AI Solutions currently offer?",
         answer:
           "Salesforce Administration and Digital Marketing, both as live online training with certification exam preparation included. Full course details are on our Courses page.",
       },
@@ -83,9 +83,9 @@ export const COUNTRY_HOME_CONTENT: Partial<Record<CountrySlug, CountryHomeConten
     ],
   },
   usa: {
-    metaTitle: "IT Training Courses USA | Salesforce & Digital Marketing | Cloud Edge Solutions",
+    metaTitle: "IT Training Courses USA | Salesforce & Digital Marketing | Cloud Edge AI Solutions",
     metaDescription:
-      "Explore IT training courses in the USA with Cloud Edge Solutions. Learn Salesforce Administration and Digital Marketing with expert-led online training and career support.",
+      "Explore IT training courses in the USA with Cloud Edge AI Solutions. Learn Salesforce Administration and Digital Marketing with expert-led online training and career support.",
     hero: {
       title: "IT Training Courses{{ in the USA}}",
       description:
@@ -94,21 +94,21 @@ export const COUNTRY_HOME_CONTENT: Partial<Record<CountrySlug, CountryHomeConten
     intro: {
       heading: "Online IT Training Built for US Professionals",
       paragraphs: [
-        "Cloud Edge Solutions delivers live, instructor-led online IT training for professionals, graduates and career changers across the USA. Our current courses cover Salesforce Administration and Digital Marketing, with hands-on projects and certification preparation built into every programme.",
+        "Cloud Edge AI Solutions delivers live, instructor-led online IT training for professionals, graduates and career changers across the USA. Our current courses cover Salesforce Administration and Digital Marketing, with hands-on projects and certification preparation built into every programme.",
         "Training is fully online and scheduled around US time zones, so you can learn alongside a live instructor without relocating or taking time away from work. Every course includes career support to help you move from certification into a new role.",
-        "Cloud Edge Solutions is an India-based IT training provider delivering live online training to professionals across the USA — there's no physical US office, but every session is live with a real instructor, not pre-recorded.",
+        "Cloud Edge AI Solutions is an India-based IT training provider delivering live online training to professionals across the USA — there's no physical US office, but every session is live with a real instructor, not pre-recorded.",
       ],
     },
     faqs: [
       {
         question: "Do you offer IT training in the USA?",
         answer:
-          "Yes. Cloud Edge Solutions delivers live, instructor-led online IT training to students across the USA, with course schedules designed to fit US time zones.",
+          "Yes. Cloud Edge AI Solutions delivers live, instructor-led online IT training to students across the USA, with course schedules designed to fit US time zones.",
       },
       {
-        question: "Is Cloud Edge Solutions based in the USA?",
+        question: "Is Cloud Edge AI Solutions based in the USA?",
         answer:
-          "Cloud Edge Solutions is headquartered in India and delivers training to US students entirely online — there is no physical US office. Every class is live and instructor-led, scheduled to fit US time zones.",
+          "Cloud Edge AI Solutions is headquartered in India and delivers training to US students entirely online — there is no physical US office. Every class is live and instructor-led, scheduled to fit US time zones.",
       },
       {
         question: "Are classes available in US time zones?",
@@ -116,7 +116,7 @@ export const COUNTRY_HOME_CONTENT: Partial<Record<CountrySlug, CountryHomeConten
           "Yes, batches are scheduled with US time zones in mind, including evening and weekend options where available.",
       },
       {
-        question: "What courses does Cloud Edge Solutions currently offer?",
+        question: "What courses does Cloud Edge AI Solutions currently offer?",
         answer:
           "Salesforce Administration and Digital Marketing, both as live online training with certification exam preparation included. Full course details are on our Courses page.",
       },
@@ -133,9 +133,9 @@ export const COUNTRY_HOME_CONTENT: Partial<Record<CountrySlug, CountryHomeConten
     ],
   },
   australia: {
-    metaTitle: "IT Training Courses Australia | Salesforce & Digital Marketing | Cloud Edge Solutions",
+    metaTitle: "IT Training Courses Australia | Salesforce & Digital Marketing | Cloud Edge AI Solutions",
     metaDescription:
-      "Explore IT training courses in Australia with Cloud Edge Solutions. Learn Salesforce Administration and Digital Marketing with expert-led online training and career support.",
+      "Explore IT training courses in Australia with Cloud Edge AI Solutions. Learn Salesforce Administration and Digital Marketing with expert-led online training and career support.",
     hero: {
       title: "IT Training Courses{{ in Australia}}",
       description:
@@ -144,21 +144,21 @@ export const COUNTRY_HOME_CONTENT: Partial<Record<CountrySlug, CountryHomeConten
     intro: {
       heading: "Online IT Training Built for Australian Professionals",
       paragraphs: [
-        "Cloud Edge Solutions delivers live, instructor-led online IT training for professionals, graduates and career changers across Australia. Our current courses cover Salesforce Administration and Digital Marketing, with hands-on projects and certification preparation built into every programme.",
+        "Cloud Edge AI Solutions delivers live, instructor-led online IT training for professionals, graduates and career changers across Australia. Our current courses cover Salesforce Administration and Digital Marketing, with hands-on projects and certification preparation built into every programme.",
         "Training is fully online and scheduled with Australian time zones in mind, so you can learn alongside a live instructor without relocating or taking time away from work. Every course includes career support to help you move from certification into a new role.",
-        "Cloud Edge Solutions is an India-based IT training provider delivering live online training to professionals across Australia — there's no physical Australian office, but every session is live with a real instructor, not pre-recorded.",
+        "Cloud Edge AI Solutions is an India-based IT training provider delivering live online training to professionals across Australia — there's no physical Australian office, but every session is live with a real instructor, not pre-recorded.",
       ],
     },
     faqs: [
       {
         question: "Do you offer IT training in Australia?",
         answer:
-          "Yes. Cloud Edge Solutions delivers live, instructor-led online IT training to students across Australia, with course schedules designed to fit Australian time zones.",
+          "Yes. Cloud Edge AI Solutions delivers live, instructor-led online IT training to students across Australia, with course schedules designed to fit Australian time zones.",
       },
       {
-        question: "Is Cloud Edge Solutions based in Australia?",
+        question: "Is Cloud Edge AI Solutions based in Australia?",
         answer:
-          "Cloud Edge Solutions is headquartered in India and delivers training to Australian students entirely online — there is no physical Australian office. Every class is live and instructor-led, scheduled to fit Australian time zones.",
+          "Cloud Edge AI Solutions is headquartered in India and delivers training to Australian students entirely online — there is no physical Australian office. Every class is live and instructor-led, scheduled to fit Australian time zones.",
       },
       {
         question: "Are classes available in AEST/AEDT?",
@@ -166,7 +166,7 @@ export const COUNTRY_HOME_CONTENT: Partial<Record<CountrySlug, CountryHomeConten
           "Yes, batches are scheduled with Australian time zones in mind, including evening and weekend options where available.",
       },
       {
-        question: "What courses does Cloud Edge Solutions currently offer?",
+        question: "What courses does Cloud Edge AI Solutions currently offer?",
         answer:
           "Salesforce Administration and Digital Marketing, both as live online training with certification exam preparation included. Full course details are on our Courses page.",
       },
@@ -183,9 +183,9 @@ export const COUNTRY_HOME_CONTENT: Partial<Record<CountrySlug, CountryHomeConten
     ],
   },
   uae: {
-    metaTitle: "IT Training Courses UAE | Salesforce & Digital Marketing | Cloud Edge Solutions",
+    metaTitle: "IT Training Courses UAE | Salesforce & Digital Marketing | Cloud Edge AI Solutions",
     metaDescription:
-      "Explore IT training courses in the UAE with Cloud Edge Solutions. Learn Salesforce Administration and Digital Marketing with expert-led online training and career support.",
+      "Explore IT training courses in the UAE with Cloud Edge AI Solutions. Learn Salesforce Administration and Digital Marketing with expert-led online training and career support.",
     hero: {
       title: "IT Training Courses{{ in the UAE}}",
       description:
@@ -194,24 +194,24 @@ export const COUNTRY_HOME_CONTENT: Partial<Record<CountrySlug, CountryHomeConten
     intro: {
       heading: "Online IT Training Built for UAE Professionals",
       paragraphs: [
-        "Cloud Edge Solutions delivers live, instructor-led online IT training for professionals, graduates and career changers across the UAE, including Dubai, Abu Dhabi and Sharjah. Our current courses cover Salesforce Administration and Digital Marketing, with hands-on projects and certification preparation built into every programme.",
+        "Cloud Edge AI Solutions delivers live, instructor-led online IT training for professionals, graduates and career changers across the UAE, including Dubai, Abu Dhabi and Sharjah. Our current courses cover Salesforce Administration and Digital Marketing, with hands-on projects and certification preparation built into every programme.",
         "Training is fully online and scheduled around UAE time zones, so you can learn alongside a live instructor without relocating or taking time away from work. Every course includes career support to help you move from certification into a new role.",
-        "Cloud Edge Solutions is an India-based IT training provider delivering live online training to professionals across the UAE — there's no physical UAE office, but every session is live with a real instructor, not pre-recorded.",
+        "Cloud Edge AI Solutions is an India-based IT training provider delivering live online training to professionals across the UAE — there's no physical UAE office, but every session is live with a real instructor, not pre-recorded.",
       ],
     },
     faqs: [
       {
         question: "Do you offer IT training in the UAE?",
         answer:
-          "Yes. Cloud Edge Solutions delivers live, instructor-led online IT training to students across the UAE, with course schedules designed to fit UAE time zones.",
+          "Yes. Cloud Edge AI Solutions delivers live, instructor-led online IT training to students across the UAE, with course schedules designed to fit UAE time zones.",
       },
       {
-        question: "Is Cloud Edge Solutions based in Dubai or the UAE?",
+        question: "Is Cloud Edge AI Solutions based in Dubai or the UAE?",
         answer:
-          "Cloud Edge Solutions is headquartered in India and delivers training to UAE students entirely online — there is no physical Dubai or UAE office. Every class is live and instructor-led, scheduled to fit UAE time zones.",
+          "Cloud Edge AI Solutions is headquartered in India and delivers training to UAE students entirely online — there is no physical Dubai or UAE office. Every class is live and instructor-led, scheduled to fit UAE time zones.",
       },
       {
-        question: "What courses does Cloud Edge Solutions currently offer?",
+        question: "What courses does Cloud Edge AI Solutions currently offer?",
         answer:
           "Salesforce Administration and Digital Marketing, both as live online training with certification exam preparation included. Full course details are on our Courses page.",
       },

@@ -88,14 +88,14 @@ export default function CourseEnrollmentCard({ course, defaultCountry }: { cours
   const timezone = nextBatch?.timezone ?? nextBatch?.batch?.timezone ?? "";
   const paymentModes = course.payment_modes ?? "UPI · NET · Card";
 
-  const whatsappLink = getWhatsAppLink(`Hi Cloud Edge Solutions, I want to enroll in ${course.name}.`);
+  const whatsappLink = getWhatsAppLink(`Hi Cloud Edge AI Solutions, I want to enroll in ${course.name}.`);
   const emailLink = getEmailLink(
     `Course Enquiry - ${course.name}`,
-    `Hi Cloud Edge Solutions,\n\nI would like to enroll in ${course.name}.`
+    `Hi Cloud Edge AI Solutions,\n\nI would like to enroll in ${course.name}.`
   );
   const demoLink = getEmailLink(
     `Free Demo Class Request - ${course.name}`,
-    `Hi Cloud Edge Solutions,\n\nI would like to book a free demo class for ${course.name}.`
+    `Hi Cloud Edge AI Solutions,\n\nI would like to book a free demo class for ${course.name}.`
   );
 
   const hasCustomIcon = !imgError && course?.icon_media_url && course.icon_media_url.trim() !== "";

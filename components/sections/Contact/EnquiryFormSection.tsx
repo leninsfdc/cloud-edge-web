@@ -263,7 +263,7 @@ const EnquiryFormSection = () => {
                 </div>
 
                 <a
-                  href={getWhatsAppLink("Hi Cloud Edge Solutions, I would like quick course guidance.")}
+                  href={getWhatsAppLink("Hi Cloud Edge AI Solutions, I would like quick course guidance.")}
                   target="_blank"
                   rel="noreferrer"
                   className="flex items-center justify-center gap-2 w-full py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-full text-xs font-bold transition-all duration-200 shadow-md hover:shadow-emerald-500/25"

@@ -20,10 +20,10 @@ const SubjectLocationContainer: React.FC<Props> = ({ subject, location }) => {
 
   const intro =
     location.kind === "branch"
-      ? `Cloud Edge Solutions runs a real training branch in ${location.displayName}, alongside live online ${subject.name} training for students who prefer to learn remotely. ${subject.shortDescription}`
+      ? `Cloud Edge AI Solutions runs a real training branch in ${location.displayName}, alongside live online ${subject.name} training for students who prefer to learn remotely. ${subject.shortDescription}`
       : location.kind === "city"
-      ? `Cloud Edge Solutions delivers live, instructor-led ${subject.name} training to professionals in ${location.displayName} — there's no physical ${location.displayName} office, but every session is live with a real instructor, not pre-recorded. ${subject.shortDescription}`
-      : `Cloud Edge Solutions delivers live, instructor-led ${subject.name} training to professionals across ${location.displayName} — entirely online, with no physical local office. ${subject.shortDescription}`;
+      ? `Cloud Edge AI Solutions delivers live, instructor-led ${subject.name} training to professionals in ${location.displayName} — there's no physical ${location.displayName} office, but every session is live with a real instructor, not pre-recorded. ${subject.shortDescription}`
+      : `Cloud Edge AI Solutions delivers live, instructor-led ${subject.name} training to professionals across ${location.displayName} — entirely online, with no physical local office. ${subject.shortDescription}`;
 
   const faqs = [
     {
@@ -33,14 +33,14 @@ const SubjectLocationContainer: React.FC<Props> = ({ subject, location }) => {
           : `Is ${subject.name} training available near me in ${location.displayName}?`,
       answer:
         location.kind === "branch"
-          ? `Yes — Cloud Edge Solutions has a training branch in ${location.displayName}. Online-only students can also join the same live classes remotely.`
+          ? `Yes — Cloud Edge AI Solutions has a training branch in ${location.displayName}. Online-only students can also join the same live classes remotely.`
           : `Yes — since training is delivered live online rather than from a physical classroom, it's equally accessible from anywhere in ${location.displayName}, as long as you can join a live session.`,
     },
     ...(location.kind !== "branch"
       ? [
           {
             question: `Do you have a training centre in ${location.displayName}?`,
-            answer: `No. Cloud Edge Solutions doesn't have a physical office in ${location.displayName}. Training is delivered live online from India-based instructors.`,
+            answer: `No. Cloud Edge AI Solutions doesn't have a physical office in ${location.displayName}. Training is delivered live online from India-based instructors.`,
           },
         ]
       : []),
@@ -53,7 +53,7 @@ const SubjectLocationContainer: React.FC<Props> = ({ subject, location }) => {
   ];
 
   const enquiryLink = getWhatsAppLink(
-    `Hi Cloud Edge Solutions, I'd like to know more about ${subject.name} training in ${location.displayName}.`
+    `Hi Cloud Edge AI Solutions, I'd like to know more about ${subject.name} training in ${location.displayName}.`
   );
 
   return (
