@@ -45,6 +45,7 @@ export async function createBlog(payload: {
     title: string;
     description: string;
     media_url?: string;
+    cover_image_url?: string;
     is_active: boolean;
     tags: string[];
 }) {
@@ -69,6 +70,7 @@ export async function updateBlog(payload: {
     title: string;
     description: string;
     media_url?: string;
+    cover_image_url?: string;
     tags: string[];
     is_active: boolean;
 }) {
